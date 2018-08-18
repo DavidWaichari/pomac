@@ -159,13 +159,15 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
+
 # default is 'True', use 'optional' for development purposes
-ACCOUNT_EMAIL_VERIFICATION = 'optional'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 ACCOUNT_UNIQUE_EMAIL = True
 
 # default is 'True', only force user to enter password once
-ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+#ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE =True
 
 # controls life time of the session, default is 'None' to ask user "Remember me?"
 ACCOUNT_SESSION_REMEMBER = True

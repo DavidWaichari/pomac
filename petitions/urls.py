@@ -6,7 +6,7 @@ from . import views
 urlpatterns = [
     # urls for PetitionForm
     path('petitionform/', login_required(views.PetitionFormListView.as_view()), name='petitionform_list'),
-    path('', views.PetitionFormListView.as_view(), name='petitionform_list'),
+    path('', login_required(views.PetitionFormListView.as_view()), name='petitionform_list'),
     path('petitionform/create/', views.PetitionFormCreateView.as_view(),name='petitionform_create'),
     path('petitionform/detail/<int:pk>/', views.PetitionFormDetailView.as_view(),name='petitionform_detail'),
     path('petitionform/update/<int:pk>/', views.PetitionFormUpdateView.as_view(),name='petitionform_update'),
