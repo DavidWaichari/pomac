@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+    <style type="text/css">
+        body {
+            font-weight: 200;
+            font-size: 14px;
+        }
+
+        .header {
+            padding-top: 500px;
+            font-size: 20px;
+            font-weight: 100;
+            text-align: center;
+            color: #0f0f0f;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: 100;
+            /* text-align: right;*/
+            padding: 10px 2px 0px 20px;
+        }
+
+        .title span {
+            color: #007cae;
+        }
+
+        .details {
+            padding: 10px 20px 0px 20px;
+            text-align: left !important;
+            margin-left: 50px;
+        }
+
+        .hrItem {
+            border: none;
+            height: 1px;
+            /* Set the hr color */
+            color: #333; /* old IE */
+            background-color: #fff; /* Modern Browsers */
+        }
+
+    </style>
+</head>
+<body>
+<div class='wrapper' style="padding: 20px;">
+    <div class='header'>
+        <img src="{% static 'images/picture.jpg' %}" style="zoom: 100%;" alt="Image">
+        <p class='title'>THIRD SCHEDULE <br/>THE PETITION OF POWER OF MERCY</p>
+    </div>
+    <hr class='hrItem' size="2.5"/>
+    <div>
+        <div class="details" style="font-style: italic">
+            To:<br/> The President <br/>
+            Republic of Kenya<br/><br/>
+
+            <strong>Through</strong><br/><br/>
+            The Power of Mercy Advisory Committee
+        </div>
+        <div style="font-size: 16px">
+            1. The humble petition of: <strong>{{ name }} <i>(Name of convicted criminal
+            offender)</i></strong><br/><br/>
+            Prison Number: <strong>{{ prisonno }}</strong>..........................Nationality:
+            <strong>{{ nationality }}</strong><br/><br/>
+            Name of Prison where held: <strong>{{ prison }}</strong><br/><br/>
+            Court where convicted: <strong>{{ court }}</strong>.....Court Case No:
+            <strong>{{ courtno }}</strong><br/><br/>
+            Offence: <strong>{{ offence }}</strong><br/><br/>
+            Age at Conviction: <strong>{{ ageatconviction }} YEARS</strong>..............................Date of
+            Conviction: <strong>{{ dateofconviction }}</strong><br/><br/>
+            Current Age: <strong>{{ currentage }} YEARS</strong>......................................Age when offense
+            was Committed: <strong>{{ ageoffense }} YEARS</strong><br/><br/>
+            Next of Kin: <strong>{{ nextofkin }}</strong>................................................Relationship:
+            <strong>{{ nextofkinrelationship }}</strong><br/><br/>
+            Contact Person: <strong>{{ contactperson }}</strong>.........................................Tel No:
+            <strong>{{ telno }}</strong><br/><br/>
+            Home County: <strong>{{ county }}</strong>.......................Sub County:
+            <strong>{{ subcounty }}</strong><br/><br/>
+            Home Location: <strong>{{ location }}</strong>...................Nearest School:
+            <strong>{{ nearestschool }}</strong><br/><br/>
+            Name of Home Chief: <strong>{{ nameofhomechief }}</strong><br/><br/>
+            Where the offense was committed: <strong>{{ offensecommitted }}</strong><br/><br/>
+            Date of Custody: <strong>{{ dateofcustody }}</strong>..................................Years Served:
+            <strong>{{ yearsserved }} YEARS</strong><br/><br/>
+            Years Served in Remand: <strong>{{ yearsinremand }} YEARS</strong><br/><br/>
+        </div>
+        <div style="font-size: 16px">
+            2. Number of counts and sentence terms(s) imposed: <strong>{{ sentence }}</strong><br/><br/>
+            4. The nature,particulars and circumstances surrounding the commission of the offence :
+            <strong>{{ natureofoffense }}</strong><br/><br/>
+            5. Were you charged alone for the offence?: <strong>{{ chargedalone }}</strong><br/>
+            if NO, give the Names of the Co-Accused and prison held if they were convicted:
+            <strong>{{ coaccused }}</strong><br/><br/>
+            6. Do you know the victim of the offence for which you were charged?:
+            <strong>{{ knowledgeofvictim }}</strong><br/>
+            if YES, provide details of :<br/>
+            Name of victim: <strong>{{ nameofvictim }}</strong><br>
+            Area of Residence (if known): <strong>{{ areaofresidence }}</strong><br/><br/>
+            7. State and explain any previous conviction(s): <strong>{{ previousconvictions }}</strong><br/><br/>
+            8. Has the prisoner made any previous petition: <strong>{{ previouspetition }}</strong><br/>
+            if YES, Date of the previous petition was: <strong>{{ dateofpreviouspetition }}</strong><br/>
+            Reason of Denial of previous petition: <strong>{{ reasonofdenial }}</strong><br/><br/>
+            9. Reasons for current petitioning: <strong>{{ reasonsforpetitining }}</strong><br/><br/>
+            10. Have you had any disciplinary action taken against you while in prison?:
+            <strong>{{ disciplinaryaction }}</strong><br/>
+            if YES, give details : <strong>{{ explanationofdisciplinaryaction }}</strong><br/><br/>
+            11. Any special condition e.g. physical ability challenges, terminal sickness, very sickly, mental health
+            etc: <strong>{{ anyspecialcondition }}</strong><br/>
+            Give details: <strong>{{ explanationofspecialcondition }}</strong><br/><br/>
+            12. Are you a Trustee: <strong>{{ trustee }}</strong><br/>
+            If YES, when were you promoted to trustee: <strong>{{ trustedate }}</strong><br/><br/>
+            13. Are you recognized for special attributes, achievements or skills attained in prison?:
+            <strong>{{ anyskills }}</strong><br/>
+            If YES, please explain: <strong>{{ skillsexplanation }}</strong><br/><br/>
+            14. Did you appeal against the conviction?: <strong>{{ appealed }}</strong><br/>
+            If YES, please explain the outcome : <strong>{{ appealoutcome }}</strong><br/>
+            And, Appeal Case Numbers : <strong>{{ appealcaseno }}</strong><br/><br/><br/>
+            15. Do you have any pending court matter even if not related to your conviction?:
+            <strong>{{ pendingcourtmatter }}</strong><br/>
+            If YES, please explain : <strong>{{ pendingexplanation }}</strong><br/>
+
+            <div style="font-size: 16px; text-align: justify">
+                <strong style="text-align: left">The petitioner further states:</strong><br/>
+                16. That during the service of the sentence term, the convicted criminal offender has demonstrated good
+                conduct, change
+                of character, and remorse for the crime for which the prisoner was convicted and sentenced.<br/><br/>
+                17. That the petitioner humbly requests the President of the Republic of Kenya to exercise the power of
+                mercy
+                and grant the relief sought.<br/><br/>
+                18. That the petitioner binds himself/herself to the conditions that may be attached to any relief
+                granted by the
+                President, including post release supervision by any government agency.<br/><br/>
+                19. That the convicted criminal offender commits and undertakes to maintain and improve on the good
+                character and recognizes
+                that should the relief be granted it could be revoked, upon recommendation of the Power of Mercy
+                Advisory Committee, in
+                the event of commission of any criminal offence.
+            </div>
+            <div style="font-size: 16px">
+                <strong>Dated this.................</strong><span
+                    style="font-size: 22px;"><i>{{ day }}</i></span><strong>........Day of................</strong><span
+                    style="font-size: 22px;"><i>{{ month }}</i></span><strong>.........................<span
+                    style="font-size: 24px;">/</span></strong><span style="font-size: 22px;"><i>{{ year }}</i></span>..................<br/><br/>
+                <i>Name of the petitioner:.</i> <strong>{{ name }}</strong>..<i>Signature/thumb print</i>................................
+            </div>
+            <div style="font-size: 16px;">
+                <strong>If applicant is different from the petitioner</strong><br/>
+                Representative / Advocate: This is not working <br/>
+                Relationship with convicted offender: This is not working <br/>
+                P.O Box: This is not working <br/>
+                Telephone No: This is not working <br/><br/>
+                Signature:.......................................................................................................................................
+                <br/>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+    <style type="text/css">
+        body {
+            font-weight: 200;
+            font-size: 14px;
+        }
+
+        .header {
+            padding-top: 500px;
+            font-size: 20px;
+            font-weight: 100;
+            text-align: center;
+            color: #0f0f0f;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: 100;
+            /* text-align: right;*/
+            padding: 10px 2px 0px 20px;
+        }
+
+        .title span {
+            color: #007cae;
+        }
+
+        .details {
+            padding: 10px 20px 0px 20px;
+            text-align: left !important;
+            margin-left: 50px;
+        }
+
+        .hrItem {
+            border: none;
+            height: 1px;
+            /* Set the hr color */
+            color: #333; /* old IE */
+            background-color: #fff; /* Modern Browsers */
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+    </style>
+</head>
+<body>
+<div class='wrapper' style="padding: 20px;">
+    <div class='header'>
+        <p class='title'>INTERVIEW SUMMARY & VOTING (S.15;21;22;28) <br/>The Power of Mercy Advisory Committee</p>
+    </div>
+    <hr class='hrItem' size="2.5"/>
+    <div>
+        <div style="text-align: center">
+            <h2>
+                IN THE MATTER OF <br>
+                PETITION FOR THE EXERCISE OF THE POWER OF MERCY
+            </h2>
+        </div>
+        <div style="font-size: 16px; text-align: justify">
+            PETITIONER: <strong>{{ name }} <i>(Name of Prisoner/Petitioner)</i></strong><br/><br/>
+            Prison Number: <strong>{{ prisonno }}</strong>............Prison:<strong>{{ prison }}</strong><br/><br/>
+            Name: <strong>{{ name }}</strong><br/><br/>
+            Current Age: <strong>{{ currentage }} YEARS</strong>.................................Age When Offence was Committed: <strong>{{ ageoffense }} YEARS</strong><br/><br/>
+            Offence(s): <strong>{{ offence }}</strong><br/><br/>
+            Date of Sentence:
+            <strong>{{ dateofconviction }}</strong>.........................Sentence:<strong>{{ sentence }}</strong><br/><br/>
+            Court where convicted: <strong>{{ court }}</strong>.....Court Case No:
+            <strong>{{ courtno }}</strong><br/><br/>
+
+            Appeal No <i>(if any)</i>: <strong>{{ appealcaseno }}</strong>.....................Outcome of Appeal:
+            <strong>{{ appealoutcome }}</strong><br><br>
+            E.P.D: <strong>Not working</strong>.........................................L.P.D:
+            <strong>Not Working</strong><br/><br/>
+            No of Previous Convictions: <strong>{{ previousconvictions }}</strong><br/><br/>
+            Prison Offences (if any): <strong>{{ explanationofdisciplinaryaction }}</strong><br/><br/>
+            Where the offense was committed: <strong>{{ offensecommitted }}</strong><br/><br/>
+            Date of Custody: <strong>{{ dateofcustody }}</strong>..................................Years Served:
+            <strong>{{ yearsserved }} YEARS</strong><br/><br/>
+            Health Status: <strong>{{ healthstatus }}</strong><br/><br/>
+            Family Status: <strong>{{ familystatus }}</strong><br/><br/>
+            (a) Own account of circumstances surrounding commission of Offence : <strong>{{ ownaccount }}</strong><br/><br/>
+            (b) Reconciliation efforts with victims of the offence that led to current conviction : <strong>{{ reconciliationefforts }}</strong><br/><br/>
+            (c) Indication of Remorsefulness or otherwise : <strong>{{ indicationofremorsefulness }}</strong><br/><br/>
+            (c) Any other comments: <strong>{{ anyothercomments }}</strong><br/><br/>
+            (d) Representation of victims (if applicable): <strong>{{ representationofvictim }}</strong><br/><br/>
+            (e) Concluding Observations of majority Members in view of the Hearings and Interviews conducted in the Petition: <strong>{{ concludingobservations }}</strong><br/><br/>
+            (f) Voting in accordance with the opinion of the majority members reviewing the petition members' second schedule:
+            <br><br>
+                1. Chairperson.........................Vote: <strong>{{ chairvote }}</strong>........Reason: <strong>{{ chairreason }}</strong><br><br>
+                2. Vice Chairperson..................Vote: <strong>{{ vicechairvote }}</strong>........Reason: <strong>{{ vicechairreason }}</strong><br><br>
+                3. Member One..........................Vote: <strong>{{ member1vote }}</strong>........Reason: <strong>{{ member1votereason }}</strong><br><br>
+                4. Member Two..........................Vote: <strong>{{ member2vote }}</strong>........Reason: <strong>{{ member2votereason }}</strong><br><br>
+                5. Member Three........................Vote: <strong>{{ member3vote }}</strong>........Reason: <strong>{{ member3votereason }}</strong><br><br>
+                6. Member Four.........................Vote: <strong>{{ member4vote }}</strong>........Reason: <strong>{{ member4votereason }}</strong><br><br>
+                7. Member Five.........................Vote: <strong>{{ member5vote }}</strong>........Reason: <strong>{{ member5votereason }}</strong><br><br>
+                8. Member Six..........................Vote: <strong>{{ member6vote }}</strong>........Reason: <strong>{{ member6votereason }}</strong><br><br>
+            <h3>FINAL RESOLUTION: {{ finalresolution }}</h3>
+        </div>
+        <div style="font-size: 16px; text-align: justify">
+            <div>
+
+            <div style="font-size: 16px; margin-top: 50px">
+                <strong>Signed</strong><br><br>
+                <strong>Chairperson of the Petition Sub-Comittee</strong><br><br>
+                <strong>Dated this.................</strong><span
+                    style="font-size: 22px;"><i>{{ day }}</i></span><strong>........Day of................</strong><span
+                    style="font-size: 22px;"><i>{{ month }}</i></span><strong>.........................<span
+                    style="font-size: 24px;">/</span></strong><span style="font-size: 22px;"><i>{{ year }}</i></span>..................<br/><br/>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -11,6 +11,10 @@ SECRET_KEY = '4(j*7q=-dm@4&d8hb)-ivy#b(&_3ew19ujzo#h_hq-39!6-5d+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+DEBUG_TOOLBAR_CONFIG = {
+    'SHOW_TOOLBAR_CALLBACK': lambda r: False,  # disables it
+    # '...
+}
 
 ALLOWED_HOSTS = []
 
@@ -34,6 +38,8 @@ INSTALLED_APPS = [
     # Local
     'users',
     'pages',
+    'petitions',
+    'mathfilters',
 ]
 
 MIDDLEWARE = [
@@ -71,10 +77,14 @@ WSGI_APPLICATION = 'djangox.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+     'default': {
+         'ENGINE': 'mysql_cymysql',
+         'NAME': 'djangox',
+         'USER': 'root',
+         'PASSWORD': '',
+         'HOST': '127.0.0.1',
+         'PORT': '3306',
+     }
 }
 
 
@@ -138,9 +148,10 @@ AUTH_USER_MODEL = 'users.CustomUser'
 # Site id required for using 'sites' framework with django-allauth
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = 'home'
-ACCOUNT_LOGOUT_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'petitionform_list'
+ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
+ACCOUNT_LOGOUT_ON_GET = True
 
 # Don't collect usernames, use email instead
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None

@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+    <style type="text/css">
+        body {
+            font-weight: 200;
+            font-size: 14px;
+        }
+
+        .header {
+            padding-top: 500px;
+            font-size: 20px;
+            font-weight: 100;
+            text-align: center;
+            color: #0f0f0f;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: 100;
+            /* text-align: right;*/
+            padding: 10px 2px 0px 20px;
+        }
+
+        .title span {
+            color: #007cae;
+        }
+
+        .details {
+            padding: 10px 20px 0px 20px;
+            text-align: left !important;
+            margin-left: 50px;
+        }
+
+        .hrItem {
+            border: none;
+            height: 1px;
+            /* Set the hr color */
+            color: #333; /* old IE */
+            background-color: #fff; /* Modern Browsers */
+        }
+        span{
+            font-size: 22px;
+        }
+
+    </style>
+</head>
+<body>
+<div class='wrapper' style="padding: 20px;">
+    <div class='header'>
+        <p class='title'>ADMISSIBILITY FORM <br/>The Power of Mercy Advisory Committee</p>
+    </div>
+    <hr class='hrItem' size="2.5"/>
+<div style="text-align: center">
+    <h2>
+        IN THE MATTER OF <br>
+    PETITION FOR THE EXERCISE OF THE POWER OF MERCY
+    </h2>
+</div>
+    <div style="font-size: 18px">
+        PETITIONER: <strong>{{ name }}</strong> ...<strong>{{ prisonno }}</strong><i>(Name and Prison No)</i><br><br>
+        Arising from his/her custodial sentence of: <strong>{{ sentence }} </strong>(sentence)<br>
+        <div style="text-align: justify">
+         The Power of Mercy Advisory Committee having perused the subject the subject petition and the annexed documents notes
+            that the application meets the eligibility and admissibility criteria pursuant to S.19 and S.21 of the Power of
+            Mercy Act, 2011.
+        </div>
+
+        <div>
+            Following this preliminary review, the committee determines it is necessary to: <br><br>
+            1. <strong> {{ information }}</strong><br><br>
+            2. Call for the following evidence: <strong>{{ evidence }}</strong><br><br>
+            3. Request reports from the following government agencies: <strong>{{ reports }}</strong><br><br>
+            4. Order the following investigations: <strong>{{ investigations }}</strong>
+        </div>
+         <div style="margin-top: 50px;">
+            Signed <br><br>
+            <strong>Chairperson of the Petition Sub-Committee</strong><br><br>
+            <strong>Dated this..............<span>{{ day }}</span>.............Day of...........<span>{{ month }}</span>................<span>/{{ year }}</span></strong>
+         </div>
+    </div>
+
+</div>
+</body>
+</html>

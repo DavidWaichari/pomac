@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+ <html>
+     <head>
+         <title>Title</title>
+         <style type="text/css">
+             body {
+                 font-weight: 200;
+                 font-size: 14px;
+             }
+             .header {
+                 padding-top: 500px;
+                 font-size: 20px;
+                 font-weight: 100;
+                 text-align: center;
+                 color: #0f0f0f;
+             }
+             .title {
+                 font-size: 22px;
+                 font-weight: 100;
+                /* text-align: right;*/
+                padding: 10px 2px 0px 20px;
+             }
+             .title span {
+                 color: #007cae;
+             }
+             .details {
+                 padding: 10px 20px 0px 20px;
+                 text-align: left !important;
+                 /*margin-left: 40%;*/
+             }
+             .hrItem {
+                 border: none;
+                 height: 1px;
+                 /* Set the hr color */
+                 color: #333; /* old IE */
+                 background-color: #fff; /* Modern Browsers */
+             }
+
+         </style>
+     </head>
+     <body>
+         <div class='wrapper' style="padding: 20px;">
+             <div class='header'>
+                 <img src="{% static 'images/picture.jpg' %}" style="zoom: 100%;" alt="Image">
+                 <p class='title'>RECOMMENDATION (S.23) <br/>The Power of Mercy Advisory Committee</p>
+             </div>
+             <hr class='hrItem' />
+         <div>
+         <div style="text-align: center;">
+             <h2>IN THE MATTER OF <br/>PETITION FOR THE EXERCISE OF THE POWER OF MERCY</h2>
+         </div>
+             <div style="font-size: 18px; text-align: justify;">The Advisory Committee has duly reviewed the Petition of <strong>{{ name }} {{ prisonno }}</strong> (Petitioner name & Prison
+                 no) filed on <strong>{{ created_at }}</strong> (date), who was then held at the <strong>{{ prison }}</strong>, requesting His Excellency the president to exercise
+             the power of mercy by <strong>{{ mercy }}</strong>.
+             <div>Following the investigations conducted, evidence gathered, interviews held and consideration of the
+             reports from appropriate government agencies, the Committee forms the opinion that the Petitioner: <br/><br/> <strong>
+{{ explanationforrecommendation }}
+</strong></div>
+                 <p style="font-family: cursive;">In view of this, the Advisory Committee RECOMMENDS grant of petition. </p>
+                 <p><strong>Signed by the Chairperson of the Petition Sub Committee</strong><br/><br/>
+                 <strong>Dated this .......................................Day of...................................,20..........................</strong></p>
+             </div>
+     </div>
+         </div>
+     </body>
+ </html>

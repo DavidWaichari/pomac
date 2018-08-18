@@ -1,0 +1,231 @@
+{% extends "app/base_site.html" %}
+{% load static %}
+{% load mathfilters %}
+{% load crispy_forms_tags %}
+{% block title %} Table Dynamic {% endblock title %}
+
+{% block stylesheets %}
+    {{ block.super }}
+    <link href="/static/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+{% endblock stylesheets %}
+
+{% block content %}
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Petitions List
+                                <small>| List of all petitions</small>
+                            </h2>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Settings 1</a>
+                                        </li>
+                                        <li><a href="#">Settings 2</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <p class="text-muted font-13 m-b-30">
+                                This table shows all the petitions submitted from across all the prisons. You can search using any
+                                criteria
+                            </p>
+                            <table id="datatable-buttons" class="table table-striped table-bordered" style="cursor:pointer;width:100%">
+                                <thead style="width:100%">
+                                <tr>
+                                    <td>S/No</td>
+                                    <td>Name</td>
+                                    <td>Prison No</td>
+                                    <td>Prison</td>
+                                    <td>Nationality</td>
+                                    <td>Court Case No</td>
+                                    <td>Conviction Age</td>
+                                    <td>Current Age</td>
+                                    <td>Period Spent in Custody</td>
+                                    <td>Sentence</td>
+                                    <td>Offense Age</td>
+                                    <td>Next of Kin</td>
+                                    <td>Next of Kin Relationship</td>
+                                    <td>Contact Person</td>
+                                    <td>Contact Person Tel</td>
+                                    <td>County</td>
+                                    <td>Sub County</td>
+                                    <td>Home Location</td>
+                                    <td>Nearest School</td>
+                                    <td>Home Chief</td>
+                                    <td>location of Offense</td>
+                                    <td>Date of Conviction</td>
+                                    <td>Date of Custody</td>
+                                    <td>Relief Sought</td>
+                                    <td>Offence</td>
+                                    <td>Particulars of Offense</td>
+                                    <td>Charged Alone for the Offence</td>
+                                    <td>Names of CO-Accussed</td>
+                                    <td>Knowledge of the Victim</td>
+                                    <td>Name of the Victim</td>
+                                    <td>Vitims Residence</td>
+                                    <td>Previous Convictions</td>
+                                    <td>Previous Petition</td>
+                                    <td>Date of Previous Petition</td>
+                                    <td>Reason for Denial of Petition</td>
+                                    <td>Reasons for Current Petition</td>
+                                    <td>Disciplinary action in prison</td>
+                                    <td>Details of Disciplinary Action</td>
+                                    <td>Special Condition</td>
+                                    <td>Details of Special Condition</td>
+                                    <td>Trustee</td>
+                                    <td>Date of Promotion to Trustee</td>
+                                    <td>Skills</td>
+                                    <td>Skills Details</td>
+                                    <td>Appealed</td>
+                                    <td>Appeal Case No</td>
+                                    <td>Appeal Outcome</td>
+                                    <td>Pending Court Matter</td>
+                                    <td>Pending Court Matter Explanation</td>
+                                    <td>Created At</td>
+                                    <td>Last Updated</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for object in object_list %}
+                                    <tr>
+                                        <td>{{ forloop.counter}}</td>
+                                        <td><a href="{{object.get_absolute_url}}">{{object.name}}</a></td>
+                                        <td>{{ object.prisonno }}</td>
+                                        <td>{{ object.prison }}</td>
+                                        <td>{{ object.nationality }}</td>
+                                        <td>{{ object.courtcaseno }}</td>
+                                        <td>{{ object.ageatconviction }} YEARS</td>
+                                        <td>{{ today.year|sub:object.dateofconviction.year|add:object.ageatconviction }} YEARS</td>
+                                        <td>{{ today.year|sub:object.dateofcustody.year }} YEARS</td>
+                                     {% if object.convictedforlife == True %}
+                                        <td>LIFE IMPRISONMENT</td>
+                                        {% else %}
+                                            <td>{{ object.sentence }} YEARS IMPRISONMENT</td>
+                                        {% endif %}
+                                        <td>{{ object.agewhenoffensewascommited }}</td>
+                                        <td>{{ object.nextofkin }}</td>
+                                        <td>{{ object.relationshipwithnextofkin }}</td>
+                                        <td>{{ object.contactperson }}</td>
+                                        <td>{{ object.telnoofcontactperson }}</td>
+                                        <td>{{ object.county }}</td>
+                                        <td>{{ object.subcounty }}</td>
+                                        <td>{{ object.location }}</td>
+                                        <td>{{ object.nearestschool }}</td>
+                                        <td>{{ object.homechief }}</td>
+                                        <td>{{ object.whereoffensewascommitted }}</td>
+                                        <td>{{ object.dateofconviction }}</td>
+                                        <td>{{ object.dateofcustody }}</td>
+                                        <td>{{ object.reliefsought }}</td>
+                                        <td>{{ object.offence }}</td>
+                                        <td>{{ object.natureandparticularsofoffense }}</td>
+                                        {% if object.chargedalonefortheoffense == True %}
+                                        <td>Yes</td>
+                                        {% else %}
+                                            <td>No</td>
+                                        {% endif %}
+                                        <td>{{ object.namesofcoaccused }}</td>
+                                    {% if object.knowledgeofthevictim == True %}
+                                        <td>Yes</td>
+                                        {% else %}
+                                            <td>No</td>
+                                        {% endif %}
+                                        <td>{{ object.nameofvictim }}</td>
+                                        <td>{{ object.areaofresidence }}</td>
+                                        <td>{{ object.previousconvictions }}</td>
+                                     {% if object.previouspetition == True %}
+                                        <td>Yes</td>
+                                        {% else %}
+                                            <td>No</td>
+                                        {% endif %}
+                                        <td>{{ object.dateofpreviouspetition }}</td>
+                                        <td>{{ object.reasonofdenialofpreviouspetition }}</td>
+                                        <td>{{ object.reasonforcurrentpetition }}</td>
+                                    {% if object.anydisplinaryactioninprison == True %}
+                                        <td>Yes</td>
+                                        {% else %}
+                                            <td>No</td>
+                                        {% endif %}
+                                        <td>{{ object.detailsofdisplinaryactioninprison }}</td>
+                                      {% if object.anyspecialcondition == True %}
+                                        <td>Yes</td>
+                                        {% else %}
+                                            <td>No</td>
+                                        {% endif %}
+                                        <td>{{ object.detailsofspecialcondition }}</td>
+                                         {% if object.areyouatrustee == True %}
+                                        <td>Yes</td>
+                                        {% else %}
+                                            <td>No</td>
+                                        {% endif %}
+                                        <td>{{ object.dateofpromotiontotrustee }}</td>
+                                    {% if object.anyspecialattributesorskills == True %}
+                                        <td>Yes</td>
+                                        {% else %}
+                                            <td>No</td>
+                                        {% endif %}
+                                        <td>{{ object.explanationofspecialattributesorskills }}</td>
+                                         {% if object.appealedagainsttheconviction == True %}
+                                        <td>Yes</td>
+                                        {% else %}
+                                            <td>No</td>
+                                        {% endif %}
+                                        <td>{{ object.appealcaseno }}</td>
+                                        <td>{{ object.appealoutcome }}</td>
+                                    {% if object.anypendingcourtmatter == True %}
+                                        <td>Yes</td>
+                                        {% else %}
+                                            <td>No</td>
+                                        {% endif %}
+                                        <td>{{ object.explanationofpendingcourtmatter }}</td>
+                                    <td>{{ object.created }}</td>
+                                        <td>{{ object.last_updated }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block javascripts %}
+    {{ block.super }}
+    <!-- Datatables -->
+    <script src="/static/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="/static/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="/static/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="/static/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="/static/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="/static/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="/static/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="/static/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="/static/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="/static/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/static/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="/static/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="/static/vendors/jszip/dist/jszip.min.js"></script>
+    <script src="/static/vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="/static/vendors/pdfmake/build/vfs_fonts.js"></script>
+{% endblock javascripts %}
