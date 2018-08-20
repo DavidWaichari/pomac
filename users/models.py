@@ -10,10 +10,10 @@ class CustomUser(AbstractUser):
     AbstractUser._meta.get_field('username')._unique = False
 
     def __str__(self):
-        return self.profile
+        return self.email
 
 class Profile(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='profile')
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     residence = models.TextField(max_length=30, blank=True)
     profession = models.DateField(null=True, blank=True)
     email_confirmed = models.BooleanField(default=False)

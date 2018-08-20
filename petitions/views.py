@@ -2,7 +2,7 @@ from datetime import date
 
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
 
 from .models import PetitionForm, AdmissibilityForm, HearingSummary, InterviewSummary, RecommendationForm, \
@@ -22,6 +22,11 @@ class CountyCreateView(CreateView):
     model = County
     form_class = CountyForm
 
+    def form_valid(self, form):
+        county = form.save(commit=False)
+        county.added_by = self.request.user
+        county.save()
+        return  redirect ('petitions_county_detail', county.id)
 
 class CountyDetailView(DetailView):
     model = County
@@ -339,6 +344,7 @@ class AdmissibilityFormUpdateView(UpdateView):
     template_name = 'petitions/admissibility_form/admissibilityform_update.html'
     model = AdmissibilityForm
     form_class = AdmissibilityUpdateForm
+
 
 def GenerateAdmissibilityForm(request, pk):
     admissibility = AdmissibilityForm.objects.get(pk=pk)

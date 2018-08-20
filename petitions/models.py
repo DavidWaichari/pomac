@@ -13,7 +13,8 @@ class County(models.Model):
     name = models.CharField(max_length=255)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
-
+    added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                 null=True, blank=True, on_delete=models.SET_NULL)
 
     class Meta:
         ordering = ('-created',)
@@ -30,6 +31,7 @@ class County(models.Model):
 
     def __str__(self):
         return self.name
+
 
 
 class SubCounty(models.Model):
@@ -147,7 +149,6 @@ class AdmissibilityForm(models.Model):
 
     # Relationship Fields
     petitioner = models.OneToOneField(PetitionForm, on_delete=models.CASCADE, related_name='admissibility')
-
     class Meta:
         ordering = ('-created',)
 
@@ -163,6 +164,8 @@ class AdmissibilityForm(models.Model):
 
     def __str__(self):
         return self.petitioner.name+'  |  '+self.petitioner.prisonno+'  |  '+self.petitioner.prison
+
+
 
 
 class PetitionSummary(models.Model):
@@ -223,6 +226,12 @@ class HearingSummary(models.Model):
 
     # Relationship Fields
     admissibility = models.OneToOneField(AdmissibilityForm,on_delete=models.CASCADE, related_name='hearing')
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj:
+            return ["admissibility"]
+        else:
+            return []
 
     class Meta:
         ordering = ('-created',)

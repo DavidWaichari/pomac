@@ -198,13 +198,6 @@ def add_initial_data(apps, schema_editor):
     SubCounty.objects.create(name='MANDERA EAST', county=mandera)
     SubCounty.objects.create(name='LAFEY', county=mandera)
 
-    mandera = County.objects.create(name='MANDERA')
-    SubCounty.objects.create(name='MANDERA WEST', county=mandera)
-    SubCounty.objects.create(name='BANISA', county=mandera)
-    SubCounty.objects.create(name='MANDERA NORTH', county=mandera)
-    SubCounty.objects.create(name='MANDERA EAST', county=mandera)
-    SubCounty.objects.create(name='LAFEY', county=mandera)
-
     marsabit = County.objects.create(name='MARSABIT')
     SubCounty.objects.create(name='MOYALE', county=marsabit)
     SubCounty.objects.create(name='NORTH HORR', county=marsabit)
