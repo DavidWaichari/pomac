@@ -310,9 +310,16 @@
                                                 <td>{{ object.petitioner.explanationofpendingcourtmatter }}</td>
                                             </tr>
                                             <tr>
-                                                <td></td>
-                                                <td></td>
+                                                <td>Petition Added By</td>
+                                                <td>{{ object.petitioner.added_by }}</td>
                                             </tr>
+                                            <tr>
+                                                <td>Petition Added On</td>
+                                                <td>{{ object.petitioner.created }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
                                             </tr>
                                             <tr>
                                                 <td class="text-right text-uppercase text-primary">Start of Admissible

@@ -1528,14 +1528,20 @@ class RecommendationFormUpdateView(UpdateView):
 
 def GenerateRecommendationForm(request, pk):
         recommendation = RecommendationForm.objects.get(pk=pk)
+        recommendationdate = recommendation.created
+        petitiondate = recommendation.interview.hearing.admissibility.petitioner.created
         data = {
              'name': recommendation.interview.hearing.admissibility.petitioner.name,
              'prisonno': recommendation.interview.hearing.admissibility.petitioner.prisonno,
-             'created_at': recommendation.interview.hearing.admissibility.petitioner.created,
+            'petitionmonth': petitiondate.strftime("%B"),
+            'petitionday': petitiondate.day,
+            'petitionyear': petitiondate.year,
              'prison': recommendation.interview.hearing.admissibility.petitioner.prison,
              'mercy': recommendation.mercy,
              'explanationforrecommendation': recommendation.explanationofrecommedation,
-             'today': date.today().strftime("%Y-%m-%d %H:%M:%S"),
+            'month': recommendationdate.strftime("%B"),
+            'day': recommendationdate.day,
+            'year': recommendationdate.year,
         }
         pdf = render_to_pdf('petitions/recommendations/recommendation_print.html', data)
         return HttpResponse(pdf, content_type='application/pdf')

@@ -101,6 +101,8 @@
                                     <td>Appeal Outcome</td>
                                     <td>Pending Court Matter</td>
                                     <td>Pending Court Matter Explanation</td>
+                                    <td>Petition Submitted By</td>
+                                    <td>Petition Submitted On</td>
                                     <td>Admissibility Status</td>
                                     <td>Set Hearing Date</td>
                                     <td>Inadmissibility Reason</td>
@@ -206,6 +208,8 @@
                                             <td>No</td>
                                         {% endif %}
                                         <td>{{ object.petitioner.explanationofpendingcourtmatter }}</td>
+                                        <td>{{ object.petitioner.added_by }}</td>
+                                        <td>{{ object.petitioner.created }}</td>
                                     {% if object.admissability == True %}
                                         <td class="text-success">ADMISSIBLE</td>
                                         {% else %}

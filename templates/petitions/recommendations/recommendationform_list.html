@@ -100,6 +100,8 @@
                                     <td>Appeal Outcome</td>
                                     <td>Pending Court Matter</td>
                                     <td>Pending Court Matter Explanation</td>
+                                    <td>Petition Added By</td>
+                                    <td>Petition Added On</td>
                                     <td>Mercy Given</td>
                                     <td>Explanation of the FINAL RECOMMENDATION</td>
 
@@ -208,6 +210,8 @@
                                             <td>No</td>
                                         {% endif %}
                                         <td>{{ object.interview.hearing.admissibility.petitioner.explanationofpendingcourtmatter }}</td>
+                                        <td>{{ object.interview.hearing.admissibility.petitioner.added_by }}</td>
+                                        <td>{{ object.interview.hearing.admissibility.petitioner.created }}</td>
                                         <td>{{ object.mercy}}</td>
                                         <td>{{ object.explanationofrecommedation }}</td>
                                         <td>{{ object.created }}</td>

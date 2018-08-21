@@ -101,6 +101,8 @@
                                     <td>Appeal Outcome</td>
                                     <td>Pending Court Matter</td>
                                  <td>Pending Court Matter Explanation</td>
+                                 <td>Petition Added By</td>
+                                 <td>Petition Addded On</td>
                                  <td>Type and circumstances of the Offence</td>
                                  <td>Petition Overview</td>
                                  <td>Summary Created on</td>
@@ -205,6 +207,8 @@
                                             <td>No</td>
                                         {% endif %}
                                         <td>{{ object.admissibility.petitioner.explanationofpendingcourtmatter }}</td>
+                                        <td>{{ object.admissibility.petitioner.added_by }}</td>
+                                        <td>{{ object.admissibility.petitioner.created }}</td>
                                         <td>{{ object.typeandcircumstancesofoffence }}</td>
                                         <td>{{ object.petitionoverview }}</td>
                                         <td>{{ object.created }}</td>

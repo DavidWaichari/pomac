@@ -101,6 +101,8 @@
                                     <td>Appeal Outcome</td>
                                     <td>Pending Court Matter</td>
                                     <td>Pending Court Matter Explanation</td>
+                                    <td>Petition Added By</td>
+                                    <td>Petition Added On</td>
 
                                     <td>Own account of circumstances sorrounding commission of offense</td>
                                     <td>Reconcialiation efforts with the victims of the offense that led to the current
@@ -235,6 +237,8 @@
                                             <td>No</td>
                                         {% endif %}
                                         <td>{{ object.hearing.admissibility.petitioner.explanationofpendingcourtmatter }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.added_by }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.created }}</td>
                                         <td>{{ object.ownaccountofcircumstances }}</td>
                                         <td>{{ object.reconciliationefforts }}</td>
                                         <td>{{ object.indicationofremosefulness }}</td>
