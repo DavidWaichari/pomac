@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
+from django.views.generic import UpdateView
 from requests import request
 
 from django.contrib.sites.shortcuts import get_current_site
@@ -11,21 +12,8 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from djangox.tokens import account_activation_token
-from users.models import CustomUser
-from .forms import CustomUserCreationForm
-# def SignUp(request):
-#     if request.method == 'POST':
-#         form = CustomUserCreationForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             username = form.cleaned_data.get('username')
-#             raw_password = form.cleaned_data.get('password1')
-#             user = authenticate(username=username, password=raw_password)
-#             login(request, user)
-#             return redirect('home')
-#     else:
-#         form = CustomUserCreationForm()
-#     return render(request, 'account/signup.html', {'form': form})
+from users.models import CustomUser, Profile
+from .forms import CustomUserCreationForm, ProfileUpdateForm
 
 
 @login_required
@@ -76,3 +64,12 @@ def activate(request, uidb64, token):
         return redirect('home')
     else:
         return render(request, 'account/account_activation_invalid.html')
+
+class ProfileUpdateView(UpdateView):
+    template_name = 'account/update_profile.html'
+    model = Profile
+    form_class = ProfileUpdateForm
+
+    def get_success_url(self):
+        view_name = 'petitionform_list'
+        return reverse_lazy(view_name)

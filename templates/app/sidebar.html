@@ -12,7 +12,11 @@
     </div>
     <div class="profile_info">
       <span>Welcome,</span>
-      <h2>John Doe</h2>
+        {% if user.profile.firstname == '' or user.profile.lastname == '' %}
+            <p><a class="btn-danger btn-sm" href="#">Update Profile</a></p>
+            {% else %}
+             <h2>{{ user.profile }}</h2>
+        {% endif %}
     </div>
   </div>
   <!-- /menu profile quick info -->

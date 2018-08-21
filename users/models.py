@@ -5,18 +5,22 @@ from django.dispatch import receiver
 
 class CustomUser(AbstractUser):
     # Add additional fields here. For example, a global-friendly name field
-    name = models.CharField(blank=True, max_length=255)
-    AbstractUser._meta.get_field('email')._unique = False
+    AbstractUser._meta.get_field('email')._unique = True
     AbstractUser._meta.get_field('username')._unique = False
 
     def __str__(self):
         return self.email
 
 class Profile(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    residence = models.TextField(max_length=30, blank=True)
-    profession = models.DateField(null=True, blank=True)
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='profile')
+    firstname = models.CharField(max_length=30, blank=True)
+    lastname = models.CharField(max_length=30, blank=True)
+    residence = models.CharField(max_length=50, blank=True)
+    profession = models.CharField(max_length=50, blank=True)
     email_confirmed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.firstname+' '+self.lastname
 
 
 @receiver(post_save, sender=CustomUser)
