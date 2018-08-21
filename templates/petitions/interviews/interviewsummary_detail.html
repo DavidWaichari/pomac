@@ -53,18 +53,17 @@
                                             This shows all the interview summary of petitioner together with other
                                             details from petition form
                                         </p>
-                                        <div>
-                                            <div class="row">
-                                                <div class="col-md-10"><a class="btn btn-warning"
-                                                                          href="{{ object.get_update_url }}">Edit this
+                                    <div class="row">
+                                            <div class="col-md-8"><a class="btn btn-warning btn-sm" href="{{ object.get_update_url }}">Edit this
                                                     Interview</a></div>
-                                                <div class="col-md-2"><a class="btn btn-info"
-                                                                         href="{% url 'interviewsummary_list' %}">Go to
+                                            <div class="col-md-2"><a class="btn btn-info btn-sm"
+                                                                     href="{% url 'interviewsummary_list' %}">Go to
                                                     Interviews</a></div>
-                                                <div class="col-md-2"><a class="btn btn-info"
-                                                                         href="{% url 'interviewsummary_print' object.id %}">Print</a></div>
+                                            <div class="col-md-2"><a class="btn btn-success btn-sm"
+                                                                     href="{% url 'interviewsummary_print' object.id %}">Print</a>
                                             </div>
                                         </div>
+
                                         <table class="table">
                                             <tr>
                                                 <td>Name</td>
@@ -476,6 +475,10 @@
                                                      <td>{{ object.m6votereason }}</td>
                                             </tr>
                                             <tr>
+                                                <td>Interview Details Added By</td>
+                                                <td>{{ object.added_by }}</td>
+                                            </tr>
+                                            <tr>
                                                 <td>Interview Details Added On</td>
                                                 <td>{{ object.created }}</td>
                                             </tr>
@@ -484,8 +487,16 @@
                                                 <td>{{ object.last_updated }}</td>
                                             </tr>
                                         </table>
-                                        <a class="btn btn-primary" href="{{ object.get_update_url }}">Edit this
+                                     <div class="row">
+                                            <div class="col-md-10">
+                                                <a class="btn btn-warning btn-sm" href="{{ object.get_update_url }}">Edit this
                                             Interview</a>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <a class="btn btn-success btn-sm"
+                                                   href="{% url 'interviewsummary_print' object.id %}">Print</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -517,58 +528,3 @@
     <script src="/static/vendors/pdfmake/build/vfs_fonts.js"></script>
 {% endblock javascripts %}
 
-
-{% comment %}
-{% extends "base.html" %}
-{% load static %}
-{% block content %}
-<p><a class="btn btn-default" href="{% url 'hearingsummary_list' %}">HearingSummary Listing</a></p>
-<table class="table">
-<tr><td>created</td><td>{{ object.created }}</td></tr>
-<tr><td>last_updated</td><td>{{ object.last_updated }}</td></tr>
-<tr><td>familystatus</td><td>{{ object.familystatus }}</td></tr>
-<tr><td>natureandseriousnessoftheoffense</td><td>{{ object.natureandseriousnessoftheoffense }}</td></tr>
-<tr><td>personalcircumstances</td><td>{{ object.personalcircumstances }}</td></tr>
-<tr><td>interestofstateandcommunity</td><td>{{ object.interestofstateandcommunity }}</td></tr>
-<tr><td>postconvictionconduct</td><td>{{ object.postconvictionconduct }}</td></tr>
-<tr><td>officialrecommendationsandreports</td><td>{{ object.officialrecommendationsandreports }}</td></tr>
-<tr><td>wherethepetitionerhaspersued</td><td>{{ object.wherethepetitionerhaspersued }}</td></tr>
-<tr><td>representationofvictim</td><td>{{ object.representationofvictim }}</td></tr>
-<tr><td>reportoffellowinmates</td><td>{{ object.reportoffellowinmates }}</td></tr>
-<tr><td>reportsfromprobationservices</td><td>{{ object.reportsfromprobationservices }}</td></tr>
-<tr><td>observationswithmainreasons</td><td>{{ object.observationswithmainreasons }}</td></tr>
-<tr><td>memberspresent</td><td>{{ object.memberspresent }}</td></tr>
-</table>
-<a class="btn btn-primary" href="{{object.get_update_url}}">Edit HearingSummary</a>
-
-{% endblock %}{% endcomment %}
-
-
-{% comment %}
-{% extends "base.html" %}
-{% load static %}
-{% block content %}
-<p><a class="btn btn-default" href="{% url 'interviewsummary_list' %}">InterviewSummary Listing</a></p>
-<table class="table">
-<tr><td>name</td><td>{{ object.name }}</td></tr>
-<tr><td>created</td><td>{{ object.created }}</td></tr>
-<tr><td>last_updated</td><td>{{ object.last_updated }}</td></tr>
-<tr><td>ownaccountofcircumstances</td><td>{{ object.ownaccountofcircumstances }}</td></tr>
-<tr><td>reconciliationefforts</td><td>{{ object.reconciliationefforts }}</td></tr>
-<tr><td>indicationofremosefulness</td><td>{{ object.indicationofremosefulness }}</td></tr>
-<tr><td>anyothercomments</td><td>{{ object.anyothercomments }}</td></tr>
-<tr><td>representationofthevictim</td><td>{{ object.representationofthevictim }}</td></tr>
-<tr><td>concludingobservations</td><td>{{ object.concludingobservations }}</td></tr>
-<tr><td>chairpersonvote</td><td>{{ object.chairpersonvote }}</td></tr>
-<tr><td>chairpersonvotereason</td><td>{{ object.chairpersonvotereason }}</td></tr>
-<tr><td>vicechairvote</td><td>{{ object.vicechairvote }}</td></tr>
-<tr><td>vicechairvotereason</td><td>{{ object.vicechairvotereason }}</td></tr>
-<tr><td>csvote</td><td>{{ object.csvote }}</td></tr>
-<tr><td>csvotereason</td><td>{{ object.csvotereason }}</td></tr>
-<tr><td>m1vote</td><td>{{ object.m1vote }}</td></tr>
-<tr><td>m1votereason</td><td>{{ object.m1votereason }}</td></tr>
-<tr><td>finalresolution</td><td>{{ object.finalresolution }}</td></tr>
-</table>
-<a class="btn btn-primary" href="{{object.get_update_url}}">Edit InterviewSummary</a>
-
-{% endblock %}{% endcomment %}

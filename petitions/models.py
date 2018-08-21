@@ -40,6 +40,8 @@ class SubCounty(models.Model):
     name = models.CharField(max_length=255)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
+    added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                 null=True, blank=True, on_delete=models.SET_NULL)
 
     # Relationship Fields
     county = models.ForeignKey(County,on_delete=models.CASCADE)
@@ -115,6 +117,8 @@ class PetitionForm(models.Model):
     explanationofpendingcourtmatter = models.TextField(max_length=100)
     created = models.DateTimeField(auto_now=True, editable=False)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
+    added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                 null=True, blank=True, on_delete=models.SET_NULL)
 
     class Meta:
         ordering = ('-created',)
@@ -149,6 +153,8 @@ class AdmissibilityForm(models.Model):
 
     # Relationship Fields
     petitioner = models.OneToOneField(PetitionForm, on_delete=models.CASCADE, related_name='admissibility')
+    added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                 null=True, blank=True, on_delete=models.SET_NULL)
     class Meta:
         ordering = ('-created',)
 
@@ -177,6 +183,8 @@ class PetitionSummary(models.Model):
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     # Relationship Fields
     admissibility = models.ForeignKey(AdmissibilityForm, on_delete=models.CASCADE)
+    added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                 null=True, blank=True, on_delete=models.SET_NULL)
 
     class Meta:
         ordering = ('-created',)
@@ -226,6 +234,8 @@ class HearingSummary(models.Model):
 
     # Relationship Fields
     admissibility = models.OneToOneField(AdmissibilityForm,on_delete=models.CASCADE, related_name='hearing')
+    added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                 null=True, blank=True, on_delete=models.SET_NULL)
 
     def get_readonly_fields(self, request, obj=None):
         if obj:
@@ -245,6 +255,9 @@ class HearingSummary(models.Model):
 
     def get_update_url(self):
         return reverse('hearingsummary_update', args=(self.pk,))
+
+    def __str__(self):
+        return self.admissibility.petitioner.name + ' | ' + self.admissibility.petitioner.prisonno + ' | ' + self.admissibility.petitioner.prison
 
 
 class InterviewSummary(models.Model):
@@ -277,6 +290,8 @@ class InterviewSummary(models.Model):
     m6votereason = models.TextField(max_length=100)
     finalresolution = models.CharField(max_length=30)
     hearing = models.OneToOneField(HearingSummary, on_delete=models.CASCADE)
+    added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                 null=True, blank=True, on_delete=models.SET_NULL)
 
     class Meta:
         ordering = ('-created',)
@@ -291,6 +306,9 @@ class InterviewSummary(models.Model):
     def get_update_url(self):
         return reverse('interviewsummary_update', args=(self.pk,))
 
+    def __str__(self):
+        return self.hearing.admissibility.petitioner.name+ ' '+self.hearing.admissibility.petitioner.prisonno+ ' '+self.hearing.admissibility.petitioner.prison
+
 
 class RecommendationForm(models.Model):
 
@@ -302,6 +320,8 @@ class RecommendationForm(models.Model):
 
     # Relationship Fields
     interview = models.OneToOneField(InterviewSummary,on_delete=models.CASCADE)
+    added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                 null=True, blank=True, on_delete=models.SET_NULL)
 
     class Meta:
         ordering = ('-created',)
@@ -315,3 +335,5 @@ class RecommendationForm(models.Model):
 
     def get_update_url(self):
         return reverse('recommendationform_update', args=(self.pk,))
+    def __str__(self):
+        return self.interview.hearing.admissibility.petitioner.name+ ' '+self.interview.hearing.admissibility.petitioner.prisonno+ ' '+self.interview.hearing.admissibility.petitioner.prison

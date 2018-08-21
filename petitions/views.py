@@ -21,7 +21,6 @@ class CountyListView(ListView):
 class CountyCreateView(CreateView):
     model = County
     form_class = CountyForm
-
     def form_valid(self, form):
         county = form.save(commit=False)
         county.added_by = self.request.user
@@ -48,6 +47,12 @@ class SubCountyListView(ListView):
 class SubCountyCreateView(CreateView):
     model = SubCounty
     form_class = SubCountyForm
+
+    def form_valid(self, form):
+        subcounty = form.save(commit=False)
+        subcounty.added_by = self.request.user
+        subcounty.save()
+        return redirect('petitions_subcounty_detail', subcounty.id)
 
 
 class SubCountyDetailView(DetailView):
@@ -82,6 +87,7 @@ class PetitionFormIneligibleListView(ListView):
         context['today'] = today
         return context
 
+
 class PetitionFormEligibleListView(ListView):
     model = PetitionForm
     template_name = 'petitions/petition_form/petitionform_eligible.html'
@@ -101,6 +107,11 @@ class PetitionFormCreateView(CreateView):
     template_name = 'petitions/petition_form/petitionform_form.html'
     model = PetitionForm
     form_class = PetitionFormForm
+    def form_valid(self, form):
+        petitionform = form.save(commit=False)
+        petitionform.added_by = self.request.user
+        petitionform.save()
+        return redirect('petitionform_detail', petitionform.id)
 
 
 class PetitionFormDetailView(DetailView):
@@ -328,6 +339,11 @@ class AdmissibilityFormCreateView(CreateView):
     template_name = 'petitions/admissibility_form/admissibilityform_form.html'
     model = AdmissibilityForm
     form_class = AdmissibilityCreateForm
+    def form_valid(self, form):
+        admimissibilitycreate = form.save(commit=False)
+        admimissibilitycreate.added_by = self.request.user
+        admimissibilitycreate.save()
+        return redirect('admissibilityform_detail', admimissibilitycreate.id)
 
 
 class AdmissibilityFormDetailView(DetailView):
@@ -555,6 +571,11 @@ class PetitionSummaryCreateView(CreateView):
     template_name = 'petitions/summaries/petitionsummary_form.html'
     model = PetitionSummary
     form_class = PetitionSummaryForm
+    def form_valid(self, form):
+        summary = form.save(commit=False)
+        summary.added_by = self.request.user
+        summary.save()
+        return redirect('petitionsummary_detail', summary.id)
 
 
 class PetitionSummaryDetailView(DetailView):
@@ -806,6 +827,11 @@ class HearingSummaryCreateView(CreateView):
     template_name = 'petitions/hearings/hearingsummary_form.html'
     model = HearingSummary
     form_class = HearingSummaryForm
+    def form_valid(self, form):
+        hearing = form.save(commit=False)
+        hearing.added_by = self.request.user
+        hearing.save()
+        return redirect('hearingsummary_detail', hearing.id)
 
 
 class HearingSummaryDetailView(DetailView):
@@ -1148,6 +1174,11 @@ class InterviewSummaryCreateView(CreateView):
     template_name = 'petitions/interviews/interviewsummary_form.html'
     model = InterviewSummary
     form_class = InterviewSummaryForm
+    def form_valid(self, form):
+        interview = form.save(commit=False)
+        interview.added_by = self.request.user
+        interview.save()
+        return redirect('interviewsummary_detail', interview.id)
 
 
 class InterviewSummaryDetailView(DetailView):
@@ -1472,6 +1503,11 @@ class RecommendationFormCreateView(CreateView):
     template_name = 'petitions/recommendations/recommendationform_form.html'
     model = RecommendationForm
     form_class = RecommendationFormForm
+    def form_valid(self, form):
+        recommendation = form.save(commit=False)
+        recommendation.added_by = self.request.user
+        recommendation.save()
+        return redirect('recommendationform_detail', recommendation.id)
 
 
 class RecommendationFormDetailView(DetailView):

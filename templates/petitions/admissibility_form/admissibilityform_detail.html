@@ -23,7 +23,8 @@
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>Admissibility Petitions Details for
-                                <small>| {{ object.petitioner.name }} | {{ object.petitioner.prisonno }} | {{ object.petitioner.prison }}</small>
+                                <small>| {{ object.petitioner.name }} | {{ object.petitioner.prisonno }}
+                                    | {{ object.petitioner.prison }}</small>
                             </h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -44,343 +45,372 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
-                        <div class="container" >
-                            <div class="row">
-                                <div class="col-md-10 col-md-offset-1">
-                                <p class="text-muted font-13 m-b-30">
-                                This shows all the admissibility of the petitioner together with other details from petition form
-                                </p>
-                             <div>
-                                 <div class="row">
-                                     <div class="col-md-10"><a class="btn btn-warning" href="{{ object.get_update_url }}">Edit this Admissibility</a></div>
-                                     <div class="col-md-2" ><a class="btn btn-info" href="{% url 'admissibilityform_list' %}">Go to Admissabilities</a></div>
-                                     <div class="col-md-2" ><a class="btn btn-info" href="{% url 'admissibilityform_print' object.id %}">Print</a></div>
-                                 </div>
-                             </div>
-                                    <table class="table">
-                                <tr>
-                                    <td>Name</td>
-                                    <td>{{ object.petitioner.name }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Prison Number</td>
-                                    <td>{{ object.petitioner.prisonno }}</td>
-                                </tr>
-                                        <tr>
-                                    <td>Prison </td>
-                                    <td>{{ object.petitioner.prison }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Nationality</td>
-                                    <td>{{ object.petitioner.nationality }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Court Case No</td>
-                                    <td>{{ object.petitioner.courtcaseno }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Date of conviction</td>
-                                    <td>{{ object.petitioner.dateofconviction }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Date of Custody</td>
-                                    <td>{{ object.petitioner.dateofcustody }}</td>
-                                </tr>
-                                    <tr>
-                                       <td>Sentence</td>
-                                    {% if object.petitioner.convictedforlife == True %}
-                                        <td>LIFE IMPRISONMENT</td>
-                                        {% else %}
-                                            <td>{{object.petitioner.sentence }} YEARS IMPRISONMENT</td>
-                                        {% endif %}
-                                    </tr>
-                                <tr>
-                                    <td>Age at conviction
-                                    <td>{{ object.petitioner.ageatconviction }} YEARS</td>
-                                </tr>
-                                <tr>
-                                    <td>Current Age
-                                     <td>{{ today.year|sub:object.petitioner.dateofconviction.year|add:object.petitioner.ageatconviction }} YEARS</td>
-                                </tr>
-                                <tr>
-                                    <td>Period Spent in Custody</td>
-                                     <td>{{ today.year|sub:object.petitioner.dateofcustody.year }} YEARS</td>
-                                </tr>
-                                    <tr>
-                                    <td>Age when offense was committed</td>
-                                    <td>{{ object.petitioner.agewhenoffensewascommited }} YEARS</td>
-                                </tr>
-                                <tr>
-                                    <td>Naxt of Kin</td>
-                                    <td>{{ object.petitioner.nextofkin }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Relation with next of kin</td>
-                                    <td>{{ object.petitioner.relationshipwithnextofkin }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Contact Person</td>
-                                    <td>{{ object.petitioner.contactperson }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Tel No. of contact person</td>
-                                    <td>{{ object.petitioner.telnoofcontactperson }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Home County</td>
-                                    <td>{{ object.petitioner.county }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Home Subcounty</td>
-                                    <td>{{ object.petitioner.subcounty }}</td>
-                                </tr>
-                                <tr>
-                                    <td>location</td>
-                                    <td>{{ object.petitioner.location }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Nearest School</td>
-                                    <td>{{ object.petitioner.nearestschool }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Name of Home Chief</td>
-                                    <td>{{ object.petitioner.homechief }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Where the offense was committed</td>
-                                    <td>{{ object.petitioner.whereoffensewascommitted }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Relief Sought</td>
-                                    <td>{{ object.petitioner.reliefsought }}</td>
-                                </tr>
-                                        <tr>
-                                    <td>Offence</td>
-                                    <td>{{ object.petitioner.offence }}</td>
-                                </tr>
-                                <tr>
-                                    <td>The nature, particulars and circumstances surrounding the commission of the offence </td>
-                                    <td>{{ object.petitioner.natureandparticularsofoffense }}</td>
-                                </tr>
-                                <tr>
-                                     <td>Were you charged alone fro the offense?</td>
-                                {% if object.petitioner.chargedalonefortheoffense == True %}
-                                        <td>Yes</td>
-                                        {% else %}
-                                            <td>No</td>
-                                        {% endif %}
-                                </tr>
-                                <tr>
-                                    <td>Names of Co-Accused</td>
-                                    <td>{{ object.petitioner.namesofcoaccused }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Do you the victim of the offense for which you were charged?</td>
-                                    {% if object.petitioner.knowledgeofthevictim == True %}
-                                        <td>Yes</td>
-                                        {% else %}
-                                            <td>No</td>
-                                        {% endif %}
-                                </tr>
-                                <tr>
-                                    <td>Name of the Victim</td>
-                                    <td>{{ object.petitioner.nameofvictim }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Area of residence of the victim</td>
-                                    <td>{{ object.petitioner.areaofresidence }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Previous Convictions</td>
-                                    <td>{{ object.petitioner.previousconvictions }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Has the petitioner made any previous petition?</td>
-                                    {% if object.petitioner.previouspetition == True %}
-                                        <td>Yes</td>
-                                        {% else %}
-                                            <td>No</td>
-                                        {% endif %}
-                                </tr>
-                                <tr>
-                                    <td>Date of previous petition</td>
-                                    <td>{{ object.petitioner.dateofpreviouspetition }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Reason of denial of previous petition</td>
-                                    <td>{{ object.petitioner.reasonofdenialofpreviouspetition }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Reasons for current petitioning</td>
-                                    <td>{{ object.petitioner.reasonforcurrentpetition }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Have you had any disciplinary action taken against you while in prison?</td>
-                                    {% if object.petitioner.anydisplinaryactioninprison == True %}
-                                        <td>Yes</td>
-                                        {% else %}
-                                            <td>No</td>
-                                        {% endif %}
-                                </tr>
-                                <tr>
-                                    <td>Details of disciplinary action in prison</td>
-                                    <td>{{ object.petitioner.detailsofdisplinaryactioninprison }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Any special condition e.g physical ability challenges, terminal sickness, very sickly, mental health etc?</td>
-                                    {% if object.petitioner.anyspecialcondition == True %}
-                                        <td>Yes</td>
-                                        {% else %}
-                                            <td>No</td>
-                                        {% endif %}
-                                </tr>
-                                <tr>
-                                    <td>Details of special condition</td>
-                                    <td>{{ object.petitioner.detailsofspecialcondition }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Are you a trustee?</td>
-                                     {% if object.petitioner.areyouatrustee == True %}
-                                        <td>Yes</td>
-                                        {% else %}
-                                            <td>No</td>
-                                        {% endif %}
-                                </tr>
-                                <tr>
-                                    <td>Date of promotional to trustee</td>
-                                    <td>{{ object.petitioner.dateofpromotiontotrustee }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Are you recognized for special attributes, achievement or skills attained in prison?</td>
-                                    {% if object.petitioner.anyspecialattributesorskills == True %}
-                                        <td>Yes</td>
-                                        {% else %}
-                                            <td>No</td>
-                                        {% endif %}
-                                </tr>
-                                <tr>
-                                    <td>Explanation of special attributes and skills</td>
-                                    <td>{{ object.petitioner.explanationofspecialattributesorskills }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Did you appeal against the conviction?</td>
-                                    {% if object.petitioner.appealedagainsttheconviction == True %}
-                                        <td>Yes</td>
-                                        {% else %}
-                                            <td>No</td>
-                                        {% endif %}
-                                </tr>
-                                <tr>
-                                    <td>Appeal case Numbers</td>
-                                    <td>{{ object.petitioner.appealcaseno }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Appeal Outcome</td>
-                                    <td>{{ object.petitioner.appealoutcome }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Do you have any pending court matter even if not related to your conviction?</td>
-                                    {% if object.petitioner.anypendingcourtmatter == True %}
-                                        <td>Yes</td>
-                                        {% else %}
-                                            <td>No</td>
-                                        {% endif %}
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-10 col-md-offset-1">
+                                        <p class="text-muted font-13 m-b-30">
+                                            This shows all the admissibility of the petitioner together with other
+                                            details from petition form
+                                        </p>
+                                        <div class="row">
+                                            <div class="col-md-8"><a class="btn btn-warning btn-sm"
+                                                                     href="{{ object.get_update_url }}">Edit this
+                                                Admissibility</a></div>
+                                            <div class="col-md-2"><a class="btn btn-info btn-sm"
+                                                                     href="{% url 'admissibilityform_list' %}">Go to
+                                                Admissabilities</a></div>
+                                            <div class="col-md-2"><a class="btn btn-success btn-sm"
+                                                                     href="{% url 'admissibilityform_print' object.id %}">Print</a>
+                                            </div>
+                                        </div>
+                                        <table class="table">
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>{{ object.petitioner.name }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Prison Number</td>
+                                                <td>{{ object.petitioner.prisonno }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Prison</td>
+                                                <td>{{ object.petitioner.prison }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Nationality</td>
+                                                <td>{{ object.petitioner.nationality }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Court Case No</td>
+                                                <td>{{ object.petitioner.courtcaseno }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Date of conviction</td>
+                                                <td>{{ object.petitioner.dateofconviction }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Date of Custody</td>
+                                                <td>{{ object.petitioner.dateofcustody }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sentence</td>
+                                                {% if object.petitioner.convictedforlife == True %}
+                                                    <td>LIFE IMPRISONMENT</td>
+                                                {% else %}
+                                                    <td>{{ object.petitioner.sentence }} YEARS IMPRISONMENT</td>
+                                                {% endif %}
+                                            </tr>
+                                            <tr>
+                                                <td>Age at conviction
+                                                <td>{{ object.petitioner.ageatconviction }} YEARS</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Current Age
+                                                <td>{{ today.year|sub:object.petitioner.dateofconviction.year|add:object.petitioner.ageatconviction }}
+                                                    YEARS
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Period Spent in Custody</td>
+                                                <td>{{ today.year|sub:object.petitioner.dateofcustody.year }} YEARS</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Age when offense was committed</td>
+                                                <td>{{ object.petitioner.agewhenoffensewascommited }} YEARS</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Naxt of Kin</td>
+                                                <td>{{ object.petitioner.nextofkin }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Relation with next of kin</td>
+                                                <td>{{ object.petitioner.relationshipwithnextofkin }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Contact Person</td>
+                                                <td>{{ object.petitioner.contactperson }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tel No. of contact person</td>
+                                                <td>{{ object.petitioner.telnoofcontactperson }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Home County</td>
+                                                <td>{{ object.petitioner.county }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Home Subcounty</td>
+                                                <td>{{ object.petitioner.subcounty }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>location</td>
+                                                <td>{{ object.petitioner.location }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Nearest School</td>
+                                                <td>{{ object.petitioner.nearestschool }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Name of Home Chief</td>
+                                                <td>{{ object.petitioner.homechief }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Where the offense was committed</td>
+                                                <td>{{ object.petitioner.whereoffensewascommitted }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Relief Sought</td>
+                                                <td>{{ object.petitioner.reliefsought }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Offence</td>
+                                                <td>{{ object.petitioner.offence }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>The nature, particulars and circumstances surrounding the commission
+                                                    of the offence
+                                                </td>
+                                                <td>{{ object.petitioner.natureandparticularsofoffense }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Were you charged alone fro the offense?</td>
+                                                {% if object.petitioner.chargedalonefortheoffense == True %}
+                                                    <td>Yes</td>
+                                                {% else %}
+                                                    <td>No</td>
+                                                {% endif %}
+                                            </tr>
+                                            <tr>
+                                                <td>Names of Co-Accused</td>
+                                                <td>{{ object.petitioner.namesofcoaccused }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Do you the victim of the offense for which you were charged?</td>
+                                                {% if object.petitioner.knowledgeofthevictim == True %}
+                                                    <td>Yes</td>
+                                                {% else %}
+                                                    <td>No</td>
+                                                {% endif %}
+                                            </tr>
+                                            <tr>
+                                                <td>Name of the Victim</td>
+                                                <td>{{ object.petitioner.nameofvictim }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Area of residence of the victim</td>
+                                                <td>{{ object.petitioner.areaofresidence }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Previous Convictions</td>
+                                                <td>{{ object.petitioner.previousconvictions }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Has the petitioner made any previous petition?</td>
+                                                {% if object.petitioner.previouspetition == True %}
+                                                    <td>Yes</td>
+                                                {% else %}
+                                                    <td>No</td>
+                                                {% endif %}
+                                            </tr>
+                                            <tr>
+                                                <td>Date of previous petition</td>
+                                                <td>{{ object.petitioner.dateofpreviouspetition }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Reason of denial of previous petition</td>
+                                                <td>{{ object.petitioner.reasonofdenialofpreviouspetition }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Reasons for current petitioning</td>
+                                                <td>{{ object.petitioner.reasonforcurrentpetition }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Have you had any disciplinary action taken against you while in
+                                                    prison?
+                                                </td>
+                                                {% if object.petitioner.anydisplinaryactioninprison == True %}
+                                                    <td>Yes</td>
+                                                {% else %}
+                                                    <td>No</td>
+                                                {% endif %}
+                                            </tr>
+                                            <tr>
+                                                <td>Details of disciplinary action in prison</td>
+                                                <td>{{ object.petitioner.detailsofdisplinaryactioninprison }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Any special condition e.g physical ability challenges, terminal
+                                                    sickness, very sickly, mental health etc?
+                                                </td>
+                                                {% if object.petitioner.anyspecialcondition == True %}
+                                                    <td>Yes</td>
+                                                {% else %}
+                                                    <td>No</td>
+                                                {% endif %}
+                                            </tr>
+                                            <tr>
+                                                <td>Details of special condition</td>
+                                                <td>{{ object.petitioner.detailsofspecialcondition }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Are you a trustee?</td>
+                                                {% if object.petitioner.areyouatrustee == True %}
+                                                    <td>Yes</td>
+                                                {% else %}
+                                                    <td>No</td>
+                                                {% endif %}
+                                            </tr>
+                                            <tr>
+                                                <td>Date of promotional to trustee</td>
+                                                <td>{{ object.petitioner.dateofpromotiontotrustee }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Are you recognized for special attributes, achievement or skills
+                                                    attained in prison?
+                                                </td>
+                                                {% if object.petitioner.anyspecialattributesorskills == True %}
+                                                    <td>Yes</td>
+                                                {% else %}
+                                                    <td>No</td>
+                                                {% endif %}
+                                            </tr>
+                                            <tr>
+                                                <td>Explanation of special attributes and skills</td>
+                                                <td>{{ object.petitioner.explanationofspecialattributesorskills }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Did you appeal against the conviction?</td>
+                                                {% if object.petitioner.appealedagainsttheconviction == True %}
+                                                    <td>Yes</td>
+                                                {% else %}
+                                                    <td>No</td>
+                                                {% endif %}
+                                            </tr>
+                                            <tr>
+                                                <td>Appeal case Numbers</td>
+                                                <td>{{ object.petitioner.appealcaseno }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Appeal Outcome</td>
+                                                <td>{{ object.petitioner.appealoutcome }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Do you have any pending court matter even if not related to your
+                                                    conviction?
+                                                </td>
+                                                {% if object.petitioner.anypendingcourtmatter == True %}
+                                                    <td>Yes</td>
+                                                {% else %}
+                                                    <td>No</td>
+                                                {% endif %}
 
-                                </tr>
-                                <tr>
-                                    <td>Explanation of pending court matter</td>
-                                    <td>{{ object.petitioner.explanationofpendingcourtmatter }}</td>
-                                </tr>
-                                   <tr>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                    </tr>
-                                   <tr>
-                                    <td class="text-right text-uppercase text-primary">Start of Admissible information </td>
-                                       <td  class="text-left text-uppercase text-primary"></td>
-                                </tr>
-                                <tr>
-                                    <td>Admissibility Status</td>
-                                    {% if object.admissability == True %}
-                                        <td class="text-success">ADMISSIBLE</td>
-                                        {% else %}
-                                            <td class="text-danger">INADMISSIBLE</td>
-                                        {% endif %}
-                                </tr>
-                                    <tr>
-                                    <td>Set Hearing Date</td>
-                                    <td>{{ object.hearingdate }}</td>
-                                    </tr>
-                                    <tr>
-                                  <td >Inadmissibility Reason</td>
-                                    <td class="text-danger">{{ object.inadmissibilityreason }}</td>
-                                </tr>
-                                    <tr>
-                                    <td>Proposed Hearing Date</td>
-                                    <td>{{ object.hearingdate }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Proposed Interview Date</td>
-                                    <td>{{ object.interviewdate}}</td>
-                                </tr>
-                                    <tr>
-                                    <td>Petition Called for Evidence</td>
-                                        {% if object.callforevidence == True %}
-                                        <td class="text-danger">Yes</td>
-                                        {% else %}
-                                            <td class="text-success">No</td>
-                                        {% endif %}
-                                </tr>
+                                            </tr>
+                                            <tr>
+                                                <td>Explanation of pending court matter</td>
+                                                <td>{{ object.petitioner.explanationofpendingcourtmatter }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-right text-uppercase text-primary">Start of Admissible
+                                                    information
+                                                </td>
+                                                <td class="text-left text-uppercase text-primary"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Admissibility Status</td>
+                                                {% if object.admissability == True %}
+                                                    <td class="text-success">ADMISSIBLE</td>
+                                                {% else %}
+                                                    <td class="text-danger">INADMISSIBLE</td>
+                                                {% endif %}
+                                            </tr>
+                                            <tr>
+                                                <td>Set Hearing Date</td>
+                                                <td>{{ object.hearingdate }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Inadmissibility Reason</td>
+                                                <td class="text-danger">{{ object.inadmissibilityreason }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Proposed Hearing Date</td>
+                                                <td>{{ object.hearingdate }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Proposed Interview Date</td>
+                                                <td>{{ object.interviewdate }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Petition Called for Evidence</td>
+                                                {% if object.callforevidence == True %}
+                                                    <td class="text-danger">Yes</td>
+                                                {% else %}
+                                                    <td class="text-success">No</td>
+                                                {% endif %}
+                                            </tr>
 
-                                    <tr>
-                                    <td>Reason for call of evidence</td>
-                                    <td>{{ object.descriptionforcallofevidence}}</td>
-                                </tr>
+                                            <tr>
+                                                <td>Reason for call of evidence</td>
+                                                <td>{{ object.descriptionforcallofevidence }}</td>
+                                            </tr>
 
-                                    <tr>
-                                    <td>Petition requested for reports</td>
-                                        {% if object.requestreports == True %}
-                                        <td class="text-danger">Yes</td>
-                                        {% else %}
-                                            <td class="text-success">No</td>
-                                        {% endif %}
-                                </tr>
+                                            <tr>
+                                                <td>Petition requested for reports</td>
+                                                {% if object.requestreports == True %}
+                                                    <td class="text-danger">Yes</td>
+                                                {% else %}
+                                                    <td class="text-success">No</td>
+                                                {% endif %}
+                                            </tr>
 
-                                    <tr>
-                                    <td>Reason for petition being requested for reports</td>
-                                    <td>{{ object.descriptionforrequstreport}}</td>
-                                </tr>
+                                            <tr>
+                                                <td>Reason for petition being requested for reports</td>
+                                                <td>{{ object.descriptionforrequstreport }}</td>
+                                            </tr>
 
-                                <tr>
-                                    <td>Petition ordered for investigation</td>
-                                        {% if object.orderforinvestigation == True %}
-                                        <td class="text-danger">Yes</td>
-                                        {% else %}
-                                            <td class="text-success">No</td>
-                                        {% endif %}
-                                </tr>
+                                            <tr>
+                                                <td>Petition ordered for investigation</td>
+                                                {% if object.orderforinvestigation == True %}
+                                                    <td class="text-danger">Yes</td>
+                                                {% else %}
+                                                    <td class="text-success">No</td>
+                                                {% endif %}
+                                            </tr>
 
-                                    <tr>
-                                    <td>Reason for petition being ordered for investigation</td>
-                                    <td>{{ object.orderforinvestigationdescription}}</td>
-                                </tr>
-
-
-
-                                    <tr>
-                                    <td>Admissibility Details Added On</td>
-                                    <td>{{ object.created}}</td>
-                                </tr>
-                                    <tr>
-                                    <td>Admissibility Details Last Updated On</td>
-                                    <td>{{ object.last_updated }}</td>
-                                </tr>
-                            </table>
-                            <a class="btn btn-primary" href="{{ object.get_update_url }}">Edit Admissibility</a>
+                                            <tr>
+                                                <td>Reason for petition being ordered for investigation</td>
+                                                <td>{{ object.orderforinvestigationdescription }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Admissibility Details Added By</td>
+                                                <td>{{ object.added_by }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Admissibility Details Added On</td>
+                                                <td>{{ object.created }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Admissibility Details Last Updated On</td>
+                                                <td>{{ object.last_updated }}</td>
+                                            </tr>
+                                        </table>
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <a class="btn btn-warning btn-sm" href="{{ object.get_update_url }}">Edit
+                                                    Admissibility</a>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <a class="btn btn-success btn-sm"
+                                                   href="{% url 'admissibilityform_print' object.id %}">Print</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </div>
                     </div>
                 </div>

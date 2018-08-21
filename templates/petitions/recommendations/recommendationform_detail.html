@@ -50,17 +50,17 @@
                                 <div class="row">
                                     <div class="col-md-10 col-md-offset-1">
                                         <p class="text-muted font-13 m-b-30">
-                                            This shows all the interview summary of petitioner together with other
+                                            This shows all the recommendation details of the petition with
                                             details from petition form
                                         </p>
-                                        <div>
-                                            <div class="row">
-                                                <div class="col-md-10"><a class="btn btn-warning"
-                                                                          href="{{ object.get_update_url }}">Edit this
-                                                    Interview</a></div>
-                                                <div class="col-md-2"><a class="btn btn-info"
-                                                                         href="{% url 'interviewsummary_list' %}">Go to
-                                                    Interviews</a></div>
+                                    <div class="row">
+                                            <div class="col-md-7"><a class="btn btn-warning btn-sm" href="{{ object.get_update_url }}">Edit
+                                                    Reccommendation</a></div>
+                                            <div class="col-md-3"><a class="btn btn-info btn-sm"
+                                                                     href="{% url 'recommendationform_list' %}">Go to
+                                                    Recommendations</a></div>
+                                            <div class="col-md-2"><a class="btn btn-success btn-sm"
+                                                                     href="{% url 'recommendationform_print' object.id %}">Print</a>
                                             </div>
                                         </div>
                                         <table class="table">
@@ -338,6 +338,10 @@
                                                 <td>{{ object.explanationofrecommedation }}</td>
                                             </tr>
                                             <tr>
+                                                <td>Recommendation Details Added By</td>
+                                                <td>{{ object.added_by }}</td>
+                                            </tr>
+                                           <tr>
                                                 <td>Recommendation Details Added On</td>
                                                 <td>{{ object.created }}</td>
                                             </tr>
@@ -346,9 +350,15 @@
                                                 <td>{{ object.last_updated }}</td>
                                             </tr>
                                         </table>
-                                        <a class="btn btn-primary" href="{{ object.get_update_url }}">Edit this
-                                        <a class="btn btn-primary" href="{% url 'recommendationform_print' object.id %}">Print
-                                            Recommendation</a>
+                                    <div class="row">
+                                            <div class="col-md-10">
+                                                <a class="btn btn-warning btn-sm" href="{{ object.get_update_url }}">Edit Recommendation</a>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <a class="btn btn-success btn-sm"
+                                                  href="{% url 'recommendationform_print' object.id %}">Print</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
