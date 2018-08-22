@@ -54,6 +54,7 @@ urlpatterns = [
 
 # urls for RecommendationForm
     path('recommendationform/', login_required(views.RecommendationFormListView.as_view()), name='recommendationform_list'),
+    path('recommendationform/awaiting-recommendation', login_required(views.AwaitingRecommendationFormListView.as_view()), name='awaitingrecommendations'),
     path('recommendationform/create/', login_required(views.RecommendationFormCreateView.as_view()), name='recommendationform_create'),
     path('recommendationform/detail/<int:pk>/', login_required(views.RecommendationFormDetailView.as_view()), name='recommendationform_detail'),
     path('recommendationform/update/<int:pk>/', login_required(views.RecommendationFormUpdateView.as_view()), name='recommendationform_update'),

@@ -1535,6 +1535,19 @@ class RecommendationFormListView(ListView):
         context['today'] = today
         return context
 
+class AwaitingRecommendationFormListView(ListView):
+    template_name = 'petitions/recommendations/awaitingrecommendationform_list.html'
+    model = HearingSummary
+    def get_context_data(self, **kwargs):
+        context = super(AwaitingRecommendationFormListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset = InterviewSummary.objects.filter(finalresolution='Recommended to President').filter(
+            recommendationform__isnull=True)
+        return queryset
+
 
 class RecommendationFormCreateView(CreateView):
     template_name = 'petitions/recommendations/recommendationform_form.html'
@@ -1602,6 +1615,8 @@ def dashboard(request):
         'notinterviewsrecommended': InterviewSummary.objects.filter(finalresolution = 'Not Recommended to President').count(),
         'recommendations': RecommendationForm.objects.all().count(),
         'awaitingsummaries': AdmissibilityForm.objects.filter(admissability=True).filter(petitionsummary__isnull=True).count(),
-        'awaitinghearing':AdmissibilityForm.objects.filter(admissability=True).filter(hearing__isnull=True).count()
+        'awaitinghearing':AdmissibilityForm.objects.filter(admissability=True).filter(hearing__isnull=True).count(),
+        'awaitingrecommendations':InterviewSummary.objects.filter(finalresolution='Recommended to President').filter(
+            recommendationform__isnull=True).count()
     }
     return render(request, 'petitions/dashboard/index.html',data)

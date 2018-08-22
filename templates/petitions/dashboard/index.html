@@ -108,6 +108,11 @@
         <div class="count">{{ recommendations }}</div>
          <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success" href="{% url 'recommendationform_list' %}">More Details</a></span>
       </div>
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top text-warning"><i class="fa fa-user"></i>Awaiting Recommendations</span>
+        <div class="count">{{ awaitingrecommendations }}</div>
+         <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success" href="{% url 'awaitingrecommendations' %}">More Details</a></span>
+      </div>
     </div>
     <!-- /top tiles -->
 
