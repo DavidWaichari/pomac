@@ -93,6 +93,11 @@
          <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success" href="{% url 'interviewsummary_list' %}">More Details</a></span>
       </div>
     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+        <span class="count_top text-warning"><i class="fa fa-user"></i>Awaiting Interview</span>
+        <div class="count">{{ awaitinginterviews }}</div>
+         <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success" href="{% url 'awaitinginterviws' %}">More Details</a></span>
+      </div>
+    <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
         <span class="count_top text-success"><i class="fa fa-user"></i>Interviews Recommended</span>
         <div class="count">{{ interviewsrecommended }}</div>
          <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success" href="{% url 'interviewsummary_recommended' %}">More Details</a></span>

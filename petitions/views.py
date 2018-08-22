@@ -1179,6 +1179,19 @@ class InterviewSummaryListView(ListView):
         context['today'] = today
         return context
 
+class AwaitingInterviewFormListView(ListView):
+    template_name = 'petitions/interviews/awaitinginterviewsummary_list.html'
+    model = HearingSummary
+    def get_context_data(self, **kwargs):
+        context = super(AwaitingInterviewFormListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset = HearingSummary.objects.filter(action='Interview the Petitioner').filter(
+            interviewdate__isnull=False).filter(interviewsummary__isnull=True)
+        return queryset
+
 class InterviewSummaryRecommendedListView(ListView):
     template_name = 'petitions/interviews/interviewsummary_recommended.html'
     model = InterviewSummary
@@ -1616,7 +1629,7 @@ def dashboard(request):
         'recommendations': RecommendationForm.objects.all().count(),
         'awaitingsummaries': AdmissibilityForm.objects.filter(admissability=True).filter(petitionsummary__isnull=True).count(),
         'awaitinghearing':AdmissibilityForm.objects.filter(admissability=True).filter(hearing__isnull=True).count(),
-        'awaitingrecommendations':InterviewSummary.objects.filter(finalresolution='Recommended to President').filter(
-            recommendationform__isnull=True).count()
+        'awaitingrecommendations':InterviewSummary.objects.filter(finalresolution='Recommended to President').filter(recommendationform__isnull=True).count(),
+        'awaitinginterviews':HearingSummary.objects.filter(action='Interview the Petitioner').filter(interviewdate__isnull=False).filter(interviewsummary__isnull=True).count()
     }
     return render(request, 'petitions/dashboard/index.html',data)
