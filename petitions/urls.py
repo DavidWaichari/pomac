@@ -25,7 +25,7 @@ urlpatterns = [
 
     # urls for PetitionSummary
     path('petitionsummary/', login_required(views.PetitionSummaryListView.as_view()), name='petitionsummary_list'),
-    path('petitionsummary/awating-summaries', login_required(views.AwaitingPetitionSummaryListView.as_view()), name='awaitingsummary'),
+    path('petitionsummary/awaiting-summaries', login_required(views.AwaitingPetitionSummaryListView.as_view()), name='awaitingsummary'),
     path('petitionsummary/create/', login_required(views.PetitionSummaryCreateView.as_view()), name='petitionsummary_create'),
     path('petitionsummary/detail/<int:pk>/', login_required(views.PetitionSummaryDetailView.as_view()), name='petitionsummary_detail'),
     path('petitionsummary/update/<int:pk>/', login_required(views.PetitionSummaryUpdateView.as_view()), name='petitionsummary_update'),
@@ -76,5 +76,6 @@ urlpatterns = [
 
     #url for the
     path('petitions/dashboard/', login_required(views.dashboard), name='petitions_dashboard'),
+    path('petitionform/trustees', login_required(views.TrusteesListView.as_view()), name='trustees'),
 ]
 
