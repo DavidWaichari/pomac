@@ -1,6 +1,7 @@
 from datetime import date
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
@@ -18,7 +19,8 @@ class CountyListView(ListView):
     model = County
 
 
-class CountyCreateView(CreateView):
+class CountyCreateView(PermissionRequiredMixin, CreateView):
+    permission_required = 'petitions.add_county'
     model = County
     form_class = CountyForm
     def form_valid(self, form):

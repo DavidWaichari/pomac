@@ -28,13 +28,15 @@
     <div class="menu_section">
       <h3>General</h3>
       <ul class="nav side-menu">
-        <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
+        {%  if perms.app_label.petitions.add_county %}
+           <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
             <li><a href="{% url 'petitions_dashboard' %}">Dashboard</a></li>
             <li><a href="index2.html">Dashboard2</a></li>
             <li><a href="index3.html">Dashboard3</a></li>
           </ul>
         </li>
+          {% endif %}
         <li><a><i class="fa fa-book"></i> Petitions <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
             <li><a href="{% url 'petitionform_list' %}">Petitions List</a></li>

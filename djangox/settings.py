@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'pages',
     'petitions',
     'mathfilters',
+    'debug_permissions',
 ]
 
 MIDDLEWARE = [
