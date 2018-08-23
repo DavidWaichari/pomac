@@ -170,4 +170,4 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE =True
 
 # controls life time of the session, default is 'None' to ask user "Remember me?"
-ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_SESSION_REMEMBER = None
