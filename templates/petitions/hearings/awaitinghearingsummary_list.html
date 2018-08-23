@@ -126,101 +126,101 @@
                                     <tr>
                                         <td>{{ forloop.counter }}</td>
                                         <td>
-                                            <a href="{{ object.get_absolute_url }}">{{ object.admissibility.petitioner.name }}</a>
+                                            <a href="{{ object.get_absolute_url }}">{{ object.petitioner.name }}</a>
                                         </td>
-                                        <td>{{ object.admissibility.petitioner.prisonno }}</td>
-                                        <td>{{ object.admissibility.petitioner.prison }}</td>
-                                        <td>{{ object.admissibility.petitioner.nationality }}</td>
-                                        <td>{{ object.admissibility.petitioner.courtcaseno }}</td>
-                                        <td>{{ object.admissibility.petitioner.ageatconviction }} YEARS</td>
-                                        <td>{{ today.year|sub:object.admissibility.petitioner.dateofconviction.year|add:object.admissibility.petitioner.ageatconviction }}
+                                        <td>{{ object.petitioner.prisonno }}</td>
+                                        <td>{{ object.petitioner.prison }}</td>
+                                        <td>{{ object.petitioner.nationality }}</td>
+                                        <td>{{ object.petitioner.courtcaseno }}</td>
+                                        <td>{{ object.petitioner.ageatconviction }} YEARS</td>
+                                        <td>{{ today.year|sub:object.petitioner.dateofconviction.year|add:object.petitioner.ageatconviction }}
                                             YEARS
                                         </td>
-                                        <td>{{ today.year|sub:object.admissibility.petitioner.dateofcustody.year }}
+                                        <td>{{ today.year|sub:object.petitioner.dateofcustody.year }}
                                             YEARS
                                         </td>
-                                        {% if object.admissibility.petitioner.convictedforlife == True %}
+                                        {% if object.petitioner.convictedforlife == True %}
                                             <td>LIFE IMPRISONMENT</td>
                                         {% else %}
-                                            <td>{{ object.admissibility.petitioner.sentence }} YEARS IMPRISONMENT</td>
+                                            <td>{{ object.petitioner.sentence }} YEARS IMPRISONMENT</td>
                                         {% endif %}
-                                        <td>{{ object.admissibility.petitioner.agewhenoffensewascommited }}</td>
-                                        <td>{{ object.admissibility.petitioner.nextofkin }}</td>
-                                        <td>{{ object.admissibility.petitioner.relationshipwithnextofkin }}</td>
-                                        <td>{{ object.admissibility.petitioner.contactperson }}</td>
-                                        <td>{{ object.admissibility.petitioner.telnoofcontactperson }}</td>
-                                        <td>{{ object.admissibility.petitioner.county }}</td>
-                                        <td>{{ object.admissibility.petitioner.subcounty }}</td>
-                                        <td>{{ object.admissibility.petitioner.location }}</td>
-                                        <td>{{ object.admissibility.petitioner.nearestschool }}</td>
-                                        <td>{{ object.admissibility.petitioner.homechief }}</td>
-                                        <td>{{ object.admissibility.petitioner.whereoffensewascommitted }}</td>
-                                        <td>{{ object.admissibility.petitioner.dateofconviction }}</td>
-                                        <td>{{ object.admissibility.petitioner.dateofcustody }}</td>
-                                        <td>{{ object.admissibility.petitioner.reliefsought }}</td>
-                                        <td>{{ object.admissibility.petitioner.offence }}</td>
-                                        <td>{{ object.admissibility.petitioner.natureandparticularsofoffense }}</td>
-                                        {% if object.admissibility.petitioner.chargedalonefortheoffense == True %}
+                                        <td>{{ object.petitioner.agewhenoffensewascommited }}</td>
+                                        <td>{{ object.petitioner.nextofkin }}</td>
+                                        <td>{{ object.petitioner.relationshipwithnextofkin }}</td>
+                                        <td>{{ object.petitioner.contactperson }}</td>
+                                        <td>{{ object.petitioner.telnoofcontactperson }}</td>
+                                        <td>{{ object.petitioner.county }}</td>
+                                        <td>{{ object.petitioner.subcounty }}</td>
+                                        <td>{{ object.petitioner.location }}</td>
+                                        <td>{{ object.petitioner.nearestschool }}</td>
+                                        <td>{{ object.petitioner.homechief }}</td>
+                                        <td>{{ object.petitioner.whereoffensewascommitted }}</td>
+                                        <td>{{ object.petitioner.dateofconviction }}</td>
+                                        <td>{{ object.petitioner.dateofcustody }}</td>
+                                        <td>{{ object.petitioner.reliefsought }}</td>
+                                        <td>{{ object.petitioner.offence }}</td>
+                                        <td>{{ object.petitioner.natureandparticularsofoffense }}</td>
+                                        {% if object.petitioner.chargedalonefortheoffense == True %}
                                             <td>Yes</td>
                                         {% else %}
                                             <td>No</td>
                                         {% endif %}
-                                        <td>{{ object.admissibility.petitioner.namesofcoaccused }}</td>
-                                        {% if object.admissibility.petitioner.knowledgeofthevictim == True %}
+                                        <td>{{ object.petitioner.namesofcoaccused }}</td>
+                                        {% if object.petitioner.knowledgeofthevictim == True %}
                                             <td>Yes</td>
                                         {% else %}
                                             <td>No</td>
                                         {% endif %}
-                                        <td>{{ object.admissibility.petitioner.nameofvictim }}</td>
-                                        <td>{{ object.admissibility.petitioner.areaofresidence }}</td>
-                                        <td>{{ object.admissibility.petitioner.previousconvictions }}</td>
-                                        {% if object.admissibility.petitioner.previouspetition == True %}
+                                        <td>{{ object.petitioner.nameofvictim }}</td>
+                                        <td>{{ object.petitioner.areaofresidence }}</td>
+                                        <td>{{ object.petitioner.previousconvictions }}</td>
+                                        {% if object.petitioner.previouspetition == True %}
                                             <td>Yes</td>
                                         {% else %}
                                             <td>No</td>
                                         {% endif %}
-                                        <td>{{ object.admissibility.petitioner.dateofpreviouspetition }}</td>
-                                        <td>{{ object.admissibility.petitioner.reasonofdenialofpreviouspetition }}</td>
-                                        <td>{{ object.admissibility.petitioner.reasonforcurrentpetition }}</td>
-                                        {% if object.admissibility.petitioner.anydisplinaryactioninprison == True %}
+                                        <td>{{ object.petitioner.dateofpreviouspetition }}</td>
+                                        <td>{{ object.petitioner.reasonofdenialofpreviouspetition }}</td>
+                                        <td>{{ object.petitioner.reasonforcurrentpetition }}</td>
+                                        {% if object.petitioner.anydisplinaryactioninprison == True %}
                                             <td>Yes</td>
                                         {% else %}
                                             <td>No</td>
                                         {% endif %}
-                                        <td>{{ object.admissibility.petitioner.detailsofdisplinaryactioninprison }}</td>
-                                        {% if object.admissibility.petitioner.anyspecialcondition == True %}
+                                        <td>{{ object.petitioner.detailsofdisplinaryactioninprison }}</td>
+                                        {% if object.petitioner.anyspecialcondition == True %}
                                             <td>Yes</td>
                                         {% else %}
                                             <td>No</td>
                                         {% endif %}
-                                        <td>{{ object.admissibility.petitioner.detailsofspecialcondition }}</td>
-                                        {% if object.admissibility.petitioner.areyouatrustee == True %}
+                                        <td>{{ object.petitioner.detailsofspecialcondition }}</td>
+                                        {% if object.petitioner.areyouatrustee == True %}
                                             <td>Yes</td>
                                         {% else %}
                                             <td>No</td>
                                         {% endif %}
-                                        <td>{{ object.admissibility.petitioner.dateofpromotiontotrustee }}</td>
-                                        {% if object.admissibility.petitioner.anyspecialattributesorskills == True %}
+                                        <td>{{ object.petitioner.dateofpromotiontotrustee }}</td>
+                                        {% if object.petitioner.anyspecialattributesorskills == True %}
                                             <td>Yes</td>
                                         {% else %}
                                             <td>No</td>
                                         {% endif %}
-                                        <td>{{ object.admissibility.petitioner.explanationofspecialattributesorskills }}</td>
-                                        {% if object.admissibility.petitioner.appealedagainsttheconviction == True %}
+                                        <td>{{ object.petitioner.explanationofspecialattributesorskills }}</td>
+                                        {% if object.petitioner.appealedagainsttheconviction == True %}
                                             <td>Yes</td>
                                         {% else %}
                                             <td>No</td>
                                         {% endif %}
-                                      <td>{{ object.admissibility.petitioner.appealcaseno }}</td>
-                                        <td>{{ object.admissibility.petitioner.appealoutcome }}</td>
-                                        {% if object.admissibility.petitioner.anypendingcourtmatter == True %}
+                                      <td>{{ object.petitioner.appealcaseno }}</td>
+                                        <td>{{ object.petitioner.appealoutcome }}</td>
+                                        {% if object.petitioner.anypendingcourtmatter == True %}
                                             <td>Yes</td>
                                         {% else %}
                                             <td>No</td>
                                         {% endif %}
-                                        <td>{{ object.admissibility.petitioner.explanationofpendingcourtmatter }}</td>
-                                        <td>{{ object.admissibility.petitioner.added_by }}</td>
-                                        <td>{{ object.admissibility.petitioner.created }}</td>
+                                        <td>{{ object.petitioner.explanationofpendingcourtmatter }}</td>
+                                        <td>{{ object.petitioner.added_by }}</td>
+                                        <td>{{ object.petitioner.created }}</td>
                                         <td>{{ object.action }}</td>
                                         <td>{{ object.actiondescription }}</td>
                                         <td>{{ object.natureandseriousnessoftheoffense }}</td>

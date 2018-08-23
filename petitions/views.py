@@ -807,7 +807,7 @@ class HearingSummaryListView(ListView):
 
 class AwaitingHearingSummaryListView(ListView):
     template_name = 'petitions/hearings/awaitinghearingsummary_list.html'
-    model = HearingSummary
+    model = AdmissibilityForm
     def get_context_data(self, **kwargs):
         context = super(AwaitingHearingSummaryListView, self).get_context_data(**kwargs)
         today = date.today()
