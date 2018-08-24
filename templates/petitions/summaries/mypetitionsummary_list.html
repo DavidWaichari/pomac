@@ -21,8 +21,8 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Hearings List
-                                <small>| List of all Hearings</small>
+                            <h2>My Summary List
+                                <small>| List of all My Summaries</small>
                             </h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -43,9 +43,9 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
+                        <a class="btn btn-primary float-right" href="{% url 'petitionsummary_create' %}">Create new PetitionSummary</a>
                             <p class="text-muted font-13 m-b-30">
-                                This table shows all the hearing summary for petitions submitted from
-                                across all the prisons. You can search using any
+                               This table show all the summaries that you have submitted. You can search using any
                                 criteria
                             </p>
                             <table id="datatable-buttons" class="table table-striped table-bordered"
@@ -101,25 +101,12 @@
                                     <td>Appeal Outcome</td>
                                     <td>Pending Court Matter</td>
                                  <td>Pending Court Matter Explanation</td>
-                                 <td>Petition added By</td>
-                                 <td>Petition Added On</td>
-                                      <td>Hearing Status</td>
-                                     <td>Hearing Status Description</td>
-                                    <td>Nature and Seriousness of the Offense</td>
-                                    <td>Personal circumstances of the offender at the time of making the Petition</td>
-                                    <td>The interest of the State and community</td>
-                                    <td>The post conviction conduct, character and reputation of the convicted criminal prisoner</td>
-                                    <td>The official recommendations and reports from the State organ or department responsible for correctional services</td>
-                                    <td>Where the petitioner has opted to pursue other remedies, the outcome of such avenue</td>
-                                    <td>The representation of the victim where applicable</td>
-                                    <td>Where applicable, a report of fellow inmates</td>
-                                    <td>Reports from probation services</td>
-                                    <td>Observations from hearing with main reasons</td>
-                                    <td>Set Interview Date</td>
-                                    <td>Set Review Date</td>
-                                    <td>Members Present at the Hearing</td>
-                                    <td>Hearing Summary Added On</td>
-                                    <td>Hearing Summary last Updated On</td>
+                                 <td>Petition Added By</td>
+                                 <td>Petition Addded On</td>
+                                 <td>Type and circumstances of the Offence</td>
+                                 <td>Petition Overview</td>
+                                 <td>Summary Created on</td>
+                                 <td>Summary Last Updated on</td>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -222,32 +209,8 @@
                                         <td>{{ object.admissibility.petitioner.explanationofpendingcourtmatter }}</td>
                                         <td>{{ object.admissibility.petitioner.added_by }}</td>
                                         <td>{{ object.admissibility.petitioner.created }}</td>
-                                        <td>{{ object.action }}</td>
-                                        <td>{{ object.actiondescription }}</td>
-                                        <td>{{ object.natureandseriousnessoftheoffense }}</td>
-                                        <td>{{ object.personalcircumstances }}</td>
-                                        <td>{{ object.interestofstateandcommunity }}</td>
-                                        <td>{{ object.postconvictionconduct }}</td>
-                                        <td>{{ object.officialrecommendationsandreports }}</td>
-                                        <td>{{ object.wherethepetitionerhaspersued }}</td>
-                                        <td>{{ object.representationofvictim }}</td>
-                                        <td>{{ object.reportoffellowinmates }}</td>
-                                        <td>{{ object.reportsfromprobationservices }}</td>
-                                        <td>{{ object.observationswithmainreasons }}</td>
-                                    <td>{{ object.interviewdate }}</td>
-                                        <td>{{ object.reviewdate }}</td>
-                                       <td>
-                                            {{ object.member1 }},
-                                            {{ object.member2 }},
-                                            {{ object.member3 }},
-                                            {{ object.member4 }},
-                                            {{ object.member5 }},
-                                            {{ object.member6 }},
-                                            {{ object.member7 }},
-                                            {{ object.member8 }},
-                                            {{ object.member9 }},
-                                            {{ object.member10 }}
-                                        </td>
+                                        <td>{{ object.typeandcircumstancesofoffence }}</td>
+                                        <td>{{ object.petitionoverview }}</td>
                                         <td>{{ object.created }}</td>
                                         <td>{{ object.last_updated }}</td>
                                     </tr>

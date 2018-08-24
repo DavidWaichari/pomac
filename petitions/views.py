@@ -2,7 +2,7 @@ from datetime import date
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.http import HttpResponse
+from django.http import HttpResponse, request
 from django.shortcuts import render, redirect
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
 
@@ -75,6 +75,45 @@ class PetitionFormListView(ListView):
         today = date.today()
         context['today'] =today
         return context
+
+class MyPetitionFormListView(ListView):
+    model = PetitionForm
+    template_name = 'petitions/petition_form/mypetitionform_list.html'
+    def get_context_data(self, **kwargs):
+        context = super(MyPetitionFormListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] =today
+        return context
+    def get_queryset(self):
+        queryset = super(MyPetitionFormListView, self).get_queryset()
+        queryset = queryset.filter(added_by = self.request.user)
+        return queryset
+
+class MyEligiblePetitionFormListView(ListView):
+    model = PetitionForm
+    template_name = 'petitions/petition_form/myeligiblepetitionform_list.html'
+    def get_context_data(self, **kwargs):
+        context = super(MyEligiblePetitionFormListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] =today
+        return context
+    def get_queryset(self):
+        queryset = super(MyEligiblePetitionFormListView, self).get_queryset()
+        queryset = queryset.filter(anypendingcourtmatter=False).filter(added_by = self.request.user)
+        return queryset
+
+class MyInEligiblePetitionFormListView(ListView):
+    model = PetitionForm
+    template_name = 'petitions/petition_form/myineligiblepetitionform_list.html'
+    def get_context_data(self, **kwargs):
+        context = super(MyInEligiblePetitionFormListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] =today
+        return context
+    def get_queryset(self):
+        queryset = super(MyInEligiblePetitionFormListView, self).get_queryset()
+        queryset = queryset.filter(anypendingcourtmatter=True).filter(added_by = self.request.user)
+        return queryset
 
 class PetitionFormIneligibleListView(ListView):
     model = PetitionForm
@@ -150,9 +189,22 @@ class AdmissibilityFormListView(ListView):
         today = date.today()
         context['today'] = today
         return context
+
+class MyAdmissibilityFormListView(ListView):
+    template_name = 'petitions/admissibility_form/myadmissibilityform_list.html'
+    model = AdmissibilityForm
+    def get_context_data(self, **kwargs):
+        context = super(MyAdmissibilityFormListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset=AdmissibilityForm.objects.filter(added_by= self.request.user)
+        return queryset
+
 class AwaitingAdmissibilityFormListView(ListView):
     template_name = 'petitions/admissibility_form/awaitingadmissibilityform_list.html'
-    model = AdmissibilityForm
+    model = PetitionForm
     def get_context_data(self, **kwargs):
         context = super(AwaitingAdmissibilityFormListView, self).get_context_data(**kwargs)
         today = date.today()
@@ -591,6 +643,18 @@ class PetitionSummaryListView(ListView):
     template_name = 'petitions/summaries/petitionsummary_list.html'
     model = PetitionSummary
 
+class MyPetitionSummaryListView(ListView):
+    template_name = 'petitions/summaries/mypetitionsummary_list.html'
+    model = PetitionSummary
+    def get_queryset(self):
+        queryset = PetitionSummary.objects.filter(added_by=self.request.user)
+        return queryset
+    def get_context_data(self, **kwargs):
+        context = super(MyPetitionSummaryListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+
 class AwaitingPetitionSummaryListView(ListView):
     template_name = 'petitions/summaries/awaitingpetitionsummary_list.html'
     model = AdmissibilityForm
@@ -806,6 +870,18 @@ class HearingSummaryListView(ListView):
         today = date.today()
         context['today'] = today
         return context
+
+class MyHearingSummaryListView(ListView):
+    template_name = 'petitions/hearings/myhearingsummary_list.html'
+    model = HearingSummary
+    def get_context_data(self, **kwargs):
+        context = super(MyHearingSummaryListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset=HearingSummary.objects.filter(added_by=self.request.user)
+        return queryset
 
 class AwaitingHearingSummaryListView(ListView):
     template_name = 'petitions/hearings/awaitinghearingsummary_list.html'
@@ -1192,6 +1268,18 @@ class InterviewSummaryListView(ListView):
         today = date.today()
         context['today'] = today
         return context
+
+class MyInterviewSummaryListView(ListView):
+    template_name = 'petitions/interviews/myinterviewsummary_list.html'
+    model = InterviewSummary
+    def get_context_data(self, **kwargs):
+        context = super(MyInterviewSummaryListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset = InterviewSummary.objects.filter(added_by=self.request.user)
+        return queryset
 
 class AwaitingInterviewFormListView(ListView):
     template_name = 'petitions/interviews/awaitinginterviewsummary_list.html'

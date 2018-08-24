@@ -13,6 +13,9 @@ urlpatterns = [
     path('petitionform/ineligible', login_required(views.PetitionFormIneligibleListView.as_view()), name='petitionform_ineligible'),
     path('petitionform/eligible', login_required(views.PetitionFormEligibleListView.as_view()), name='petitionform_eligible'),
     path('petitionform/print/<int:pk>/', login_required(views.GeneratePetitionForm),name='petitionform_print'),
+    path('petitionform/my-petitions', login_required(views.MyPetitionFormListView.as_view()), name='mypetitionform_list'),
+    path('petitionform/my-eligible-petitions', login_required(views.MyEligiblePetitionFormListView.as_view()), name='myeligiblepetitionform_list'),
+    path('petitionform/my-ineligle-petitions', login_required(views.MyInEligiblePetitionFormListView.as_view()), name='myineligiblepetitionform_list'),
 
     path('admissibilityform/', login_required(views.AdmissibilityFormListView.as_view()), name='admissibilityform_list'),
     path('admissibilityform/awaiting-admissibility', login_required(views.AwaitingAdmissibilityFormListView.as_view()), name='awaitingadmissibility'),
@@ -22,6 +25,7 @@ urlpatterns = [
     path('admissibilityform/detail/<int:pk>/', login_required(views.AdmissibilityFormDetailView.as_view()), name='admissibilityform_detail'),
     path('admissibilityform/update/<int:pk>/', login_required(views.AdmissibilityFormUpdateView.as_view()), name='admissibilityform_update'),
     path('admissibilityform/print/<int:pk>/', login_required(views.GenerateAdmissibilityForm), name='admissibilityform_print'),
+    path('admissibilityform/my-admissibilities', login_required(views.MyAdmissibilityFormListView.as_view()), name='myadmissibilityform_list'),
 
     # urls for PetitionSummary
     path('petitionsummary/', login_required(views.PetitionSummaryListView.as_view()), name='petitionsummary_list'),
@@ -30,6 +34,7 @@ urlpatterns = [
     path('petitionsummary/detail/<int:pk>/', login_required(views.PetitionSummaryDetailView.as_view()), name='petitionsummary_detail'),
     path('petitionsummary/update/<int:pk>/', login_required(views.PetitionSummaryUpdateView.as_view()), name='petitionsummary_update'),
     path('petitionsummary/print/<int:pk>/', login_required(views.GeneratePetitionSummary), name='petitionsummary_print'),
+    path('petitionsummary/my-summaries', login_required(views.MyPetitionSummaryListView.as_view()), name='mypetitionsummary_list'),
 
     # urls for HearingSummary
     path('hearingsummary/', login_required(views.HearingSummaryListView.as_view()), name='hearingsummary_list'),
@@ -42,6 +47,7 @@ urlpatterns = [
     path('hearingsummary/detail/<int:pk>/', login_required(views.HearingSummaryDetailView.as_view()),name='hearingsummary_detail'),
     path('hearingsummary/update/<int:pk>/', login_required(views.HearingSummaryUpdateView.as_view()),name='hearingsummary_update'),
     path('hearingsummary/print/<int:pk>/', login_required(views.GenerateHearingForm),name='hearingsummary_print'),
+    path('hearingsummary/my-hearing-summary', login_required(views.MyHearingSummaryListView.as_view()), name='myhearingsummary_list'),
 
     # urls for InterviewSummary
     path('interviewsummary/', login_required(views.InterviewSummaryListView.as_view()),name='interviewsummary_list'),
@@ -52,6 +58,7 @@ urlpatterns = [
     path('interviewsummary/detail/<int:pk>/', login_required(views.InterviewSummaryDetailView.as_view()),name='interviewsummary_detail'),
     path('interviewsummary/update/<int:pk>/', login_required(views.InterviewSummaryUpdateView.as_view()),name='interviewsummary_update'),
     path('interviewsummary/print/<int:pk>/', login_required(views.GenerateInterviewSummary),name='interviewsummary_print'),
+    path('interviewsummary/', login_required(views.MyInterviewSummaryListView.as_view()),name='myinterviewsummary_list'),
 
 # urls for RecommendationForm
     path('recommendationform/', login_required(views.RecommendationFormListView.as_view()), name='recommendationform_list'),
