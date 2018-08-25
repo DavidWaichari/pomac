@@ -26,6 +26,8 @@ urlpatterns = [
     path('admissibilityform/update/<int:pk>/', login_required(views.AdmissibilityFormUpdateView.as_view()), name='admissibilityform_update'),
     path('admissibilityform/print/<int:pk>/', login_required(views.GenerateAdmissibilityForm), name='admissibilityform_print'),
     path('admissibilityform/my-admissibilities', login_required(views.MyAdmissibilityFormListView.as_view()), name='myadmissibilityform_list'),
+    path('admissibilityform/my-admissible-admissibilities', login_required(views.MyAdmissibleAdmissibilityFormListView.as_view()), name='myadmissibleadmissibilityform_list'),
+    path('admissibilityform/my-inadmissible-admissibilities', login_required(views.MyInAdmissibleAdmissibilityFormListView.as_view()), name='myinadmissibleadmissibilityform_list'),
 
     # urls for PetitionSummary
     path('petitionsummary/', login_required(views.PetitionSummaryListView.as_view()), name='petitionsummary_list'),
@@ -48,6 +50,12 @@ urlpatterns = [
     path('hearingsummary/update/<int:pk>/', login_required(views.HearingSummaryUpdateView.as_view()),name='hearingsummary_update'),
     path('hearingsummary/print/<int:pk>/', login_required(views.GenerateHearingForm),name='hearingsummary_print'),
     path('hearingsummary/my-hearing-summary', login_required(views.MyHearingSummaryListView.as_view()), name='myhearingsummary_list'),
+    path('hearingsummary/my-schedule-for-interview', login_required(views.MyHearingSummaryScheduledforInterviewListView.as_view()), name='myhearingsummary_scheduledforinterview'),
+    path('hearingsummary/myawaiting-schedule-for-interview', login_required(views.MyHearingSummaryAwaitingScheduleforInterviewListView.as_view()), name='myhearingsummary_awaitingscheduleforinterview'),
+    path('hearingsummary/my-awaiting-hearing', login_required(views.MyAwaitingHearingSummaryListView.as_view()), name='myawaitinghearing'),
+    path('hearingsummary/my-deferred-hearings', login_required(views.MyHearingSummaryDeferredListView.as_view()), name='myhearingsummary_deferred'),
+    path('hearingsummary/my-declined-hearings', login_required(views.MyHearingSummaryDeclinedListView.as_view()), name='myhearingsummary_declined'),
+
 
     # urls for InterviewSummary
     path('interviewsummary/', login_required(views.InterviewSummaryListView.as_view()),name='interviewsummary_list'),
@@ -58,7 +66,7 @@ urlpatterns = [
     path('interviewsummary/detail/<int:pk>/', login_required(views.InterviewSummaryDetailView.as_view()),name='interviewsummary_detail'),
     path('interviewsummary/update/<int:pk>/', login_required(views.InterviewSummaryUpdateView.as_view()),name='interviewsummary_update'),
     path('interviewsummary/print/<int:pk>/', login_required(views.GenerateInterviewSummary),name='interviewsummary_print'),
-    path('interviewsummary/', login_required(views.MyInterviewSummaryListView.as_view()),name='myinterviewsummary_list'),
+    path('interviewsummary/my-interviews', login_required(views.MyInterviewSummaryListView.as_view()),name='myinterviewsummary_list'),
 
 # urls for RecommendationForm
     path('recommendationform/', login_required(views.RecommendationFormListView.as_view()), name='recommendationform_list'),
@@ -67,6 +75,7 @@ urlpatterns = [
     path('recommendationform/detail/<int:pk>/', login_required(views.RecommendationFormDetailView.as_view()), name='recommendationform_detail'),
     path('recommendationform/update/<int:pk>/', login_required(views.RecommendationFormUpdateView.as_view()), name='recommendationform_update'),
     path('recommendationform/print/<int:pk>/', login_required(views.GenerateRecommendationForm), name='recommendationform_print'),
+    path('recommendationform/my-recommendations', login_required(views.MyRecommendationFormListView.as_view()), name='myrecommendationform_list'),
 
     # urls for County
     path('petitions/county/', login_required(views.CountyListView.as_view()), name='petitions_county_list'),
@@ -83,6 +92,7 @@ urlpatterns = [
 
     #url for the
     path('petitions/dashboard/', login_required(views.dashboard), name='petitions_dashboard'),
+    path('petitions/my-dashboard/', login_required(views.mydashboard), name='mypetitions_dashboard'),
     path('petitionform/trustees', login_required(views.TrusteesListView.as_view()), name='trustees'),
 ]
 

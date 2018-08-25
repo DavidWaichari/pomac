@@ -202,6 +202,30 @@ class MyAdmissibilityFormListView(ListView):
         queryset=AdmissibilityForm.objects.filter(added_by= self.request.user)
         return queryset
 
+class MyAdmissibleAdmissibilityFormListView(ListView):
+    template_name = 'petitions/admissibility_form/myadmissibleadmissibilityform_list.html'
+    model = AdmissibilityForm
+    def get_context_data(self, **kwargs):
+        context = super(MyAdmissibleAdmissibilityFormListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset=AdmissibilityForm.objects.filter(added_by= self.request.user).filter(admissability=True)
+        return queryset
+
+class MyInAdmissibleAdmissibilityFormListView(ListView):
+    template_name = 'petitions/admissibility_form/myinadmissibleadmissibilityform_list.html'
+    model = AdmissibilityForm
+    def get_context_data(self, **kwargs):
+        context = super(MyInAdmissibleAdmissibilityFormListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset=AdmissibilityForm.objects.filter(added_by= self.request.user).filter(admissability=False)
+        return queryset
+
 class AwaitingAdmissibilityFormListView(ListView):
     template_name = 'petitions/admissibility_form/awaitingadmissibilityform_list.html'
     model = PetitionForm
@@ -895,6 +919,18 @@ class AwaitingHearingSummaryListView(ListView):
         queryset=AdmissibilityForm.objects.filter(admissability=True).filter(hearing__isnull=True)
         return queryset
 
+class MyAwaitingHearingSummaryListView(ListView):
+    template_name = 'petitions/hearings/myawaitinghearingsummary_list.html'
+    model = AdmissibilityForm
+    def get_context_data(self, **kwargs):
+        context = super(MyAwaitingHearingSummaryListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset=AdmissibilityForm.objects.filter(admissability=True).filter(hearing__isnull=True).filter(added_by=self.request.user)
+        return queryset
+
 
 
 class HearingSummaryDeferredListView(ListView):
@@ -907,6 +943,19 @@ class HearingSummaryDeferredListView(ListView):
         return context
     def get_queryset(self):
         queryset = super(HearingSummaryDeferredListView, self).get_queryset()
+        queryset = queryset.filter(action='Defer the petition to a later date')
+        return queryset
+
+class MyHearingSummaryDeferredListView(ListView):
+    template_name = 'petitions/hearings/myhearingsummary_deferred.html'
+    model = HearingSummary
+    def get_context_data(self, **kwargs):
+        context = super(MyHearingSummaryDeferredListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset = super(MyHearingSummaryDeferredListView, self).get_queryset().filter(added_by=self.request.user)
         queryset = queryset.filter(action='Defer the petition to a later date')
         return queryset
 
@@ -923,6 +972,19 @@ class HearingSummaryDeclinedListView(ListView):
         queryset = queryset.filter(action='Decline the Petition')
         return queryset
 
+class MyHearingSummaryDeclinedListView(ListView):
+    template_name = 'petitions/hearings/myhearingsummary_declined.html'
+    model = HearingSummary
+    def get_context_data(self, **kwargs):
+        context = super(MyHearingSummaryDeclinedListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset = super(MyHearingSummaryDeclinedListView, self).get_queryset()
+        queryset = queryset.filter(action='Decline the Petition').filter(added_by=self.request.user)
+        return queryset
+
 class HearingSummaryScheduledforInterviewListView(ListView):
     template_name = 'petitions/hearings/hearingsummary_scheduledforinterview.html'
     model = HearingSummary
@@ -936,6 +998,19 @@ class HearingSummaryScheduledforInterviewListView(ListView):
         queryset = queryset.filter(action='Interview the Petitioner').filter(interviewdate__isnull= False).filter(interviewsummary__isnull=True)
         return queryset
 
+class MyHearingSummaryScheduledforInterviewListView(ListView):
+    template_name = 'petitions/hearings/myhearingsummary_scheduledforinterview.html'
+    model = HearingSummary
+    def get_context_data(self, **kwargs):
+        context = super(MyHearingSummaryScheduledforInterviewListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset = super(MyHearingSummaryScheduledforInterviewListView, self).get_queryset()
+        queryset = queryset.filter(action='Interview the Petitioner').filter(interviewdate__isnull= False).filter(interviewsummary__isnull=True).filter(added_by=self.request.user)
+        return queryset
+
 class HearingSummaryAwaitingScheduleforInterviewListView(ListView):
     template_name = 'petitions/hearings/hearingsummary_awaitingscheduledforinterview.html'
     model = HearingSummary
@@ -947,6 +1022,19 @@ class HearingSummaryAwaitingScheduleforInterviewListView(ListView):
     def get_queryset(self):
         queryset = super(HearingSummaryAwaitingScheduleforInterviewListView, self).get_queryset()
         queryset = queryset.filter(action='Interview the Petitioner').filter(interviewdate__isnull= True).filter(interviewsummary__isnull=True)
+        return queryset
+
+class MyHearingSummaryAwaitingScheduleforInterviewListView(ListView):
+    template_name = 'petitions/hearings/myhearingsummary_awaitingscheduledforinterview.html'
+    model = HearingSummary
+    def get_context_data(self, **kwargs):
+        context = super(MyHearingSummaryAwaitingScheduleforInterviewListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset = super(MyHearingSummaryAwaitingScheduleforInterviewListView, self).get_queryset()
+        queryset = queryset.filter(action='Interview the Petitioner').filter(interviewdate__isnull= True).filter(interviewsummary__isnull=True).filter(added_by=self.request.user)
         return queryset
 
 
@@ -1650,6 +1738,18 @@ class RecommendationFormListView(ListView):
         context['today'] = today
         return context
 
+class MyRecommendationFormListView(ListView):
+    template_name = 'petitions/recommendations/myrecommendationform_list.html'
+    model = RecommendationForm
+    def get_context_data(self, **kwargs):
+        context = super(MyRecommendationFormListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset = RecommendationForm.objects.filter(added_by=self.request.user)
+        return queryset
+
 class AwaitingRecommendationFormListView(ListView):
     template_name = 'petitions/recommendations/awaitingrecommendationform_list.html'
     model = InterviewSummary
@@ -1737,3 +1837,30 @@ def dashboard(request):
         'trustees':PetitionForm.objects.filter(anypendingcourtmatter=False).filter(areyouatrustee=True).count()
     }
     return render(request, 'petitions/dashboard/index.html',data)
+
+def mydashboard(request):
+    data = {
+        'noofpetitions': PetitionForm.objects.filter(added_by=request.user).count(),
+        'eligiblepetitions': PetitionForm.objects.filter(anypendingcourtmatter=False).filter(added_by=request.user).count(),
+        'ineligiblepetitions': PetitionForm.objects.filter(anypendingcourtmatter=True).filter(added_by=request.user).count(),
+        'totaladmissibilities': AdmissibilityForm.objects.filter(added_by=request.user).count(),
+        'admissiblepetitions': AdmissibilityForm.objects.filter(admissability=True).filter(added_by=request.user).count(),
+        'inadmissiblepetitions': AdmissibilityForm.objects.filter(admissability=False).filter(added_by=request.user).count(),
+        'awaitingadmissibility': PetitionForm.objects.filter(anypendingcourtmatter=False).filter(admissibility__isnull=True).filter(added_by=request.user).count(),
+        'summaries': PetitionSummary.objects.all().filter(added_by=request.user).count(),
+        'hearings': HearingSummary.objects.all().filter(added_by=request.user).count(),
+        'deferredhearings': HearingSummary.objects.filter(action='Defer the petition to a later date').filter(added_by=request.user).count(),
+        'declinedhearings': HearingSummary.objects.filter(action='Decline the Petition').filter(added_by=request.user).count(),
+        'scheduledforinterview': HearingSummary.objects.filter(action='Interview the Petitioner').filter(added_by=request.user).filter(interviewdate__isnull= False).filter(interviewsummary__isnull=True).count(),
+        'awaitingscheduleforinterview': HearingSummary.objects.filter(action='Interview the Petitioner').filter(added_by=request.user).filter(interviewdate__isnull= True).filter(interviewsummary__isnull=True).count(),
+        'interviews': InterviewSummary.objects.all().filter(added_by=request.user).count(),
+        'interviewsrecommended': InterviewSummary.objects.filter(finalresolution = 'Recommended to President').filter(added_by=request.user).count(),
+        'notinterviewsrecommended': InterviewSummary.objects.filter(finalresolution = 'Not Recommended to President').filter(added_by=request.user).count(),
+        'recommendations': RecommendationForm.objects.all().filter(added_by=request.user).count(),
+        'awaitingsummaries': AdmissibilityForm.objects.filter(admissability=True).filter(petitionsummary__isnull=True).filter(added_by=request.user).count(),
+        'awaitinghearing':AdmissibilityForm.objects.filter(admissability=True).filter(hearing__isnull=True).filter(added_by=request.user).count(),
+        'awaitingrecommendations':InterviewSummary.objects.filter(finalresolution='Recommended to President').filter(added_by=request.user).filter(recommendationform__isnull=True).count(),
+        'awaitinginterviews':HearingSummary.objects.filter(action='Interview the Petitioner').filter(added_by=request.user).filter(interviewdate__isnull=False).filter(interviewsummary__isnull=True).count(),
+        'trustees':PetitionForm.objects.filter(anypendingcourtmatter=False).filter(areyouatrustee=True).filter(added_by=request.user).count()
+    }
+    return render(request, 'petitions/dashboard/mydashboard.html',data)
