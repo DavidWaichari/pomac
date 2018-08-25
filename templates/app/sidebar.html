@@ -57,6 +57,7 @@
                         <li><a href="{% url 'myadmissibilityform_list' %}">My Admissibilities List</a></li>
                         <li><a href="{% url 'myadmissibleadmissibilityform_list' %}">My Admissible Admissibilities</a></li>
                         <li><a href="{% url 'myinadmissibleadmissibilityform_list' %}">My InAdmissible Admissibilities</a></li>
+                        <li><a href="{% url 'myawaitingadmissibility' %}">My Awaiting Admissibility</a></li>
                         <li><a href="{% url 'admissibilityform_create' %}">Add Admissibility</a></li>
                     </ul>
                 </li>
@@ -65,6 +66,7 @@
                         <li><a href="{% url 'petitionsummary_list' %}">Summaries List</a></li>
                         <li><a href="{% url 'awaitingsummary' %}">Awaiting Summaries</a></li>
                         <li><a href="{% url 'mypetitionsummary_list' %}">My Summaries</a></li>
+                        <li><a href="{% url 'myawaitingsummary' %}">My Awaiting Summaries</a></li>
                         <li><a href="{% url 'petitionsummary_create' %}">Add Summary</a></li>
                     </ul>
                 </li>
@@ -98,6 +100,9 @@
                         <li><a href="{% url 'interviewsummary_notrecommended' %}">Not Recommended for Recommendation</a>
                         </li>
                         <li><a href="{% url 'myinterviewsummary_list' %}">My Interviews List</a></li>
+                        <li><a href="{% url 'myawaitinginterviws' %}">My Awaiting Interviews</a></li>
+                        <li><a href="{% url 'myinterviewsummary_recommended' %}">My Recommended for Recommendation</a></li>
+                        <li><a href="{% url 'myinterviewsummary_notrecommended' %}">My Not Recommended for Recommendation</a></li>
                         <li><a href="{% url 'interviewsummary_create' %}">Add Interview</a></li>
                     </ul>
                 </li>
@@ -106,6 +111,7 @@
                         <li><a href="{% url 'recommendationform_list' %}">Recommendations List</a></li>
                         <li><a href="{% url 'awaitingrecommendations' %}">Awaiting Recommendations</a></li>
                         <li><a href="{% url 'myrecommendationform_list' %}">My Recommendations</a></li>
+                        <li><a href="{% url 'myawaitingrecommendations' %}">My Awaiting Recommendations</a></li>
                         <li><a href="{% url 'recommendationform_create' %}">Add Recommendation</a></li>
                     </ul>
                 </li>

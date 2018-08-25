@@ -28,6 +28,7 @@ urlpatterns = [
     path('admissibilityform/my-admissibilities', login_required(views.MyAdmissibilityFormListView.as_view()), name='myadmissibilityform_list'),
     path('admissibilityform/my-admissible-admissibilities', login_required(views.MyAdmissibleAdmissibilityFormListView.as_view()), name='myadmissibleadmissibilityform_list'),
     path('admissibilityform/my-inadmissible-admissibilities', login_required(views.MyInAdmissibleAdmissibilityFormListView.as_view()), name='myinadmissibleadmissibilityform_list'),
+    path('admissibilityform/my-awaiting-admissibility', login_required(views.MyAwaitingAdmissibilityFormListView.as_view()), name='myawaitingadmissibility'),
 
     # urls for PetitionSummary
     path('petitionsummary/', login_required(views.PetitionSummaryListView.as_view()), name='petitionsummary_list'),
@@ -37,6 +38,7 @@ urlpatterns = [
     path('petitionsummary/update/<int:pk>/', login_required(views.PetitionSummaryUpdateView.as_view()), name='petitionsummary_update'),
     path('petitionsummary/print/<int:pk>/', login_required(views.GeneratePetitionSummary), name='petitionsummary_print'),
     path('petitionsummary/my-summaries', login_required(views.MyPetitionSummaryListView.as_view()), name='mypetitionsummary_list'),
+    path('petitionsummary/my-awaiting-summaries', login_required(views.MyAwaitingPetitionSummaryListView.as_view()), name='myawaitingsummary'),
 
     # urls for HearingSummary
     path('hearingsummary/', login_required(views.HearingSummaryListView.as_view()), name='hearingsummary_list'),
@@ -67,6 +69,9 @@ urlpatterns = [
     path('interviewsummary/update/<int:pk>/', login_required(views.InterviewSummaryUpdateView.as_view()),name='interviewsummary_update'),
     path('interviewsummary/print/<int:pk>/', login_required(views.GenerateInterviewSummary),name='interviewsummary_print'),
     path('interviewsummary/my-interviews', login_required(views.MyInterviewSummaryListView.as_view()),name='myinterviewsummary_list'),
+    path('interviewsummary/my-petitions-awaiting-interview', login_required(views.MyAwaitingInterviewFormListView.as_view()),name='myawaitinginterviws'),
+    path('interviewsummary/my-recommendations', login_required(views.MyInterviewSummaryRecommendedListView.as_view()),name='myinterviewsummary_recommended'),
+    path('interviewsummary/my-not-recommended', login_required(views.myInterviewSummaryNotRecommendedListView.as_view()),name='myinterviewsummary_notrecommended'),
 
 # urls for RecommendationForm
     path('recommendationform/', login_required(views.RecommendationFormListView.as_view()), name='recommendationform_list'),
@@ -76,6 +81,7 @@ urlpatterns = [
     path('recommendationform/update/<int:pk>/', login_required(views.RecommendationFormUpdateView.as_view()), name='recommendationform_update'),
     path('recommendationform/print/<int:pk>/', login_required(views.GenerateRecommendationForm), name='recommendationform_print'),
     path('recommendationform/my-recommendations', login_required(views.MyRecommendationFormListView.as_view()), name='myrecommendationform_list'),
+    path('recommendationform/my-awaiting-recommendation', login_required(views.MyAwaitingRecommendationFormListView.as_view()), name='myawaitingrecommendations'),
 
     # urls for County
     path('petitions/county/', login_required(views.CountyListView.as_view()), name='petitions_county_list'),

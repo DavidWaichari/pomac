@@ -54,20 +54,20 @@
                 <span class="count_top text-warning"><i class="fa fa-user"></i> My Awaiting Admissibility</span>
                 <div class="count">{{ awaitingadmissibility }}</div>
                 <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
-                                                                   href="#">More Details</a></span>
+                                                                   href="{% url 'myawaitingadmissibility' %}">More Details</a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top"><i class="fa fa-user"></i> My Petitions Summaries</span>
                 <div class="count">{{ summaries }}</div>
                 <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
-                                                                   href="{% url 'petitionsummary_list' %}">More Details</a></span>
+                                                                   href="{% url 'mypetitionsummary_list' %}">More Details</a></span>
             </div>
 
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top text-warning"><i class="fa fa-user"></i> My Awaiting Summaries</span>
                 <div class="count">{{ awaitingsummaries }}</div>
                 <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
-                                                                   href="{% url 'awaitingsummary' %}">More Details</a></span>
+                                                                   href="{% url 'myawaitingsummary' %}">More Details</a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top"><i class="fa fa-user"></i> My Hearings</span>
@@ -118,19 +118,19 @@
                 <span class="count_top text-success"><i class="fa fa-user"></i>My Interviews Done</span>
                 <div class="count">{{ interviews }}</div>
                 <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
-                                                                   href="{% url 'interviewsummary_list' %}">More Details</a></span>
+                                                                   href="{% url 'myinterviewsummary_list' %}">More Details</a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top text-warning"><i class="fa fa-user"></i>My Awaiting Interview</span>
                 <div class="count text-danger">{{ awaitinginterviews }}</div>
                 <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
-                                                                   href="{% url 'awaitinginterviws' %}">More Details</a></span>
+                                                                   href="{% url 'myawaitinginterviws' %}">More Details</a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top text-success"><i class="fa fa-user"></i>My Interviews Recommended</span>
                 <div class="count">{{ interviewsrecommended }}</div>
                 <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
-                                                                   href="{% url 'interviewsummary_recommended' %}">More Details</a></span>
+                                                                   href="{% url 'myinterviewsummary_recommended' %}">More Details</a></span>
             </div>
         </div>
         <!-- /top tiles -->
@@ -141,19 +141,19 @@
                 <div class="count">{{ interviewsrecommended }}</div>
                 <span class="text-danger">Recommended</span>
                 <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
-                                                                   href="{% url 'interviewsummary_notrecommended' %}">More Details</a></span>
+                                                                   href="{% url 'myinterviewsummary_notrecommended' %}">More Details</a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top text-success"><i class="fa fa-user"></i>My Recommendations</span>
                 <div class="count">{{ recommendations }}</div>
                 <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
-                                                                   href="{% url 'recommendationform_list' %}">More Details</a></span>
+                                                                   href="{% url 'myrecommendationform_list' %}">More Details</a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top text-warning"><i class="fa fa-user"></i>My Awaiting Recommendations</span>
                 <div class="count">{{ awaitingrecommendations }}</div>
                 <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
-                                                                   href="{% url 'awaitingrecommendations' %}">More Details</a></span>
+                                                                   href="{% url 'myawaitingrecommendations' %}">More Details</a></span>
             </div>
 
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">

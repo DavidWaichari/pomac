@@ -238,6 +238,18 @@ class AwaitingAdmissibilityFormListView(ListView):
         queryset=PetitionForm.objects.filter(anypendingcourtmatter=False).filter(admissibility__isnull=True)
         return queryset
 
+class MyAwaitingAdmissibilityFormListView(ListView):
+    template_name = 'petitions/admissibility_form/myawaitingadmissibilityform_list.html'
+    model = PetitionForm
+    def get_context_data(self, **kwargs):
+        context = super(MyAwaitingAdmissibilityFormListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset=PetitionForm.objects.filter(anypendingcourtmatter=False).filter(admissibility__isnull=True).filter(added_by=self.request.user)
+        return queryset
+
 def GeneratePetitionForm(request, pk):
     petitioner = PetitionForm.objects.get(pk=pk)
     today = date.today()
@@ -687,6 +699,18 @@ class AwaitingPetitionSummaryListView(ListView):
         return queryset
     def get_context_data(self, **kwargs):
         context = super(AwaitingPetitionSummaryListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+
+class MyAwaitingPetitionSummaryListView(ListView):
+    template_name = 'petitions/summaries/myawaitingpetitionsummary_list.html'
+    model = AdmissibilityForm
+    def get_queryset(self):
+        queryset = AdmissibilityForm.objects.filter(admissability=True).filter(petitionsummary__isnull=True).filter(added_by=self.request.user)
+        return queryset
+    def get_context_data(self, **kwargs):
+        context = super(MyAwaitingPetitionSummaryListView, self).get_context_data(**kwargs)
         today = date.today()
         context['today'] = today
         return context
@@ -1382,6 +1406,19 @@ class AwaitingInterviewFormListView(ListView):
             interviewdate__isnull=False).filter(interviewsummary__isnull=True)
         return queryset
 
+class MyAwaitingInterviewFormListView(ListView):
+    template_name = 'petitions/interviews/myawaitinginterviewsummary_list.html'
+    model = HearingSummary
+    def get_context_data(self, **kwargs):
+        context = super(MyAwaitingInterviewFormListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset = HearingSummary.objects.filter(action='Interview the Petitioner').filter(
+            interviewdate__isnull=False).filter(interviewsummary__isnull=True).filter(added_by=self.request.user)
+        return queryset
+
 class InterviewSummaryRecommendedListView(ListView):
     template_name = 'petitions/interviews/interviewsummary_recommended.html'
     model = InterviewSummary
@@ -1392,7 +1429,20 @@ class InterviewSummaryRecommendedListView(ListView):
         return context
     def get_queryset(self):
         queryset = super(InterviewSummaryRecommendedListView, self).get_queryset()
-        queryset = queryset.filter(finalresolution = 'Recommended to President').filter(recommendationform__isnull=True)
+        queryset = queryset.filter(finalresolution = 'Recommended to President')
+        return queryset
+
+class MyInterviewSummaryRecommendedListView(ListView):
+    template_name = 'petitions/interviews/myinterviewsummary_recommended.html'
+    model = InterviewSummary
+    def get_context_data(self, **kwargs):
+        context = super(MyInterviewSummaryRecommendedListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset = super(MyInterviewSummaryRecommendedListView, self).get_queryset()
+        queryset = queryset.filter(finalresolution = 'Recommended to President').filter(added_by=self.request.user)
         return queryset
 
 class InterviewSummaryNotRecommendedListView(ListView):
@@ -1405,7 +1455,20 @@ class InterviewSummaryNotRecommendedListView(ListView):
         return context
     def get_queryset(self):
         queryset = super(InterviewSummaryNotRecommendedListView, self).get_queryset()
-        queryset = queryset.filter(finalresolution = 'Not Recommended to President').filter(recommendationform__isnull=True)
+        queryset = queryset.filter(finalresolution = 'Not Recommended to President')
+        return queryset
+
+class myInterviewSummaryNotRecommendedListView(ListView):
+    template_name = 'petitions/interviews/myinterviewsummary_notrecommended.html'
+    model = InterviewSummary
+    def get_context_data(self, **kwargs):
+        context = super(myInterviewSummaryNotRecommendedListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset = super(myInterviewSummaryNotRecommendedListView, self).get_queryset()
+        queryset = queryset.filter(finalresolution = 'Not Recommended to President').filter(added_by=self.request.user)
         return queryset
 
 
@@ -1755,6 +1818,19 @@ class AwaitingRecommendationFormListView(ListView):
     model = InterviewSummary
     def get_context_data(self, **kwargs):
         context = super(AwaitingRecommendationFormListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset = InterviewSummary.objects.filter(finalresolution='Recommended to President').filter(
+            recommendationform__isnull=True)
+        return queryset
+
+class MyAwaitingRecommendationFormListView(ListView):
+    template_name = 'petitions/recommendations/myawaitingrecommendationform_list.html'
+    model = InterviewSummary
+    def get_context_data(self, **kwargs):
+        context = super(MyAwaitingRecommendationFormListView, self).get_context_data(**kwargs)
         today = date.today()
         context['today'] = today
         return context
