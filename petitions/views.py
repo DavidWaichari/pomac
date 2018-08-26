@@ -46,6 +46,12 @@ class CountyUpdateView(UpdateView):
     template_name = 'petitions/counties/county_form.html'
     model = County
     form_class = CountyForm
+    success_message = 'County details updated successfully'
+    def form_valid(self, form):
+        county = form.save(commit=False)
+        county.save()
+        messages.success(self.request, self.success_message)
+        return redirect('petitions_county_detail', county.id)
 
 def load_subcounties(request):
     county_id = request.GET.get('county')
@@ -171,22 +177,32 @@ class PetitionFormCreateView(CreateView):
     template_name = 'petitions/petition_form/petitionform_form.html'
     model = PetitionForm
     form_class = PetitionFormForm
+    success_message = 'Petition submitted successfully'
+    def form_valid(self, form):
+        petitionform = form.save(commit=False)
+        petitionform.save()
+        messages.success(self.request, self.success_message)
+        return redirect('petitionform_detail', petitionform.id)
 
 class PetitionFormDetailView(DetailView):
     template_name = 'petitions/petition_form/petitionform_detail.html'
     model = PetitionForm
-    def form_valid(self, form):
-        petitionform = form.save(commit=False)
-        petitionform.save()
-        messages.add_message(
-            self.request, messages.SUCCESS, 'Petition Edited  successfully')
-        return redirect('petitionform_detail', petitionform.id)
-
+    def get_context_data(self, **kwargs):
+        context = super(PetitionFormDetailView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
 
 class PetitionFormUpdateView(UpdateView):
     template_name = 'petitions/petition_form/petitionform_update.html'
     model = PetitionForm
     form_class = PetitionFormForm
+    success_message = 'Petition updated successfully'
+    def form_valid(self, form):
+        petitionupdate = form.save(commit=False)
+        petitionupdate.save()
+        messages.success(self.request, self.success_message)
+        return redirect('petitionform_detail', petitionupdate.id)
 
 class AdmissibilityFormListView(ListView):
     template_name = 'petitions/admissibility_form/admissibilityform_list.html'
