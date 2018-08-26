@@ -1,5 +1,6 @@
 from datetime import date
 
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.http import HttpResponse, request
@@ -16,24 +17,33 @@ from djangox.utils import render_to_pdf  # created in step 4
 
 
 class CountyListView(ListView):
+    template_name = 'petitions/counties/county_list.html'
     model = County
+    def get_queryset(self):
+        queryset = County.objects.order_by('name')
+        return queryset
 
 
 class CountyCreateView(PermissionRequiredMixin, CreateView):
+    template_name = 'petitions/counties/county_form.html'
     permission_required = 'petitions.add_county'
     model = County
     form_class = CountyForm
+    success_message = "County added successfully."
     def form_valid(self, form):
         county = form.save(commit=False)
         county.added_by = self.request.user
         county.save()
+        messages.success(self.request, self.success_message)
         return  redirect ('petitions_county_detail', county.id)
 
 class CountyDetailView(DetailView):
+    template_name = 'petitions/counties/county_detail.html'
     model = County
 
 
 class CountyUpdateView(UpdateView):
+    template_name = 'petitions/counties/county_form.html'
     model = County
     form_class = CountyForm
 
@@ -54,8 +64,9 @@ class SubCountyCreateView(CreateView):
         subcounty = form.save(commit=False)
         subcounty.added_by = self.request.user
         subcounty.save()
+        messages.add_message(
+            self.request, messages.SUCCESS, 'SubCounty created successfully')
         return redirect('petitions_subcounty_detail', subcounty.id)
-
 
 class SubCountyDetailView(DetailView):
     model = SubCounty
@@ -160,21 +171,17 @@ class PetitionFormCreateView(CreateView):
     template_name = 'petitions/petition_form/petitionform_form.html'
     model = PetitionForm
     form_class = PetitionFormForm
-    def form_valid(self, form):
-        petitionform = form.save(commit=False)
-        petitionform.added_by = self.request.user
-        petitionform.save()
-        return redirect('petitionform_detail', petitionform.id)
-
 
 class PetitionFormDetailView(DetailView):
     template_name = 'petitions/petition_form/petitionform_detail.html'
     model = PetitionForm
-    def get_context_data(self, **kwargs):
-        context = super(PetitionFormDetailView, self).get_context_data(**kwargs)
-        today = date.today()
-        context['today'] =today
-        return context
+    def form_valid(self, form):
+        petitionform = form.save(commit=False)
+        petitionform.save()
+        messages.add_message(
+            self.request, messages.SUCCESS, 'Petition Edited  successfully')
+        return redirect('petitionform_detail', petitionform.id)
+
 
 class PetitionFormUpdateView(UpdateView):
     template_name = 'petitions/petition_form/petitionform_update.html'

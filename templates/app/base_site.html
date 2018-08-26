@@ -35,7 +35,7 @@
         {% endblock stylesheets %}
         <!-- Custom Theme Style -->
         <link href="/static/build/css/custom.css" rel="stylesheet">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     {% endblock head %}
     <style>
         .help-block {
@@ -50,6 +50,16 @@
             margin-top: 5px !important;
             margin-bottom: 10px !important;
             color: red;
+        }
+
+        #feedbackmessages{
+            margin-right: 250px;
+            padding: 5px;
+            padding-top: 10px;
+            border-radius: 15px;
+            height: 50px;
+            background-color: #00A000;
+            color: white;
         }
 
         .checkbox, .radio {
@@ -79,7 +89,6 @@
 {% block body %}
     <div class="container body">
         <div class="main_container">
-
             {% block sidebar %}
                 <div class="col-md-3 left_col {% block sidebar_class %} {% endblock sidebar_class %}">
                     {% include "app/sidebar.html" %}
@@ -146,6 +155,7 @@
     {% endblock %}
     <!-- Custom Theme Scripts -->
     <script src="/static/build/js/custom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 {% endblock body %}
 <script>
     $(function () {
@@ -173,8 +183,10 @@
 
 
         });
+        $('#feedbackmessages').delay(10000).fadeOut();
     });
 </script>
+
 </body>
 
 </html>

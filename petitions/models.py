@@ -63,9 +63,8 @@ class SubCounty(models.Model):
         return self.name
 
 
-
 class PetitionForm(models.Model):
-
+    from petitions.models import County, SubCounty
     # Fields
     name = models.CharField(max_length=255)
     nationality = models.CharField(max_length=30)
@@ -135,6 +134,7 @@ class PetitionForm(models.Model):
 
     def __str__(self):
         return self.name+" | "+self.prisonno+" | "+self.prison
+
 
 
 class AdmissibilityForm(models.Model):
