@@ -2567,7 +2567,7 @@ function init_DataTables() {
     var handleDataTableButtons = function() {
         if ($("#datatable-buttons").length) {
             $("#datatable-buttons").DataTable({
-                dom: "Bfrtip",
+                dom: "lBfrtip",
                 buttons: [{
                     extend: "copy",
                     className: "btn-sm"

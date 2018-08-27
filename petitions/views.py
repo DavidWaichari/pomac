@@ -59,10 +59,12 @@ def load_subcounties(request):
     return render(request, 'petitions/subcounties/subcountiesdropdown.html', {'subcounties': subcounties})
 
 class SubCountyListView(ListView):
+    template_name = 'petitions/subcounties/subcounty_list.html'
     model = SubCounty
 
 
 class SubCountyCreateView(CreateView):
+    template_name = 'petitions/subcounties/subcounty_form.html'
     model = SubCounty
     form_class = SubCountyForm
     success_message = "Sub County added successfully."
@@ -74,10 +76,12 @@ class SubCountyCreateView(CreateView):
         return redirect('petitions_subcounty_detail', subcounty.id)
 
 class SubCountyDetailView(DetailView):
+    template_name = 'petitions/subcounties/subcounty_detail.html'
     model = SubCounty
 
 
 class SubCountyUpdateView(UpdateView):
+    template_name = 'petitions/subcounties/subcounty_form.html'
     model = SubCounty
     form_class = SubCountyForm
     success_message = "Sub County updated successfully."
