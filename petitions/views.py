@@ -65,13 +65,12 @@ class SubCountyListView(ListView):
 class SubCountyCreateView(CreateView):
     model = SubCounty
     form_class = SubCountyForm
+    success_message = "Sub County added successfully."
 
     def form_valid(self, form):
         subcounty = form.save(commit=False)
-        subcounty.added_by = self.request.user
         subcounty.save()
-        messages.add_message(
-            self.request, messages.SUCCESS, 'SubCounty created successfully')
+        messages.success(self.request, self.success_message)
         return redirect('petitions_subcounty_detail', subcounty.id)
 
 class SubCountyDetailView(DetailView):
@@ -81,6 +80,13 @@ class SubCountyDetailView(DetailView):
 class SubCountyUpdateView(UpdateView):
     model = SubCounty
     form_class = SubCountyForm
+    success_message = "Sub County updated successfully."
+
+    def form_valid(self, form):
+        subcounty = form.save(commit=False)
+        subcounty.save()
+        messages.success(self.request, self.success_message)
+        return redirect('petitions_subcounty_detail', subcounty.id)
 
 
 
@@ -475,10 +481,12 @@ class AdmissibilityFormCreateView(CreateView):
     template_name = 'petitions/admissibility_form/admissibilityform_form.html'
     model = AdmissibilityForm
     form_class = AdmissibilityCreateForm
+    success_message = 'Admissibility on a petition submitted successfully'
     def form_valid(self, form):
         admimissibilitycreate = form.save(commit=False)
         admimissibilitycreate.added_by = self.request.user
         admimissibilitycreate.save()
+        messages.success(self.request, self.success_message)
         return redirect('admissibilityform_detail', admimissibilitycreate.id)
 
 
@@ -496,6 +504,13 @@ class AdmissibilityFormUpdateView(UpdateView):
     template_name = 'petitions/admissibility_form/admissibilityform_update.html'
     model = AdmissibilityForm
     form_class = AdmissibilityUpdateForm
+    success_message = 'Admissibility on a petition updated successfully'
+
+    def form_valid(self, form):
+        admimissibilitycreate = form.save(commit=False)
+        admimissibilitycreate.save()
+        messages.success(self.request, self.success_message)
+        return redirect('admissibilityform_detail', admimissibilitycreate.id)
 
 
 def GenerateAdmissibilityForm(request, pk):
@@ -743,10 +758,13 @@ class PetitionSummaryCreateView(CreateView):
     template_name = 'petitions/summaries/petitionsummary_form.html'
     model = PetitionSummary
     form_class = PetitionSummaryForm
+    success_message = 'Petition summary submitted successfully'
+
     def form_valid(self, form):
         summary = form.save(commit=False)
         summary.added_by = self.request.user
         summary.save()
+        messages.success(self.request, self.success_message)
         return redirect('petitionsummary_detail', summary.id)
 
 
@@ -759,6 +777,13 @@ class PetitionSummaryUpdateView(UpdateView):
     template_name = 'petitions/summaries/petitionsummary_update.html'
     model = PetitionSummary
     form_class = PetitionSummaryEditForm
+    success_message = 'Petition summary updated successfully'
+
+    def form_valid(self, form):
+        summary = form.save(commit=False)
+        summary.save()
+        messages.success(self.request, self.success_message)
+        return redirect('petitionsummary_detail', summary.id)
 
 def GeneratePetitionSummary(request, pk):
     summary = PetitionSummary.objects.get(pk=pk)
@@ -1089,10 +1114,12 @@ class HearingSummaryCreateView(CreateView):
     template_name = 'petitions/hearings/hearingsummary_form.html'
     model = HearingSummary
     form_class = HearingSummaryForm
+    success_message = 'Petition Hearing Summary added successfully'
     def form_valid(self, form):
         hearing = form.save(commit=False)
         hearing.added_by = self.request.user
         hearing.save()
+        messages.success(self.request, self.success_message)
         return redirect('hearingsummary_detail', hearing.id)
 
 
@@ -1110,6 +1137,13 @@ class HearingSummaryUpdateView(UpdateView):
     template_name = 'petitions/hearings/hearingsummary_update.html'
     model = HearingSummary
     form_class = HearingSummaryUpdateForm
+    success_message = 'Petition Hearing Summary updated successfully'
+
+    def form_valid(self, form):
+        hearing = form.save(commit=False)
+        hearing.save()
+        messages.success(self.request, self.success_message)
+        return redirect('hearingsummary_detail', hearing.id)
 
 def GenerateHearingForm(request, pk):
     hearing = HearingSummary.objects.get(pk=pk)
@@ -1500,10 +1534,12 @@ class InterviewSummaryCreateView(CreateView):
     template_name = 'petitions/interviews/interviewsummary_form.html'
     model = InterviewSummary
     form_class = InterviewSummaryForm
+    success_message = 'Interview Summary for the petitioner added sucessfully'
     def form_valid(self, form):
         interview = form.save(commit=False)
         interview.added_by = self.request.user
         interview.save()
+        messages.success(self.request, self.success_message)
         return redirect('interviewsummary_detail', interview.id)
 
 
@@ -1521,6 +1557,14 @@ class InterviewSummaryUpdateView(UpdateView):
     template_name = 'petitions/interviews/interviewsummary_edit.html'
     model = InterviewSummary
     form_class = InterviewSummaryEditForm
+    success_message = 'Interview Summary for the petitioner updated sucessfully'
+
+    def form_valid(self, form):
+        interview = form.save(commit=False)
+        interview.save()
+        messages.success(self.request, self.success_message)
+        return redirect('interviewsummary_detail', interview.id)
+
 
 def GenerateInterviewSummary(request, pk):
     interview = InterviewSummary.objects.get(pk=pk)
@@ -1867,10 +1911,12 @@ class RecommendationFormCreateView(CreateView):
     template_name = 'petitions/recommendations/recommendationform_form.html'
     model = RecommendationForm
     form_class = RecommendationFormForm
+    success_message = 'Recommendation for the petitioner submitted successfully'
     def form_valid(self, form):
         recommendation = form.save(commit=False)
         recommendation.added_by = self.request.user
         recommendation.save()
+        messages.success(self.request, self.success_message)
         return redirect('recommendationform_detail', recommendation.id)
 
 
@@ -1888,6 +1934,13 @@ class RecommendationFormUpdateView(UpdateView):
     template_name = 'petitions/recommendations/recommendationform_edit.html'
     model = RecommendationForm
     form_class = RecommendationUpdateForm
+    success_message = 'Recommendation for the petitioner updated successfully'
+
+    def form_valid(self, form):
+        recommendation = form.save(commit=False)
+        recommendation.save()
+        messages.success(self.request, self.success_message)
+        return redirect('recommendationform_detail', recommendation.id)
 
 
 def GenerateRecommendationForm(request, pk):
