@@ -8,11 +8,11 @@ from django.shortcuts import render, redirect
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
 
 from .models import PetitionForm, AdmissibilityForm, HearingSummary, InterviewSummary, RecommendationForm, \
-    PetitionSummary, County, SubCounty
+    PetitionSummary, County, SubCounty, Exits
 from .forms import PetitionFormForm, HearingSummaryForm, InterviewSummaryForm, InterviewSummaryEditForm, \
     RecommendationFormForm, \
     AdmissibilityCreateForm, AdmissibilityUpdateForm, HearingSummaryUpdateForm, RecommendationUpdateForm, \
-    PetitionSummaryForm, PetitionSummaryEditForm, CountyForm, SubCountyForm
+    PetitionSummaryForm, PetitionSummaryEditForm, CountyForm, SubCountyForm, ExitsForm
 from djangox.utils import render_to_pdf  # created in step 4
 
 
@@ -1966,6 +1966,29 @@ def GenerateRecommendationForm(request, pk):
         }
         pdf = render_to_pdf('petitions/recommendations/recommendation_print.html', data)
         return HttpResponse(pdf, content_type='application/pdf')
+
+class ExitsListView(ListView):
+    template_name = 'petitions/exits/exits_list.html'
+    model = Exits
+
+
+class ExitsCreateView(CreateView):
+    template_name = 'petitions/exits/exits_form.html'
+    model = Exits
+    form_class = ExitsForm
+
+
+class ExitsDetailView(DetailView):
+    template_name = 'petitions/exits/exits_detail.html'
+    model = Exits
+
+
+class ExitsUpdateView(UpdateView):
+    template_name = 'petitions/exits/exits_form.html'
+    model = Exits
+    form_class = ExitsForm
+
+
 
 def dashboard(request):
     data = {

@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'djangox.wsgi.application'
 DATABASES = {
      'default': {
          'ENGINE': 'mysql_cymysql',
-         'NAME': 'djangox',
+         'NAME': 'pomac',
          'USER': 'root',
          'PASSWORD': '',
          'HOST': '127.0.0.1',

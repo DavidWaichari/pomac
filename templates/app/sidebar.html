@@ -106,7 +106,7 @@
                         <li><a href="{% url 'interviewsummary_create' %}">Add Interview</a></li>
                     </ul>
                 </li>
-                <li><a><i class="fa fa-table"></i> Recommendations <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-check-circle"></i> Recommendations <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{% url 'recommendationform_list' %}">Recommendations List</a></li>
                         <li><a href="{% url 'awaitingrecommendations' %}">Awaiting Recommendations</a></li>
@@ -115,6 +115,18 @@
                         <li><a href="{% url 'recommendationform_create' %}">Add Recommendation</a></li>
                     </ul>
                 </li>
+                <li><a><i class="fa fa-unlock"></i> Prison Exits <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="{% url 'petitions_exits_list' %}">Exits List</a></li>
+                        <li><a href="#">Escapes</a></li>
+                        <li><a href="#">Deaths </a></li>
+                        <li><a href="#">Served Sentence</a></li>
+                        <li><a href="#">Released Under POMAC</a></li>
+                        <li><a href="#">Released after resentencing</a></li>
+                        <li><a href="{% url 'petitions_exits_create' %}">Add Exit</a></li>
+                    </ul>
+                </li>
+
             </ul>
         </div>
         <div class="menu_section">
