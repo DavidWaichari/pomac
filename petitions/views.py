@@ -12,7 +12,7 @@ from .models import PetitionForm, AdmissibilityForm, HearingSummary, InterviewSu
 from .forms import PetitionFormForm, HearingSummaryForm, InterviewSummaryForm, InterviewSummaryEditForm, \
     RecommendationFormForm, \
     AdmissibilityCreateForm, AdmissibilityUpdateForm, HearingSummaryUpdateForm, RecommendationUpdateForm, \
-    PetitionSummaryForm, PetitionSummaryEditForm, CountyForm, SubCountyForm, ExitsForm
+    PetitionSummaryForm, PetitionSummaryEditForm, CountyForm, SubCountyForm, ExitsForm, ExitsFormUpdate
 from djangox.utils import render_to_pdf  # created in step 4
 
 
@@ -1970,23 +1970,57 @@ def GenerateRecommendationForm(request, pk):
 class ExitsListView(ListView):
     template_name = 'petitions/exits/exits_list.html'
     model = Exits
+    def get_context_data(self, **kwargs):
+        context = super(ExitsListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
 
 
 class ExitsCreateView(CreateView):
     template_name = 'petitions/exits/exits_form.html'
     model = Exits
     form_class = ExitsForm
+    success_message = 'Exit Details for the petitioner submitted successfully'
+    def form_valid(self, form):
+        exitpetitioner = form.save(commit=False)
+        exitpetitioner.added_by = self.request.user
+        exitpetitioner.save()
+        messages.success(self.request, self.success_message)
+        return redirect('petitions_exits_detail', exitpetitioner.id)
+    def get_context_data(self, **kwargs):
+        context = super(ExitsCreateView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
 
 
 class ExitsDetailView(DetailView):
     template_name = 'petitions/exits/exits_detail.html'
     model = Exits
+    def get_context_data(self, **kwargs):
+        context = super(ExitsDetailView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
 
 
 class ExitsUpdateView(UpdateView):
-    template_name = 'petitions/exits/exits_form.html'
+    template_name = 'petitions/exits/updateexits_form.html'
     model = Exits
-    form_class = ExitsForm
+    form_class = ExitsFormUpdate
+    success_message = 'Exit Details for the petitioner updated successfully'
+
+    def form_valid(self, form):
+        exitpetitioner = form.save(commit=False)
+        exitpetitioner.save()
+        messages.success(self.request, self.success_message)
+        return redirect('petitions_exits_detail', exitpetitioner.id)
+    def get_context_data(self, **kwargs):
+        context = super(ExitsUpdateView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
 
 
 

@@ -97,10 +97,10 @@ urlpatterns = [
     path('ajax/load-subcounties/', login_required(views.load_subcounties), name='ajax_load_subcounties'),  # <-- this one here
 
     # urls for Exits
-    path('petitions/exits/', views.ExitsListView.as_view(), name='petitions_exits_list'),
-    path('petitions/exits/create/', views.ExitsCreateView.as_view(), name='petitions_exits_create'),
-    path('petitions/exits/detail/<int:pk>/', views.ExitsDetailView.as_view(), name='petitions_exits_detail'),
-    path('petitions/exits/update/<int:pk>/', views.ExitsUpdateView.as_view(), name='petitions_exits_update'),
+    path('petitions/exits/', login_required(views.ExitsListView.as_view()), name='petitions_exits_list'),
+    path('petitions/exits/create/', login_required(views.ExitsCreateView.as_view()), name='petitions_exits_create'),
+    path('petitions/exits/detail/<int:pk>/', login_required(views.ExitsDetailView.as_view()), name='petitions_exits_detail'),
+    path('petitions/exits/update/<int:pk>/', login_required(views.ExitsUpdateView.as_view()), name='petitions_exits_update'),
 
     #url for the
     path('petitions/dashboard/', login_required(views.dashboard), name='petitions_dashboard'),
