@@ -989,6 +989,24 @@ class RecommendationUpdateForm(forms.ModelForm):
 
 
 class ExitsForm(forms.ModelForm):
+    exitreason = forms.CharField(label='Reason why the petitioner exited the prison',
+                                 widget=forms.Select(choices=[('', 'Choose Appropritely'), (
+                                     'Released under POMAC',
+                                     'Released under POMAC'),
+                                                              (
+                                                                  'Released after serving the term',
+                                                                  'Released after serving the term'),
+                                                              ('The Petitioner escaped the prison',
+                                                               'The Petitioner escaped the prison'),
+                                                              ('The petitioner died',
+                                                               'The petitioner died'),
+                                                              ('The petitioner was released after resentencing',
+                                                               'The petitioner was released after resentencing')
+                                                              ],
+                                                     attrs={'class': 'form-control'}))
+    petitioner = forms.ModelChoiceField(queryset=PetitionForm.objects.all().filter(exits__isnull=True),
+                                        label='Choose Petitioner',
+                                        widget=forms.Select(attrs={'class': 'form-control'}))
     class Meta:
         model = Exits
-        fields = ['exitreason', 'petitioner']
+        fields = [ 'petitioner','exitreason']
