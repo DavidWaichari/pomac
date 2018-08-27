@@ -1021,8 +1021,8 @@ class ExitsFormUpdate(forms.ModelForm):
                                                                   'Released after serving the term'),
                                                               ('The Petitioner escaped the prison',
                                                                'The Petitioner escaped the prison'),
-                                                              ('The petitioner died',
-                                                               'The petitioner died'),
+                                                              ('The petitioner died while in prison',
+                                                               'The petitioner died while in prison'),
                                                               ('The petitioner was released after resentencing',
                                                                'The petitioner was released after resentencing')
                                                               ],

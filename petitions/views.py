@@ -1976,6 +1976,66 @@ class ExitsListView(ListView):
         context['today'] = today
         return context
 
+class ExitsEscapeListView(ListView):
+    template_name = 'petitions/exits/exitsescapes_list.html'
+    model = Exits
+    def get_context_data(self, **kwargs):
+        context = super(ExitsEscapeListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset = Exits.objects.filter(exitreason='The Petitioner escaped the prison')
+        return queryset
+
+class ExitsDeathsListView(ListView):
+    template_name = 'petitions/exits/exitsdeaths_list.html'
+    model = Exits
+    def get_context_data(self, **kwargs):
+        context = super(ExitsDeathsListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset = Exits.objects.filter(exitreason='The petitioner died while in prison')
+        return queryset
+
+class ExitsReleasedUnderPomacListView(ListView):
+    template_name = 'petitions/exits/exitsreleasedunderpomac_list.html'
+    model = Exits
+    def get_context_data(self, **kwargs):
+        context = super(ExitsReleasedUnderPomacListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset = Exits.objects.filter(exitreason='Released under POMAC')
+        return queryset
+
+class ExitsServedTermListView(ListView):
+    template_name = 'petitions/exits/exitsservedterm_list.html'
+    model = Exits
+    def get_context_data(self, **kwargs):
+        context = super(ExitsServedTermListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset = Exits.objects.filter(exitreason='Released after serving the term')
+        return queryset
+
+class ExitsAfterResentencingListView(ListView):
+    template_name = 'petitions/exits/exitsservedterm_list.html'
+    model = Exits
+    def get_context_data(self, **kwargs):
+        context = super(ExitsAfterResentencingListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset = Exits.objects.filter(exitreason='The petitioner was released after resentencing')
+        return queryset
+
 
 class ExitsCreateView(CreateView):
     template_name = 'petitions/exits/exits_form.html'
