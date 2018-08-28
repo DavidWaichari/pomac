@@ -7,6 +7,7 @@ from django.http import HttpResponse, request
 from django.shortcuts import render, redirect
 from django.views.generic import DetailView, ListView, UpdateView, CreateView
 
+from users.models import CustomUser
 from .models import PetitionForm, AdmissibilityForm, HearingSummary, InterviewSummary, RecommendationForm, \
     PetitionSummary, County, SubCounty, Exits
 from .forms import PetitionFormForm, HearingSummaryForm, InterviewSummaryForm, InterviewSummaryEditForm, \
@@ -24,18 +25,18 @@ class CountyListView(ListView):
         return queryset
 
 
-class CountyCreateView(PermissionRequiredMixin, CreateView):
+class CountyCreateView(CreateView):
     template_name = 'petitions/counties/county_form.html'
-    permission_required = 'petitions.add_county'
+    #permission_required = 'petitions.add_county'
     model = County
     form_class = CountyForm
     success_message = "County added successfully."
     def form_valid(self, form):
-        county = form.save(commit=False)
-        county.added_by = self.request.user
-        county.save()
-        messages.success(self.request, self.success_message)
-        return  redirect ('petitions_county_detail', county.id)
+         instance = form.save(commit=False)
+         instance.added_by = CustomUser.objects.get(id=self.request.user.id)
+         instance.save()
+         messages.success(self.request, self.success_message)
+         return  redirect ('petitions_county_detail', instance.id)
 
 class CountyDetailView(DetailView):
     template_name = 'petitions/counties/county_detail.html'
@@ -68,12 +69,12 @@ class SubCountyCreateView(CreateView):
     model = SubCounty
     form_class = SubCountyForm
     success_message = "Sub County added successfully."
-
     def form_valid(self, form):
-        subcounty = form.save(commit=False)
-        subcounty.save()
-        messages.success(self.request, self.success_message)
-        return redirect('petitions_subcounty_detail', subcounty.id)
+         instance = form.save(commit=False)
+         instance.added_by = CustomUser.objects.get(id=self.request.user.id)
+         instance.save()
+         messages.success(self.request, self.success_message)
+         return  redirect ('petitions_subcounty_detail', instance.id)
 
 class SubCountyDetailView(DetailView):
     template_name = 'petitions/subcounties/subcounty_detail.html'
@@ -189,10 +190,11 @@ class PetitionFormCreateView(CreateView):
     form_class = PetitionFormForm
     success_message = 'Petition submitted successfully'
     def form_valid(self, form):
-        petitionform = form.save(commit=False)
-        petitionform.save()
-        messages.success(self.request, self.success_message)
-        return redirect('petitionform_detail', petitionform.id)
+         instance = form.save(commit=False)
+         instance.added_by = CustomUser.objects.get(id=self.request.user.id)
+         instance.save()
+         messages.success(self.request, self.success_message)
+         return  redirect ('petitionform_detail', instance.id)
 
 class PetitionFormDetailView(DetailView):
     template_name = 'petitions/petition_form/petitionform_detail.html'
@@ -487,11 +489,11 @@ class AdmissibilityFormCreateView(CreateView):
     form_class = AdmissibilityCreateForm
     success_message = 'Admissibility on a petition submitted successfully'
     def form_valid(self, form):
-        admimissibilitycreate = form.save(commit=False)
-        admimissibilitycreate.added_by = self.request.user
-        admimissibilitycreate.save()
-        messages.success(self.request, self.success_message)
-        return redirect('admissibilityform_detail', admimissibilitycreate.id)
+         instance = form.save(commit=False)
+         instance.added_by = CustomUser.objects.get(id=self.request.user.id)
+         instance.save()
+         messages.success(self.request, self.success_message)
+         return  redirect ('admissibilityform_detail', instance.id)
 
 
 class AdmissibilityFormDetailView(DetailView):
@@ -763,13 +765,12 @@ class PetitionSummaryCreateView(CreateView):
     model = PetitionSummary
     form_class = PetitionSummaryForm
     success_message = 'Petition summary submitted successfully'
-
     def form_valid(self, form):
-        summary = form.save(commit=False)
-        summary.added_by = self.request.user
-        summary.save()
-        messages.success(self.request, self.success_message)
-        return redirect('petitionsummary_detail', summary.id)
+         instance = form.save(commit=False)
+         instance.added_by = CustomUser.objects.get(id=self.request.user.id)
+         instance.save()
+         messages.success(self.request, self.success_message)
+         return  redirect ('petitionsummary_detail', instance.id)
 
 
 class PetitionSummaryDetailView(DetailView):
@@ -1120,11 +1121,11 @@ class HearingSummaryCreateView(CreateView):
     form_class = HearingSummaryForm
     success_message = 'Petition Hearing Summary added successfully'
     def form_valid(self, form):
-        hearing = form.save(commit=False)
-        hearing.added_by = self.request.user
-        hearing.save()
+        instance = form.save(commit=False)
+        instance.added_by = CustomUser.objects.get(id=self.request.user.id)
+        instance.save()
         messages.success(self.request, self.success_message)
-        return redirect('hearingsummary_detail', hearing.id)
+        return redirect('hearingsummary_detail', instance.id)
 
 
 class HearingSummaryDetailView(DetailView):
@@ -1540,11 +1541,11 @@ class InterviewSummaryCreateView(CreateView):
     form_class = InterviewSummaryForm
     success_message = 'Interview Summary for the petitioner added sucessfully'
     def form_valid(self, form):
-        interview = form.save(commit=False)
-        interview.added_by = self.request.user
-        interview.save()
+        instance = form.save(commit=False)
+        instance.added_by = CustomUser.objects.get(id=self.request.user.id)
+        instance.save()
         messages.success(self.request, self.success_message)
-        return redirect('interviewsummary_detail', interview.id)
+        return redirect('interviewsummary_detail', instance.id)
 
 
 class InterviewSummaryDetailView(DetailView):
@@ -1917,12 +1918,11 @@ class RecommendationFormCreateView(CreateView):
     form_class = RecommendationFormForm
     success_message = 'Recommendation for the petitioner submitted successfully'
     def form_valid(self, form):
-        recommendation = form.save(commit=False)
-        recommendation.added_by = self.request.user
-        recommendation.save()
+        instance = form.save(commit=False)
+        instance.added_by = CustomUser.objects.get(id=self.request.user.id)
+        instance.save()
         messages.success(self.request, self.success_message)
-        return redirect('recommendationform_detail', recommendation.id)
-
+        return redirect('recommendationform_detail', instance.id)
 
 class RecommendationFormDetailView(DetailView):
     template_name = 'petitions/recommendations/recommendationform_detail.html'
@@ -2043,11 +2043,11 @@ class ExitsCreateView(CreateView):
     form_class = ExitsForm
     success_message = 'Exit Details for the petitioner submitted successfully'
     def form_valid(self, form):
-        exitpetitioner = form.save(commit=False)
-        exitpetitioner.added_by = self.request.user
-        exitpetitioner.save()
+        instance = form.save(commit=False)
+        instance.added_by = CustomUser.objects.get(id=self.request.user.id)
+        instance.save()
         messages.success(self.request, self.success_message)
-        return redirect('petitions_exits_detail', exitpetitioner.id)
+        return redirect('petitions_exits_detail', instance.id)
     def get_context_data(self, **kwargs):
         context = super(ExitsCreateView, self).get_context_data(**kwargs)
         today = date.today()

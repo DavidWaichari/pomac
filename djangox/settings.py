@@ -137,7 +137,7 @@ INTERNAL_IPS = ['127.0.0.1']
 
 # Authentication settings
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
