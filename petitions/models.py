@@ -60,6 +60,8 @@ class SubCounty(models.Model):
 
     def __str__(self):
         return self.name
+
+
 class Prison(models.Model):
 
     # Fields
@@ -81,6 +83,9 @@ class Prison(models.Model):
     def get_update_url(self):
         return reverse('petitions_prison_update', args=(self.pk,))
 
+    def __str__(self):
+        return self.name
+
 class Court(models.Model):
 
     # Fields
@@ -101,6 +106,9 @@ class Court(models.Model):
 
     def get_update_url(self):
         return reverse('petitions_court_update', args=(self.pk,))
+
+    def __str__(self):
+        return self.name
 
 
 class Offence(models.Model):
@@ -124,21 +132,28 @@ class Offence(models.Model):
     def get_update_url(self):
         return reverse('petitions_offence_update', args=(self.pk,))
 
+    def __str__(self):
+        return self.name
+
 
 class PetitionForm(models.Model):
     # Fields
     name = models.CharField(max_length=255)
     nationality = models.CharField(max_length=30)
-    prison = models.CharField(max_length=50)
+    prison = models.ForeignKey(Prison,
+                                 null=True, blank=True, on_delete=models.SET_NULL)
     prisonno = models.CharField(max_length=30, unique=True)
-    court = models.CharField(max_length=50)
+    court = models.ForeignKey(Court,
+                                 null=True, blank=True, on_delete=models.SET_NULL)
     courtcaseno = models.CharField(max_length=30)
     dateofconviction = models.DateField()
     dateofcustody = models.DateField()
     ageatconviction = models.IntegerField()
     agewhenoffensewascommited = models.IntegerField()
-    county = models.ForeignKey(County, on_delete=models.CASCADE)
-    subcounty = models.ForeignKey(SubCounty, on_delete=models.CASCADE)
+    county = models.ForeignKey(County,
+                                 null=True, blank=True, on_delete=models.SET_NULL)
+    subcounty = models.ForeignKey(SubCounty,
+                                 null=True, blank=True, on_delete=models.SET_NULL)
     location = models.CharField(max_length=50)
     nextofkin = models.CharField(max_length=50)
     relationshipwithnextofkin = models.CharField(max_length=50)
@@ -150,7 +165,8 @@ class PetitionForm(models.Model):
     convictedforlife = models.BooleanField()
     sentence = models.IntegerField(null=True, blank= True)
     reliefsought = models.CharField(max_length=100)
-    offence = models.CharField(max_length=100)
+    offence = models.ForeignKey(Offence,
+                                 null=True, blank=True, on_delete=models.SET_NULL)
     natureandparticularsofoffense = models.TextField(max_length=500)
     chargedalonefortheoffense = models.BooleanField()
     namesofcoaccused = models.TextField(max_length=100)
@@ -194,7 +210,7 @@ class PetitionForm(models.Model):
         return reverse('petitionform_update', args=(self.pk,))
 
     def __str__(self):
-        return self.name+" | "+self.prisonno+" | "+self.prison
+        return self.name+" | "+self.prisonno+" | "+self.prison.name
 
 
 
@@ -230,7 +246,7 @@ class AdmissibilityForm(models.Model):
         return reverse('admissibilityform_update', args=(self.pk,))
 
     def __str__(self):
-        return self.petitioner.name+'  |  '+self.petitioner.prisonno+'  |  '+self.petitioner.prison
+        return self.petitioner.name+'  |  '+self.petitioner.prisonno+'  |  '+self.petitioner.prison.name
 
 
 
@@ -318,7 +334,7 @@ class HearingSummary(models.Model):
         return reverse('hearingsummary_update', args=(self.pk,))
 
     def __str__(self):
-        return self.admissibility.petitioner.name + ' | ' + self.admissibility.petitioner.prisonno + ' | ' + self.admissibility.petitioner.prison
+        return self.admissibility.petitioner.name + ' | ' + self.admissibility.petitioner.prisonno + ' | ' + self.admissibility.petitioner.prison.name
 
 
 class InterviewSummary(models.Model):
@@ -368,7 +384,7 @@ class InterviewSummary(models.Model):
         return reverse('interviewsummary_update', args=(self.pk,))
 
     def __str__(self):
-        return self.hearing.admissibility.petitioner.name+ ' '+self.hearing.admissibility.petitioner.prisonno+ ' '+self.hearing.admissibility.petitioner.prison
+        return self.hearing.admissibility.petitioner.name+ ' '+self.hearing.admissibility.petitioner.prisonno+ ' '+self.hearing.admissibility.petitioner.prison.name
 
 
 class RecommendationForm(models.Model):
@@ -397,7 +413,7 @@ class RecommendationForm(models.Model):
     def get_update_url(self):
         return reverse('recommendationform_update', args=(self.pk,))
     def __str__(self):
-        return self.interview.hearing.admissibility.petitioner.name+ ' '+self.interview.hearing.admissibility.petitioner.prisonno+ ' '+self.interview.hearing.admissibility.petitioner.prison
+        return self.interview.hearing.admissibility.petitioner.name+ ' '+self.interview.hearing.admissibility.petitioner.prisonno+ ' '+self.interview.hearing.admissibility.petitioner.prison.name
 
 class Exits(models.Model):
 
@@ -426,4 +442,4 @@ class Exits(models.Model):
         return reverse('petitions_exits_update', args=(self.pk,))
 
     def __str__(self):
-        return self.petitioner.name+ ' '+self.petitioner.prisonno+ ' '+self.petitioner.prison
+        return self.petitioner.name+ ' '+self.petitioner.prisonno+ ' '+self.petitioner.prison.name
