@@ -106,6 +106,25 @@ urlpatterns = [
     path('exits/pomac', login_required(views.ExitsReleasedUnderPomacListView.as_view()), name='petitions_exitspomac_list'),
     path('exits/served-term', login_required(views.ExitsServedTermListView.as_view()), name='petitions_exitsservedterm_list'),
     path('exits/resentencing', login_required(views.ExitsAfterResentencingListView.as_view()), name='petitions_exitsresentencing_list'),
+
+    # urls for Prison
+    path('petitions/prison/', views.PrisonListView.as_view(), name='petitions_prison_list'),
+    path('petitions/prison/create/', views.PrisonCreateView.as_view(), name='petitions_prison_create'),
+    path('petitions/prison/detail/<int:pk>/', views.PrisonDetailView.as_view(), name='petitions_prison_detail'),
+    path('petitions/prison/update/<int:pk>/', views.PrisonUpdateView.as_view(), name='petitions_prison_update'),
+
+    # urls for Court
+    path('petitions/court/', views.CourtListView.as_view(), name='petitions_court_list'),
+    path('petitions/court/create/', views.CourtCreateView.as_view(), name='petitions_court_create'),
+    path('petitions/court/detail/<int:pk>/', views.CourtDetailView.as_view(), name='petitions_court_detail'),
+    path('petitions/court/update/<int:pk>/', views.CourtUpdateView.as_view(), name='petitions_court_update'),
+
+    # urls for Offence
+    path('petitions/offence/', views.OffenceListView.as_view(), name='petitions_offence_list'),
+    path('petitions/offence/create/', views.OffenceCreateView.as_view(), name='petitions_offence_create'),
+    path('petitions/offence/detail/<int:pk>/', views.OffenceDetailView.as_view(), name='petitions_offence_detail'),
+    path('petitions/offence/update/<int:pk>/', views.OffenceUpdateView.as_view(), name='petitions_offence_update'),
+
     #url for the
     path('dashboard/', login_required(views.dashboard), name='petitions_dashboard'),
     path('my-dashboard/', login_required(views.mydashboard), name='mypetitions_dashboard'),

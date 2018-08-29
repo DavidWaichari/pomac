@@ -60,6 +60,69 @@ class SubCounty(models.Model):
 
     def __str__(self):
         return self.name
+class Prison(models.Model):
+
+    # Fields
+    name = models.CharField(max_length=255)
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    last_updated = models.DateTimeField(auto_now=True, editable=False)
+
+
+    class Meta:
+        ordering = ('-created',)
+
+    def __unicode__(self):
+        return u'%s' % self.pk
+
+    def get_absolute_url(self):
+        return reverse('petitions_prison_detail', args=(self.pk,))
+
+
+    def get_update_url(self):
+        return reverse('petitions_prison_update', args=(self.pk,))
+
+class Court(models.Model):
+
+    # Fields
+    name = models.CharField(max_length=255)
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    last_updated = models.DateTimeField(auto_now=True, editable=False)
+
+
+    class Meta:
+        ordering = ('-created',)
+
+    def __unicode__(self):
+        return u'%s' % self.pk
+
+    def get_absolute_url(self):
+        return reverse('petitions_court_detail', args=(self.pk,))
+
+
+    def get_update_url(self):
+        return reverse('petitions_court_update', args=(self.pk,))
+
+
+class Offence(models.Model):
+
+    # Fields
+    name = models.CharField(max_length=255)
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    last_updated = models.DateTimeField(auto_now=True, editable=False)
+
+
+    class Meta:
+        ordering = ('-created',)
+
+    def __unicode__(self):
+        return u'%s' % self.pk
+
+    def get_absolute_url(self):
+        return reverse('petitions_offence_detail', args=(self.pk,))
+
+
+    def get_update_url(self):
+        return reverse('petitions_offence_update', args=(self.pk,))
 
 
 class PetitionForm(models.Model):

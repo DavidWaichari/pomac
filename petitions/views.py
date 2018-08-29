@@ -9,11 +9,12 @@ from django.views.generic import DetailView, ListView, UpdateView, CreateView
 
 from users.models import CustomUser
 from .models import PetitionForm, AdmissibilityForm, HearingSummary, InterviewSummary, RecommendationForm, \
-    PetitionSummary, County, SubCounty, Exits
+    PetitionSummary, County, SubCounty, Exits, Prison, Court, Offence
 from .forms import PetitionFormForm, HearingSummaryForm, InterviewSummaryForm, InterviewSummaryEditForm, \
     RecommendationFormForm, \
     AdmissibilityCreateForm, AdmissibilityUpdateForm, HearingSummaryUpdateForm, RecommendationUpdateForm, \
-    PetitionSummaryForm, PetitionSummaryEditForm, CountyForm, SubCountyForm, ExitsForm, ExitsFormUpdate
+    PetitionSummaryForm, PetitionSummaryEditForm, CountyForm, SubCountyForm, ExitsForm, ExitsFormUpdate, PrisonForm, \
+    CourtForm, OffenceForm
 from djangox.utils import render_to_pdf  # created in step 4
 
 
@@ -93,6 +94,69 @@ class SubCountyUpdateView(UpdateView):
         messages.success(self.request, self.success_message)
         return redirect('petitions_subcounty_detail', subcounty.id)
 
+class PrisonListView(ListView):
+    template_name = 'petitions/prisons/prison_list.html'
+    model = Prison
+
+
+class PrisonCreateView(CreateView):
+    template_name = 'petitions/prisons/prison_form.html'
+    model = Prison
+    form_class = PrisonForm
+
+
+class PrisonDetailView(DetailView):
+    template_name = 'petitions/prisons/prison_detail.html'
+    model = Prison
+
+
+class PrisonUpdateView(UpdateView):
+    template_name = 'petitions/prisons/prison_form.html'
+    model = Prison
+    form_class = PrisonForm
+
+
+class CourtListView(ListView):
+    template_name = 'petitions/courts/court_list.html'
+    model = Court
+
+
+class CourtCreateView(CreateView):
+    template_name = 'petitions/courts/court_form.html'
+    model = Court
+    form_class = CourtForm
+
+
+class CourtDetailView(DetailView):
+    template_name = 'petitions/courts/court_detail.html'
+    model = Court
+
+
+class CourtUpdateView(UpdateView):
+    template_name = 'petitions/courts/court_form.html'
+    model = Court
+    form_class = CourtForm
+
+class OffenceListView(ListView):
+    template_name = 'petitions/offences/offence_list.html'
+    model = Offence
+
+
+class OffenceCreateView(CreateView):
+    template_name = 'petitions/offences/offence_form.html'
+    model = Offence
+    form_class = OffenceForm
+
+
+class OffenceDetailView(DetailView):
+    template_name = 'petitions/offences/offence_detail.html'
+    model = Offence
+
+
+class OffenceUpdateView(UpdateView):
+    template_name = 'petitions/offences/offence_form.html'
+    model = Offence
+    form_class = OffenceForm
 
 
 class PetitionFormListView(ListView):

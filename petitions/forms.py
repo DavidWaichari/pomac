@@ -3,7 +3,7 @@ from django.http import request
 from pip._internal.cmdoptions import editable
 
 from .models import PetitionForm, AdmissibilityForm, HearingSummary, InterviewSummary, RecommendationForm, \
-    PetitionSummary, SubCounty, County, Exits
+    PetitionSummary, SubCounty, County, Exits, Prison, Court, Offence
 
 
 class CountyForm(forms.ModelForm):
@@ -16,6 +16,23 @@ class SubCountyForm(forms.ModelForm):
     class Meta:
         model = SubCounty
         fields = ['name', 'county']
+
+class PrisonForm(forms.ModelForm):
+    class Meta:
+        model = Prison
+        fields = ['name']
+
+
+class CourtForm(forms.ModelForm):
+    class Meta:
+        model = Court
+        fields = ['name']
+
+
+class OffenceForm(forms.ModelForm):
+    class Meta:
+        model = Offence
+        fields = ['name']
 
 
 class PetitionFormForm(forms.ModelForm):
