@@ -97,6 +97,10 @@ class SubCountyUpdateView(UpdateView):
 class PrisonListView(ListView):
     template_name = 'petitions/prisons/prison_list.html'
     model = Prison
+    def get_queryset(self):
+        queryset = Prison.objects.order_by('name')
+        return queryset
+
 
 
 class PrisonCreateView(CreateView):
@@ -119,6 +123,9 @@ class PrisonUpdateView(UpdateView):
 class CourtListView(ListView):
     template_name = 'petitions/courts/court_list.html'
     model = Court
+    def get_queryset(self):
+        queryset = Court.objects.order_by('name')
+        return queryset
 
 
 class CourtCreateView(CreateView):
@@ -140,6 +147,9 @@ class CourtUpdateView(UpdateView):
 class OffenceListView(ListView):
     template_name = 'petitions/offences/offence_list.html'
     model = Offence
+    def get_queryset(self):
+        queryset = Offence.objects.order_by('name')
+        return queryset
 
 
 class OffenceCreateView(CreateView):
