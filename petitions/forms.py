@@ -3,7 +3,7 @@ from django.http import request
 from pip._internal.cmdoptions import editable
 
 from .models import PetitionForm, AdmissibilityForm, HearingSummary, InterviewSummary, RecommendationForm, \
-    PetitionSummary, SubCounty, County, Exits, Prison, Court, Offence
+    PetitionSummary, SubCounty, County, Exits, Prison, Court, Offence, Grant
 
 
 class CountyForm(forms.ModelForm):
@@ -741,6 +741,13 @@ class ExitsForm(forms.ModelForm):
     class Meta:
         model = Exits
         fields = [ 'petitioner','exitreason']
+
+class GrantForm(forms.ModelForm):
+    recommendation = forms.ModelChoiceField(queryset=RecommendationForm.objects.all().filter(grant__isnull=True),
+                                            label='Choose Petitioner', widget=forms.Select(attrs={'class':'form-control'}))
+    class Meta:
+        model = Grant
+        fields = ['recommendation']
 
 class ExitsFormUpdate(forms.ModelForm):
     exitreason = forms.CharField(label='Reason why the petitioner exited the prison',

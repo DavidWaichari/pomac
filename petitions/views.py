@@ -3,18 +3,19 @@ from datetime import date
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.http import HttpResponse, request
+from django.http import HttpResponse, request, HttpResponseRedirect
 from django.shortcuts import render, redirect
-from django.views.generic import DetailView, ListView, UpdateView, CreateView
+from django.urls import reverse_lazy
+from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
 
 from users.models import CustomUser
 from .models import PetitionForm, AdmissibilityForm, HearingSummary, InterviewSummary, RecommendationForm, \
-    PetitionSummary, County, SubCounty, Exits, Prison, Court, Offence
+    PetitionSummary, County, SubCounty, Exits, Prison, Court, Offence, Grant
 from .forms import PetitionFormForm, HearingSummaryForm, InterviewSummaryForm, InterviewSummaryEditForm, \
     RecommendationFormForm, \
     AdmissibilityCreateForm, AdmissibilityUpdateForm, HearingSummaryUpdateForm, RecommendationUpdateForm, \
     PetitionSummaryForm, PetitionSummaryEditForm, CountyForm, SubCountyForm, ExitsForm, ExitsFormUpdate, PrisonForm, \
-    CourtForm, OffenceForm
+    CourtForm, OffenceForm, GrantForm
 from djangox.utils import render_to_pdf  # created in step 4
 
 
@@ -2159,6 +2160,50 @@ class ExitsUpdateView(UpdateView):
         context['today'] = today
         return context
 
+
+class GrantListView(ListView):
+    template_name = 'petitions/grants/grant_list.html'
+    model = Grant
+    def get_context_data(self, **kwargs):
+        context = super(GrantListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+
+
+
+class GrantCreateView(CreateView):
+    template_name = 'petitions/grants/grant_form.html'
+    model = Grant
+    form_class = GrantForm
+    success_message = 'Grant issued successfully'
+
+    def form_valid(self, form):
+        exitpetitioner = form.save(commit=False)
+        exitpetitioner.save()
+        messages.success(self.request, self.success_message)
+        return redirect('petitions_exits_detail', exitpetitioner.id)
+
+    def get_context_data(self, **kwargs):
+        context = super(GrantCreateView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+
+
+class GrantDetailView(DetailView):
+    template_name = 'petitions/grants/grant_detail.html'
+    model = Grant
+
+
+class GrantDeleteView(DeleteView):
+    model = Grant
+    success_url = reverse_lazy('petitions_grant_list')
+    success_message = 'Grant deleted successfully'
+    def delete(self, request, *args, **kwargs):
+          self.object.delete()
+          messages.success(self.request, self.success_message)
+          return HttpResponseRedirect(self.get_success_url())
 
 
 def dashboard(request):

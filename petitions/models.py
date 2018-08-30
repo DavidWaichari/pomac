@@ -415,6 +415,32 @@ class RecommendationForm(models.Model):
     def __str__(self):
         return self.interview.hearing.admissibility.petitioner.name+ ' '+self.interview.hearing.admissibility.petitioner.prisonno+ ' '+self.interview.hearing.admissibility.petitioner.prison.name
 
+class Grant(models.Model):
+
+    # Fields
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+    last_updated = models.DateTimeField(auto_now=True, editable=False)
+
+    # Relationship Fields
+    recommendation = models.ForeignKey(RecommendationForm,on_delete=models.CASCADE)
+    added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                 null=True, blank=True, on_delete=models.SET_NULL)
+
+    class Meta:
+        ordering = ('-created',)
+
+    def __unicode__(self):
+        return u'%s' % self.pk
+
+    def get_absolute_url(self):
+        return reverse('petitions_grant_detail', args=(self.pk,))
+
+
+    def get_update_url(self):
+        return reverse('petitions_grant_update', args=(self.pk,))
+
+
+
 class Exits(models.Model):
 
     # Fields

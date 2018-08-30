@@ -125,6 +125,12 @@ urlpatterns = [
     path('petitions/offence/detail/<int:pk>/', login_required(views.OffenceDetailView.as_view()), name='petitions_offence_detail'),
     path('petitions/offence/update/<int:pk>/', login_required(views.OffenceUpdateView.as_view()), name='petitions_offence_update'),
 
+    # urls for Grant
+    path('petitions/grant/', views.GrantListView.as_view(), name='petitions_grant_list'),
+    path('petitions/grant/create/', views.GrantCreateView.as_view(), name='petitions_grant_create'),
+    path('petitions/grant/detail/<int:pk>/', views.GrantDetailView.as_view(), name='petitions_grant_detail'),
+    path('petitions/grant/delete/<int:pk>/', views.GrantDeleteView.as_view(), name='petitions_grant_delete'),
+
     #url for the
     path('dashboard/', login_required(views.dashboard), name='petitions_dashboard'),
     path('my-dashboard/', login_required(views.mydashboard), name='mypetitions_dashboard'),
