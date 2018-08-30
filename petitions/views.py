@@ -63,6 +63,9 @@ def load_subcounties(request):
 class SubCountyListView(ListView):
     template_name = 'petitions/subcounties/subcounty_list.html'
     model = SubCounty
+    def get_queryset(self):
+        queryset = SubCounty.objects.order_by('name')
+        return queryset
 
 
 class SubCountyCreateView(CreateView):
