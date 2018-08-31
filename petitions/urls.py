@@ -130,6 +130,7 @@ urlpatterns = [
     path('petitions/grant/create/', views.GrantCreateView.as_view(), name='petitions_grant_create'),
     path('petitions/grant/detail/<int:pk>/', views.GrantDetailView.as_view(), name='petitions_grant_detail'),
     path('petitions/grant/delete/<int:pk>/', views.DeleteGrant, name='petitions_grant_delete'),
+    path('petitions/grant/awaiting-grant', views.AwaitingGrantListView.as_view(), name='petitions_awaiting_grant_list'),
     path('petitions/grant/print/<int:pk>/', login_required(views.GenerateGrant), name='grantpetition_print'),
 
     #url for the

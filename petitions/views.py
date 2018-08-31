@@ -2171,29 +2171,41 @@ class GrantListView(ListView):
         return context
 
 
+class AwaitingGrantListView(ListView):
+    template_name = 'petitions/grants/awaitingrant_list.html'
+    model = Grant
+    def get_context_data(self, **kwargs):
+        context = super(AwaitingGrantListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset = RecommendationForm.objects.filter(grant__isnull=True)
+        return queryset
+
+
 
 class GrantCreateView(CreateView):
     template_name = 'petitions/grants/grant_form.html'
     model = Grant
     form_class = GrantForm
-    success_message = 'Grant issued successfully'
-
+    success_message = 'Grand of petition generated successfully'
     def form_valid(self, form):
         instance = form.save(commit=False)
+        instance.added_by = CustomUser.objects.get(id=self.request.user.id)
         instance.save()
         messages.success(self.request, self.success_message)
         return redirect('petitions_grant_detail', instance.id)
-
-    def get_context_data(self, **kwargs):
-        context = super(GrantCreateView, self).get_context_data(**kwargs)
-        today = date.today()
-        context['today'] = today
-        return context
 
 
 class GrantDetailView(DetailView):
     template_name = 'petitions/grants/grant_detail.html'
     model = Grant
+    def get_context_data(self, **kwargs):
+        context = super(GrantDetailView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
 
 
 def DeleteGrant(request,pk):
