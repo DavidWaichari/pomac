@@ -2179,10 +2179,10 @@ class GrantCreateView(CreateView):
     success_message = 'Grant issued successfully'
 
     def form_valid(self, form):
-        exitpetitioner = form.save(commit=False)
-        exitpetitioner.save()
+        instance = form.save(commit=False)
+        instance.save()
         messages.success(self.request, self.success_message)
-        return redirect('petitions_exits_detail', exitpetitioner.id)
+        return redirect('petitions_grant_detail', instance.id)
 
     def get_context_data(self, **kwargs):
         context = super(GrantCreateView, self).get_context_data(**kwargs)
@@ -2196,15 +2196,10 @@ class GrantDetailView(DetailView):
     model = Grant
 
 
-class GrantDeleteView(DeleteView):
-    model = Grant
-    success_url = reverse_lazy('petitions_grant_list')
-    success_message = 'Grant deleted successfully'
-    def delete(self, request, *args, **kwargs):
-          self.object.delete()
-          messages.success(self.request, self.success_message)
-          return HttpResponseRedirect(self.get_success_url())
-
+def DeleteGrant(request,pk):
+    Grant.objects.get(pk=pk).delete()
+    messages.add_message(request, messages.INFO, 'Grant deleted successfully')
+    return redirect('petitions_grant_list')
 
 def dashboard(request):
     data = {
