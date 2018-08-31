@@ -2201,6 +2201,182 @@ def DeleteGrant(request,pk):
     messages.add_message(request, messages.INFO, 'Grant deleted successfully')
     return redirect('petitions_grant_list')
 
+def GenerateGrant(request, pk):
+    grant = Grant.objects.get(pk=pk)
+    today = date.today()
+    if grant.recommendation.interview.hearing.admissibility.petitioner.nextofkin== '':
+        nextofkin = None
+        relationshipwithnextofkin = None
+    else:
+        nextofkin = grant.recommendation.interview.hearing.admissibility.petitioner.nextofkin
+        relationshipwithnextofkin = grant.recommendation.interview.hearing.admissibility.petitioner.relationshipwithnextofkin
+    if grant.recommendation.interview.hearing.admissibility.petitioner.contactperson == '':
+        contactperson = None
+        contactpersontelno = None
+    else:
+        contactperson = grant.recommendation.interview.hearing.admissibility.petitioner.contactperson
+        contactpersontelno = grant.recommendation.interview.hearing.admissibility.petitioner.telnoofcontactperson
+    if grant.recommendation.interview.hearing.admissibility.petitioner.homechief == '':
+        nameofhomechief = None
+    else:
+        nameofhomechief = grant.recommendation.interview.hearing.admissibility.petitioner.homechief
+    if grant.recommendation.interview.hearing.admissibility.petitioner.dateofconviction.year - grant.recommendation.interview.hearing.admissibility.petitioner.dateofcustody.year == '':
+        yearsinremand = 0
+    else:
+        yearsinremand = grant.recommendation.interview.hearing.admissibility.petitioner.dateofconviction.year - grant.recommendation.interview.hearing.admissibility.petitioner.dateofcustody.year
+    if grant.recommendation.interview.hearing.admissibility.petitioner.sentence==None:
+        sentence = 'LIFE IMPRISONMENT'
+    else:
+        sentence = str(grant.recommendation.interview.hearing.admissibility.petitioner.sentence)+' '+'YEARS IMPRISONMENT'
+    if grant.recommendation.interview.hearing.admissibility.petitioner.chargedalonefortheoffense==True:
+        chargedalone = 'YES'
+    else:
+        chargedalone = 'NO'
+    if grant.recommendation.interview.hearing.admissibility.petitioner.namesofcoaccused=='':
+        coaccused = 'None'
+    else:
+        coaccused = grant.recommendation.interview.hearing.admissibility.petitioner.namesofcoaccused
+    if grant.recommendation.interview.hearing.admissibility.petitioner.knowledgeofthevictim== True:
+        knowledgeofvictim = 'YES'
+    else:
+        knowledgeofvictim = 'NO'
+    if grant.recommendation.interview.hearing.admissibility.petitioner.nameofvictim== '':
+        nameofvictim = 'None'
+    else:
+        nameofvictim = grant.recommendation.interview.hearing.admissibility.petitioner.nameofvictim
+    if grant.recommendation.interview.hearing.admissibility.petitioner.areaofresidence== '':
+        areaofresidence = 'None'
+    else:
+        areaofresidence = grant.recommendation.interview.hearing.admissibility.petitioner.areaofresidence
+    if grant.recommendation.interview.hearing.admissibility.petitioner.previousconvictions== '':
+        previousconvictions = 'None'
+    else:
+        previousconvictions = grant.recommendation.interview.hearing.admissibility.petitioner.previousconvictions
+    if grant.recommendation.interview.hearing.admissibility.petitioner.previouspetition== True:
+        previouspetition = 'YES'
+    else:
+        previouspetition = 'NO'
+    if grant.recommendation.interview.hearing.admissibility.petitioner.reasonofdenialofpreviouspetition== '':
+        reasonofdenial = 'None'
+    else:
+        reasonofdenial = grant.recommendation.interview.hearing.admissibility.petitioner.reasonofdenialofpreviouspetition
+    if grant.recommendation.interview.hearing.admissibility.petitioner.anydisplinaryactioninprison== True:
+        disciplinaryaction = 'YES'
+    else:
+        disciplinaryaction = 'NO'
+    if grant.recommendation.interview.hearing.admissibility.petitioner.detailsofdisplinaryactioninprison== '':
+        explanationofdisciplinaryaction = 'None'
+    else:
+        explanationofdisciplinaryaction = grant.recommendation.interview.hearing.admissibility.petitioner.detailsofdisplinaryactioninprison
+    if grant.recommendation.interview.hearing.admissibility.petitioner.anyspecialcondition== True:
+        anyspecialcondition = 'YES'
+    else:
+        anyspecialcondition = 'NO'
+    if grant.recommendation.interview.hearing.admissibility.petitioner.detailsofspecialcondition== '':
+        explanationofspecialcondition = 'None'
+    else:
+        explanationofspecialcondition = grant.recommendation.interview.hearing.admissibility.petitioner.detailsofspecialcondition
+    if grant.recommendation.interview.hearing.admissibility.petitioner.areyouatrustee== True:
+        trustee = 'YES'
+    else:
+        trustee = 'NO'
+    if grant.recommendation.interview.hearing.admissibility.petitioner.dateofpromotiontotrustee== '':
+        trustedate = 'None'
+    else:
+        trustedate = grant.recommendation.interview.hearing.admissibility.petitioner.dateofpromotiontotrustee
+    if grant.recommendation.interview.hearing.admissibility.petitioner.anyspecialattributesorskills== True:
+        anyskills = 'YES'
+    else:
+        anyskills = 'NO'
+    if grant.recommendation.interview.hearing.admissibility.petitioner.explanationofspecialattributesorskills== '':
+        skillsexplanation = 'None'
+    else:
+        skillsexplanation = grant.recommendation.interview.hearing.admissibility.petitioner.explanationofspecialattributesorskills
+    if grant.recommendation.interview.hearing.admissibility.petitioner.appealedagainsttheconviction== True:
+        appealed = 'YES'
+    else:
+        appealed = 'NO'
+    if grant.recommendation.interview.hearing.admissibility.petitioner.appealoutcome== '':
+        appealoutcome = 'None'
+    else:
+        appealoutcome = grant.recommendation.interview.hearing.admissibility.petitioner.appealoutcome
+    if grant.recommendation.interview.hearing.admissibility.petitioner.appealcaseno== '':
+        appealcaseno = 'None'
+    else:
+        appealcaseno = grant.recommendation.interview.hearing.admissibility.petitioner.appealcaseno
+    if grant.recommendation.interview.hearing.admissibility.petitioner.anypendingcourtmatter== True:
+        pendingcourtmatter = 'YES'
+    else:
+        pendingcourtmatter = 'NO'
+    if grant.recommendation.interview.hearing.admissibility.petitioner.explanationofpendingcourtmatter== '':
+        pendingexplanation = 'None'
+    else:
+        pendingexplanation = grant.recommendation.interview.hearing.admissibility.petitioner.explanationofpendingcourtmatter
+    petitiondate = grant.recommendation.interview.hearing.admissibility.petitioner.created
+    grantdate = grant.created
+    data = {
+        'name': grant.recommendation.interview.hearing.admissibility.petitioner.name,
+        'prisonno':grant.recommendation.interview.hearing.admissibility.petitioner.prisonno,
+        'created_at': grant.recommendation.interview.hearing.admissibility.petitioner.created,
+        'prison': grant.recommendation.interview.hearing.admissibility.petitioner.prison,
+        'nationality': grant.recommendation.interview.hearing.admissibility.petitioner.nationality,
+        'court': grant.recommendation.interview.hearing.admissibility.petitioner.court,
+        'courtno': grant.recommendation.interview.hearing.admissibility.petitioner.courtcaseno,
+        'ageatconviction': grant.recommendation.interview.hearing.admissibility.petitioner.ageatconviction,
+        'dateofconviction': grant.recommendation.interview.hearing.admissibility.petitioner.dateofconviction,
+        'currentage': today.year - grant.recommendation.interview.hearing.admissibility.petitioner.dateofconviction.year + grant.recommendation.interview.hearing.admissibility.petitioner.ageatconviction,
+        'ageoffense': grant.recommendation.interview.hearing.admissibility.petitioner.agewhenoffensewascommited,
+        'nextofkin':nextofkin,
+        'nextofkinrelationship':relationshipwithnextofkin,
+        'contactperson':contactperson,
+        'telno':contactpersontelno,
+        'county':grant.recommendation.interview.hearing.admissibility.petitioner.county,
+        'subcounty':grant.recommendation.interview.hearing.admissibility.petitioner.subcounty,
+        'location':grant.recommendation.interview.hearing.admissibility.petitioner.location,
+        'nearestschool':grant.recommendation.interview.hearing.admissibility.petitioner.nearestschool,
+        'nameofhomechief':nameofhomechief,
+        'offensecommitted':grant.recommendation.interview.hearing.admissibility.petitioner.whereoffensewascommitted,
+        'dateofcustody':grant.recommendation.interview.hearing.admissibility.petitioner.dateofcustody,
+        'yearsserved':today.year - grant.recommendation.interview.hearing.admissibility.petitioner.dateofcustody.year,
+        'yearsinremand':yearsinremand,
+        'sentence':sentence,
+        'reliefsought':grant.recommendation.interview.hearing.admissibility.petitioner.reliefsought,
+        'offence':grant.recommendation.interview.hearing.admissibility.petitioner.offence,
+        'natureofoffense':grant.recommendation.interview.hearing.admissibility.petitioner.natureandparticularsofoffense,
+        'chargedalone':chargedalone,
+        'coaccused':coaccused,
+        'knowledgeofvictim':knowledgeofvictim,
+        'nameofvictim':nameofvictim,
+        'areaofresidence':areaofresidence,
+        'previousconvictions':previousconvictions,
+        'previouspetition':previouspetition,
+        'dateofpreviouspetition':grant.recommendation.interview.hearing.admissibility.petitioner.dateofpreviouspetition,
+        'reasonofdenial':reasonofdenial,
+        'reasonsforpetitining':grant.recommendation.interview.hearing.admissibility.petitioner.reasonforcurrentpetition,
+        'disciplinaryaction':disciplinaryaction,
+        'explanationofdisciplinaryaction':explanationofdisciplinaryaction,
+        'anyspecialcondition':anyspecialcondition,
+        'explanationofspecialcondition':explanationofspecialcondition,
+        'trustee':trustee,
+        'trustedate':trustedate,
+        'anyskills':anyskills,
+        'skillsexplanation':skillsexplanation,
+        'appealed':appealed,
+        'appealoutcome':appealoutcome,
+        'appealcaseno':appealcaseno,
+        'pendingcourtmatter':pendingcourtmatter,
+        'pendingexplanation':pendingexplanation,
+        'petitionmonth':petitiondate.strftime("%B"),
+        'petitionday':petitiondate.day,
+        'petitionyear':petitiondate.year,
+        'grantmonth':grantdate.strftime("%B"),
+        'grantday':grantdate.day,
+        'grantyear':grantdate.year,
+    }
+    pdf = render_to_pdf('petitions/grants/grantpetition_print.html', data)
+    return HttpResponse(pdf, content_type='application/pdf')
+
+
 def dashboard(request):
     data = {
         'noofpetitions': PetitionForm.objects.count(),

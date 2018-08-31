@@ -91,7 +91,7 @@
                                                      href="{% url 'petitions_grant_list' %}">Go to
                                 Grants</a></div>
                             <div class="col-md-2"><a class="btn btn-success btn-sm"
-                                                     href="#">Print</a>
+                                                     href="{% url 'grantpetition_print' object.id %}">Print</a>
                             </div>
                         </div>
                         <table class="table">
@@ -388,17 +388,13 @@
                             </div>
                             <div class="col-md-2">
                                 <a class="btn btn-success btn-sm"
-                                   href="{% url 'recommendationform_print' object.id %}">Print</a>
+                                   href="{% url 'grantpetition_print' object.id %}">Print</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
-    </div>
-    </div>
     </div>
 {% endblock content %}
 
