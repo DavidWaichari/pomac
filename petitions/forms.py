@@ -3,7 +3,7 @@ from django.http import request
 from pip._internal.cmdoptions import editable
 
 from .models import PetitionForm, AdmissibilityForm, HearingSummary, InterviewSummary, RecommendationForm, \
-    PetitionSummary, SubCounty, County, Exits, Prison, Court, Offence, Grant
+    PetitionSummary, SubCounty, County, Exit, Prison, Court, Offence, Grant
 
 
 class CountyForm(forms.ModelForm):
@@ -218,7 +218,7 @@ class AdmissibilityCreateForm(forms.ModelForm):
         elif str(value).lower() in ('0', 'false'):
             return False
 
-    petitioner = forms.ModelChoiceField(label='Choose Petitioner',queryset=PetitionForm.objects.filter(anypendingcourtmatter=False).filter(admissibility__isnull=True), widget=forms.Select(attrs={'class': 'form-control'}))
+    petitioner = forms.ModelChoiceField(label='Choose Petitioner',queryset=PetitionForm.objects.filter(anypendingcourtmatter=False).filter(admissibility__isnull=True).filter(exit__isnull=True), widget=forms.Select(attrs={'class': 'form-control'}))
 
     admissability = forms.TypedChoiceField(
         label='Do you wish to render the this petition ADMISSIBLE?',
@@ -323,7 +323,7 @@ class PetitionSummaryEditForm(forms.ModelForm):
 
 
 class HearingSummaryForm(forms.ModelForm):
-    admissibility = forms.ModelChoiceField(label='Choose Petitioner',queryset=AdmissibilityForm.objects.filter(admissability=True).filter(hearing__isnull=True), widget=forms.Select(attrs={'class': 'form-control'}))
+    admissibility = forms.ModelChoiceField(label='Choose Petitioner',queryset=AdmissibilityForm.objects.filter(admissability=True).filter(hearing__isnull=True).filter(petitioner__exit__isnull=True), widget=forms.Select(attrs={'class': 'form-control'}))
     healthstatus = forms.CharField(required=False, label='Health Status',
                                    widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
     familystatus = forms.CharField(required=False, label='Family Status (parents, spouse,children etc)',
@@ -452,7 +452,7 @@ class InterviewSummaryForm(forms.ModelForm):
         elif str(value).lower() in ('0', 'false'):
             return False
 
-    hearing = forms.ModelChoiceField(label='Select the Petitioner', queryset= HearingSummary.objects.filter(action='Interview the Petitioner').filter(interviewdate__isnull=False).filter(interviewsummary__isnull=True),widget=forms.Select(attrs={'class':'form-control'}))
+    hearing = forms.ModelChoiceField(label='Select the Petitioner', queryset= HearingSummary.objects.filter(action='Interview the Petitioner').filter(interviewdate__isnull=False).filter(interviewsummary__isnull=True).filter(admissibility__petitioner__exit__isnull=True),widget=forms.Select(attrs={'class':'form-control'}))
     ownaccountofcircumstances = forms.CharField(required=False, label='Own account of circumstances sorrounding the commission of Offense ',
                                                       widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
     reconciliationefforts = forms.CharField(required=False, label='Reconciliation efforts with the victims of the offense that led to current conviction ',
@@ -672,7 +672,7 @@ class InterviewSummaryEditForm(forms.ModelForm):
                   'm5vote', 'm5votereason','m6vote', 'm6votereason','finalresolution']
 
 class RecommendationFormForm(forms.ModelForm):
-    interview = forms.ModelChoiceField(label='Select the Petitioner', queryset= InterviewSummary.objects.filter(finalresolution= 'Recommended to President').filter(recommendationform__isnull= True),widget=forms.Select(attrs={'class':'form-control'}))
+    interview = forms.ModelChoiceField(label='Select the Petitioner', queryset= InterviewSummary.objects.filter(finalresolution= 'Recommended to President').filter(recommendationform__isnull= True).filter(hearing__admissibility__petitioner__exit__isnull=True),widget=forms.Select(attrs={'class':'form-control'}))
     explanationofrecommedation = forms.CharField(required=True, label='Following the investigations conducted, evidence gathered, interviews held and '
                                                                        'consideration of the reports from appropriate Government agencis, the Committee forms the opinion that the Petitioner: ',
                     widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
@@ -719,7 +719,7 @@ class RecommendationUpdateForm(forms.ModelForm):
         fields = ['interview', 'mercy','explanationofrecommedation' ]
 
 
-class ExitsForm(forms.ModelForm):
+class ExitForm(forms.ModelForm):
     exitreason = forms.CharField(label='Reason why the petitioner exited the prison',
                                  widget=forms.Select(choices=[('', 'Choose Appropritely'), (
                                      'Released under POMAC',
@@ -735,21 +735,21 @@ class ExitsForm(forms.ModelForm):
                                                                'The petitioner was released after resentencing')
                                                               ],
                                                      attrs={'class': 'form-control'}))
-    petitioner = forms.ModelChoiceField(queryset=PetitionForm.objects.all().filter(exits__isnull=True),
+    petitioner = forms.ModelChoiceField(queryset=PetitionForm.objects.all().filter(exit__isnull=True),
                                         label='Choose Petitioner',
                                         widget=forms.Select(attrs={'class': 'form-control'}))
     class Meta:
-        model = Exits
+        model = Exit
         fields = [ 'petitioner','exitreason']
 
 class GrantForm(forms.ModelForm):
-    recommendation = forms.ModelChoiceField(queryset=RecommendationForm.objects.all().filter(grant__isnull=True),
+    recommendation = forms.ModelChoiceField(queryset=RecommendationForm.objects.all().filter(grant__isnull=True).filter(interview__hearing__admissibility__petitioner__exit__isnull=True),
                                             label='Choose Petitioner', widget=forms.Select(attrs={'class':'form-control'}))
     class Meta:
         model = Grant
         fields = ['recommendation']
 
-class ExitsFormUpdate(forms.ModelForm):
+class ExitFormUpdate(forms.ModelForm):
     exitreason = forms.CharField(label='Reason why the petitioner exited the prison',
                                  widget=forms.Select(choices=[('', 'Choose Appropritely'), (
                                      'Released under POMAC',
@@ -769,5 +769,5 @@ class ExitsFormUpdate(forms.ModelForm):
                                         label='Choose Petitioner',
                                         widget=forms.Select(attrs={'class': 'form-control'}))
     class Meta:
-        model = Exits
+        model = Exit
         fields = [ 'petitioner','exitreason']

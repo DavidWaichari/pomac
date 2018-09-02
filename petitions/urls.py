@@ -96,16 +96,16 @@ urlpatterns = [
     path('subcounty/update/<int:pk>/', login_required(views.SubCountyUpdateView.as_view()),name='petitions_subcounty_update'),
     path('ajax/load-subcounties/', login_required(views.load_subcounties), name='ajax_load_subcounties'),  # <-- this one here
 
-    # urls for Exits
-    path('exits/', login_required(views.ExitsListView.as_view()), name='petitions_exits_list'),
-    path('exits/create/', login_required(views.ExitsCreateView.as_view()), name='petitions_exits_create'),
-    path('exits/detail/<int:pk>/', login_required(views.ExitsDetailView.as_view()), name='petitions_exits_detail'),
-    path('exits/update/<int:pk>/', login_required(views.ExitsUpdateView.as_view()), name='petitions_exits_update'),
-    path('exits/ecapes', login_required(views.ExitsEscapeListView.as_view()), name='petitions_exitsescape_list'),
-    path('exits/deaths', login_required(views.ExitsDeathsListView.as_view()), name='petitions_exitsdeaths_list'),
-    path('exits/pomac', login_required(views.ExitsReleasedUnderPomacListView.as_view()), name='petitions_exitspomac_list'),
-    path('exits/served-term', login_required(views.ExitsServedTermListView.as_view()), name='petitions_exitsservedterm_list'),
-    path('exits/resentencing', login_required(views.ExitsAfterResentencingListView.as_view()), name='petitions_exitsresentencing_list'),
+    # urls for Exit
+    path('exit/', login_required(views.ExitListView.as_view()), name='petitions_exit_list'),
+    path('exit/create/', login_required(views.ExitCreateView.as_view()), name='petitions_exit_create'),
+    path('exit/detail/<int:pk>/', login_required(views.ExitDetailView.as_view()), name='petitions_exit_detail'),
+    path('exit/update/<int:pk>/', login_required(views.ExitUpdateView.as_view()), name='petitions_exit_update'),
+    path('exit/ecapes', login_required(views.ExitEscapeListView.as_view()), name='petitions_exitescape_list'),
+    path('exit/deaths', login_required(views.ExitDeathsListView.as_view()), name='petitions_exitdeaths_list'),
+    path('exit/pomac', login_required(views.ExitReleasedUnderPomacListView.as_view()), name='petitions_exitpomac_list'),
+    path('exit/served-term', login_required(views.ExitServedTermListView.as_view()), name='petitions_exitservedterm_list'),
+    path('exit/resentencing', login_required(views.ExitAfterResentencingListView.as_view()), name='petitions_exitresentencing_list'),
 
     # urls for Prison
     path('petitions/prison/', login_required(views.PrisonListView.as_view()), name='petitions_prison_list'),

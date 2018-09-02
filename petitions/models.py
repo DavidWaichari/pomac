@@ -441,7 +441,7 @@ class Grant(models.Model):
 
 
 
-class Exits(models.Model):
+class Exit(models.Model):
 
     # Fields
     created = models.DateTimeField(auto_now_add=True, editable=False)
@@ -449,7 +449,7 @@ class Exits(models.Model):
     exitreason = models.CharField(max_length=100)
 
     # Relationship Fields
-    petitioner = models.OneToOneField(PetitionForm, on_delete=models.CASCADE)
+    petitioner = models.OneToOneField(PetitionForm, on_delete=models.CASCADE, related_name='exit')
 
     added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
                                  null=True, blank=True, on_delete=models.SET_NULL)
@@ -461,11 +461,11 @@ class Exits(models.Model):
         return u'%s' % self.pk
 
     def get_absolute_url(self):
-        return reverse('petitions_exits_detail', args=(self.pk,))
+        return reverse('petitions_exit_detail', args=(self.pk,))
 
 
     def get_update_url(self):
-        return reverse('petitions_exits_update', args=(self.pk,))
+        return reverse('petitions_exit_update', args=(self.pk,))
 
     def __str__(self):
         return self.petitioner.name+ ' '+self.petitioner.prisonno+ ' '+self.petitioner.prison.name

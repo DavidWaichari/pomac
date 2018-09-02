@@ -149,6 +149,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 # Site id required for using 'sites' framework with django-allauth
 SITE_ID = 1
 
+
 LOGIN_REDIRECT_URL = 'petitions_dashboard'
 ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login'
 ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
