@@ -54,9 +54,9 @@
                                 <tr>
                                     <td class="text-center">S/No</td>
                                     <td>Name</td>
-                                    <td>No of Petitioners</td>
                                     <td>created</td>
                                     <td>last_updated</td>
+                                    <td class="text-center">No of Petitioners</td>
                                     <td>View Petitioners</td>
                                 </tr>
                                 </thead>
@@ -65,9 +65,9 @@
                                     <tr>
                                         <td class="text-center">{{ forloop.counter }}</td>
                                         <td><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></td>
-                                        <td>{{ object.petitionform_set.count}}</td>
                                         <td>{{ object.created }}</td>
                                         <td>{{ object.last_updated }}</td>
+                                        <td class="text-center" style="color: black;font-size: 16px">{{ object.petitionform_set.count}}</td>
                                         <td><a class="btn btn-success btn-sm" href="{% url 'prisonpetitioners' object.id %}">View Petitioners</a></td>
                                     </tr>
                                 {% endfor %}

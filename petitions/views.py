@@ -160,6 +160,17 @@ class OffenceListView(ListView):
         queryset = Offence.objects.order_by('name')
         return queryset
 
+def OffencePetitioners(request, pk):
+    offence = Offence.objects.get(pk=pk)
+    object_list = PetitionForm.objects.filter(offence_id=pk)
+    data = {
+        'offence':offence,
+        'object_list':object_list
+    }
+    return  render(request, 'petitions/offences/offencepetitions_list.html', data)
+
+
+
 
 class OffenceCreateView(CreateView):
     template_name = 'petitions/offences/offence_form.html'
