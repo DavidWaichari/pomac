@@ -260,6 +260,42 @@ class TrusteesListView(ListView):
         context['today'] = today
         return context
 
+class SpecialConditionListView(ListView):
+    model = PetitionForm
+    template_name = 'petitions/specialcondition_list.html'
+    def get_queryset(self):
+        queryset = PetitionForm.objects.filter(anypendingcourtmatter=False).filter(anyspecialcondition=True)
+        return queryset
+    def get_context_data(self, **kwargs):
+        context = super(SpecialConditionListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+
+class AppealedAgainstConvictionView(ListView):
+    model = PetitionForm
+    template_name = 'petitions/appealedagainstconviction_list.html'
+    def get_queryset(self):
+        queryset = PetitionForm.objects.filter(anypendingcourtmatter=False).filter(appealedagainsttheconviction=True)
+        return queryset
+    def get_context_data(self, **kwargs):
+        context = super(AppealedAgainstConvictionView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+
+class PetitionersWithSkillsView(ListView):
+    model = PetitionForm
+    template_name = 'petitions/skilledpetitioners_list.html'
+    def get_queryset(self):
+        queryset = PetitionForm.objects.filter(anypendingcourtmatter=False).filter(anyspecialattributesorskills=True)
+        return queryset
+    def get_context_data(self, **kwargs):
+        context = super(PetitionersWithSkillsView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+
 
 
 class PetitionFormCreateView(CreateView):
@@ -2105,7 +2141,7 @@ class ExitServedTermListView(ListView):
         return queryset
 
 class ExitAfterResentencingListView(ListView):
-    template_name = 'petitions/exits/exitsservedterm_list.html'
+    template_name = 'petitions/exits/exitsreleasedafterresentencing_list.html'
     model = Exit
     def get_context_data(self, **kwargs):
         context = super(ExitAfterResentencingListView, self).get_context_data(**kwargs)
@@ -2172,6 +2208,18 @@ class GrantListView(ListView):
         context['today'] = today
         return context
 
+class MyGrantListView(ListView):
+    template_name = 'petitions/grants/mygrant_list.html'
+    model = Grant
+    def get_context_data(self, **kwargs):
+        context = super(MyGrantListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset = Grant.objects.all().filter(added_by=self.request.user)
+        return queryset
+
 
 class AwaitingGrantListView(ListView):
     template_name = 'petitions/grants/awaitingrant_list.html'
@@ -2183,6 +2231,18 @@ class AwaitingGrantListView(ListView):
         return context
     def get_queryset(self):
         queryset = RecommendationForm.objects.filter(grant__isnull=True).filter(interview__hearing__admissibility__petitioner__exit__isnull=True)
+        return queryset
+
+class MyAwaitingGrantListView(ListView):
+    template_name = 'petitions/grants/myawaitingrant_list.html'
+    model = Grant
+    def get_context_data(self, **kwargs):
+        context = super(MyAwaitingGrantListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset = RecommendationForm.objects.filter(grant__isnull=True).filter(interview__hearing__admissibility__petitioner__exit__isnull=True).filter(added_by=self.request.user)
         return queryset
 
 
@@ -2414,7 +2474,22 @@ def dashboard(request):
         'awaitinghearing':AdmissibilityForm.objects.filter(admissability=True).filter(hearing__isnull=True).filter(petitioner__exit__isnull=True).count(),
         'awaitingrecommendations':InterviewSummary.objects.filter(finalresolution='Recommended to President').filter(recommendationform__isnull=True).filter(hearing__admissibility__petitioner__exit__isnull=True).count(),
         'awaitinginterviews':HearingSummary.objects.filter(action='Interview the Petitioner').filter(interviewdate__isnull=False).filter(interviewsummary__isnull=True).filter(admissibility__petitioner__exit__isnull=True).count(),
-        'trustees':PetitionForm.objects.filter(anypendingcourtmatter=False).filter(areyouatrustee=True).count()
+        'awaitingregrant':RecommendationForm.objects.filter(grant__isnull=True).filter(interview__hearing__admissibility__petitioner__exit__isnull=True).count(),
+        'grants':Grant.objects.all().count(),
+        'trustees': PetitionForm.objects.filter(anypendingcourtmatter=False).filter(areyouatrustee=True).count(),
+        'specialcondition': PetitionForm.objects.filter(anypendingcourtmatter=False).filter(anyspecialcondition=True).count(),
+        'appealed': PetitionForm.objects.filter(anypendingcourtmatter=False).filter(appealedagainsttheconviction=True).count(),
+        'withskillsattainedinprison': PetitionForm.objects.filter(anypendingcourtmatter=False).filter(anyspecialattributesorskills=True).count(),
+        'offences': Offence.objects.count(),
+        'exitslist': Exit.objects.count(),
+        'exitslistescaped': Exit.objects.filter(exitreason='The Petitioner escaped the prison').count(),
+        'exitsdeath': Exit.objects.filter(exitreason='The petitioner died while in prison').count(),
+        'exitsservedsentence': Exit.objects.filter(exitreason='Released after serving the term').count(),
+        'exitsreleasedbypomac': Exit.objects.filter(exitreason='exitsreleasedbypomac').count(),
+        'exitsresetencing': Exit.objects.filter(exitreason='The petitioner was released after resentencing').count(),
+        'prisons': Prison.objects.count(),
+        'courts': Court.objects.count(),
+
     }
     return render(request, 'petitions/dashboard/index.html',data)
 
@@ -2441,6 +2516,7 @@ def mydashboard(request):
         'awaitinghearing':AdmissibilityForm.objects.filter(admissability=True).filter(hearing__isnull=True).filter(petitioner__exit__isnull=True).filter(added_by=request.user).count(),
         'awaitingrecommendations':InterviewSummary.objects.filter(finalresolution='Recommended to President').filter(recommendationform__isnull=True).filter(hearing__admissibility__petitioner__exit__isnull=True).filter(added_by=request.user).count(),
         'awaitinginterviews':HearingSummary.objects.filter(action='Interview the Petitioner').filter(interviewdate__isnull=False).filter(interviewsummary__isnull=True).filter(admissibility__petitioner__exit__isnull=True).filter(added_by=request.user).count(),
-        'trustees':PetitionForm.objects.filter(anypendingcourtmatter=False).filter(areyouatrustee=True).filter(added_by=request.user).count()
+        'myawaitingregrant':RecommendationForm.objects.filter(grant__isnull=True).filter(interview__hearing__admissibility__petitioner__exit__isnull=True).filter(added_by=request.user).count(),
+        'mygrants': Grant.objects.all().filter(added_by=request.user).count(),
     }
     return render(request, 'petitions/dashboard/mydashboard.html',data)

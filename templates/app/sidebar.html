@@ -8,7 +8,7 @@
     <!-- menu profile quick info -->
     <div class="profile clearfix">
         <div class="profile_pic">
-            <img src="/static/images/img.jpg" alt="..." class="img-circle profile_img">
+            <img src="/static/images/user1.png" alt="..." class="img-circle profile_img">
         </div>
         <div class="profile_info">
             <span>Welcome,</span>
@@ -143,6 +143,9 @@
                 <li><a><i class="fa fa-bug"></i> More Reports <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{% url 'trustees' %}">Trustees</a></li>
+                        <li><a href="{% url 'specialcondition' %}">Petitioners with Special Condition</a></li>
+                        <li><a href="{% url 'appealedagainstconviction' %}">Petitioners who appealed against conviction</a></li>
+                        <li><a href="{% url 'specialattributesorskills' %}">Petitioners with special skills</a></li>
                         <li><a href="{% url 'petitions_county_list' %}">Counties</a></li>
                         <li><a href="{% url 'petitions_subcounty_list' %}">Sub Counties</a></li>
                         <li><a href="{% url 'petitions_court_list' %}">Courts</a></li>

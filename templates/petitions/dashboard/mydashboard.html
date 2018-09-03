@@ -155,12 +155,17 @@
                 <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
                                                                    href="{% url 'myawaitingrecommendations' %}">More Details</a></span>
             </div>
-
-            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                <span class="count_top"><i class="fa fa-user"></i> My Trustees</span>
-                <div class="count">{{ trustees }}</div>
+        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                <span class="count_top text-warning"><i class="fa fa-user"></i>My Awaiting Grant</span>
+                <div class="count">{{ myawaitingregrant }}</div>
                 <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
-                                                                   href="{% url 'trustees' %}">More Details</a></span>
+                                                                   href="{% url 'mypetitions_awaiting_grant_list' %}">More Details</a></span>
+            </div>
+        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                <span class="count_top text-warning"><i class="fa fa-user"></i>My Grants</span>
+                <div class="count">{{ mygrants }}</div>
+                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                                                                   href="{% url 'mypetitions_grant_list' %}">More Details</a></span>
             </div>
         </div>
         <!-- /top tiles -->

@@ -132,10 +132,14 @@ urlpatterns = [
     path('petitions/grant/delete/<int:pk>/', views.DeleteGrant, name='petitions_grant_delete'),
     path('petitions/grant/awaiting-grant', views.AwaitingGrantListView.as_view(), name='petitions_awaiting_grant_list'),
     path('petitions/grant/print/<int:pk>/', login_required(views.GenerateGrant), name='grantpetition_print'),
-
+    path('petitions/grant/my-grants', views.MyGrantListView.as_view(), name='mypetitions_grant_list'),
+    path('petitions/grant/my-awaiting-grant', views.MyAwaitingGrantListView.as_view(), name='mypetitions_awaiting_grant_list'),
     #url for the
     path('dashboard/', login_required(views.dashboard), name='petitions_dashboard'),
     path('my-dashboard/', login_required(views.mydashboard), name='mypetitions_dashboard'),
     path('petitionform/trustees', login_required(views.TrusteesListView.as_view()), name='trustees'),
+    path('petitionform/special-condition', login_required(views.SpecialConditionListView.as_view()), name='specialcondition'),
+    path('petitionform/appealed-against-conviction', login_required(views.AppealedAgainstConvictionView.as_view()), name='appealedagainstconviction'),
+    path('petitionform/petitioners-with-skills', login_required(views.PetitionersWithSkillsView.as_view()), name='specialattributesorskills'),
 ]
 
