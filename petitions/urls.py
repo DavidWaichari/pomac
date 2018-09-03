@@ -42,6 +42,7 @@ urlpatterns = [
 
     # urls for HearingSummary
     path('hearingsummary/', login_required(views.HearingSummaryListView.as_view()), name='hearingsummary_list'),
+    path('hearingsummary/awaiting-schedule-for-hearing', login_required(views.AwaitingScheduleforHearingSummaryListView.as_view()), name='awaitingscheduleforhearing'),
     path('hearingsummary/awaiting-hearing', login_required(views.AwaitingHearingSummaryListView.as_view()), name='awaitinghearing'),
     path('hearingsummary/deferred', login_required(views.HearingSummaryDeferredListView.as_view()), name='hearingsummary_deferred'),
     path('hearingsummary/declined', login_required(views.HearingSummaryDeclinedListView.as_view()), name='hearingsummary_declined'),

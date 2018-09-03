@@ -323,7 +323,7 @@ class PetitionSummaryEditForm(forms.ModelForm):
 
 
 class HearingSummaryForm(forms.ModelForm):
-    admissibility = forms.ModelChoiceField(label='Choose Petitioner',queryset=AdmissibilityForm.objects.filter(admissability=True).filter(hearing__isnull=True).filter(petitioner__exit__isnull=True), widget=forms.Select(attrs={'class': 'form-control'}))
+    admissibility = forms.ModelChoiceField(label='Choose Petitioner',queryset=AdmissibilityForm.objects.filter(admissability=True).filter(hearingdate__isnull=False).filter(hearing__isnull=True).filter(petitioner__exit__isnull=True), widget=forms.Select(attrs={'class': 'form-control'}))
     healthstatus = forms.CharField(required=False, label='Health Status',
                                    widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
     familystatus = forms.CharField(required=False, label='Family Status (parents, spouse,children etc)',
