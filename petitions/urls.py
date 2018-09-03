@@ -112,6 +112,7 @@ urlpatterns = [
     path('petitions/prison/create/', login_required(views.PrisonCreateView.as_view()), name='petitions_prison_create'),
     path('petitions/prison/detail/<int:pk>/', login_required(views.PrisonDetailView.as_view()), name='petitions_prison_detail'),
     path('petitions/prison/update/<int:pk>/', login_required(views.PrisonUpdateView.as_view()), name='petitions_prison_update'),
+    path('petitions/prison/petitioners/<int:pk>/', login_required(views.PrisonPetitionersListView), name='prisonpetitioners'),
 
     # urls for Court
     path('petitions/court/', login_required(views.CourtListView.as_view()), name='petitions_court_list'),

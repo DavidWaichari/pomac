@@ -106,6 +106,11 @@ class PrisonListView(ListView):
         return queryset
 
 
+def PrisonPetitionersListView(request, pk):
+    prison = Prison.objects.get(id=pk)
+    object_list = PetitionForm.objects.filter(prison_id=pk)
+    return render(request,'petitions/prisons/prisonpetitioners_list.html',{'object_list':object_list, 'prison':prison})
+
 
 class PrisonCreateView(CreateView):
     template_name = 'petitions/prisons/prison_form.html'
