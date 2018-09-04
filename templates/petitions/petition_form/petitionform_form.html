@@ -20,7 +20,9 @@
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>Submit a new or Denied Petition |
-                                <small>You can submit the petition using the petition form below. All fields marked * are mandatory </small>
+                                <small>You can submit the petition using the petition form below. All fields marked *
+                                    are mandatory
+                                </small>
                             </h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -44,11 +46,12 @@
                             <p><a class="btn btn-default" href="{% url 'petitionform_list' %}">PetitionForm
                                 Listing</a></p>
                             <div class="crispyform">
-                               <form method="post" id="PetitionForm" data-subcounties-url="{% url 'ajax_load_subcounties' %}">
-                                {% csrf_token %}
-                                {{ form|crispy }}
-                                <button class="btn btn-primary" type="submit">Submit</button>
-                            </form>
+                                <form method="post" id="PetitionForm"
+                                      data-subcounties-url="{% url 'ajax_load_subcounties' %}">
+                                    {% csrf_token %}
+                                    {{ form|crispy }}
+                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -162,4 +165,19 @@
 
 {% block javascripts %}
     {{ block.super }}
+    <script>
+        $(document).ready(function () {
+            $("#div_id_sentence").hide();
+            $("#id_id_convictedforlife_0_1").click(function () {
+                $("#div_id_sentence").hide('slow');
+                $("#id_sentence").prop("required", false);
+                $("#id_sentence").val('');
+            });
+            $("#id_id_convictedforlife_0_2").click(function () {
+                $("#div_id_sentence").show('slow');
+                $("#id_sentence").prop("required", true);
+            });
+        })
+
+    </script>
 {% endblock javascripts %}

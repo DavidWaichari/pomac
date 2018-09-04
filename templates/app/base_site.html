@@ -181,7 +181,7 @@
         });
     });
 
-    $('document').ready(function () {
+    $(document).ready(function () {
         $("#id_county").change(function () {
             var url = $("#PetitionForm").attr("data-subcounties-url");  // get the url of the `load_cities` view
             var countyId = $(this).val();  // get the selected country ID from the HTML input
@@ -194,9 +194,7 @@
                 success: function (data) {   // `data` is the return of the `load_cities` view function
                     $("#id_subcounty").html(data);  // replace the contents of the city input with the data that came from the server
                 }
-            });
-
-
+            })
         });
         $('#feedbackmessages').delay(10000).fadeOut();
         $('#allmytables').DataTable({
