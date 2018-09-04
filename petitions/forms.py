@@ -125,7 +125,7 @@ class PetitionFormForm(forms.ModelForm):
     dateofpreviouspetition = forms.DateField(required=False, label='If yes, Date of the previous petition was',
                                              widget=forms.DateInput(format=('%m/%d/%Y'),
                                                                     attrs={'class': 'datepicker form-control'}))
-    reasonofdenialofpreviouspetition = forms.CharField(label='If no, give the reason of denial of previous petition',
+    reasonofdenialofpreviouspetition = forms.CharField(label='And the reason of denial of previous petition',
                                                        required=False,
                                                        widget=forms.Textarea(
                                                            attrs={'class': 'form-control', 'rows': 4}))

@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd264c29-9605-4953-a0c8-a41219d982cc" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/app/base_site.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/app/base_site.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petitions/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/petitions/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/petitions/petition_form/petitionform_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/petitions/petition_form/petitionform_form.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -54,17 +53,17 @@
         <counts>
           <entry key="Django Console" value="624" />
           <entry key="dummy" value="35" />
-          <entry key="html" value="8921" />
+          <entry key="html" value="9016" />
           <entry key="js" value="8" />
-          <entry key="py" value="4668" />
+          <entry key="py" value="4675" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="8921" />
+          <entry key="HTML" value="9016" />
           <entry key="JavaScript" value="8" />
           <entry key="PLAIN_TEXT" value="35" />
-          <entry key="Python" value="5292" />
+          <entry key="Python" value="5299" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -129,17 +128,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/petitions/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5440">
-              <caret line="325" column="163" selection-start-line="325" selection-start-column="163" selection-end-line="325" selection-end-column="163" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/petitions/hearings/awaitingschedulehearingsummary_list.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="46" column="127" selection-start-line="46" selection-start-column="127" selection-end-line="46" selection-end-column="127" />
+            <state relative-caret-position="197">
+              <caret line="128" column="70" lean-forward="true" selection-start-line="128" selection-start-column="70" selection-end-line="128" selection-end-column="70" />
             </state>
           </provider>
         </entry>
@@ -175,8 +165,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/petitionform_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="173" column="39" selection-start-line="173" selection-start-column="39" selection-end-line="173" selection-end-column="39" />
+            <state relative-caret-position="-1142">
+              <caret line="207" column="64" selection-start-line="207" selection-start-column="64" selection-end-line="207" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -193,7 +183,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Interview</find>
       <find>scheduled</find>
       <find>scheduledfor</find>
       <find>recommendation</find>
@@ -223,6 +212,7 @@
       <find>awaitinghearing</find>
       <find>hearing</find>
       <find>hearingsumm</find>
+      <find>reason of de</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -276,11 +266,11 @@
         <option value="$PROJECT_DIR$/templates/app/sidebar.html" />
         <option value="$PROJECT_DIR$/templates/petitions/hearings/awaitingschedulehearingsummary_list.html" />
         <option value="$PROJECT_DIR$/petitions/views.py" />
-        <option value="$PROJECT_DIR$/petitions/forms.py" />
         <option value="$PROJECT_DIR$/petitions/urls.py" />
         <option value="$PROJECT_DIR$/templates/petitions/dashboard/index.html" />
         <option value="$PROJECT_DIR$/templates/app/base_site.html" />
         <option value="$PROJECT_DIR$/static/build/js/custom.js" />
+        <option value="$PROJECT_DIR$/petitions/forms.py" />
         <option value="$PROJECT_DIR$/templates/petitions/petition_form/petitionform_form.html" />
       </list>
     </option>
@@ -319,7 +309,7 @@
       <path value="$PROJECT_DIR$/static/vendors/transitionize/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="227" />
     <option name="y" value="-13" />
     <option name="width" value="1080" />
@@ -448,7 +438,7 @@
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30862328" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30862328" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -781,13 +771,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/petitions/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5440">
-          <caret line="325" column="163" selection-start-line="325" selection-start-column="163" selection-end-line="325" selection-end-column="163" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -809,13 +792,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/app/base_site.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="212" column="7" selection-start-line="212" selection-start-column="7" selection-end-line="212" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/js/base.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -831,10 +807,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/petitions/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="128" column="70" lean-forward="true" selection-start-line="128" selection-start-column="70" selection-end-line="128" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/app/base_site.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="212" column="7" selection-start-line="212" selection-start-column="7" selection-end-line="212" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/petitionform_form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="173" column="39" selection-start-line="173" selection-start-column="39" selection-end-line="173" selection-end-column="39" />
+        <state relative-caret-position="-1142">
+          <caret line="207" column="64" selection-start-line="207" selection-start-column="64" selection-end-line="207" selection-end-column="64" />
         </state>
       </provider>
     </entry>
