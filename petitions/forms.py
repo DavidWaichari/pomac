@@ -193,8 +193,8 @@ class PetitionFormForm(forms.ModelForm):
 
     class Meta:
         model = PetitionForm
-        fields = ['name', 'nationality', 'prison', 'prisonno', 'court', 'courtcaseno', 'dateofconviction',
-                  'dateofcustody',
+        fields = ['name', 'nationality', 'prison', 'prisonno', 'court', 'courtcaseno',
+                  'dateofcustody','dateofconviction',
                   'ageatconviction', 'agewhenoffensewascommited', 'county', 'subcounty', 'location',
                   'nextofkin', 'relationshipwithnextofkin',
                   'contactperson', 'telnoofcontactperson', 'nearestschool', 'homechief', 'convictedforlife', 'sentence',

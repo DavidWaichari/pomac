@@ -165,6 +165,7 @@
 
 {% block javascripts %}
     {{ block.super }}
+   <script src="{% static 'js/sweetalert.js' %}"></script>
     <script>
         $(document).ready(function () {
             $("#div_id_sentence").hide();
@@ -189,7 +190,7 @@
                 $("#id_namesofcoaccused").prop("required", true);
             });
 
-             $("#div_id_nameofvictim").hide();
+            $("#div_id_nameofvictim").hide();
             $("#div_id_areaofresidence").hide();
             $("#id_id_knowledgeofthevictim_0_2").click(function () {
                 $("#div_id_nameofvictim").hide('slow');
@@ -204,8 +205,8 @@
                 $("#id_nameofvictim").prop("required", true);
             });
             $("#id_nameofvictim").click(function () {
-                 $("#div_id_areaofresidence").show('slow');
-                 $("#id_areaofresidence").prop("required", false);
+                $("#div_id_areaofresidence").show('slow');
+                $("#id_areaofresidence").prop("required", false);
             })
 
 
@@ -224,8 +225,8 @@
                 $("#id_dateofpreviouspetition").prop("required", true);
             });
             $("#id_dateofpreviouspetition").click(function () {
-                 $("#div_id_reasonofdenialofpreviouspetition").show('slow');
-                 $("#id_reasonofdenialofpreviouspetition").prop("required", true);
+                $("#div_id_reasonofdenialofpreviouspetition").show('slow');
+                $("#id_reasonofdenialofpreviouspetition").prop("required", true);
             })
 
 
@@ -291,10 +292,9 @@
                 $("#id_appealcaseno").prop("required", true);
             });
             $("#id_appealcaseno").click(function () {
-                 $("#div_id_appealoutcome").show('slow');
-                 $("#id_appealoutcome").prop("required", true);
+                $("#div_id_appealoutcome").show('slow');
+                $("#id_appealoutcome").prop("required", true);
             })
-
 
 
             $("#div_id_explanationofpendingcourtmatter").hide();
@@ -307,7 +307,28 @@
                 $("#div_id_explanationofpendingcourtmatter").show('slow');
                 $("#id_explanationofpendingcourtmatter").prop("required", true);
             });
-        })
 
+            {#Validating that the date of custody is less than the date of conviction#}
+            $('#id_dateofconviction').on('blur', function () {
+               dateofcustody = $('#id_dateofcustody').datepicker('getDate');
+               dateofconviction = $('#id_dateofconviction').datepicker('getDate');
+               if (dateofcustody > dateofconviction){
+                   swal ("Confirm Dates!","the date of conviction must be recent than the date of custody","error")
+                   $('#id_dateofconviction').val('');
+                   $('#id_dateofcustody').val('');
+               }
+            })
+
+            {#Validating that the age at conviction is greator than the age when the offence was committed#}
+            $('#id_agewhenoffensewascommited').on('blur', function () {
+               ageatconviction = $('#id_ageatconviction').val();
+               ageatoffence = $('#id_agewhenoffensewascommited').val();
+               if (ageatoffence > ageatconviction){
+                   swal ("Confirm Ages!","the age when the offence was committed cannot be greator than the age at conviction","error")
+                   $('#id_agewhenoffensewascommited').val('');
+                   $('#id_ageatconviction').val('');
+               }
+            })
+        })
     </script>
 {% endblock javascripts %}
