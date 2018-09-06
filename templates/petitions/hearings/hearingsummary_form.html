@@ -160,27 +160,4 @@
 
 {% block javascripts %}
     {{ block.super }}
-    <script>
-    $(document).ready(function () {
-        $("#div_id_interviewdate").hide();
-        $("#div_id_deferdate").hide();
-
-        $('#id_action').on('change', function () {
-           choice = $('#id_action').val();
-           if (choice=='Interview the Petitioner'){
-              $("#div_id_interviewdate").show('slow');
-           }
-           if (choice=='Defer the petition to a later date'){
-             $("#div_id_deferdate").show('slow');
-             $("#div_id_interviewdate").hide('slow');
-           }
-
-            if (choice=='Decline the Petition'){
-             $("#div_id_deferdate").hide('slow');
-             $("#div_id_interviewdate").hide('slow');
-             $("#id_actiondescription").prop('required', true);
-           }
-        });
-    });
-    </script>
 {% endblock javascripts %}
