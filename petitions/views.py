@@ -2542,7 +2542,7 @@ def mydashboard(request):
         'notinterviewsrecommended': InterviewSummary.objects.filter(finalresolution = 'Not Recommended to President').filter(added_by=request.user).count(),
         'recommendations': RecommendationForm.objects.all().filter(added_by=request.user).count(),
         'awaitingsummaries': AdmissibilityForm.objects.filter(admissability=True).filter(petitionsummary__isnull=True).filter(petitioner__exit__isnull=True).filter(added_by=request.user).count(),
-        'awaitinghearing':AdmissibilityForm.objects.filter(admissability=True).filter(hearing__isnull=True).filter(petitioner__exit__isnull=True).filter(added_by=request.user).count(),
+        'awaitinghearing':AdmissibilityForm.objects.filter(admissability=True).filter(hearingdate__isnull= False).filter(hearing__isnull=True).filter(petitioner__exit__isnull=True).filter(added_by=request.user).count(),
         'awaitingrecommendations':InterviewSummary.objects.filter(finalresolution='Recommended to President').filter(recommendationform__isnull=True).filter(hearing__admissibility__petitioner__exit__isnull=True).filter(added_by=request.user).count(),
         'awaitinginterviews':HearingSummary.objects.filter(action='Interview the Petitioner').filter(interviewdate__isnull=False).filter(interviewsummary__isnull=True).filter(admissibility__petitioner__exit__isnull=True).filter(added_by=request.user).count(),
         'myawaitingregrant':RecommendationForm.objects.filter(grant__isnull=True).filter(interview__hearing__admissibility__petitioner__exit__isnull=True).filter(added_by=request.user).count(),

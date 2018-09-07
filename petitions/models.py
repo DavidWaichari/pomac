@@ -145,11 +145,11 @@ class PetitionForm(models.Model):
     prisonno = models.CharField(max_length=30, unique=True)
     court = models.ForeignKey(Court,
                                  null=True, blank=True, on_delete=models.SET_NULL)
-    courtcaseno = models.CharField(max_length=30)
+    courtcaseno = models.CharField(max_length=10)
     dateofconviction = models.DateField()
     dateofcustody = models.DateField()
-    ageatconviction = models.IntegerField()
-    agewhenoffensewascommited = models.IntegerField()
+    ageatconviction = models.IntegerField(max_length=2)
+    agewhenoffensewascommited = models.IntegerField(max_length=2)
     county = models.ForeignKey(County,
                                  null=True, blank=True, on_delete=models.SET_NULL)
     subcounty = models.ForeignKey(SubCounty,
@@ -163,7 +163,7 @@ class PetitionForm(models.Model):
     homechief = models.CharField(max_length=30)
     whereoffensewascommitted = models.CharField(max_length=50, )
     convictedforlife = models.BooleanField()
-    sentence = models.IntegerField(null=True, blank= True)
+    sentence = models.IntegerField(null=True, blank= True ,max_length=2)
     reliefsought = models.CharField(max_length=100)
     offence = models.ForeignKey(Offence,
                                  null=True, blank=True, on_delete=models.SET_NULL)
