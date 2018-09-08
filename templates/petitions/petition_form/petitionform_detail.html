@@ -43,6 +43,36 @@
                             </ul>
                             <div class="clearfix"></div>
                         </div>
+                       <!-- Modal -->
+                        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true"
+                             style="display: none;">
+                            <div class="modal-dialog modal-ls">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        <h4 class="modal-title" id="myModalLabel2">Confirm Delete</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h4>Delete Petition?</h4>
+                                        <p>Are you sure you want to delete the petition
+                                            for <strong>{{ object.name }}
+                                            | {{ object.prisonno }}.</strong> <span style="color: red">Deleting will also delete the admissibility, summary and the hearing up to and including recommendation if it exists and any other related information</span></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a type="button" class="btn btn-danger  mr-auto"
+                                           href="{% url 'petitionform_delete' object.id %}">Delete</a>
+                                        <button type="button" class="btn btn-secondary btn-success"
+                                                data-dismiss="modal">Cancel
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /modals -->
                         <div class="x_content">
                             <div class="container">
                                 <div class="row">
@@ -52,9 +82,12 @@
                                         </p>
                                         <div>
                                             <div class="row">
-                                                <div class="col-md-8"><a class="btn btn-warning btn-sm"
+                                                <div class="col-md-4"><a class="btn btn-warning btn-sm"
                                                                          href="{{ object.get_update_url }}">Edit this
                                                     Petition</a></div>
+                                                <div class="col-md-4"><button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                data-target=".bs-example-modal-sm">Delete Petition
+                        </button></div>
                                                 <div class="col-md-2"><a class="btn btn-info btn-sm"
                                                                          href="{% url 'petitionform_list' %}">Go to
                                                     Petitions</a></div>

@@ -16,7 +16,9 @@ urlpatterns = [
     path('petitionform/my-petitions', login_required(views.MyPetitionFormListView.as_view()), name='mypetitionform_list'),
     path('petitionform/my-eligible-petitions', login_required(views.MyEligiblePetitionFormListView.as_view()), name='myeligiblepetitionform_list'),
     path('petitionform/my-ineligle-petitions', login_required(views.MyInEligiblePetitionFormListView.as_view()), name='myineligiblepetitionform_list'),
+    path('petitionform/delete/<int:pk>/', login_required(views.DeletePetitionForm),name='petitionform_delete'),
 
+    # urls for Admissibility Form
     path('admissibilityform/', login_required(views.AdmissibilityFormListView.as_view()), name='admissibilityform_list'),
     path('admissibilityform/awaiting-admissibility', login_required(views.AwaitingAdmissibilityFormListView.as_view()), name='awaitingadmissibility'),
     path('admissibilityform/admissible', login_required(views.AdmissibilityFormAdmissibleListView.as_view()), name='admissibilityformadmissible_list'),
@@ -29,6 +31,7 @@ urlpatterns = [
     path('admissibilityform/my-admissible-admissibilities', login_required(views.MyAdmissibleAdmissibilityFormListView.as_view()), name='myadmissibleadmissibilityform_list'),
     path('admissibilityform/my-inadmissible-admissibilities', login_required(views.MyInAdmissibleAdmissibilityFormListView.as_view()), name='myinadmissibleadmissibilityform_list'),
     path('admissibilityform/my-awaiting-admissibility', login_required(views.MyAwaitingAdmissibilityFormListView.as_view()), name='myawaitingadmissibility'),
+    path('admissibilityform/delete/<int:pk>/', login_required(views.DeleteAdmissibility), name='admissibilityform_delete'),
 
     # urls for PetitionSummary
     path('petitionsummary/', login_required(views.PetitionSummaryListView.as_view()), name='petitionsummary_list'),
@@ -39,6 +42,7 @@ urlpatterns = [
     path('petitionsummary/print/<int:pk>/', login_required(views.GeneratePetitionSummary), name='petitionsummary_print'),
     path('petitionsummary/my-summaries', login_required(views.MyPetitionSummaryListView.as_view()), name='mypetitionsummary_list'),
     path('petitionsummary/my-awaiting-summaries', login_required(views.MyAwaitingPetitionSummaryListView.as_view()), name='myawaitingsummary'),
+    path('petitionsummary/delete/<int:pk>/', login_required(views.DeletePetitionSummary), name='petitionsummary_delete'),
 
     # urls for HearingSummary
     path('hearingsummary/', login_required(views.HearingSummaryListView.as_view()), name='hearingsummary_list'),
@@ -58,7 +62,7 @@ urlpatterns = [
     path('hearingsummary/my-awaiting-hearing', login_required(views.MyAwaitingHearingSummaryListView.as_view()), name='myawaitinghearing'),
     path('hearingsummary/my-deferred-hearings', login_required(views.MyHearingSummaryDeferredListView.as_view()), name='myhearingsummary_deferred'),
     path('hearingsummary/my-declined-hearings', login_required(views.MyHearingSummaryDeclinedListView.as_view()), name='myhearingsummary_declined'),
-
+    path('hearingsummary/delete/<int:pk>/', login_required(views.DeleteHearing),name='hearingsummary_delete'),
 
     # urls for InterviewSummary
     path('interviewsummary/', login_required(views.InterviewSummaryListView.as_view()),name='interviewsummary_list'),
@@ -73,8 +77,9 @@ urlpatterns = [
     path('interviewsummary/my-petitions-awaiting-interview', login_required(views.MyAwaitingInterviewFormListView.as_view()),name='myawaitinginterviws'),
     path('interviewsummary/my-recommendations', login_required(views.MyInterviewSummaryRecommendedListView.as_view()),name='myinterviewsummary_recommended'),
     path('interviewsummary/my-not-recommended', login_required(views.myInterviewSummaryNotRecommendedListView.as_view()),name='myinterviewsummary_notrecommended'),
+    path('interviewsummary/delete/<int:pk>/', login_required(views.DeleteInterviewSummary),name='interviewsummary_delete'),
 
-# urls for RecommendationForm
+    # urls for RecommendationForm
     path('recommendationform/', login_required(views.RecommendationFormListView.as_view()), name='recommendationform_list'),
     path('recommendationform/awaiting-recommendation', login_required(views.AwaitingRecommendationFormListView.as_view()), name='awaitingrecommendations'),
     path('recommendationform/create/', login_required(views.RecommendationFormCreateView.as_view()), name='recommendationform_create'),
@@ -83,6 +88,7 @@ urlpatterns = [
     path('recommendationform/print/<int:pk>/', login_required(views.GenerateRecommendationForm), name='recommendationform_print'),
     path('recommendationform/my-recommendations', login_required(views.MyRecommendationFormListView.as_view()), name='myrecommendationform_list'),
     path('recommendationform/my-awaiting-recommendation', login_required(views.MyAwaitingRecommendationFormListView.as_view()), name='myawaitingrecommendations'),
+    path('recommendationform/delete/<int:pk>/', login_required(views.DeleteRecommendationForm), name='recommendationform_delete'),
 
     # urls for County
     path('county/', login_required(views.CountyListView.as_view()), name='petitions_county_list'),
@@ -107,6 +113,7 @@ urlpatterns = [
     path('exit/pomac', login_required(views.ExitReleasedUnderPomacListView.as_view()), name='petitions_exitpomac_list'),
     path('exit/served-term', login_required(views.ExitServedTermListView.as_view()), name='petitions_exitservedterm_list'),
     path('exit/resentencing', login_required(views.ExitAfterResentencingListView.as_view()), name='petitions_exitresentencing_list'),
+    path('exit/delete/<int:pk>/', login_required(views.DeleteExit), name='petitions_exit_delete'),
 
     # urls for Prison
     path('petitions/prison/', login_required(views.PrisonListView.as_view()), name='petitions_prison_list'),

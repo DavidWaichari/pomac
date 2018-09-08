@@ -53,9 +53,42 @@
                                             This shows all the recommendation details of the petition with
                                             details from petition form
                                         </p>
+                                                <!-- Modal -->
+                        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true"
+                             style="display: none;">
+                            <div class="modal-dialog modal-ls">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        <h4 class="modal-title" id="myModalLabel2">Confirm Delete</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h4>Delete?</h4>
+                                        <p>Are you sure you want to delete the recommendation of the petition
+                                            for <strong>{{ object.interview.hearing.admissibility.petitioner.name }}
+                                            | {{ object.interview.hearing.admissibility.petitioner.prisonno }}.</strong> <span style="color: red">Deleting will also delete the, recommendation and grant if issued</span></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a type="button" class="btn btn-danger  mr-auto"
+                                           href="{% url 'recommendationform_delete' object.id %}">Delete</a>
+                                        <button type="button" class="btn btn-secondary btn-success"
+                                                data-dismiss="modal">Cancel
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /modals -->
                                     <div class="row">
-                                            <div class="col-md-7"><a class="btn btn-warning btn-sm" href="{{ object.get_update_url }}">Edit
+                                            <div class="col-md-4"><a class="btn btn-warning btn-sm" href="{{ object.get_update_url }}">Edit
                                                     Reccommendation</a></div>
+                                            <div class="col-md-3"><button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                data-target=".bs-example-modal-sm">Delete Recommendation
+                        </button></div>
                                             <div class="col-md-3"><a class="btn btn-info btn-sm"
                                                                      href="{% url 'recommendationform_list' %}">Go to
                                                     Recommendations</a></div>

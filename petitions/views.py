@@ -346,6 +346,11 @@ class PetitionFormUpdateView(UpdateView):
         sweetify.success(self.request, 'Petition details updated successfully', button=True, timer=15000)
         return redirect('petitionform_detail', petitionupdate.id)
 
+def DeletePetitionForm(request,pk):
+    PetitionForm.objects.get(pk=pk).delete()
+    sweetify.success(request, 'Petitione deleted successfully and all its related information', button=True, timer=15000)
+    return redirect('petitionform_list')
+
 class AdmissibilityFormListView(ListView):
     template_name = 'petitions/admissibility_form/admissibilityform_list.html'
     model = AdmissibilityForm
@@ -415,6 +420,11 @@ class MyAwaitingAdmissibilityFormListView(ListView):
         queryset = PetitionForm.objects.filter(anypendingcourtmatter=False).filter(admissibility__isnull=True).filter(
             exit__isnull=True).filter(added_by=self.request.user)
         return queryset
+
+def DeleteAdmissibility(request,pk):
+    AdmissibilityForm.objects.get(pk=pk).delete()
+    sweetify.success(request, 'Admissibility form for the petitioner deleted successfully and all consequent information ', button=True, timer=15000)
+    return redirect('admissibilityform_list')
 
 def GeneratePetitionForm(request, pk):
     petitioner = PetitionForm.objects.get(pk=pk)
@@ -1091,6 +1101,11 @@ def GeneratePetitionSummary(request, pk):
     pdf = render_to_pdf('petitions/summaries/petitionsummary_print.html', data)
     return HttpResponse(pdf, content_type='application/pdf')
 
+def DeletePetitionSummary(request,pk):
+    Exit.objects.get(pk=pk).delete()
+    sweetify.success(request, 'Petition Summary Deleted Successfully', button=True, timer=15000)
+    return redirect('petitionsummary_list')
+
 class HearingSummaryListView(ListView):
     template_name = 'petitions/hearings/hearingsummary_list.html'
     model = HearingSummary
@@ -1571,6 +1586,10 @@ def GenerateHearingForm(request, pk):
     pdf = render_to_pdf('petitions/hearings/hearingsummary_print.html', data)
     return HttpResponse(pdf, content_type='application/pdf')
 
+def DeleteHearing(request,pk):
+    HearingSummary.objects.get(pk=pk).delete()
+    sweetify.success(request, 'Hearing form  for the petitioner deleted successfully and all its consequent information ', button=True, timer=15000)
+    return redirect('hearingsummary_list')
 
 class InterviewSummaryListView(ListView):
     template_name = 'petitions/interviews/interviewsummary_list.html'
@@ -2001,6 +2020,12 @@ def GenerateInterviewSummary(request, pk):
     pdf = render_to_pdf('petitions/interviews/interviewsummary_print.html', data)
     return HttpResponse(pdf, content_type='application/pdf')
 
+def DeleteInterviewSummary(request,pk):
+    InterviewSummary.objects.get(pk=pk).delete()
+    sweetify.success(request, 'Interview summary  for the petitioner deleted successfully and all its consequent information ', button=True, timer=15000)
+    return redirect('interviewsummary_list')
+
+
 class RecommendationFormListView(ListView):
     template_name = 'petitions/recommendations/recommendationform_list.html'
     model = RecommendationForm
@@ -2100,6 +2125,12 @@ def GenerateRecommendationForm(request, pk):
         }
         pdf = render_to_pdf('petitions/recommendations/recommendation_print.html', data)
         return HttpResponse(pdf, content_type='application/pdf')
+
+def DeleteRecommendationForm(request,pk):
+    RecommendationForm.objects.get(pk=pk).delete()
+    sweetify.success(request, 'Recommendation for the petitioner deleted successfully and all its consequent information', button=True, timer=15000)
+    return redirect('recommendationform_list')
+
 
 class ExitListView(ListView):
     template_name = 'petitions/exits/exits_list.html'
@@ -2213,6 +2244,11 @@ class ExitUpdateView(UpdateView):
         today = date.today()
         context['today'] = today
         return context
+
+def DeleteExit(request,pk):
+    Exit.objects.get(pk=pk).delete()
+    sweetify.success(request, 'Exit Deleted Successfully', button=True, timer=15000)
+    return redirect('petitions_exit_list')
 
 
 class GrantListView(ListView):
