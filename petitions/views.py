@@ -109,7 +109,7 @@ class PrisonListView(ListView):
 
 def PrisonPetitionersListView(request, pk):
     prison = Prison.objects.get(id=pk)
-    object_list = PetitionForm.objects.filter(prison_id=pk)
+    object_list = PetitionForm.objects.filter(prison_id=pk).filter(anypendingcourtmatter=False)
     return render(request,'petitions/prisons/prisonpetitioners_list.html',{'object_list':object_list, 'prison':prison})
 
 
@@ -128,6 +128,11 @@ class PrisonUpdateView(UpdateView):
     template_name = 'petitions/prisons/prison_form.html'
     model = Prison
     form_class = PrisonForm
+
+def DeletePrison(request,pk):
+    Prison.objects.get(pk=pk).delete()
+    sweetify.success(request, 'Prison Deleted Successfully', button=True, timer=15000)
+    return redirect('petitions_prison_list')
 
 
 class CourtListView(ListView):
@@ -153,6 +158,18 @@ class CourtUpdateView(UpdateView):
     template_name = 'petitions/courts/court_form.html'
     model = Court
     form_class = CourtForm
+
+def CourtPetitionersListView(request, pk):
+    court = Court.objects.get(id=pk)
+    object_list = PetitionForm.objects.filter(court_id=pk).filter(anypendingcourtmatter=False)
+    return render(request,'petitions/courts/court_petitioners_list.html',{'object_list':object_list, 'court': court})
+
+def DeleteCourt(request,pk):
+    Court.objects.get(pk=pk).delete()
+    sweetify.success(request, 'Court Deleted Successfully', button=True, timer=15000)
+    return redirect('petitions_court_list')
+
+
 
 class OffenceListView(ListView):
     template_name = 'petitions/offences/offence_list.html'
@@ -188,6 +205,12 @@ class OffenceUpdateView(UpdateView):
     template_name = 'petitions/offences/offence_form.html'
     model = Offence
     form_class = OffenceForm
+
+def DeleteOffence(request,pk):
+    Offence.objects.get(pk=pk).delete()
+    sweetify.success(request, 'Offence Deleted Successfully', button=True, timer=15000)
+    return redirect('petitions_offence_list')
+
 
 
 class PetitionFormListView(ListView):

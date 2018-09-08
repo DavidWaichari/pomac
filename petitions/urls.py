@@ -121,12 +121,15 @@ urlpatterns = [
     path('petitions/prison/detail/<int:pk>/', login_required(views.PrisonDetailView.as_view()), name='petitions_prison_detail'),
     path('petitions/prison/update/<int:pk>/', login_required(views.PrisonUpdateView.as_view()), name='petitions_prison_update'),
     path('petitions/prison/petitioners/<int:pk>/', login_required(views.PrisonPetitionersListView), name='prisonpetitioners'),
+    path('petitions/prison/delete/<int:pk>/', login_required(views.DeletePrison), name='petitions_prison_delete'),
 
     # urls for Court
     path('petitions/court/', login_required(views.CourtListView.as_view()), name='petitions_court_list'),
     path('petitions/court/create/', login_required(views.CourtCreateView.as_view()), name='petitions_court_create'),
     path('petitions/court/detail/<int:pk>/', login_required(views.CourtDetailView.as_view()), name='petitions_court_detail'),
     path('petitions/court/update/<int:pk>/', login_required(views.CourtUpdateView.as_view()), name='petitions_court_update'),
+    path('petitions/court/delete/<int:pk>/', login_required(views.DeleteCourt),name='petitions_court_delete'),
+    path('petitions/court/petitions/<int:pk>/', login_required(views.CourtPetitionersListView),name='court_petitioners_list'),
 
     # urls for Offence
     path('petitions/offence/', login_required(views.OffenceListView.as_view()), name='petitions_offence_list'),
@@ -134,6 +137,7 @@ urlpatterns = [
     path('petitions/offence/detail/<int:pk>/', login_required(views.OffenceDetailView.as_view()), name='petitions_offence_detail'),
     path('petitions/offence/update/<int:pk>/', login_required(views.OffenceUpdateView.as_view()), name='petitions_offence_update'),
     path('petitions/offence/petitioners/<int:pk>/', login_required(views.OffencePetitioners), name='offencepetitioners'),
+    path('petitions/offence/delete/<int:pk>/', login_required(views.DeleteOffence), name='petitions_offence_delete'),
 
     # urls for Grant
     path('petitions/grant/', views.GrantListView.as_view(), name='petitions_grant_list'),
