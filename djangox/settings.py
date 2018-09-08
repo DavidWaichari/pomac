@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'node_modules',
+    'sweetify',
 
     # 3rd party
     'allauth',

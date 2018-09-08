@@ -1,5 +1,6 @@
 from datetime import date
 
+import sweetify
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
@@ -318,12 +319,11 @@ class PetitionFormCreateView(CreateView):
     template_name = 'petitions/petition_form/petitionform_form.html'
     model = PetitionForm
     form_class = PetitionFormForm
-    success_message = 'Petition submitted successfully'
     def form_valid(self, form):
          instance = form.save(commit=False)
          instance.added_by = CustomUser.objects.get(id=self.request.user.id)
          instance.save()
-         messages.success(self.request, self.success_message)
+         sweetify.success(self.request, 'Petition submitted successfully', button=True, timer=10000)
          return  redirect ('petitionform_detail', instance.id)
 
 class PetitionFormDetailView(DetailView):
@@ -339,12 +339,13 @@ class PetitionFormUpdateView(UpdateView):
     template_name = 'petitions/petition_form/petitionform_update.html'
     model = PetitionForm
     form_class = PetitionFormForm
-    success_message = 'Petition updated successfully'
     def form_valid(self, form):
         petitionupdate = form.save(commit=False)
         petitionupdate.save()
-        messages.success(self.request, self.success_message)
+        sweetify.success(self.request, 'Petition details updated successfully', button=True, timer=10000)
         return redirect('petitionform_detail', petitionupdate.id)
+    def form_invalid(self, form):
+        return sweetify.error(self.request, 'You have some errors correct them and submit again', button=True, timer=10000)
 
 class AdmissibilityFormListView(ListView):
     template_name = 'petitions/admissibility_form/admissibilityform_list.html'
