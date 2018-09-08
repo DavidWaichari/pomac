@@ -323,8 +323,9 @@ class PetitionFormCreateView(CreateView):
          instance = form.save(commit=False)
          instance.added_by = CustomUser.objects.get(id=self.request.user.id)
          instance.save()
-         sweetify.success(self.request, 'Petition submitted successfully', button=True, timer=10000)
+         sweetify.success(self.request, 'Petition submitted successfully', button=True, timer=15000)
          return  redirect ('petitionform_detail', instance.id)
+
 
 class PetitionFormDetailView(DetailView):
     template_name = 'petitions/petition_form/petitionform_detail.html'
@@ -342,10 +343,8 @@ class PetitionFormUpdateView(UpdateView):
     def form_valid(self, form):
         petitionupdate = form.save(commit=False)
         petitionupdate.save()
-        sweetify.success(self.request, 'Petition details updated successfully', button=True, timer=10000)
+        sweetify.success(self.request, 'Petition details updated successfully', button=True, timer=15000)
         return redirect('petitionform_detail', petitionupdate.id)
-    def form_invalid(self, form):
-        return sweetify.error(self.request, 'You have some errors correct them and submit again', button=True, timer=10000)
 
 class AdmissibilityFormListView(ListView):
     template_name = 'petitions/admissibility_form/admissibilityform_list.html'
@@ -619,12 +618,11 @@ class AdmissibilityFormCreateView(CreateView):
     template_name = 'petitions/admissibility_form/admissibilityform_form.html'
     model = AdmissibilityForm
     form_class = AdmissibilityCreateForm
-    success_message = 'Admissibility on a petition submitted successfully'
     def form_valid(self, form):
          instance = form.save(commit=False)
          instance.added_by = CustomUser.objects.get(id=self.request.user.id)
          instance.save()
-         messages.success(self.request, self.success_message)
+         sweetify.success(self.request, 'Admissibility on a petition submitted successfully', button=True, timer=15000)
          return  redirect ('admissibilityform_detail', instance.id)
 
 
@@ -642,12 +640,11 @@ class AdmissibilityFormUpdateView(UpdateView):
     template_name = 'petitions/admissibility_form/admissibilityform_update.html'
     model = AdmissibilityForm
     form_class = AdmissibilityUpdateForm
-    success_message = 'Admissibility on a petition updated successfully'
 
     def form_valid(self, form):
         admimissibilitycreate = form.save(commit=False)
         admimissibilitycreate.save()
-        messages.success(self.request, self.success_message)
+        sweetify.success(self.request, 'Admissibility on a petition updated successfully', button=True, timer=15000)
         return redirect('admissibilityform_detail', admimissibilitycreate.id)
 
 
@@ -897,12 +894,11 @@ class PetitionSummaryCreateView(CreateView):
     template_name = 'petitions/summaries/petitionsummary_form.html'
     model = PetitionSummary
     form_class = PetitionSummaryForm
-    success_message = 'Petition summary submitted successfully'
     def form_valid(self, form):
          instance = form.save(commit=False)
          instance.added_by = CustomUser.objects.get(id=self.request.user.id)
          instance.save()
-         messages.success(self.request, self.success_message)
+         sweetify.success(self.request, 'Petition summary submitted successfully', button=True, timer=15000)
          return  redirect ('petitionsummary_detail', instance.id)
 
 
@@ -915,12 +911,11 @@ class PetitionSummaryUpdateView(UpdateView):
     template_name = 'petitions/summaries/petitionsummary_update.html'
     model = PetitionSummary
     form_class = PetitionSummaryEditForm
-    success_message = 'Petition summary updated successfully'
 
     def form_valid(self, form):
         summary = form.save(commit=False)
         summary.save()
-        messages.success(self.request, self.success_message)
+        sweetify.success(self.request, 'Petition summary updated successfully', button=True, timer=15000)
         return redirect('petitionsummary_detail', summary.id)
 
 def GeneratePetitionSummary(request, pk):
@@ -1264,12 +1259,11 @@ class HearingSummaryCreateView(CreateView):
     template_name = 'petitions/hearings/hearingsummary_form.html'
     model = HearingSummary
     form_class = HearingSummaryForm
-    success_message = 'Petition Hearing Summary added successfully'
     def form_valid(self, form):
         instance = form.save(commit=False)
         instance.added_by = CustomUser.objects.get(id=self.request.user.id)
         instance.save()
-        messages.success(self.request, self.success_message)
+        sweetify.success(self.request, 'Petition Hearing Summary added successfully', button=True, timer=15000)
         return redirect('hearingsummary_detail', instance.id)
 
 
@@ -1287,12 +1281,11 @@ class HearingSummaryUpdateView(UpdateView):
     template_name = 'petitions/hearings/hearingsummary_update.html'
     model = HearingSummary
     form_class = HearingSummaryUpdateForm
-    success_message = 'Petition Hearing Summary updated successfully'
 
     def form_valid(self, form):
         hearing = form.save(commit=False)
         hearing.save()
-        messages.success(self.request, self.success_message)
+        sweetify.success(self.request, 'Petition Hearing Summary updated successfully', button=True, timer=15000)
         return redirect('hearingsummary_detail', hearing.id)
 
 def GenerateHearingForm(request, pk):
@@ -1685,12 +1678,11 @@ class InterviewSummaryCreateView(CreateView):
     template_name = 'petitions/interviews/interviewsummary_form.html'
     model = InterviewSummary
     form_class = InterviewSummaryForm
-    success_message = 'Interview Summary for the petitioner added sucessfully'
     def form_valid(self, form):
         instance = form.save(commit=False)
         instance.added_by = CustomUser.objects.get(id=self.request.user.id)
         instance.save()
-        messages.success(self.request, self.success_message)
+        sweetify.success(self.request, 'Interview Summary for the petitioner added sucessfully', button=True, timer=15000)
         return redirect('interviewsummary_detail', instance.id)
 
 
@@ -1708,12 +1700,11 @@ class InterviewSummaryUpdateView(UpdateView):
     template_name = 'petitions/interviews/interviewsummary_edit.html'
     model = InterviewSummary
     form_class = InterviewSummaryEditForm
-    success_message = 'Interview Summary for the petitioner updated sucessfully'
-
     def form_valid(self, form):
         interview = form.save(commit=False)
         interview.save()
-        messages.success(self.request, self.success_message)
+        sweetify.success(self.request, 'Interview Summary for the petitioner updated sucessfully', button=True,
+                         timer=15000)
         return redirect('interviewsummary_detail', interview.id)
 
 
@@ -2061,12 +2052,11 @@ class RecommendationFormCreateView(CreateView):
     template_name = 'petitions/recommendations/recommendationform_form.html'
     model = RecommendationForm
     form_class = RecommendationFormForm
-    success_message = 'Recommendation for the petitioner submitted successfully'
     def form_valid(self, form):
         instance = form.save(commit=False)
         instance.added_by = CustomUser.objects.get(id=self.request.user.id)
         instance.save()
-        messages.success(self.request, self.success_message)
+        sweetify.success(self.request, 'Recommendation for the petitioner submitted successfully', button=True,timer=15000)
         return redirect('recommendationform_detail', instance.id)
 
 class RecommendationFormDetailView(DetailView):
@@ -2083,12 +2073,11 @@ class RecommendationFormUpdateView(UpdateView):
     template_name = 'petitions/recommendations/recommendationform_edit.html'
     model = RecommendationForm
     form_class = RecommendationUpdateForm
-    success_message = 'Recommendation for the petitioner updated successfully'
-
     def form_valid(self, form):
         recommendation = form.save(commit=False)
         recommendation.save()
-        messages.success(self.request, self.success_message)
+        sweetify.success(self.request, 'Recommendation for the petitioner updated successfully', button=True,
+                         timer=15000)
         return redirect('recommendationform_detail', recommendation.id)
 
 
@@ -2186,12 +2175,11 @@ class ExitCreateView(CreateView):
     template_name = 'petitions/exits/exits_form.html'
     model = Exit
     form_class = ExitForm
-    success_message = 'Exit Details for the petitioner submitted successfully'
     def form_valid(self, form):
         instance = form.save(commit=False)
         instance.added_by = CustomUser.objects.get(id=self.request.user.id)
         instance.save()
-        messages.success(self.request, self.success_message)
+        sweetify.success(self.request, 'Exit Details for the petitioner submitted successfully', button=True, timer=15000)
         return redirect('petitions_exit_detail', instance.id)
     def get_context_data(self, **kwargs):
         context = super(ExitCreateView, self).get_context_data(**kwargs)
@@ -2214,12 +2202,11 @@ class ExitUpdateView(UpdateView):
     template_name = 'petitions/exits/updateexits_form.html'
     model = Exit
     form_class = ExitFormUpdate
-    success_message = 'Exit Details for the petitioner updated successfully'
-
     def form_valid(self, form):
         exitpetitioner = form.save(commit=False)
         exitpetitioner.save()
-        messages.success(self.request, self.success_message)
+        sweetify.success(self.request, 'Exit Details for the petitioner updated successfully', button=True,
+                         timer=15000)
         return redirect('petitions_exit_detail', exitpetitioner.id)
     def get_context_data(self, **kwargs):
         context = super(ExitUpdateView, self).get_context_data(**kwargs)
@@ -2280,12 +2267,11 @@ class GrantCreateView(CreateView):
     template_name = 'petitions/grants/grant_form.html'
     model = Grant
     form_class = GrantForm
-    success_message = 'Grand of petition generated successfully'
     def form_valid(self, form):
         instance = form.save(commit=False)
         instance.added_by = CustomUser.objects.get(id=self.request.user.id)
         instance.save()
-        messages.success(self.request, self.success_message)
+        sweetify.success(self.request, 'Grand of petition generated successfully', button=True, timer=15000)
         return redirect('petitions_grant_detail', instance.id)
 
 
@@ -2301,7 +2287,7 @@ class GrantDetailView(DetailView):
 
 def DeleteGrant(request,pk):
     Grant.objects.get(pk=pk).delete()
-    messages.add_message(request, messages.INFO, 'Grant deleted successfully')
+    sweetify.success(request, 'Grand of petition generated successfully', button=True, timer=15000)
     return redirect('petitions_grant_list')
 
 def GenerateGrant(request, pk):

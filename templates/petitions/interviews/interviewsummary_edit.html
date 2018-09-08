@@ -39,6 +39,23 @@
                                 </li>
                             </ul>
                             <div class="clearfix"></div>
+                            {% if form.errors %}
+                                <!-- Error messaging -->
+                                <div id="errors" style="color: red">
+                                    <div class="inner">
+                                        <p>There were some errors in the information you entered. Please correct the
+                                            following:</p>
+                                        {{ form.non_field_errors }}
+                                        <ul>
+                                            {% for field in form %}
+                                                {% if field.errors %}
+                                                    <li>{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- /Error messaging -->
+                            {% endif %}
                         </div>
                         <div class="x_content">
                             <p><a class="btn btn-default" href="{% url 'interviewsummary_list' %}">InterviewSummary
