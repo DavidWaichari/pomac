@@ -312,6 +312,18 @@ class SpecialConditionListView(ListView):
         context['today'] = today
         return context
 
+class ForeignersListView(ListView):
+    model = PetitionForm
+    template_name = 'petitions/foreigners_list.html'
+    def get_queryset(self):
+        queryset = PetitionForm.objects.filter(anypendingcourtmatter=False).exclude(nationality='Kenyan')
+        return queryset
+    def get_context_data(self, **kwargs):
+        context = super(ForeignersListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+
 class AppealedAgainstConvictionView(ListView):
     model = PetitionForm
     template_name = 'petitions/appealedagainstconviction_list.html'
@@ -2552,6 +2564,8 @@ def dashboard(request):
         'awaitingregrant':RecommendationForm.objects.filter(grant__isnull=True).filter(interview__hearing__admissibility__petitioner__exit__isnull=True).count(),
         'grants':Grant.objects.all().count(),
         'trustees': PetitionForm.objects.filter(anypendingcourtmatter=False).filter(areyouatrustee=True).count(),
+        'foreigners': PetitionForm.objects.filter(anypendingcourtmatter=False).exclude(nationality='Kenyan').count(),
+        'ppmental': PetitionForm.objects.filter(anypendingcourtmatter=False).filter(anyspecialcondition=True).filter(ageatconviction__gte=18).filter(prisonno__endswith='P').count(),
         'specialcondition': PetitionForm.objects.filter(anypendingcourtmatter=False).filter(anyspecialcondition=True).count(),
         'appealed': PetitionForm.objects.filter(anypendingcourtmatter=False).filter(appealedagainsttheconviction=True).count(),
         'withskillsattainedinprison': PetitionForm.objects.filter(anypendingcourtmatter=False).filter(anyspecialattributesorskills=True).count(),

@@ -10,6 +10,7 @@ def add_initial_data(apps, schema_editor):
     Court = apps.get_model('petitions', 'Court')
     SubCounty = apps.get_model('petitions', 'SubCounty')
     Prison = apps.get_model('petitions', 'Prison')
+    Offence = apps.get_model('petitions', 'Offence')
 
     baringo = County.objects.create(name='BARINGO')
     SubCounty.objects.create(name='BARINGO EAST', county=baringo)
@@ -660,7 +661,15 @@ def add_initial_data(apps, schema_editor):
     instance = Prison.objects.create(name='WUNDANYI')
     instance = Prison.objects.create(name='YATTA')
 
-
+#add few offences
+    instance = Offence.objects.create(name='Robbery With Violence')
+    instance = Offence.objects.create(name='Murder')
+    instance = Offence.objects.create(name='Robbery')
+    instance = Offence.objects.create(name='Manslaughter')
+    instance = Offence.objects.create(name='Defilement')
+    instance = Offence.objects.create(name='Rape')
+    instance = Offence.objects.create(name='Attempted Rape')
+    instance = Offence.objects.create(name='Attempted Robbery With Violence')
 
 class Migration(migrations.Migration):
 

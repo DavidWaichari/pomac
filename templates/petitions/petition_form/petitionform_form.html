@@ -44,6 +44,7 @@
                             {% endif %}
                         </div>
                         <div class="x_content">
+                            <input type="hidden" value="Kenyan" id="setKenyan">
                             <p><a class="btn btn-default" href="{% url 'petitionform_list' %}">PetitionForm
                                 Listing</a></p>
                             <div class="crispyform">
@@ -167,4 +168,22 @@
 
 {% block javascripts %}
     {{ block.super }}
+
+    <script>
+    $(document).ready(function () {
+        $('#div_id_nationality').hide();
+        $('#id_id_selectnationality_0_1').on('click', function () {
+           var kenyan = $('#setKenyan').val();
+            $('#id_nationality').val(kenyan);
+            console.log($('#id_nationality').val());
+             $('#div_id_nationality').hide('slow');
+        });
+
+        $('#id_id_selectnationality_0_2').on('click', function () {
+            $('#id_nationality').val('');
+            $('#id_nationality').prop('required', true);
+            $('#div_id_nationality').show('slow');
+        });
+    });
+    </script>
 {% endblock javascripts %}

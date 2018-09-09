@@ -54,7 +54,11 @@ class PetitionFormForm(forms.ModelForm):
 
     name = forms.CharField(label='Name of convicted criminal offender',
                            widget=forms.TextInput(attrs={'class': 'form-control'}))
-    nationality = forms.CharField(label='Nationality', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    selectnationality = forms.TypedChoiceField(label='Select Nationality',
+                                               coerce=boolean_coerce,
+                                               choices=((True, 'Kenyan'), (False, 'Foreigner')),
+                                               widget=forms.RadioSelect(attrs={'style': 'margin-left: 30px;'}))
+    nationality = forms.CharField(label='Nationality', widget=forms.TextInput(attrs={'class': 'form-control','value':'Kenyan'}))
     prison = forms.ModelChoiceField(queryset=Prison.objects.order_by('name'), label='Prison where held', widget=forms.Select(attrs={'class':'form-control'}))
     prisonno = forms.CharField(label='Prison Number', widget=forms.TextInput(attrs={'class': 'form-control'}))
     court = forms.ModelChoiceField(queryset=Court.objects.order_by('name'), label='Court Where Convicted', widget=forms.Select(attrs={'class':'form-control'}))
@@ -85,12 +89,12 @@ class PetitionFormForm(forms.ModelForm):
     whereoffensewascommitted = forms.CharField(label='Where the offense was committed',
                                                widget=forms.TextInput(attrs={'class': 'form-control'}))
 
-    convictedforlife = forms.TypedChoiceField(label='Were you sentenced to life imprisonment / death?',
+    convictedforlife = forms.TypedChoiceField(label='Were you sentenced to life imprisonment / death/ Presidential Pleasure',
                                               coerce=boolean_coerce,
                                               choices=((True, 'Yes'), (False, 'No')),
                                               widget=forms.RadioSelect(attrs={'style': 'margin-left: 30px;'}))
     sentence = forms.IntegerField(required=False,
-                               label='If No, the number of terms/ years sentenced',
+                               label='If No, the number of years sentenced',
                                widget=forms.NumberInput(attrs={'class': 'form-control'}))
     reliefsought = forms.CharField(label='Relief sought or nature of the petition',
                                    widget=forms.Select(choices=reliefsoughtcategories,
@@ -193,7 +197,7 @@ class PetitionFormForm(forms.ModelForm):
 
     class Meta:
         model = PetitionForm
-        fields = ['name', 'nationality', 'prison', 'prisonno', 'court', 'courtcaseno',
+        fields = ['name','selectnationality','nationality', 'prison', 'prisonno', 'court', 'courtcaseno',
                   'dateofcustody','dateofconviction',
                   'ageatconviction', 'agewhenoffensewascommited', 'county', 'subcounty', 'location',
                   'nextofkin', 'relationshipwithnextofkin',

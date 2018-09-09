@@ -139,7 +139,8 @@ class Offence(models.Model):
 class PetitionForm(models.Model):
     # Fields
     name = models.CharField(max_length=255)
-    nationality = models.CharField(max_length=30)
+    selectnationality = models.BooleanField()
+    nationality = models.CharField(max_length=30, null=True)
     prison = models.ForeignKey(Prison,
                                  null=True, blank=True, on_delete=models.SET_NULL)
     prisonno = models.CharField(max_length=30, unique=True)

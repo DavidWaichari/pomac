@@ -2,7 +2,7 @@
 $(document).ready(function () {
     today = new Date();
     //start of petition form validation
-     $("#div_id_sentence").hide();
+            $("#div_id_sentence").hide();
             $("#id_id_convictedforlife_0_1").click(function () {
                 $("#div_id_sentence").hide('slow');
                 $("#id_sentence").prop("required", false);
@@ -145,10 +145,12 @@ $(document).ready(function () {
             $('#id_dateofconviction').on('blur', function () {
                dateofcustody = $('#id_dateofcustody').datepicker('getDate');
                dateofconviction = $('#id_dateofconviction').datepicker('getDate');
-               if (dateofcustody > dateofconviction){
+               if ( $('#id_dateofconviction').val() != ''){
+                   if (dateofcustody > dateofconviction){
                    swal ("Confirm Dates!","the date of conviction must be recent than the date of custody","error");
                    $('#id_dateofconviction').val('');
                    $('#id_dateofcustody').val('');
+               }
                }
             });
 
