@@ -324,6 +324,32 @@ class ForeignersListView(ListView):
         context['today'] = today
         return context
 
+class PPMentalListView(ListView):
+    model = PetitionForm
+    template_name = 'petitions/ppmental_list.html'
+    def get_queryset(self):
+        queryset = PetitionForm.objects.filter(anypendingcourtmatter=False).filter(anyspecialcondition=True).filter(ageatconviction__gte=18).filter(prisonno__endswith='P')
+        return queryset
+    def get_context_data(self, **kwargs):
+        context = super(PPMentalListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+
+class PPUnderAgelListView(ListView):
+    model = PetitionForm
+    template_name = 'petitions/ppunderage_list.html'
+    def get_queryset(self):
+        queryset = PetitionForm.objects.filter(anypendingcourtmatter=False).filter(anyspecialcondition=True).filter(ageatconviction__lt=18).filter(prisonno__endswith='P')
+        return queryset
+    def get_context_data(self, **kwargs):
+        context = super(PPUnderAgelListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+
+
+
 class AppealedAgainstConvictionView(ListView):
     model = PetitionForm
     template_name = 'petitions/appealedagainstconviction_list.html'
@@ -2566,6 +2592,7 @@ def dashboard(request):
         'trustees': PetitionForm.objects.filter(anypendingcourtmatter=False).filter(areyouatrustee=True).count(),
         'foreigners': PetitionForm.objects.filter(anypendingcourtmatter=False).exclude(nationality='Kenyan').count(),
         'ppmental': PetitionForm.objects.filter(anypendingcourtmatter=False).filter(anyspecialcondition=True).filter(ageatconviction__gte=18).filter(prisonno__endswith='P').count(),
+        'ppunderage': PetitionForm.objects.filter(anypendingcourtmatter=False).filter(anyspecialcondition=True).filter(ageatconviction__lt=18).filter(prisonno__endswith='P').count(),
         'specialcondition': PetitionForm.objects.filter(anypendingcourtmatter=False).filter(anyspecialcondition=True).count(),
         'appealed': PetitionForm.objects.filter(anypendingcourtmatter=False).filter(appealedagainsttheconviction=True).count(),
         'withskillsattainedinprison': PetitionForm.objects.filter(anypendingcourtmatter=False).filter(anyspecialattributesorskills=True).count(),

@@ -557,7 +557,7 @@ def add_initial_data(apps, schema_editor):
     instance = Prison.objects.create(name='HOLA')
     instance = Prison.objects.create(name='HOMABAY')
     instance = Prison.objects.create(name='ISIOLO')
-    instance = Prison.objects.create(name='JAMUHURIVPRISON')
+    instance = Prison.objects.create(name='JAMUHURI PRISON')
     instance = Prison.objects.create(name='KABARNET')
     instance = Prison.objects.create(name='KAJIADO MAIN PRISON')
     instance = Prison.objects.create(name='KAKAMEGA MAIN')

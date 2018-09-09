@@ -184,6 +184,10 @@
             $('#id_nationality').prop('required', true);
             $('#div_id_nationality').show('slow');
         });
+
+        $('#id_prisonno').on('blur',function () {
+            $('#id_prisonno').val($(this).val().toUpperCase());
+        });
     });
     </script>
 {% endblock javascripts %}

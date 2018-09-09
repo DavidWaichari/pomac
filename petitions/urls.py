@@ -156,5 +156,7 @@ urlpatterns = [
     path('petitionform/appealed-against-conviction', login_required(views.AppealedAgainstConvictionView.as_view()), name='appealedagainstconviction'),
     path('petitionform/petitioners-with-skills', login_required(views.PetitionersWithSkillsView.as_view()), name='specialattributesorskills'),
     path('petitionform/foreigners', login_required(views.ForeignersListView.as_view()), name='foreigners_list'),
+    path('petitionform/pp-mental', login_required(views.PPMentalListView.as_view()), name='ppmental_list'),
+    path('petitionform/pp-underage', login_required(views.PPUnderAgelListView.as_view()), name='ppunderage_list'),
 ]
 
