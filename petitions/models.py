@@ -149,8 +149,8 @@ class PetitionForm(models.Model):
     courtcaseno = models.CharField(max_length=10)
     dateofconviction = models.DateField()
     dateofcustody = models.DateField()
-    ageatconviction = models.IntegerField(max_length=2)
-    agewhenoffensewascommited = models.IntegerField(max_length=2)
+    ageatconviction = models.IntegerField()
+    agewhenoffensewascommited = models.IntegerField()
     county = models.ForeignKey(County,
                                  null=True, blank=True, on_delete=models.SET_NULL)
     subcounty = models.ForeignKey(SubCounty,
@@ -164,7 +164,7 @@ class PetitionForm(models.Model):
     homechief = models.CharField(max_length=30)
     whereoffensewascommitted = models.CharField(max_length=50, )
     convictedforlife = models.BooleanField()
-    sentence = models.IntegerField(null=True, blank= True ,max_length=2)
+    sentence = models.IntegerField(null=True, blank= True)
     reliefsought = models.CharField(max_length=100)
     offence = models.ForeignKey(Offence,
                                  null=True, blank=True, on_delete=models.SET_NULL)
@@ -196,6 +196,8 @@ class PetitionForm(models.Model):
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
                                  null=True, blank=True, on_delete=models.SET_NULL)
+    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                 null=True, blank=True, on_delete=models.SET_NULL, related_name='updated_by')
 
     class Meta:
         ordering = ('-created',)
@@ -233,6 +235,8 @@ class AdmissibilityForm(models.Model):
     petitioner = models.OneToOneField(PetitionForm, on_delete=models.CASCADE, related_name='admissibility')
     added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
                                  null=True, blank=True, on_delete=models.SET_NULL)
+    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                   null=True, blank=True, on_delete=models.SET_NULL, related_name='admissibility_updated_by')
     class Meta:
         ordering = ('-created',)
 
@@ -263,6 +267,8 @@ class PetitionSummary(models.Model):
     admissibility = models.ForeignKey(AdmissibilityForm, on_delete=models.CASCADE)
     added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
                                  null=True, blank=True, on_delete=models.SET_NULL)
+    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                   null=True, blank=True, on_delete=models.SET_NULL, related_name='summary_updated_by')
 
     class Meta:
         ordering = ('-created',)
@@ -314,6 +320,8 @@ class HearingSummary(models.Model):
     admissibility = models.OneToOneField(AdmissibilityForm,on_delete=models.CASCADE, related_name='hearing')
     added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
                                  null=True, blank=True, on_delete=models.SET_NULL)
+    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                   null=True, blank=True, on_delete=models.SET_NULL, related_name='hearing_updated_by')
 
     def get_readonly_fields(self, request, obj=None):
         if obj:
@@ -370,6 +378,8 @@ class InterviewSummary(models.Model):
     hearing = models.OneToOneField(HearingSummary, on_delete=models.CASCADE)
     added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
                                  null=True, blank=True, on_delete=models.SET_NULL)
+    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                   null=True, blank=True, on_delete=models.SET_NULL, related_name='interview_updated_by')
 
     class Meta:
         ordering = ('-created',)
@@ -400,6 +410,8 @@ class RecommendationForm(models.Model):
     interview = models.OneToOneField(InterviewSummary,on_delete=models.CASCADE)
     added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
                                  null=True, blank=True, on_delete=models.SET_NULL)
+    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                   null=True, blank=True, on_delete=models.SET_NULL, related_name='recommendation_updated_by')
 
     class Meta:
         ordering = ('-created',)
@@ -426,6 +438,8 @@ class Grant(models.Model):
     recommendation = models.ForeignKey(RecommendationForm,on_delete=models.CASCADE)
     added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
                                  null=True, blank=True, on_delete=models.SET_NULL)
+    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                   null=True, blank=True, on_delete=models.SET_NULL, related_name='grant_updated_by')
 
     class Meta:
         ordering = ('-created',)
@@ -454,6 +468,8 @@ class Exit(models.Model):
 
     added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
                                  null=True, blank=True, on_delete=models.SET_NULL)
+    updated_by = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                   null=True, blank=True, on_delete=models.SET_NULL, related_name='exit_updated_by')
 
     class Meta:
         ordering = ('-created',)

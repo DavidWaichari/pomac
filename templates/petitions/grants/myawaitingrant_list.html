@@ -85,6 +85,10 @@
                                     <td>Pending Court Matter Explanation</td>
                                     <td>Petition Added By</td>
                                     <td>Petition Added On</td>
+                                    <td>Grant Issued By</td>
+                                    <td>Grant Issued On</td>
+                                    <td>Grant Last Updated By</td>
+                                    <td>Grant Last Updated On</td>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -189,6 +193,11 @@
                                         <td>{{ object.interview.hearing.admissibility.petitioner.explanationofpendingcourtmatter }}</td>
                                         <td>{{ object.interview.hearing.admissibility.petitioner.added_by }}</td>
                                         <td>{{ object.interview.hearing.admissibility.petitioner.created }}</td>
+                                        <td>{{ object.interview.hearing.admissibility.petitioner.created }}</td>
+                                        <td>{{ object.added_by}}</td>
+                                        <td>{{ object.created }}</td>
+                                        <td>{{ object.updated_by}}</td>
+                                        <td>{{ object.last_updated}}</td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>

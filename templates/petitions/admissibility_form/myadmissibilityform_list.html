@@ -95,6 +95,7 @@
                                     <td>Ordered for Investigation</td>
                                     <td>Description of Order for Investigation</td>
                                     <td>Admissibility Added On</td>
+                                    <td>Admissibility last Updated By</td>
                                     <td>Admissibility last Updated On</td>
                                 </tr>
                                 </thead>
@@ -218,6 +219,7 @@
                                         {% endif %}
                                     <td>{{ object.orderforinvestigationdescription }}</td>
                                     <td>{{ object.created }}</td>
+                                        <td>{{ object.updated_by }}</td>
                                         <td>{{ object.last_updated }}</td>
                                     </tr>
                                 {% endfor %}

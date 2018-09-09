@@ -164,6 +164,24 @@ $(document).ready(function () {
                }
             });
 
+            $('#div_id_nationality').hide();
+            $('#id_id_selectnationality_0_1').on('click', function () {
+           var kenyan = $('#setKenyan').val();
+            $('#id_nationality').val(kenyan);
+            console.log($('#id_nationality').val());
+             $('#div_id_nationality').hide('slow');
+            });
+
+            $('#id_id_selectnationality_0_2').on('click', function () {
+            $('#id_nationality').val('');
+            $('#id_nationality').prop('required', true);
+            $('#div_id_nationality').show('slow');
+            });
+
+             $('#id_prisonno').on('blur',function () {
+            $('#id_prisonno').val($(this).val().toUpperCase());
+        });
+
     //start of admissibility validation
 
             $("#div_id_hearingdate").hide();

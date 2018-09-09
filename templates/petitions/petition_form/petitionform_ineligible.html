@@ -87,6 +87,7 @@
                                     <td>Pending Court Matter</td>
                                     <td>Pending Court Matter Explanation</td>
                                     <td>Created At</td>
+                                     <td>Last Updated By</td>
                                     <td>Last Updated</td>
                                 </tr>
                                 </thead>
@@ -183,6 +184,7 @@
                                         {% endif %}
                                         <td>{{ object.explanationofpendingcourtmatter }}</td>
                                     <td>{{ object.created }}</td>
+                                        <td>{{ object.updated_by }}</td>
                                         <td>{{ object.last_updated }}</td>
                                     </tr>
                                 {% endfor %}

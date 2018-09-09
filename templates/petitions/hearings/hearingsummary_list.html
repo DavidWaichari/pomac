@@ -105,6 +105,7 @@
                                     <td>Set Review Date</td>
                                     <td>Members Present at the Hearing</td>
                                     <td>Hearing Summary Added On</td>
+                                    <td>Hearing Summary last Updated By</td>
                                     <td>Hearing Summary last Updated On</td>
                                 </tr>
                                 </thead>
@@ -235,6 +236,7 @@
                                             {{ object.member10 }}
                                         </td>
                                         <td>{{ object.created }}</td>
+                                        <td>{{ object.updated_by }}</td>
                                         <td>{{ object.last_updated }}</td>
                                     </tr>
                                 {% endfor %}
