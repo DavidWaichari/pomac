@@ -222,6 +222,16 @@ class PetitionFormListView(ListView):
         context['today'] =today
         return context
 
+class PetitionFormStatusListView(ListView):
+    model = PetitionForm
+    template_name = 'petitions/petitionstatus_list.html'
+    def get_context_data(self, **kwargs):
+        context = super(PetitionFormStatusListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] =today
+        return context
+
+
 class MyPetitionFormListView(ListView):
     model = PetitionForm
     template_name = 'petitions/petition_form/mypetitionform_list.html'
@@ -926,6 +936,14 @@ def GenerateAdmissibilityForm(request, pk):
 class PetitionSummaryListView(ListView):
     template_name = 'petitions/summaries/petitionsummary_list.html'
     model = PetitionSummary
+    def get_queryset(self):
+        queryset = PetitionSummary.objects.all()
+        return queryset
+    def get_context_data(self, **kwargs):
+        context = super(PetitionSummaryListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
 
 class MyPetitionSummaryListView(ListView):
     template_name = 'petitions/summaries/mypetitionsummary_list.html'
@@ -1169,7 +1187,7 @@ def GeneratePetitionSummary(request, pk):
     return HttpResponse(pdf, content_type='application/pdf')
 
 def DeletePetitionSummary(request,pk):
-    Exit.objects.get(pk=pk).delete()
+    PetitionSummary.objects.get(pk=pk).delete()
     sweetify.success(request, 'Petition Summary Deleted Successfully', button=True, timer=15000)
     return redirect('petitionsummary_list')
 
@@ -2586,7 +2604,7 @@ def dashboard(request):
         'totaladmissibilities': AdmissibilityForm.objects.count(),
         'admissiblepetitions': AdmissibilityForm.objects.filter(admissability=True).count(),
         'inadmissiblepetitions': AdmissibilityForm.objects.filter(admissability=False).count(),
-        'awaitingadmissibility': PetitionForm.objects.filter(anypendingcourtmatter=False).filter(admissibility__isnull=True).filter(exit__isnull=True).count(),
+        'awaitingadmissibility': PetitionForm.objects.filter(anypendingcourtmatter=False).filter(admissibilityform__isnull=True).filter(exit__isnull=True).count(),
         'summaries': PetitionSummary.objects.all().count(),
         'hearings': HearingSummary.objects.all().count(),
         'deferredhearings': HearingSummary.objects.filter(action='Defer the petition to a later date').count(),
@@ -2632,7 +2650,7 @@ def mydashboard(request):
         'totaladmissibilities': AdmissibilityForm.objects.filter(added_by=request.user).count(),
         'admissiblepetitions': AdmissibilityForm.objects.filter(admissability=True).filter(added_by=request.user).count(),
         'inadmissiblepetitions': AdmissibilityForm.objects.filter(admissability=False).filter(added_by=request.user).count(),
-        'awaitingadmissibility': PetitionForm.objects.filter(anypendingcourtmatter=False).filter(admissibility__isnull=True).filter(exit__isnull=True).filter(added_by=request.user).count(),
+        'awaitingadmissibility': PetitionForm.objects.filter(anypendingcourtmatter=False).filter(admissibilityform__isnull=True).filter(exit__isnull=True).filter(added_by=request.user).count(),
         'summaries': PetitionSummary.objects.all().filter(added_by=request.user).count(),
         'hearings': HearingSummary.objects.all().filter(added_by=request.user).count(),
         'deferredhearings': HearingSummary.objects.filter(action='Defer the petition to a later date').filter(added_by=request.user).count(),

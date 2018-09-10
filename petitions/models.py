@@ -232,7 +232,7 @@ class AdmissibilityForm(models.Model):
     orderforinvestigationdescription = models.TextField(max_length=300,null=True, blank= True)
 
     # Relationship Fields
-    petitioner = models.OneToOneField(PetitionForm, on_delete=models.CASCADE, related_name='admissibility')
+    petitioner = models.OneToOneField(PetitionForm, on_delete=models.CASCADE)
     added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
                                  null=True, blank=True, on_delete=models.SET_NULL)
     updated_by = models.ForeignKey(settings.AUTH_USER_MODEL,

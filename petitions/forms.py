@@ -222,7 +222,7 @@ class AdmissibilityCreateForm(forms.ModelForm):
         elif str(value).lower() in ('0', 'false'):
             return False
 
-    petitioner = forms.ModelChoiceField(label='Choose Petitioner',queryset=PetitionForm.objects.filter(anypendingcourtmatter=False).filter(admissibility__isnull=True).filter(exit__isnull=True), widget=forms.Select(attrs={'class': 'form-control'}))
+    petitioner = forms.ModelChoiceField(label='Choose Petitioner',queryset=PetitionForm.objects.filter(anypendingcourtmatter=False).filter(admissibilityform__isnull=True).filter(exit__isnull=True), widget=forms.Select(attrs={'class': 'form-control'}))
 
     admissability = forms.TypedChoiceField(
         label='Do you wish to render the this petition ADMISSIBLE?',

@@ -17,6 +17,7 @@ urlpatterns = [
     path('petitionform/my-eligible-petitions', login_required(views.MyEligiblePetitionFormListView.as_view()), name='myeligiblepetitionform_list'),
     path('petitionform/my-ineligle-petitions', login_required(views.MyInEligiblePetitionFormListView.as_view()), name='myineligiblepetitionform_list'),
     path('petitionform/delete/<int:pk>/', login_required(views.DeletePetitionForm),name='petitionform_delete'),
+    path('petitionform/status', login_required(views.PetitionFormStatusListView.as_view()), name='petitionformstatus_list'),
 
     # urls for Admissibility Form
     path('admissibilityform/', login_required(views.AdmissibilityFormListView.as_view()), name='admissibilityform_list'),
