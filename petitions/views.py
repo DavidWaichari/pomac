@@ -2,11 +2,13 @@ from datetime import date
 
 import sweetify
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
-from django.http import HttpResponse, request, HttpResponseRedirect
+from django.core.exceptions import PermissionDenied
+from django.http import HttpResponse, request, HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
 
 from users.models import CustomUser
@@ -28,9 +30,9 @@ class CountyListView(ListView):
         return queryset
 
 
-class CountyCreateView(CreateView):
+class CountyCreateView(PermissionRequiredMixin,CreateView):
     template_name = 'petitions/counties/county_form.html'
-    #permission_required = 'petitions.add_county'
+    permission_required = 'petitions.add_county'
     model = County
     form_class = CountyForm
     success_message = "County added successfully."
@@ -56,6 +58,15 @@ class CountyUpdateView(UpdateView):
         county.save()
         messages.success(self.request, self.success_message)
         return redirect('petitions_county_detail', county.id)
+
+    def dispatch(self, request, *args, **kwargs):
+        couty = County.objects.get(pk=self.kwargs.get('pk'))
+        coutydate = couty.created.date()
+        if not coutydate == date.today():
+            """ Permission check for this class """
+            if not request.user.has_perm('petitions.change_county'):
+                raise PermissionDenied("You do not have permission to delete events")
+        return super(CountyUpdateView, self).dispatch(request, *args, **kwargs)
 
 def load_subcounties(request):
     county_id = request.GET.get('county')
@@ -158,6 +169,7 @@ class CourtUpdateView(UpdateView):
     template_name = 'petitions/courts/court_form.html'
     model = Court
     form_class = CourtForm
+
 
 def CourtPetitionersListView(request, pk):
     court = Court.objects.get(id=pk)
@@ -418,6 +430,19 @@ class PetitionFormUpdateView(UpdateView):
          instance.save()
          sweetify.success(self.request, 'Petition details updated successfully', button=True, timer=15000)
          return  redirect ('petitionform_detail', instance.id)
+    def dispatch(self, request, *args, **kwargs):
+        petitiontoupdate = PetitionForm.objects.get(pk=self.kwargs.get('pk'))
+        petitiondate = petitiontoupdate.created.date()
+        if not petitiondate == date.today():
+            """ Permission check for this class """
+            if not request.user.has_perm('petitions.change_petitionform'):
+                raise PermissionDenied("You do not have permission to delete events")
+        else:
+            if not petitiontoupdate.added_by == self.request.user:
+                sweetify.success(request, 'You can only update your own petition', button=True,timer=15000)
+                return redirect('mypetitionform_list')
+        return super(PetitionFormUpdateView, self).dispatch(request, *args, **kwargs)
+
 
 def DeletePetitionForm(request,pk):
     PetitionForm.objects.get(pk=pk).delete()
