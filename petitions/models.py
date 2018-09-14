@@ -205,6 +205,8 @@ class PetitionForm(models.Model):
             ('can_view_petitionforms', 'User can view all petitions'),
             ('can_view_mypetitionforms', 'User can view all my petitions'),
             ('can_view_petitionformstatus', 'User can view the status of petitions'),
+            ('can_view_petitionformdetails', 'User can view the details of petitions'),
+            ('can_view_main_dashboard', 'User can view main dashboard'),
         )
         ordering = ('-created',)
 
@@ -252,7 +254,7 @@ class AdmissibilityForm(models.Model):
         permissions = (
             ('can_view_admissibilityform', 'User can view all admissibilities'),
             ('can_view_myadmissibilityform', 'User can view all my admissibilities'),
-            ('can_print_admissibilityform', 'User can view print admissibility form'),
+            ('can_print_admissibilityform', 'User can print admissibility form'),
             ('can_view_admissibilityformdetails', 'User can view details of admissibility'),
         )
 
@@ -291,6 +293,8 @@ class PetitionSummary(models.Model):
         permissions = (
             ('can_view_petitionsummary', 'User can view all summaries'),
             ('can_view_mypetitionsummary', 'User can view all my summaries'),
+            ('can_view_petitionsummarydetails', 'User can view all petition summary details'),
+            ('can_print_petitionsummary', 'User can print the petition summary'),
         )
 
     def __unicode__(self):
@@ -352,8 +356,10 @@ class HearingSummary(models.Model):
     class Meta:
         ordering = ('-created',)
         permissions = (
-            ('can_view_hearingsummary', 'User can view all hearings'),
-            ('can_view_mypetitionsummary', 'User can view all my hearings'),
+            ('can_view_hearingsummaries', 'User can view all hearings'),
+            ('can_view_myhearings', 'User can view all his/her hearings'),
+            ('can_print_hearing', 'User can print hearing summary form'),
+            ('can_view_hearingdetails', 'User can view details of a hearing'),
         )
 
     def __unicode__(self):
@@ -409,7 +415,9 @@ class InterviewSummary(models.Model):
         ordering = ('-created',)
         permissions = (
             ('can_view_interviews', 'User can view all interviews'),
-            ('can_view_myinterviews', 'User can view all my interviews'),
+            ('can_view_myinterviews', 'User can view all his/her interviews'),
+            ('can_print_interviews', 'User can print hearing interview summary'),
+            ('can_view_interviewdetails', 'User can view details of an interview'),
         )
 
     def __unicode__(self):
@@ -445,7 +453,9 @@ class RecommendationForm(models.Model):
         ordering = ('-created',)
         permissions = (
             ('can_view_recommendations', 'User can view all recommendations'),
-            ('can_view_myrecommendations', 'User can view all my recommendations'),
+            ('can_view_myrecommendations', 'User can view all his/her recommendations'),
+            ('can_print_recommendations', 'User can  print a recommendation'),
+            ('can_view_recommendationdetails', 'User can view details of a recommendation'),
         )
 
     def __unicode__(self):
@@ -476,8 +486,10 @@ class Grant(models.Model):
     class Meta:
         ordering = ('-created',)
         permissions = (
-            ('can_view_grants', 'User can view all grants'),
-            ('can_view_mygrants', 'User can view all my grants'),
+            ('can_view_grants', 'User can view all the grant of petitions'),
+            ('can_view_mygrants', 'User can view all his/her grants of petitions'),
+            ('can_print_grants', 'User can  print a grant'),
+            ('can_view_grantdetails', 'User can view details of a grant'),
         )
 
     def __unicode__(self):
@@ -510,8 +522,8 @@ class Exit(models.Model):
     class Meta:
         ordering = ('-created',)
         permissions = (
-            ('can_view_exits', 'User can view all exits'),
-            ('can_view_myexits', 'User can view all my exits'),
+            ('can_view_exits', 'User can view all the petitioners who have exited'),
+            ('can_view_exitdetails', 'User can view details of a grant'),
         )
 
     def __unicode__(self):

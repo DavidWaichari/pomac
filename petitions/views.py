@@ -443,9 +443,11 @@ class PetitionFormUpdateView(UpdateView):
             if not request.user.has_perm('petitions.change_petitionform'):
                 raise PermissionDenied("You do not have permission to delete events")
         else:
-            if not petitiontoupdate.added_by == self.request.user:
-                sweetify.success(request, 'You can only update your own petition', button=True,timer=15000)
-                return redirect('mypetitionform_list')
+            if  request.user.has_perm('petitions.change_petitionform'):
+                return super(PetitionFormUpdateView, self).dispatch(request, *args, **kwargs)
+            else:
+                if not petitiontoupdate.added_by == self.request.user:
+                    raise PermissionDenied("You do not have permission to delete events")
         return super(PetitionFormUpdateView, self).dispatch(request, *args, **kwargs)
 
 @permission_required ('petitions.delete_petitionform', raise_exception=True)
@@ -828,12 +830,15 @@ class AdmissibilityFormUpdateView(UpdateView):
             if not request.user.has_perm('petitions.change_admissibilityform'):
                 raise PermissionDenied("You do not have permission to delete events")
         else:
-            if not admissibilitytoupdate.added_by == self.request.user:
-                sweetify.success(request, 'You can only update your own petition', button=True,timer=15000)
-                return redirect('mypetitionform_list')
+            if request.user.has_perm('petitions.change_petitionform'):
+                return super(AdmissibilityFormUpdateView, self).dispatch(request, *args, **kwargs)
+            else:
+                if not admissibilitytoupdate.added_by == self.request.user:
+                    raise PermissionDenied("You do not have permission to delete events")
         return super(AdmissibilityFormUpdateView, self).dispatch(request, *args, **kwargs)
 
 
+@permission_required ('petitions.can_print_admissibilityform', raise_exception=True)
 def GenerateAdmissibilityForm(request, pk):
     admissibility = AdmissibilityForm.objects.get(pk=pk)
     today = date.today()
@@ -1034,6 +1039,7 @@ def GenerateAdmissibilityForm(request, pk):
     pdf = render_to_pdf('petitions/admissibility_form/admissibilityform_print.html', data)
     return HttpResponse(pdf, content_type='application/pdf')
 
+
 class PetitionSummaryListView(ListView):
     template_name = 'petitions/summaries/petitionsummary_list.html'
     model = PetitionSummary
@@ -1045,6 +1051,11 @@ class PetitionSummaryListView(ListView):
         today = date.today()
         context['today'] = today
         return context
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_petitionsummary'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(PetitionSummaryListView, self).dispatch(request, *args, **kwargs)
 
 class MyPetitionSummaryListView(ListView):
     template_name = 'petitions/summaries/mypetitionsummary_list.html'
@@ -1057,6 +1068,11 @@ class MyPetitionSummaryListView(ListView):
         today = date.today()
         context['today'] = today
         return context
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_mypetitionsummary'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(MyPetitionSummaryListView, self).dispatch(request, *args, **kwargs)
 
 class AwaitingPetitionSummaryListView(ListView):
     template_name = 'petitions/summaries/awaitingpetitionsummary_list.html'
@@ -1070,6 +1086,12 @@ class AwaitingPetitionSummaryListView(ListView):
         context['today'] = today
         return context
 
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_petitionsummary'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(AwaitingPetitionSummaryListView, self).dispatch(request, *args, **kwargs)
+
 class MyAwaitingPetitionSummaryListView(ListView):
     template_name = 'petitions/summaries/myawaitingpetitionsummary_list.html'
     model = AdmissibilityForm
@@ -1082,6 +1104,11 @@ class MyAwaitingPetitionSummaryListView(ListView):
         today = date.today()
         context['today'] = today
         return context
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_mypetitionsummary'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(MyAwaitingPetitionSummaryListView, self).dispatch(request, *args, **kwargs)
 
 
 class PetitionSummaryCreateView(CreateView):
@@ -1095,11 +1122,21 @@ class PetitionSummaryCreateView(CreateView):
          instance.save()
          sweetify.success(self.request, 'Petition summary submitted successfully', button=True, timer=15000)
          return  redirect ('petitionsummary_detail', instance.id)
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.add_petitionsummary'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(PetitionSummaryCreateView, self).dispatch(request, *args, **kwargs)
 
 
 class PetitionSummaryDetailView(DetailView):
     template_name = 'petitions/summaries/petitionsummary_details.html'
     model = PetitionSummary
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_petitionsummarydetails'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(PetitionSummaryDetailView, self).dispatch(request, *args, **kwargs)
 
 
 class PetitionSummaryUpdateView(UpdateView):
@@ -1114,6 +1151,22 @@ class PetitionSummaryUpdateView(UpdateView):
         sweetify.success(self.request, 'Petition summary updated successfully', button=True, timer=15000)
         return redirect('petitionsummary_detail', summary.id)
 
+    def dispatch(self, request, *args, **kwargs):
+        summarytoupdate = PetitionSummary.objects.get(pk=self.kwargs.get('pk'))
+        summarydate = summarytoupdate.created.date()
+        if not summarydate == date.today():
+            """ Permission check for this class """
+            if not request.user.has_perm('petitions.change_admissibilityform'):
+                raise PermissionDenied("You do not have permission to delete events")
+        else:
+            if request.user.has_perm('petitions.change_petitionform'):
+                return super(PetitionSummaryUpdateView, self).dispatch(request, *args, **kwargs)
+            else:
+                if not summarytoupdate.added_by == self.request.user:
+                    raise PermissionDenied("You do not have permission to delete events")
+        return super(PetitionSummaryUpdateView, self).dispatch(request, *args, **kwargs)
+
+@permission_required ('petitions.can_print_petitionsummary', raise_exception=True)
 def GeneratePetitionSummary(request, pk):
     summary = PetitionSummary.objects.get(pk=pk)
     today = date.today()
@@ -1287,10 +1340,12 @@ def GeneratePetitionSummary(request, pk):
     pdf = render_to_pdf('petitions/summaries/petitionsummary_print.html', data)
     return HttpResponse(pdf, content_type='application/pdf')
 
+@permission_required ('petitions.delete_petitionsummary', raise_exception=True)
 def DeletePetitionSummary(request,pk):
     PetitionSummary.objects.get(pk=pk).delete()
     sweetify.success(request, 'Petition Summary Deleted Successfully', button=True, timer=15000)
     return redirect('petitionsummary_list')
+
 
 class HearingSummaryListView(ListView):
     template_name = 'petitions/hearings/hearingsummary_list.html'
@@ -1300,6 +1355,11 @@ class HearingSummaryListView(ListView):
         today = date.today()
         context['today'] = today
         return context
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_hearingsummaries'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(HearingSummaryListView, self).dispatch(request, *args, **kwargs)
 
 class MyHearingSummaryListView(ListView):
     template_name = 'petitions/hearings/myhearingsummary_list.html'
@@ -1313,6 +1373,13 @@ class MyHearingSummaryListView(ListView):
         queryset=HearingSummary.objects.filter(added_by=self.request.user)
         return queryset
 
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_myhearings'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(MyHearingSummaryListView, self).dispatch(request, *args, **kwargs)
+
+
 class AwaitingHearingSummaryListView(ListView):
     template_name = 'petitions/hearings/awaitinghearingsummary_list.html'
     model = AdmissibilityForm
@@ -1325,6 +1392,12 @@ class AwaitingHearingSummaryListView(ListView):
         queryset=AdmissibilityForm.objects.filter(admissability=True).filter(hearingdate__isnull=False).filter(hearing__isnull=True).filter(petitioner__exit__isnull=True)
         return queryset
 
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_hearingsummaries'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(AwaitingHearingSummaryListView, self).dispatch(request, *args, **kwargs)
+
 class AwaitingScheduleforHearingSummaryListView(ListView):
     template_name = 'petitions/hearings/awaitingschedulehearingsummary_list.html'
     model = AdmissibilityForm
@@ -1336,6 +1409,11 @@ class AwaitingScheduleforHearingSummaryListView(ListView):
     def get_queryset(self):
         queryset=AdmissibilityForm.objects.filter(admissability=True).filter(hearingdate__isnull=True).filter(hearing__isnull=True).filter(petitioner__exit__isnull=True)
         return queryset
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_hearingsummaries'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(AwaitingScheduleforHearingSummaryListView, self).dispatch(request, *args, **kwargs)
 
 class MyAwaitingHearingSummaryListView(ListView):
     template_name = 'petitions/hearings/myawaitinghearingsummary_list.html'
@@ -1349,6 +1427,12 @@ class MyAwaitingHearingSummaryListView(ListView):
         queryset = AdmissibilityForm.objects.filter(admissability=True).filter(hearingdate__isnull=False).filter(hearing__isnull=True).filter(
             petitioner__exit__isnull=True).filter(added_by=self.request.user)
         return queryset
+
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_myhearings'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(MyAwaitingHearingSummaryListView, self).dispatch(request, *args, **kwargs)
 
 
 
@@ -1364,6 +1448,11 @@ class HearingSummaryDeferredListView(ListView):
         queryset = super(HearingSummaryDeferredListView, self).get_queryset()
         queryset = queryset.filter(action='Defer the petition to a later date')
         return queryset
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_hearingsummaries'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(HearingSummaryDeferredListView, self).dispatch(request, *args, **kwargs)
 
 class MyHearingSummaryDeferredListView(ListView):
     template_name = 'petitions/hearings/myhearingsummary_deferred.html'
@@ -1378,6 +1467,12 @@ class MyHearingSummaryDeferredListView(ListView):
         queryset = queryset.filter(action='Defer the petition to a later date')
         return queryset
 
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_myhearings'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(MyHearingSummaryDeferredListView, self).dispatch(request, *args, **kwargs)
+
 class HearingSummaryDeclinedListView(ListView):
     template_name = 'petitions/hearings/hearingsummary_declined.html'
     model = HearingSummary
@@ -1390,6 +1485,11 @@ class HearingSummaryDeclinedListView(ListView):
         queryset = super(HearingSummaryDeclinedListView, self).get_queryset()
         queryset = queryset.filter(action='Decline the Petition')
         return queryset
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_hearingsummaries'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(HearingSummaryDeclinedListView, self).dispatch(request, *args, **kwargs)
 
 class MyHearingSummaryDeclinedListView(ListView):
     template_name = 'petitions/hearings/myhearingsummary_declined.html'
@@ -1404,6 +1504,12 @@ class MyHearingSummaryDeclinedListView(ListView):
         queryset = queryset.filter(action='Decline the Petition').filter(added_by=self.request.user)
         return queryset
 
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_myhearings'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(MyHearingSummaryDeclinedListView, self).dispatch(request, *args, **kwargs)
+
 class HearingSummaryScheduledforInterviewListView(ListView):
     template_name = 'petitions/hearings/hearingsummary_scheduledforinterview.html'
     model = HearingSummary
@@ -1416,6 +1522,11 @@ class HearingSummaryScheduledforInterviewListView(ListView):
         queryset = super(HearingSummaryScheduledforInterviewListView, self).get_queryset()
         queryset = queryset.filter(action='Interview the Petitioner').filter(interviewdate__isnull= False).filter(interviewsummary__isnull=True).filter(admissibility__petitioner__exit__isnull=True)
         return queryset
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_hearingsummaries'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(HearingSummaryScheduledforInterviewListView, self).dispatch(request, *args, **kwargs)
 
 class MyHearingSummaryScheduledforInterviewListView(ListView):
     template_name = 'petitions/hearings/myhearingsummary_scheduledforinterview.html'
@@ -1428,6 +1539,12 @@ class MyHearingSummaryScheduledforInterviewListView(ListView):
     def get_queryset(self):
         queryset = HearingSummary.objects.filter(action='Interview the Petitioner').filter(interviewdate__isnull= False).filter(interviewsummary__isnull=True).filter(admissibility__petitioner__exit__isnull=True).filter(added_by=self.request.user)
         return queryset
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_myhearings'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(MyHearingSummaryScheduledforInterviewListView, self).dispatch(request, *args, **kwargs)
+
 
 class HearingSummaryAwaitingScheduleforInterviewListView(ListView):
     template_name = 'petitions/hearings/hearingsummary_awaitingscheduledforinterview.html'
@@ -1441,6 +1558,12 @@ class HearingSummaryAwaitingScheduleforInterviewListView(ListView):
         queryset = super(HearingSummaryAwaitingScheduleforInterviewListView, self).get_queryset()
         queryset = queryset.filter(action='Interview the Petitioner').filter(interviewdate__isnull= True).filter(interviewsummary__isnull=True)
         return queryset
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_hearingsummaries'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(HearingSummaryAwaitingScheduleforInterviewListView, self).dispatch(request, *args, **kwargs)
+
 
 class MyHearingSummaryAwaitingScheduleforInterviewListView(ListView):
     template_name = 'petitions/hearings/myhearingsummary_awaitingscheduledforinterview.html'
@@ -1454,6 +1577,11 @@ class MyHearingSummaryAwaitingScheduleforInterviewListView(ListView):
         queryset = super(MyHearingSummaryAwaitingScheduleforInterviewListView, self).get_queryset()
         queryset = queryset.filter(action='Interview the Petitioner').filter(interviewdate__isnull= True).filter(interviewsummary__isnull=True).filter(added_by=self.request.user)
         return queryset
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_myhearings'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(MyHearingSummaryAwaitingScheduleforInterviewListView, self).dispatch(request, *args, **kwargs)
 
 
 class HearingSummaryCreateView(CreateView):
@@ -1467,6 +1595,11 @@ class HearingSummaryCreateView(CreateView):
         instance.save()
         sweetify.success(self.request, 'Petition Hearing Summary added successfully', button=True, timer=15000)
         return redirect('hearingsummary_detail', instance.id)
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.add_hearingsummary'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(HearingSummaryCreateView, self).dispatch(request, *args, **kwargs)
 
 
 class HearingSummaryDetailView(DetailView):
@@ -1477,6 +1610,11 @@ class HearingSummaryDetailView(DetailView):
         today = date.today()
         context['today'] = today
         return context
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_hearingdetails'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(HearingSummaryDetailView, self).dispatch(request, *args, **kwargs)
 
 
 class HearingSummaryUpdateView(UpdateView):
@@ -1490,7 +1628,23 @@ class HearingSummaryUpdateView(UpdateView):
         hearing.save()
         sweetify.success(self.request, 'Petition Hearing Summary updated successfully', button=True, timer=15000)
         return redirect('hearingsummary_detail', hearing.id)
+    def dispatch(self, request, *args, **kwargs):
+        hearingsummarytoupdate = HearingSummary.objects.get(pk=self.kwargs.get('pk'))
+        hearingdate = hearingsummarytoupdate.created.date()
+        if not hearingdate == date.today():
+            """ Permission check for this class """
+            if not request.user.has_perm('petitions.change_hearingsummary'):
+                raise PermissionDenied("You do not have permission to delete events")
+        else:
+            if request.user.has_perm('petitions.change_petitionform'):
+                return super(HearingSummaryUpdateView, self).dispatch(request, *args, **kwargs)
+            else:
+                if not hearingsummarytoupdate.added_by == self.request.user:
+                    raise PermissionDenied("You do not have permission to delete events")
+        return super(HearingSummaryUpdateView, self).dispatch(request, *args, **kwargs)
 
+
+@permission_required ('petitions.can_print_hearing', raise_exception=True)
 def GenerateHearingForm(request, pk):
     hearing = HearingSummary.objects.get(pk=pk)
     today = date.today()
@@ -1774,10 +1928,12 @@ def GenerateHearingForm(request, pk):
     pdf = render_to_pdf('petitions/hearings/hearingsummary_print.html', data)
     return HttpResponse(pdf, content_type='application/pdf')
 
+@permission_required ('petitions.delete_hearingsummary', raise_exception=True)
 def DeleteHearing(request,pk):
     HearingSummary.objects.get(pk=pk).delete()
     sweetify.success(request, 'Hearing form  for the petitioner deleted successfully and all its consequent information ', button=True, timer=15000)
     return redirect('hearingsummary_list')
+
 
 class InterviewSummaryListView(ListView):
     template_name = 'petitions/interviews/interviewsummary_list.html'
@@ -1787,6 +1943,11 @@ class InterviewSummaryListView(ListView):
         today = date.today()
         context['today'] = today
         return context
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_interviews'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(InterviewSummaryListView, self).dispatch(request, *args, **kwargs)
 
 class MyInterviewSummaryListView(ListView):
     template_name = 'petitions/interviews/myinterviewsummary_list.html'
@@ -1799,6 +1960,11 @@ class MyInterviewSummaryListView(ListView):
     def get_queryset(self):
         queryset = InterviewSummary.objects.filter(added_by=self.request.user)
         return queryset
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_myinterviews'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(MyInterviewSummaryListView, self).dispatch(request, *args, **kwargs)
 
 class AwaitingInterviewFormListView(ListView):
     template_name = 'petitions/interviews/awaitinginterviewsummary_list.html'
@@ -1812,6 +1978,11 @@ class AwaitingInterviewFormListView(ListView):
         queryset = HearingSummary.objects.filter(action='Interview the Petitioner').filter(
             interviewdate__isnull=False).filter(interviewsummary__isnull=True).filter(admissibility__petitioner__exit__isnull=True)
         return queryset
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_interviews'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(AwaitingInterviewFormListView, self).dispatch(request, *args, **kwargs)
 
 class MyAwaitingInterviewFormListView(ListView):
     template_name = 'petitions/interviews/myawaitinginterviewsummary_list.html'
@@ -1826,6 +1997,11 @@ class MyAwaitingInterviewFormListView(ListView):
             interviewdate__isnull=False).filter(interviewsummary__isnull=True).filter(
             admissibility__petitioner__exit__isnull=True).filter(added_by=self.request.user)
         return queryset
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_myinterviews'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(MyAwaitingInterviewFormListView, self).dispatch(request, *args, **kwargs)
 
 class InterviewSummaryRecommendedListView(ListView):
     template_name = 'petitions/interviews/interviewsummary_recommended.html'
@@ -1839,6 +2015,11 @@ class InterviewSummaryRecommendedListView(ListView):
         queryset = super(InterviewSummaryRecommendedListView, self).get_queryset()
         queryset = queryset.filter(finalresolution = 'Recommended to President')
         return queryset
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_interviews'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(InterviewSummaryRecommendedListView, self).dispatch(request, *args, **kwargs)
 
 class MyInterviewSummaryRecommendedListView(ListView):
     template_name = 'petitions/interviews/myinterviewsummary_recommended.html'
@@ -1853,6 +2034,12 @@ class MyInterviewSummaryRecommendedListView(ListView):
         queryset = queryset.filter(finalresolution = 'Recommended to President').filter(added_by=self.request.user)
         return queryset
 
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_myinterviews'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(MyInterviewSummaryRecommendedListView, self).dispatch(request, *args, **kwargs)
+
 class InterviewSummaryNotRecommendedListView(ListView):
     template_name = 'petitions/interviews/interviewsummary_notrecommended.html'
     model = InterviewSummary
@@ -1866,6 +2053,12 @@ class InterviewSummaryNotRecommendedListView(ListView):
         queryset = queryset.filter(finalresolution = 'Not Recommended to President')
         return queryset
 
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_interviews'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(InterviewSummaryNotRecommendedListView, self).dispatch(request, *args, **kwargs)
+
 class myInterviewSummaryNotRecommendedListView(ListView):
     template_name = 'petitions/interviews/myinterviewsummary_notrecommended.html'
     model = InterviewSummary
@@ -1878,6 +2071,11 @@ class myInterviewSummaryNotRecommendedListView(ListView):
         queryset = super(myInterviewSummaryNotRecommendedListView, self).get_queryset()
         queryset = queryset.filter(finalresolution = 'Not Recommended to President').filter(added_by=self.request.user)
         return queryset
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_myinterviews'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(myInterviewSummaryNotRecommendedListView, self).dispatch(request, *args, **kwargs)
 
 
 
@@ -1892,6 +2090,11 @@ class InterviewSummaryCreateView(CreateView):
         instance.save()
         sweetify.success(self.request, 'Interview Summary for the petitioner added sucessfully', button=True, timer=15000)
         return redirect('interviewsummary_detail', instance.id)
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.add_interviewsummary'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(InterviewSummaryCreateView, self).dispatch(request, *args, **kwargs)
 
 
 class InterviewSummaryDetailView(DetailView):
@@ -1902,6 +2105,11 @@ class InterviewSummaryDetailView(DetailView):
         today = date.today()
         context['today'] = today
         return context
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_interviewdetails'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(InterviewSummaryDetailView, self).dispatch(request, *args, **kwargs)
 
 
 class InterviewSummaryUpdateView(UpdateView):
@@ -1916,7 +2124,22 @@ class InterviewSummaryUpdateView(UpdateView):
                          timer=15000)
         return redirect('interviewsummary_detail', interview.id)
 
+    def dispatch(self, request, *args, **kwargs):
+        interviewtoupdate = InterviewSummary.objects.get(pk=self.kwargs.get('pk'))
+        interviewdate = interviewtoupdate.created.date()
+        if not interviewdate == date.today():
+            """ Permission check for this class """
+            if not request.user.has_perm('petitions.change_interviewsummary'):
+                raise PermissionDenied("You do not have permission to delete events")
+        else:
+            if  request.user.has_perm('petitions.change_interviewsummary'):
+                return super(InterviewSummaryUpdateView, self).dispatch(request, *args, **kwargs)
+            else:
+                if not interviewtoupdate.added_by == self.request.user:
+                    raise PermissionDenied("You do not have permission to delete events")
+        return super(InterviewSummaryUpdateView, self).dispatch(request, *args, **kwargs)
 
+@permission_required ('petitions.can_print_interviews', raise_exception=True)
 def GenerateInterviewSummary(request, pk):
     interview = InterviewSummary.objects.get(pk=pk)
     today = date.today()
@@ -2210,6 +2433,7 @@ def GenerateInterviewSummary(request, pk):
     pdf = render_to_pdf('petitions/interviews/interviewsummary_print.html', data)
     return HttpResponse(pdf, content_type='application/pdf')
 
+@permission_required ('petitions.delete_interviewsummary', raise_exception=True)
 def DeleteInterviewSummary(request,pk):
     InterviewSummary.objects.get(pk=pk).delete()
     sweetify.success(request, 'Interview summary  for the petitioner deleted successfully and all its consequent information ', button=True, timer=15000)
@@ -2224,6 +2448,11 @@ class RecommendationFormListView(ListView):
         today = date.today()
         context['today'] = today
         return context
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_recommendations'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(RecommendationFormListView, self).dispatch(request, *args, **kwargs)
 
 class MyRecommendationFormListView(ListView):
     template_name = 'petitions/recommendations/myrecommendationform_list.html'
@@ -2236,6 +2465,11 @@ class MyRecommendationFormListView(ListView):
     def get_queryset(self):
         queryset = RecommendationForm.objects.filter(added_by=self.request.user)
         return queryset
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_myrecommendations'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(MyRecommendationFormListView, self).dispatch(request, *args, **kwargs)
 
 class AwaitingRecommendationFormListView(ListView):
     template_name = 'petitions/recommendations/awaitingrecommendationform_list.html'
@@ -2248,6 +2482,11 @@ class AwaitingRecommendationFormListView(ListView):
     def get_queryset(self):
         queryset = InterviewSummary.objects.filter(finalresolution='Recommended to President').filter(recommendationform__isnull=True).filter(hearing__admissibility__petitioner__exit__isnull=True)
         return queryset
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_recommendations'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(AwaitingRecommendationFormListView, self).dispatch(request, *args, **kwargs)
 
 class MyAwaitingRecommendationFormListView(ListView):
     template_name = 'petitions/recommendations/myawaitingrecommendationform_list.html'
@@ -2261,6 +2500,11 @@ class MyAwaitingRecommendationFormListView(ListView):
         queryset = InterviewSummary.objects.filter(finalresolution='Recommended to President').filter(
             recommendationform__isnull=True).filter(hearing__admissibility__petitioner__exit__isnull=True).filter(added_by=self.request.user)
         return queryset
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_myrecommendations'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(MyAwaitingRecommendationFormListView, self).dispatch(request, *args, **kwargs)
 
 
 class RecommendationFormCreateView(CreateView):
@@ -2274,6 +2518,11 @@ class RecommendationFormCreateView(CreateView):
         instance.save()
         sweetify.success(self.request, 'Recommendation for the petitioner submitted successfully', button=True,timer=15000)
         return redirect('recommendationform_detail', instance.id)
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.add_recommendationform'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(RecommendationFormCreateView, self).dispatch(request, *args, **kwargs)
 
 class RecommendationFormDetailView(DetailView):
     template_name = 'petitions/recommendations/recommendationform_detail.html'
@@ -2283,6 +2532,11 @@ class RecommendationFormDetailView(DetailView):
         today = date.today()
         context['today'] = today
         return context
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_recommendationdetails'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(RecommendationFormDetailView, self).dispatch(request, *args, **kwargs)
 
 
 class RecommendationFormUpdateView(UpdateView):
@@ -2296,8 +2550,23 @@ class RecommendationFormUpdateView(UpdateView):
         sweetify.success(self.request, 'Recommendation for the petitioner updated successfully', button=True,
                          timer=15000)
         return redirect('recommendationform_detail', recommendation.id)
+    def dispatch(self, request, *args, **kwargs):
+        recommendationtoupdate = RecommendationForm.objects.get(pk=self.kwargs.get('pk'))
+        recommendationdate = recommendationtoupdate.created.date()
+        if not recommendationdate == date.today():
+            """ Permission check for this class """
+            if not request.user.has_perm('petitions.change_interviewsummary'):
+                raise PermissionDenied("You do not have permission to delete events")
+        else:
+            if  request.user.has_perm('petitions.change_interviewsummary'):
+                return super(RecommendationFormUpdateView, self).dispatch(request, *args, **kwargs)
+            else:
+                if not recommendationtoupdate.added_by == self.request.user:
+                    raise PermissionDenied("You do not have permission to delete events")
+        return super(RecommendationFormUpdateView, self).dispatch(request, *args, **kwargs)
 
 
+@permission_required ('petitions.can_print_recommendations', raise_exception=True)
 def GenerateRecommendationForm(request, pk):
         recommendation = RecommendationForm.objects.get(pk=pk)
         recommendationdate = recommendation.created
@@ -2318,132 +2587,11 @@ def GenerateRecommendationForm(request, pk):
         pdf = render_to_pdf('petitions/recommendations/recommendation_print.html', data)
         return HttpResponse(pdf, content_type='application/pdf')
 
+@permission_required ('petitions.delete_recommendationform', raise_exception=True)
 def DeleteRecommendationForm(request,pk):
     RecommendationForm.objects.get(pk=pk).delete()
     sweetify.success(request, 'Recommendation for the petitioner deleted successfully and all its consequent information', button=True, timer=15000)
     return redirect('recommendationform_list')
-
-
-class ExitListView(ListView):
-    template_name = 'petitions/exits/exits_list.html'
-    model = Exit
-    def get_context_data(self, **kwargs):
-        context = super(ExitListView, self).get_context_data(**kwargs)
-        today = date.today()
-        context['today'] = today
-        return context
-
-class ExitEscapeListView(ListView):
-    template_name = 'petitions/exits/exitsescapes_list.html'
-    model = Exit
-    def get_context_data(self, **kwargs):
-        context = super(ExitEscapeListView, self).get_context_data(**kwargs)
-        today = date.today()
-        context['today'] = today
-        return context
-    def get_queryset(self):
-        queryset = Exit.objects.filter(exitreason='The Petitioner escaped the prison')
-        return queryset
-
-class ExitDeathsListView(ListView):
-    template_name = 'petitions/exits/exitsdeaths_list.html'
-    model = Exit
-    def get_context_data(self, **kwargs):
-        context = super(ExitDeathsListView, self).get_context_data(**kwargs)
-        today = date.today()
-        context['today'] = today
-        return context
-    def get_queryset(self):
-        queryset = Exit.objects.filter(exitreason='The petitioner died while in prison')
-        return queryset
-
-class ExitReleasedUnderPomacListView(ListView):
-    template_name = 'petitions/exits/exitsreleasedunderpomac_list.html'
-    model = Exit
-    def get_context_data(self, **kwargs):
-        context = super(ExitReleasedUnderPomacListView, self).get_context_data(**kwargs)
-        today = date.today()
-        context['today'] = today
-        return context
-    def get_queryset(self):
-        queryset = Exit.objects.filter(exitreason='Released under POMAC')
-        return queryset
-
-class ExitServedTermListView(ListView):
-    template_name = 'petitions/exits/exitsservedterm_list.html'
-    model = Exit
-    def get_context_data(self, **kwargs):
-        context = super(ExitServedTermListView, self).get_context_data(**kwargs)
-        today = date.today()
-        context['today'] = today
-        return context
-    def get_queryset(self):
-        queryset = Exit.objects.filter(exitreason='Released after serving the term')
-        return queryset
-
-class ExitAfterResentencingListView(ListView):
-    template_name = 'petitions/exits/exitsreleasedafterresentencing_list.html'
-    model = Exit
-    def get_context_data(self, **kwargs):
-        context = super(ExitAfterResentencingListView, self).get_context_data(**kwargs)
-        today = date.today()
-        context['today'] = today
-        return context
-    def get_queryset(self):
-        queryset = Exit.objects.filter(exitreason='The petitioner was released after resentencing')
-        return queryset
-
-
-class ExitCreateView(CreateView):
-    template_name = 'petitions/exits/exits_form.html'
-    model = Exit
-    form_class = ExitForm
-    def form_valid(self, form):
-        instance = form.save(commit=False)
-        instance.added_by = CustomUser.objects.get(id=self.request.user.id)
-        instance.updated_by = CustomUser.objects.get(id=self.request.user.id)
-        instance.save()
-        sweetify.success(self.request, 'Exit Details for the petitioner submitted successfully', button=True, timer=15000)
-        return redirect('petitions_exit_detail', instance.id)
-    def get_context_data(self, **kwargs):
-        context = super(ExitCreateView, self).get_context_data(**kwargs)
-        today = date.today()
-        context['today'] = today
-        return context
-
-
-class ExitDetailView(DetailView):
-    template_name = 'petitions/exits/exits_detail.html'
-    model = Exit
-    def get_context_data(self, **kwargs):
-        context = super(ExitDetailView, self).get_context_data(**kwargs)
-        today = date.today()
-        context['today'] = today
-        return context
-
-
-class ExitUpdateView(UpdateView):
-    template_name = 'petitions/exits/updateexits_form.html'
-    model = Exit
-    form_class = ExitFormUpdate
-    def form_valid(self, form):
-        exitpetitioner = form.save(commit=False)
-        exitpetitioner.updated_by = CustomUser.objects.get(id=self.request.user.id)
-        exitpetitioner.save()
-        sweetify.success(self.request, 'Exit Details for the petitioner updated successfully', button=True,
-                         timer=15000)
-        return redirect('petitions_exit_detail', exitpetitioner.id)
-    def get_context_data(self, **kwargs):
-        context = super(ExitUpdateView, self).get_context_data(**kwargs)
-        today = date.today()
-        context['today'] = today
-        return context
-
-def DeleteExit(request,pk):
-    Exit.objects.get(pk=pk).delete()
-    sweetify.success(request, 'Exit Deleted Successfully', button=True, timer=15000)
-    return redirect('petitions_exit_list')
-
 
 class GrantListView(ListView):
     template_name = 'petitions/grants/grant_list.html'
@@ -2453,6 +2601,11 @@ class GrantListView(ListView):
         today = date.today()
         context['today'] = today
         return context
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_grants'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(GrantListView, self).dispatch(request, *args, **kwargs)
 
 class MyGrantListView(ListView):
     template_name = 'petitions/grants/mygrant_list.html'
@@ -2465,6 +2618,11 @@ class MyGrantListView(ListView):
     def get_queryset(self):
         queryset = Grant.objects.all().filter(added_by=self.request.user)
         return queryset
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_mygrants'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(MyGrantListView, self).dispatch(request, *args, **kwargs)
 
 
 class AwaitingGrantListView(ListView):
@@ -2478,6 +2636,11 @@ class AwaitingGrantListView(ListView):
     def get_queryset(self):
         queryset = RecommendationForm.objects.filter(grant__isnull=True).filter(interview__hearing__admissibility__petitioner__exit__isnull=True)
         return queryset
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_grants'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(AwaitingGrantListView, self).dispatch(request, *args, **kwargs)
 
 class MyAwaitingGrantListView(ListView):
     template_name = 'petitions/grants/myawaitingrant_list.html'
@@ -2490,7 +2653,11 @@ class MyAwaitingGrantListView(ListView):
     def get_queryset(self):
         queryset = RecommendationForm.objects.filter(grant__isnull=True).filter(interview__hearing__admissibility__petitioner__exit__isnull=True).filter(added_by=self.request.user)
         return queryset
-
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_mygrants'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(MyAwaitingGrantListView, self).dispatch(request, *args, **kwargs)
 
 
 class GrantCreateView(CreateView):
@@ -2504,6 +2671,11 @@ class GrantCreateView(CreateView):
         instance.save()
         sweetify.success(self.request, 'Grand of petition generated successfully', button=True, timer=15000)
         return redirect('petitions_grant_detail', instance.id)
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.add_grant'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(GrantCreateView, self).dispatch(request, *args, **kwargs)
 
 
 class GrantDetailView(DetailView):
@@ -2514,13 +2686,19 @@ class GrantDetailView(DetailView):
         today = date.today()
         context['today'] = today
         return context
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_grantdetails'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(GrantDetailView, self).dispatch(request, *args, **kwargs)
 
-
+@permission_required ('petitions.delete_grant', raise_exception=True)
 def DeleteGrant(request,pk):
     Grant.objects.get(pk=pk).delete()
     sweetify.success(request, 'Grand of petition generated successfully', button=True, timer=15000)
     return redirect('petitions_grant_list')
 
+@permission_required ('petitions.can_print_grants', raise_exception=True)
 def GenerateGrant(request, pk):
     grant = Grant.objects.get(pk=pk)
     today = date.today()
@@ -2697,6 +2875,185 @@ def GenerateGrant(request, pk):
     return HttpResponse(pdf, content_type='application/pdf')
 
 
+
+class ExitListView(ListView):
+    template_name = 'petitions/exits/exits_list.html'
+    model = Exit
+    def get_context_data(self, **kwargs):
+        context = super(ExitListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_exits'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(ExitListView, self).dispatch(request, *args, **kwargs)
+
+class ExitEscapeListView(ListView):
+    template_name = 'petitions/exits/exitsescapes_list.html'
+    model = Exit
+    def get_context_data(self, **kwargs):
+        context = super(ExitEscapeListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset = Exit.objects.filter(exitreason='The Petitioner escaped the prison')
+        return queryset
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_exits'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(ExitEscapeListView, self).dispatch(request, *args, **kwargs)
+
+class ExitDeathsListView(ListView):
+    template_name = 'petitions/exits/exitsdeaths_list.html'
+    model = Exit
+    def get_context_data(self, **kwargs):
+        context = super(ExitDeathsListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset = Exit.objects.filter(exitreason='The petitioner died while in prison')
+        return queryset
+
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_exits'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(ExitDeathsListView, self).dispatch(request, *args, **kwargs)
+
+class ExitReleasedUnderPomacListView(ListView):
+    template_name = 'petitions/exits/exitsreleasedunderpomac_list.html'
+    model = Exit
+    def get_context_data(self, **kwargs):
+        context = super(ExitReleasedUnderPomacListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset = Exit.objects.filter(exitreason='Released under POMAC')
+        return queryset
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_exits'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(ExitReleasedUnderPomacListView, self).dispatch(request, *args, **kwargs)
+
+class ExitServedTermListView(ListView):
+    template_name = 'petitions/exits/exitsservedterm_list.html'
+    model = Exit
+    def get_context_data(self, **kwargs):
+        context = super(ExitServedTermListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset = Exit.objects.filter(exitreason='Released after serving the term')
+        return queryset
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_exits'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(ExitServedTermListView, self).dispatch(request, *args, **kwargs)
+
+class ExitAfterResentencingListView(ListView):
+    template_name = 'petitions/exits/exitsreleasedafterresentencing_list.html'
+    model = Exit
+    def get_context_data(self, **kwargs):
+        context = super(ExitAfterResentencingListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def get_queryset(self):
+        queryset = Exit.objects.filter(exitreason='The petitioner was released after resentencing')
+        return queryset
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_exits'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(ExitAfterResentencingListView, self).dispatch(request, *args, **kwargs)
+
+
+class ExitCreateView(CreateView):
+    template_name = 'petitions/exits/exits_form.html'
+    model = Exit
+    form_class = ExitForm
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        instance.added_by = CustomUser.objects.get(id=self.request.user.id)
+        instance.updated_by = CustomUser.objects.get(id=self.request.user.id)
+        instance.save()
+        sweetify.success(self.request, 'Exit Details for the petitioner submitted successfully', button=True, timer=15000)
+        return redirect('petitions_exit_detail', instance.id)
+    def get_context_data(self, **kwargs):
+        context = super(ExitCreateView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.add_exit'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(ExitCreateView, self).dispatch(request, *args, **kwargs)
+
+
+class ExitDetailView(DetailView):
+    template_name = 'petitions/exits/exits_detail.html'
+    model = Exit
+    def get_context_data(self, **kwargs):
+        context = super(ExitDetailView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_exitdetails'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(ExitDetailView, self).dispatch(request, *args, **kwargs)
+
+
+class ExitUpdateView(UpdateView):
+    template_name = 'petitions/exits/updateexits_form.html'
+    model = Exit
+    form_class = ExitFormUpdate
+    def form_valid(self, form):
+        exitpetitioner = form.save(commit=False)
+        exitpetitioner.updated_by = CustomUser.objects.get(id=self.request.user.id)
+        exitpetitioner.save()
+        sweetify.success(self.request, 'Exit Details for the petitioner updated successfully', button=True,
+                         timer=15000)
+        return redirect('petitions_exit_detail', exitpetitioner.id)
+    def get_context_data(self, **kwargs):
+        context = super(ExitUpdateView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def dispatch(self, request, *args, **kwargs):
+        exittoupdate = Exit.objects.get(pk=self.kwargs.get('pk'))
+        exitdate = exittoupdate.created.date()
+        if not exitdate == date.today():
+            """ Permission check for this class """
+            if not request.user.has_perm('petitions.change_exit'):
+                raise PermissionDenied("You do not have permission to delete events")
+        else:
+            if  request.user.has_perm('petitions.change_exit'):
+                return super(ExitUpdateView, self).dispatch(request, *args, **kwargs)
+            else:
+                if not exittoupdate.added_by == self.request.user:
+                    raise PermissionDenied("You do not have permission to delete events")
+        return super(ExitUpdateView, self).dispatch(request, *args, **kwargs)
+
+@permission_required ('petitions.delete_exit', raise_exception=True)
+def DeleteExit(request,pk):
+    Exit.objects.get(pk=pk).delete()
+    sweetify.success(request, 'Exit Deleted Successfully', button=True, timer=15000)
+    return redirect('petitions_exit_list')
+
+
+@permission_required ('petitions.can_view_main_dashboard', raise_exception=True)
 def dashboard(request):
     data = {
         'noofpetitions': PetitionForm.objects.count(),
