@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import user_passes_test
 from django.urls import reverse
 from django.db.models import *
 from django.conf import settings
@@ -200,7 +201,15 @@ class PetitionForm(models.Model):
                                  null=True, blank=True, on_delete=models.SET_NULL, related_name='updated_by')
 
     class Meta:
+        permissions = (
+            ('can_view_petitionforms', 'User can view all petitions'),
+            ('can_view_mypetitionforms', 'User can view all my petitions'),
+            ('can_view_petitionformstatus', 'User can view the status of petitions'),
+        )
         ordering = ('-created',)
+
+    def permission_required(*perms):
+        return user_passes_test(lambda u: any(u.has_perm(perm) for perm in perms), login_url='/')
 
     def __unicode__(self):
         return u'%s' % self.pk
@@ -214,6 +223,7 @@ class PetitionForm(models.Model):
 
     def __str__(self):
         return self.name+" | "+self.prisonno+" | "+self.prison.name
+
 
 
 
@@ -239,6 +249,12 @@ class AdmissibilityForm(models.Model):
                                    null=True, blank=True, on_delete=models.SET_NULL, related_name='admissibility_updated_by')
     class Meta:
         ordering = ('-created',)
+        permissions = (
+            ('can_view_admissibilityform', 'User can view all admissibilities'),
+            ('can_view_myadmissibilityform', 'User can view all my admissibilities'),
+            ('can_print_admissibilityform', 'User can view print admissibility form'),
+            ('can_view_admissibilityformdetails', 'User can view details of admissibility'),
+        )
 
     def __unicode__(self):
         return u'%s' % self.pk
@@ -272,6 +288,10 @@ class PetitionSummary(models.Model):
 
     class Meta:
         ordering = ('-created',)
+        permissions = (
+            ('can_view_petitionsummary', 'User can view all summaries'),
+            ('can_view_mypetitionsummary', 'User can view all my summaries'),
+        )
 
     def __unicode__(self):
         return u'%s' % self.pk
@@ -331,6 +351,10 @@ class HearingSummary(models.Model):
 
     class Meta:
         ordering = ('-created',)
+        permissions = (
+            ('can_view_hearingsummary', 'User can view all hearings'),
+            ('can_view_mypetitionsummary', 'User can view all my hearings'),
+        )
 
     def __unicode__(self):
         return u'%s' % self.pk
@@ -383,6 +407,10 @@ class InterviewSummary(models.Model):
 
     class Meta:
         ordering = ('-created',)
+        permissions = (
+            ('can_view_interviews', 'User can view all interviews'),
+            ('can_view_myinterviews', 'User can view all my interviews'),
+        )
 
     def __unicode__(self):
         return u'%s' % self.pk
@@ -415,6 +443,10 @@ class RecommendationForm(models.Model):
 
     class Meta:
         ordering = ('-created',)
+        permissions = (
+            ('can_view_recommendations', 'User can view all recommendations'),
+            ('can_view_myrecommendations', 'User can view all my recommendations'),
+        )
 
     def __unicode__(self):
         return u'%s' % self.pk
@@ -443,6 +475,10 @@ class Grant(models.Model):
 
     class Meta:
         ordering = ('-created',)
+        permissions = (
+            ('can_view_grants', 'User can view all grants'),
+            ('can_view_mygrants', 'User can view all my grants'),
+        )
 
     def __unicode__(self):
         return u'%s' % self.pk
@@ -473,6 +509,10 @@ class Exit(models.Model):
 
     class Meta:
         ordering = ('-created',)
+        permissions = (
+            ('can_view_exits', 'User can view all exits'),
+            ('can_view_myexits', 'User can view all my exits'),
+        )
 
     def __unicode__(self):
         return u'%s' % self.pk

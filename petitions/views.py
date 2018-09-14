@@ -242,6 +242,11 @@ class PetitionFormStatusListView(ListView):
         today = date.today()
         context['today'] =today
         return context
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_petitionformstatus'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(PetitionFormStatusListView, self).dispatch(request, *args, **kwargs)
 
 
 class MyPetitionFormListView(ListView):
@@ -443,13 +448,13 @@ class PetitionFormUpdateView(UpdateView):
                 return redirect('mypetitionform_list')
         return super(PetitionFormUpdateView, self).dispatch(request, *args, **kwargs)
 
-
+@permission_required ('petitions.delete_petitionform', raise_exception=True)
 def DeletePetitionForm(request,pk):
     PetitionForm.objects.get(pk=pk).delete()
     sweetify.success(request, 'Petitione deleted successfully and all its related information', button=True, timer=15000)
     return redirect('petitionform_list')
 
-class AdmissibilityFormListView(ListView):
+class AdmissibilityFormListView(PermissionRequiredMixin, ListView):
     template_name = 'petitions/admissibility_form/admissibilityform_list.html'
     model = AdmissibilityForm
     def get_context_data(self, **kwargs):
@@ -457,6 +462,12 @@ class AdmissibilityFormListView(ListView):
         today = date.today()
         context['today'] = today
         return context
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_admissibilityform'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(AdmissibilityFormListView, self).dispatch(request, *args, **kwargs)
+
 
 class MyAdmissibilityFormListView(ListView):
     template_name = 'petitions/admissibility_form/myadmissibilityform_list.html'
@@ -469,6 +480,11 @@ class MyAdmissibilityFormListView(ListView):
     def get_queryset(self):
         queryset=AdmissibilityForm.objects.filter(added_by= self.request.user)
         return queryset
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_myadmissibilityform'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(MyAdmissibilityFormListView, self).dispatch(request, *args, **kwargs)
 
 class MyAdmissibleAdmissibilityFormListView(ListView):
     template_name = 'petitions/admissibility_form/myadmissibleadmissibilityform_list.html'
@@ -482,6 +498,12 @@ class MyAdmissibleAdmissibilityFormListView(ListView):
         queryset=AdmissibilityForm.objects.filter(added_by= self.request.user).filter(admissability=True)
         return queryset
 
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_myadmissibilityform'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(MyAdmissibleAdmissibilityFormListView, self).dispatch(request, *args, **kwargs)
+
 class MyInAdmissibleAdmissibilityFormListView(ListView):
     template_name = 'petitions/admissibility_form/myinadmissibleadmissibilityform_list.html'
     model = AdmissibilityForm
@@ -494,6 +516,12 @@ class MyInAdmissibleAdmissibilityFormListView(ListView):
         queryset=AdmissibilityForm.objects.filter(added_by= self.request.user).filter(admissability=False)
         return queryset
 
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_myadmissibilityform'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(MyInAdmissibleAdmissibilityFormListView, self).dispatch(request, *args, **kwargs)
+
 class AwaitingAdmissibilityFormListView(ListView):
     template_name = 'petitions/admissibility_form/awaitingadmissibilityform_list.html'
     model = PetitionForm
@@ -505,6 +533,11 @@ class AwaitingAdmissibilityFormListView(ListView):
     def get_queryset(self):
         queryset= PetitionForm.objects.filter(anypendingcourtmatter=False).filter(admissibility__isnull=True).filter(exit__isnull=True)
         return queryset
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_admissibilityform'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(AwaitingAdmissibilityFormListView, self).dispatch(request, *args, **kwargs)
 
 class MyAwaitingAdmissibilityFormListView(ListView):
     template_name = 'petitions/admissibility_form/myawaitingadmissibilityform_list.html'
@@ -518,12 +551,20 @@ class MyAwaitingAdmissibilityFormListView(ListView):
         queryset = PetitionForm.objects.filter(anypendingcourtmatter=False).filter(admissibility__isnull=True).filter(
             exit__isnull=True).filter(added_by=self.request.user)
         return queryset
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_myadmissibilityform'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(MyAwaitingAdmissibilityFormListView, self).dispatch(request, *args, **kwargs)
 
+
+@permission_required ('petitions.delete_admissibilityform', raise_exception=True)
 def DeleteAdmissibility(request,pk):
     AdmissibilityForm.objects.get(pk=pk).delete()
     sweetify.success(request, 'Admissibility form for the petitioner deleted successfully and all consequent information ', button=True, timer=15000)
     return redirect('admissibilityform_list')
 
+@permission_required ('petitions.can_print_admissibilityform', raise_exception=True)
 def GeneratePetitionForm(request, pk):
     petitioner = PetitionForm.objects.get(pk=pk)
     today = date.today()
@@ -709,6 +750,12 @@ class AdmissibilityFormAdmissibleListView(ListView):
         queryset = queryset.filter(admissability=True)
         return queryset
 
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_admissibilityform'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(AdmissibilityFormAdmissibleListView, self).dispatch(request, *args, **kwargs)
+
 class AdmissibilityFormInAdmissibleListView(ListView):
     template_name = 'petitions/admissibility_form/admissibilityforminadmissible_list.html'
     model = AdmissibilityForm
@@ -721,6 +768,11 @@ class AdmissibilityFormInAdmissibleListView(ListView):
         queryset = super(AdmissibilityFormInAdmissibleListView, self).get_queryset()
         queryset = queryset.filter(admissability=False)
         return queryset
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_admissibilityform'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(AdmissibilityFormInAdmissibleListView, self).dispatch(request, *args, **kwargs)
 
 class AdmissibilityFormCreateView(CreateView):
     template_name = 'petitions/admissibility_form/admissibilityform_form.html'
@@ -734,6 +786,12 @@ class AdmissibilityFormCreateView(CreateView):
          sweetify.success(self.request, 'Admissibility on a petition submitted successfully', button=True, timer=15000)
          return  redirect ('admissibilityform_detail', instance.id)
 
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.add_admissibilityform'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(AdmissibilityFormCreateView, self).dispatch(request, *args, **kwargs)
+
 
 class AdmissibilityFormDetailView(DetailView):
     template_name = 'petitions/admissibility_form/admissibilityform_detail.html'
@@ -743,6 +801,11 @@ class AdmissibilityFormDetailView(DetailView):
         today = date.today()
         context['today'] = today
         return context
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_admissibilityformdetails'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(AdmissibilityFormDetailView, self).dispatch(request, *args, **kwargs)
 
 
 class AdmissibilityFormUpdateView(UpdateView):
@@ -756,6 +819,19 @@ class AdmissibilityFormUpdateView(UpdateView):
         admimissibilitycreate.save()
         sweetify.success(self.request, 'Admissibility on a petition updated successfully', button=True, timer=15000)
         return redirect('admissibilityform_detail', admimissibilitycreate.id)
+
+    def dispatch(self, request, *args, **kwargs):
+        admissibilitytoupdate = AdmissibilityForm.objects.get(pk=self.kwargs.get('pk'))
+        admissibilitydate = admissibilitytoupdate.created.date()
+        if not admissibilitydate == date.today():
+            """ Permission check for this class """
+            if not request.user.has_perm('petitions.change_admissibilityform'):
+                raise PermissionDenied("You do not have permission to delete events")
+        else:
+            if not admissibilitytoupdate.added_by == self.request.user:
+                sweetify.success(request, 'You can only update your own petition', button=True,timer=15000)
+                return redirect('mypetitionform_list')
+        return super(AdmissibilityFormUpdateView, self).dispatch(request, *args, **kwargs)
 
 
 def GenerateAdmissibilityForm(request, pk):

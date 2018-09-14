@@ -2,7 +2,7 @@
 {% load static %}
 {% load mathfilters %}
 {% load crispy_forms_tags %}
-{% block title %} Foreigners {% endblock title %}
+{% block title %} Status {% endblock title %}
 
 {% block stylesheets %}
     {{ block.super }}
@@ -105,44 +105,44 @@
                                         <td><a href="{{object.get_absolute_url}}">{{object.name}}</a></td>
                                         <td>{{ object.prisonno }}</td>
                                     {% if  object.anypendingcourtmatter == False %}
-                                        <td><i class="fa fa-check text-success"></i></td>
+                                        <td>Yes <i class="fa fa-check text-success"></i></td>
                                         {% else %}
-                                     <td><i class="fa fa-remove text-danger"></i></td>
+                                     <td>No <i class="fa fa-remove text-danger"></i></td>
                                     {% endif %}
                                     {% if object.admissibilityform.id == "" %}
-                                        <td><i class="fa fa-remove text-danger"></i></td>
+                                        <td>No <i class="fa fa-remove text-danger"></i></td>
                                     {% else %}
-                                        <td><i class="fa fa-check text-success"></i></td>
+                                        <td>Yes <i class="fa fa-check text-success"></i></td>
                                     {% endif %}
                                     {% if object.admissibilityform.petitionsummary_set.count > 0 %}
-                                        <td><i class="fa fa-check text-success"></i></td>
+                                        <td>Yes <i class="fa fa-check text-success"></i></td>
                                         {% else %}
-                                        <td><i class="fa fa-remove text-danger"></i></td>
+                                        <td>No <i class="fa fa-remove text-danger"></i></td>
                                     {% endif %}
                                     {% if object.admissibilityform.hearing.id == "" %}
-                                         <td><i class="fa fa-remove text-danger"></i></td>
+                                         <td>No <i class="fa fa-remove text-danger"></i></td>
                                         {% else %}
-                                         <td><i class="fa fa-check text-success"></i></td>
+                                         <td>Yes <i class="fa fa-check text-success"></i></td>
                                     {% endif %}
                                     {% if object.admissibilityform.hearing.interviewsummary.id == "" %}
-                                         <td><i class="fa fa-remove text-danger"></i></td>
+                                         <td>No <i class="fa fa-remove text-danger"></i></td>
                                         {% else %}
-                                        <td><i class="fa fa-check text-success"></i></td>
+                                        <td>Yes <i class="fa fa-check text-success"></i></td>
                                     {% endif %}
                                     {% if object.admissibilityform.hearing.interviewsummary.recommendationform.id == "" %}
-                                         <td><i class="fa fa-remove text-danger"></i></td>
+                                         <td>No <i class="fa fa-remove text-danger"></i></td>
                                     {% else %}
-                                        <td><i class="fa fa-check text-success"></i></td>
+                                        <td>Yes <i class="fa fa-check text-success"></i></td>
                                     {% endif %}
                                     {% if object.admissibilityform.hearing.interviewsummary.recommendationform.grant_set.count > 0 %}
-                                         <td><i class="fa fa-check text-success"></i></td>
+                                         <td>Yes <i class="fa fa-check text-success"></i></td>
                                         {% else %}
-                                        <td><i class="fa fa-remove text-danger"></i></td>
+                                        <td>No <i class="fa fa-remove text-danger"></i></td>
                                     {% endif %}
                                     {% if object.exit.id == "" %}
-                                          <td><i class="fa fa-remove text-danger"></i></td>
+                                          <td>No <i class="fa fa-remove text-danger"></i></td>
                                     {% else %}
-                                        <td><i class="fa fa-check text-success"></i></td>
+                                        <td>Yes <i class="fa fa-check text-success"></i></td>
                                     {% endif %}
                                         <td>{{ object.prison }}</td>
                                         <td>{{ object.nationality }}</td>
