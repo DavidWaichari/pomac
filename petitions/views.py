@@ -43,6 +43,12 @@ class CountyCreateView(PermissionRequiredMixin,CreateView):
          messages.success(self.request, self.success_message)
          return  redirect ('petitions_county_detail', instance.id)
 
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.add_county'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(CountyCreateView, self).dispatch(request, *args, **kwargs)
+
 class CountyDetailView(DetailView):
     template_name = 'petitions/counties/county_detail.html'
     model = County
@@ -58,15 +64,12 @@ class CountyUpdateView(UpdateView):
         county.save()
         messages.success(self.request, self.success_message)
         return redirect('petitions_county_detail', county.id)
-
     def dispatch(self, request, *args, **kwargs):
-        couty = County.objects.get(pk=self.kwargs.get('pk'))
-        coutydate = couty.created.date()
-        if not coutydate == date.today():
-            """ Permission check for this class """
-            if not request.user.has_perm('petitions.change_county'):
-                raise PermissionDenied("You do not have permission to delete events")
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.change_county'):
+            raise PermissionDenied("You do not have permission to view status events")
         return super(CountyUpdateView, self).dispatch(request, *args, **kwargs)
+
 
 def load_subcounties(request):
     county_id = request.GET.get('county')
@@ -92,6 +95,12 @@ class SubCountyCreateView(CreateView):
          instance.save()
          messages.success(self.request, self.success_message)
          return  redirect ('petitions_subcounty_detail', instance.id)
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.add_subcounty'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(SubCountyCreateView, self).dispatch(request, *args, **kwargs)
+
 
 class SubCountyDetailView(DetailView):
     template_name = 'petitions/subcounties/subcounty_detail.html'
@@ -109,6 +118,11 @@ class SubCountyUpdateView(UpdateView):
         subcounty.save()
         messages.success(self.request, self.success_message)
         return redirect('petitions_subcounty_detail', subcounty.id)
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.change_subcounty'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(SubCountyUpdateView, self).dispatch(request, *args, **kwargs)
 
 class PrisonListView(ListView):
     template_name = 'petitions/prisons/prison_list.html'
@@ -129,6 +143,12 @@ class PrisonCreateView(CreateView):
     model = Prison
     form_class = PrisonForm
 
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.add_prison'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(PrisonCreateView, self).dispatch(request, *args, **kwargs)
+
 
 class PrisonDetailView(DetailView):
     template_name = 'petitions/prisons/prison_detail.html'
@@ -139,7 +159,13 @@ class PrisonUpdateView(UpdateView):
     template_name = 'petitions/prisons/prison_form.html'
     model = Prison
     form_class = PrisonForm
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.change_prison'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(PrisonUpdateView, self).dispatch(request, *args, **kwargs)
 
+@permission_required ('petitions.delete_prison', raise_exception=True)
 def DeletePrison(request,pk):
     Prison.objects.get(pk=pk).delete()
     sweetify.success(request, 'Prison Deleted Successfully', button=True, timer=15000)
@@ -158,6 +184,11 @@ class CourtCreateView(CreateView):
     template_name = 'petitions/courts/court_form.html'
     model = Court
     form_class = CourtForm
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.add_court'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(CourtCreateView, self).dispatch(request, *args, **kwargs)
 
 
 class CourtDetailView(DetailView):
@@ -170,12 +201,19 @@ class CourtUpdateView(UpdateView):
     model = Court
     form_class = CourtForm
 
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.change_court'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(CourtUpdateView, self).dispatch(request, *args, **kwargs)
+
 
 def CourtPetitionersListView(request, pk):
     court = Court.objects.get(id=pk)
     object_list = PetitionForm.objects.filter(court_id=pk).filter(anypendingcourtmatter=False)
     return render(request,'petitions/courts/court_petitioners_list.html',{'object_list':object_list, 'court': court})
 
+@permission_required ('petitions.delete_court', raise_exception=True)
 def DeleteCourt(request,pk):
     Court.objects.get(pk=pk).delete()
     sweetify.success(request, 'Court Deleted Successfully', button=True, timer=15000)
@@ -207,6 +245,12 @@ class OffenceCreateView(CreateView):
     model = Offence
     form_class = OffenceForm
 
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.add_offence'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(OffenceCreateView, self).dispatch(request, *args, **kwargs)
+
 
 class OffenceDetailView(DetailView):
     template_name = 'petitions/offences/offence_detail.html'
@@ -218,6 +262,13 @@ class OffenceUpdateView(UpdateView):
     model = Offence
     form_class = OffenceForm
 
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.change_offence'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(OffenceUpdateView, self).dispatch(request, *args, **kwargs)
+
+@permission_required ('petitions.delete_offence', raise_exception=True)
 def DeleteOffence(request,pk):
     Offence.objects.get(pk=pk).delete()
     sweetify.success(request, 'Offence Deleted Successfully', button=True, timer=15000)
