@@ -3104,7 +3104,7 @@ def DeleteExit(request,pk):
     return redirect('petitions_exit_list')
 
 
-@permission_required ('petitions.can_view_main_dashboard', raise_exception=True)
+@permission_required ('petitions.can_view_main_dashboard', raise_exception=False, login_url='/my-dashboard')
 def dashboard(request):
     data = {
         'noofpetitions': PetitionForm.objects.count(),
