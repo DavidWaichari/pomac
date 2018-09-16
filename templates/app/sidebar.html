@@ -2,7 +2,7 @@
     <img src="/static/images/courtofarms.png" alt="" style="display: block;
     margin-left: auto;
     margin-right: auto; margin-top: 20px" height="60" width="70">
-<center><a href="#" class="site_title"><span>POMAC</span></a></center>
+    <center><a href="#" class="site_title"><span>POMAC</span></a></center>
     <!-- menu profile quick info -->
     <div class="profile clearfix">
         <div class="profile_pic">
@@ -30,7 +30,10 @@
                 {#        {%  if perms.petitions.add_county %}#}
                 <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="{% url 'petitions_dashboard' %}">Dashboard</a></li>
+                        {% if perms.petitions.can_view_main_dashboard %}
+                             <li><a href="{% url 'petitions_dashboard' %}">Dashboard</a></li>
+                        {% endif %}
+
                         <li><a href="{% url 'mypetitions_dashboard' %}">My Dashboard</a></li>
                     </ul>
                 </li>
@@ -47,17 +50,29 @@
                     </ul>
                 </li>
 
-                <li><a><i class="fa fa-tachometer"></i> Admissibilities <span class="fa fa-chevron-down"></span></a>
+                <li>
+                {% if  perms.petitions.can_view_myadmissibilityform or perms.petitions.add_admissibilityform or perms.petitions.can_view_admissibilityform %}
+                    <a><i class="fa fa-tachometer"></i> Admissibilities <span class="fa fa-chevron-down"></span></a>
+                {% else %}
+                {% endif %}
                     <ul class="nav child_menu">
+                    {% if perms.petitions.can_view_admissibilityform %}
                         <li><a href="{% url 'admissibilityform_list' %}">Admissabilities List</a></li>
                         <li><a href="{% url 'admissibilityformadmissible_list' %}">Admissible Petitions</a></li>
                         <li><a href="{% url 'admissibilityformaindmissible_list' %}">Inadmissible Petitions</a></li>
                         <li><a href="{% url 'awaitingadmissibility' %}">Awaiting Admissibility</a></li>
+                    {% endif %}
+                     {% if perms.petitions.can_view_myadmissibilityform %}
                         <li><a href="{% url 'myadmissibilityform_list' %}">My Admissibilities List</a></li>
-                        <li><a href="{% url 'myadmissibleadmissibilityform_list' %}">My Admissible Admissibilities</a></li>
-                        <li><a href="{% url 'myinadmissibleadmissibilityform_list' %}">My InAdmissible Admissibilities</a></li>
+                        <li><a href="{% url 'myadmissibleadmissibilityform_list' %}">My Admissible Admissibilities</a>
+                        </li>
+                        <li><a href="{% url 'myinadmissibleadmissibilityform_list' %}">My InAdmissible
+                            Admissibilities</a></li>
                         <li><a href="{% url 'myawaitingadmissibility' %}">My Awaiting Admissibility</a></li>
-                        <li><a href="{% url 'admissibilityform_create' %}">Add Admissibility</a></li>
+                    {% endif %}
+                         {% if perms.petitions.add_admissibilityform %}
+                             <li><a href="{% url 'admissibilityform_create' %}">Add Admissibility</a></li>
+                        {% endif %}
                     </ul>
                 </li>
                 <li><a><i class="fa fa-google-wallet"></i>Summaries <span class="fa fa-chevron-down"></span></a>
@@ -100,8 +115,10 @@
                         </li>
                         <li><a href="{% url 'myinterviewsummary_list' %}">My Interviews List</a></li>
                         <li><a href="{% url 'myawaitinginterviws' %}">My Awaiting Interviews</a></li>
-                        <li><a href="{% url 'myinterviewsummary_recommended' %}">My Recommended for Recommendation</a></li>
-                        <li><a href="{% url 'myinterviewsummary_notrecommended' %}">My Not Recommended for Recommendation</a></li>
+                        <li><a href="{% url 'myinterviewsummary_recommended' %}">My Recommended for Recommendation</a>
+                        </li>
+                        <li><a href="{% url 'myinterviewsummary_notrecommended' %}">My Not Recommended for
+                            Recommendation</a></li>
                         <li><a href="{% url 'interviewsummary_create' %}">Add Interview</a></li>
                     </ul>
                 </li>
@@ -124,7 +141,7 @@
                     </ul>
                 </li>
 
-            <li><a><i class="fa fa-unlock"></i> Prison Exits <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-unlock"></i> Prison Exits <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{% url 'petitions_exit_list' %}">Exits List</a></li>
                         <li><a href="{% url 'petitions_exitescape_list' %}">Escapes</a></li>
@@ -149,7 +166,8 @@
                         <li><a href="{% url 'ppmental_list' %}">PP Mental</a></li>
                         <li><a href="{% url 'ppunderage_list' %}">PP Under Age</a></li>
                         <li><a href="{% url 'specialcondition' %}">Petitioners with Special Condition</a></li>
-                        <li><a href="{% url 'appealedagainstconviction' %}">Petitioners who appealed against conviction</a></li>
+                        <li><a href="{% url 'appealedagainstconviction' %}">Petitioners who appealed against
+                            conviction</a></li>
                         <li><a href="{% url 'specialattributesorskills' %}">Petitioners with special skills</a></li>
                         <li><a href="{% url 'petitions_county_list' %}">Counties</a></li>
                         <li><a href="{% url 'petitions_subcounty_list' %}">Sub Counties</a></li>

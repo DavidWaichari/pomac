@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 
 import sweetify
 from django.contrib import messages
@@ -507,7 +507,7 @@ def DeletePetitionForm(request,pk):
     sweetify.success(request, 'Petitione deleted successfully and all its related information', button=True, timer=15000)
     return redirect('petitionform_list')
 
-class AdmissibilityFormListView(PermissionRequiredMixin, ListView):
+class AdmissibilityFormListView(ListView):
     template_name = 'petitions/admissibility_form/admissibilityform_list.html'
     model = AdmissibilityForm
     def get_context_data(self, **kwargs):
@@ -802,7 +802,6 @@ class AdmissibilityFormAdmissibleListView(ListView):
         queryset = super(AdmissibilityFormAdmissibleListView, self).get_queryset()
         queryset = queryset.filter(admissability=True)
         return queryset
-
     def dispatch(self, request, *args, **kwargs):
         """ Permission check for this class """
         if not request.user.has_perm('petitions.can_view_admissibilityform'):
@@ -881,9 +880,7 @@ class AdmissibilityFormUpdateView(UpdateView):
             if not request.user.has_perm('petitions.change_admissibilityform'):
                 raise PermissionDenied("You do not have permission to delete events")
         else:
-            if request.user.has_perm('petitions.change_petitionform'):
-                return super(AdmissibilityFormUpdateView, self).dispatch(request, *args, **kwargs)
-            else:
+            if not request.user.has_perm('petitions.change_admissibilityform'):
                 if not admissibilitytoupdate.added_by == self.request.user:
                     raise PermissionDenied("You do not have permission to delete events")
         return super(AdmissibilityFormUpdateView, self).dispatch(request, *args, **kwargs)
