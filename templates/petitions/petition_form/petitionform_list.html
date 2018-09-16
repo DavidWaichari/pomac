@@ -28,7 +28,9 @@
                             </h2>
                                 {% endblock %}
                             <ul class="nav navbar-right panel_toolbox">
+                                {% block addbutton %}
                                <li><a class="btn btn-sm btn-primary" href="{% url 'petitionform_create' %}">Add Petition</a></li>
+                                    {% endblock %}
                             </ul>
                             <div class="clearfix"></div>
                         </div>

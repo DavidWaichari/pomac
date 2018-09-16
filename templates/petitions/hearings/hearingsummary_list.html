@@ -27,9 +27,11 @@
                             </h2>
                                 {% endblock %}
                              <ul class="nav navbar-right panel_toolbox">
+                             {% block addbutton %}
                                  {% if perms.petitions.add_hearingsummary %}
                                <li><a class="btn btn-sm btn-primary" href="{% url 'hearingsummary_create' %}">Add Hearing</a></li>
                                  {% endif %}
+                                 {% endblock %}
                             </ul>
                             <div class="clearfix"></div>
                         </div>

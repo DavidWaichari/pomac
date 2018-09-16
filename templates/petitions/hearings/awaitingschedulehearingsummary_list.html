@@ -1,13 +1,19 @@
-{% extends "petitions/hearings/hearingsummary_list.html" %}
-{% block hearingtabletitle %}
+{% extends "petitions/admissibility_form/admissibilityform_list.html" %}
+{% block admissibilitytableheading %}
     <h2>Admissibility List| Awaiting Schedule for Hearing
         <small>| List of all admissible petitions awaiting schedule for hearing</small>
     </h2>
 {% endblock %}
-{% block hearingtabledescription %}
-    <p class="text-muted font-13 m-b-30">
+{% block admissibilitytabledescription %}
+     <p class="text-muted font-13 m-b-30">
         This is a table that shows all the admissible petitions that have not been scheduled for hearing. You can search
         using any
         criteria
     </p>
+{% endblock %}
+
+{% block addbutton %}
+    {% if perms.petitions.add_hearingsummary %}
+        <li><a class="btn btn-sm btn-primary" href="{% url 'hearingsummary_create' %}">Add Hearing</a></li>
+    {% endif %}
 {% endblock %}

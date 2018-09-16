@@ -21,21 +21,31 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Interviews List
-                                <small>| List of all Interviews</small>
-                            </h2>
+                            {% block interviewtableheader %}
+                                <h2>Interviews List
+                                    <small>| List of all Interviews</small>
+                                </h2>
+                            {% endblock %}
                             <ul class="nav navbar-right panel_toolbox">
-                               <li><a class="btn btn-sm btn-primary" href="{% url 'interviewsummary_create' %}">Add Interview</a></li>
+                                {% block addbutton %}
+                                     {% if perms.petitions.add_interviewsummary %}
+                                <li><a class="btn btn-sm btn-primary" href="{% url 'interviewsummary_create' %}">Add
+                                    Interview</a></li>
+                                    {% endif %}
+                                    {% endblock %}
                             </ul>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
-                            <p class="text-muted font-13 m-b-30">
-                                This table shows all the petitioners who have been interviewed
-                                across all the prisons. You can search using any
-                                criteria
-                            </p>
-                            <table id="allmytables" class="table table-striped table-bordered dt-responsive " style="width:100%">
+                            {% block interviewtabledescription %}
+                                <p class="text-muted font-13 m-b-30">
+                                    This table shows all the petitioners who have been interviewed
+                                    across all the prisons. You can search using any
+                                    criteria
+                                </p>
+                            {% endblock %}
+                            <table id="allmytables" class="table table-striped table-bordered dt-responsive "
+                                   style="width:100%">
                                 <thead style="width:100%">
                                 <tr>
                                     <td>S/No</td>
@@ -120,7 +130,7 @@
                                     <td>Member 6's Reason</td>
                                     <td>Final Resolution</td>
                                     <td>Interview Summary Created on</td>
-                                     <td>Interview Summary last updated By</td>
+                                    <td>Interview Summary last updated By</td>
                                     <td>Interview Summary last updated on</td>
                                 </tr>
                                 </thead>
@@ -149,7 +159,7 @@
                                                 IMPRISONMENT
                                             </td>
                                         {% endif %}
-                                        <td>{{ object.hearing.admissibility.petitioner.agewhenoffensewascommited }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.agewhenoffensewascommited }} YEARS</td>
                                         <td>{{ object.hearing.admissibility.petitioner.nextofkin }}</td>
                                         <td>{{ object.hearing.admissibility.petitioner.relationshipwithnextofkin }}</td>
                                         <td>{{ object.hearing.admissibility.petitioner.contactperson }}</td>
@@ -232,58 +242,58 @@
                                         <td>{{ object.anyothercomments }}</td>
                                         <td>{{ object.representationofthevictim }}</td>
                                         <td>{{ object.concludingobservations }}</td>
-                                    {% if object.chairpersonvote == True %}
-                                        <td class="text-success">RECOMMENDED for release</td>
-                                            {% else %}
-                                          <td class="text-danger">NOT RECOMMENDED for release</td>
+                                        {% if object.chairpersonvote == True %}
+                                            <td class="text-success">RECOMMENDED for release</td>
+                                        {% else %}
+                                            <td class="text-danger">NOT RECOMMENDED for release</td>
                                         {% endif %}
                                         <td>{{ object.chairpersonvotereason }}</td>
-                                    {% if object.vicechairvote == True %}
-                                        <td class="text-success">RECOMMENDED for release</td>
-                                            {% else %}
-                                          <td class="text-danger">NOT RECOMMENDED for release</td>
+                                        {% if object.vicechairvote == True %}
+                                            <td class="text-success">RECOMMENDED for release</td>
+                                        {% else %}
+                                            <td class="text-danger">NOT RECOMMENDED for release</td>
                                         {% endif %}
                                         <td>{{ object.vicechairvotereason }}</td>
                                         {% if object.csvote == True %}
-                                        <td class="text-success">RECOMMENDED for release</td>
-                                            {% else %}
-                                          <td class="text-danger">NOT RECOMMENDED for release</td>
+                                            <td class="text-success">RECOMMENDED for release</td>
+                                        {% else %}
+                                            <td class="text-danger">NOT RECOMMENDED for release</td>
                                         {% endif %}
                                         <td>{{ object.csvotereason }}</td>
-                                    {% if object.m1vote == True %}
-                                        <td class="text-success">RECOMMENDED for release</td>
-                                            {% else %}
-                                          <td class="text-danger">NOT RECOMMENDED for release</td>
+                                        {% if object.m1vote == True %}
+                                            <td class="text-success">RECOMMENDED for release</td>
+                                        {% else %}
+                                            <td class="text-danger">NOT RECOMMENDED for release</td>
                                         {% endif %}
                                         <td>{{ object.m1votereason }}</td>
-                                    {% if object.m2vote == True %}
-                                        <td class="text-success">RECOMMENDED for release</td>
-                                            {% else %}
-                                          <td class="text-danger">NOT RECOMMENDED for release</td>
+                                        {% if object.m2vote == True %}
+                                            <td class="text-success">RECOMMENDED for release</td>
+                                        {% else %}
+                                            <td class="text-danger">NOT RECOMMENDED for release</td>
                                         {% endif %}
                                         <td>{{ object.m2votereason }}</td>
-                                    {% if object.m3vote == True %}
-                                        <td class="text-success">RECOMMENDED for release</td>
-                                            {% else %}
-                                          <td class="text-danger">NOT RECOMMENDED for release</td>
+                                        {% if object.m3vote == True %}
+                                            <td class="text-success">RECOMMENDED for release</td>
+                                        {% else %}
+                                            <td class="text-danger">NOT RECOMMENDED for release</td>
                                         {% endif %}
                                         <td>{{ object.m3votereason }}</td>
-                                    {% if object.m4vote == True %}
-                                        <td class="text-success">RECOMMENDED for release</td>
-                                            {% else %}
-                                          <td class="text-danger">NOT RECOMMENDED for release</td>
+                                        {% if object.m4vote == True %}
+                                            <td class="text-success">RECOMMENDED for release</td>
+                                        {% else %}
+                                            <td class="text-danger">NOT RECOMMENDED for release</td>
                                         {% endif %}
                                         <td>{{ object.m4votereason }}</td>
-                                    {% if object.m5vote == True %}
-                                        <td class="text-success">RECOMMENDED for release</td>
-                                            {% else %}
-                                          <td class="text-danger">NOT RECOMMENDED for release</td>
+                                        {% if object.m5vote == True %}
+                                            <td class="text-success">RECOMMENDED for release</td>
+                                        {% else %}
+                                            <td class="text-danger">NOT RECOMMENDED for release</td>
                                         {% endif %}
                                         <td>{{ object.m5votereason }}</td>
-                                    {% if object.m6vote == True %}
-                                        <td class="text-success">RECOMMENDED for release</td>
-                                            {% else %}
-                                          <td class="text-danger">NOT RECOMMENDED for release</td>
+                                        {% if object.m6vote == True %}
+                                            <td class="text-success">RECOMMENDED for release</td>
+                                        {% else %}
+                                            <td class="text-danger">NOT RECOMMENDED for release</td>
                                         {% endif %}
                                         <td>{{ object.m6votereason }}</td>
                                         <td>{{ object.finalresolution }}</td>

@@ -112,22 +112,30 @@
                     </ul>
                 </li>
                 {% endif %}
+            {% if  perms.petitions.can_view_interviews or perms.petitions.add_interviewsummary or perms.petitions.can_view_myinterviews %}
                 <li><a><i class="fa fa-camera"></i>Interviews<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
+                        {% if  perms.petitions.can_view_interviews %}
                         <li><a href="{% url 'interviewsummary_list' %}">Interviews List</a></li>
                         <li><a href="{% url 'awaitinginterviws' %}">Awaiting Interviews</a></li>
                         <li><a href="{% url 'interviewsummary_recommended' %}">Recommended for Recommendation</a></li>
                         <li><a href="{% url 'interviewsummary_notrecommended' %}">Not Recommended for Recommendation</a>
                         </li>
+                    {% endif %}
+                    {% if  perms.petitions.can_view_myinterviews %}
                         <li><a href="{% url 'myinterviewsummary_list' %}">My Interviews List</a></li>
                         <li><a href="{% url 'myawaitinginterviws' %}">My Awaiting Interviews</a></li>
                         <li><a href="{% url 'myinterviewsummary_recommended' %}">My Recommended for Recommendation</a>
                         </li>
                         <li><a href="{% url 'myinterviewsummary_notrecommended' %}">My Not Recommended for
                             Recommendation</a></li>
+                        {% endif %}
+                     {% if  perms.petitions.add_interviewsummary %}
                         <li><a href="{% url 'interviewsummary_create' %}">Add Interview</a></li>
+                         {% endif %}
                     </ul>
                 </li>
+            {% endif %}
                 <li><a><i class="fa fa-check-circle"></i> Recommendations <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{% url 'recommendationform_list' %}">Recommendations List</a></li>

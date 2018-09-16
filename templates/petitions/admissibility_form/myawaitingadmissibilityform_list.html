@@ -1,13 +1,18 @@
-{% extends "petitions/admissibility_form/admissibilityform_list.html" %}
-{% block admissibilitytableheading %}
-    <h2>My Awaiting Admisibilities
+{% extends "petitions/petition_form/petitionform_list.html" %}
+{% block petitiontableheading %}
+     <h2>My Awaiting Admisibilities
         <small>| My Petitions that have qualified for admissibility but have not been done</small>
     </h2>
 {% endblock %}
-{% block admissibilitytabledescription %}
-    <p class="text-muted font-13 m-b-30">
+{% block petitiontabledescription %}
+   <p class="text-muted font-13 m-b-30">
         This table shows all the petitions that I submitted and are eligible and have not been done any admissibility
         test. You can search using any
         criteria
     </p>
+{% endblock %}
+{% block addbutton %}
+    {% if perms.petitions.add_admissibilityform %}
+     <li><a class="btn btn-sm btn-primary" href="{% url 'admissibilityform_create' %}">Add Admissibility</a></li>
+    {% endif %}
 {% endblock %}
