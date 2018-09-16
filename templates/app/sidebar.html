@@ -84,9 +84,10 @@
                         <li><a href="{% url 'petitionsummary_create' %}">Add Summary</a></li>
                     </ul>
                 </li>
-
+                 {% if  perms.petitions.can_view_hearingsummaries or perms.petitions.add_hearingsummary or perms.petitions.can_view_myhearings %}
                 <li><a><i class="fa fa-clone"></i> Hearings <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
+                         {% if perms.petitions.can_view_hearingsummaries %}
                         <li><a href="{% url 'hearingsummary_list' %}">Hearings List</a></li>
                         <li><a href="{% url 'hearingsummary_deferred' %}">Deferred Petitions</a></li>
                         <li><a href="{% url 'hearingsummary_declined' %}">Declined</a></li>
@@ -94,18 +95,23 @@
                         <li><a href="{% url 'awaitinghearing' %}">Awaiting Hearing</a></li>
                         <li><a href="{% url 'hearingsummary_awaitingscheduleforinterview' %}">Awaiting Schedule for
                             Interview</a></li>
+                             {% if perms.petitions.can_view_myhearings %}
+                             {% endif %}
                         <li><a href="{% url 'myhearingsummary_list' %}">My Hearings</a></li>
                         <li><a href="{% url 'myhearingsummary_awaitingscheduleforinterview' %}">My Schedules for
                             Interview</a></li>
                         <li><a href="{% url 'myhearingsummary_awaitingscheduleforinterview' %}">My Awaiting Schedule for
                             Interview</a></li>
-                        <li><a href="{% url 'awaitinghearing' %}">Awaiting Hearing</a></li>
+                        <li><a href="{% url 'myawaitinghearing' %}">My Awaiting Hearing</a></li>
                         <li><a href="{% url 'myhearingsummary_deferred' %}">My Deferred Hearings</a></li>
                         <li><a href="{% url 'myhearingsummary_declined' %}">My Declined Hearings</a></li>
+                             {% endif %}
+                    {% if perms.petitions.add_hearingsummary %}
                         <li><a href="{% url 'hearingsummary_create' %}">Add Hearing</a></li>
+                        {% endif %}
                     </ul>
                 </li>
-
+                {% endif %}
                 <li><a><i class="fa fa-camera"></i>Interviews<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="{% url 'interviewsummary_list' %}">Interviews List</a></li>
