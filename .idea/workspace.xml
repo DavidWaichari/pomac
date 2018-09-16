@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd264c29-9605-4953-a0c8-a41219d982cc" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petitions/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/petitions/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petitions/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/petitions/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/app/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/app/sidebar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/petitions/admissibility_form/admissibilityform_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/petitions/admissibility_form/admissibilityform_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/petitions/petition_form/petitionform_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/petitions/petition_form/petitionform_detail.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -62,14 +58,14 @@
         <counts>
           <entry key="Django Console" value="1801" />
           <entry key="dummy" value="35" />
-          <entry key="html" value="15385" />
+          <entry key="html" value="15427" />
           <entry key="js" value="615" />
           <entry key="py" value="10070" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="15385" />
+          <entry key="HTML" value="15427" />
           <entry key="JavaScript" value="615" />
           <entry key="PLAIN_TEXT" value="35" />
           <entry key="Python" value="11871" />
@@ -78,7 +74,7 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="Pipfile" value="1" />
-          <entry key="html" value="624" />
+          <entry key="html" value="627" />
           <entry key="jpg" value="1" />
           <entry key="js" value="12" />
           <entry key="json" value="2" />
@@ -90,7 +86,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="624" />
+          <entry key="HTML" value="627" />
           <entry key="Image" value="3" />
           <entry key="JSON" value="2" />
           <entry key="JavaScript" value="12" />
@@ -123,13 +119,36 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/petitions/admissibility_form/admissibilityform_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="538">
-              <caret line="492" column="46" selection-start-line="492" selection-start-column="46" selection-end-line="492" selection-end-column="46" />
+            <state relative-caret-position="147">
+              <caret line="95" column="35" selection-start-line="73" selection-start-column="40" selection-end-line="109" selection-end-column="46" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/petitionform_detail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="776">
+              <caret line="393" column="46" selection-start-line="393" selection-start-column="46" selection-end-line="393" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/petitionform_list.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1292">
+              <caret line="23" column="45" lean-forward="true" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/mypetitionform_list.html">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -244,7 +263,6 @@
         <option value="$PROJECT_DIR$/templates/petitions/skilledpetitioners_list.html" />
         <option value="$PROJECT_DIR$/templates/petitions/specialcondition_list.html" />
         <option value="$PROJECT_DIR$/templates/petitions/trustees_list.html" />
-        <option value="$PROJECT_DIR$/templates/petitions/petition_form/petitionform_detail.html" />
         <option value="$PROJECT_DIR$/petitions/forms.py" />
         <option value="$PROJECT_DIR$/petitions/admin.py" />
         <option value="$PROJECT_DIR$/templates/petitions/petitionstatus_list.html" />
@@ -254,6 +272,7 @@
         <option value="$PROJECT_DIR$/templates/app/sidebar.html" />
         <option value="$PROJECT_DIR$/petitions/views.py" />
         <option value="$PROJECT_DIR$/templates/petitions/admissibility_form/admissibilityform_detail.html" />
+        <option value="$PROJECT_DIR$/templates/petitions/petition_form/petitionform_detail.html" />
       </list>
     </option>
   </component>
@@ -294,7 +313,7 @@
       <path value="$PROJECT_DIR$/static/vendors/transitionize/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="227" />
     <option name="y" value="-13" />
     <option name="width" value="1080" />
@@ -318,7 +337,20 @@
             <path>
               <item name="djangox" type="b2602c69:ProjectViewProjectNode" />
               <item name="djangox" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="djangox" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djangox" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="petitions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="djangox" type="b2602c69:ProjectViewProjectNode" />
+              <item name="djangox" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="petitions" type="462c0819:PsiDirectoryNode" />
+              <item name="petition_form" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -407,7 +439,7 @@
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.31770045" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31770045" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -683,13 +715,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/petitionform_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="362" selection-start-line="362" selection-end-line="362" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/petitions/summaries/petitionsummary_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1462">
@@ -769,16 +794,6 @@
     <entry file="file://$PROJECT_DIR$/templates/app/base_site.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/petitionform_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="23" column="45" lean-forward="true" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/mypetitionform_list.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/app/sidebar.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
@@ -810,10 +825,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/petitions/admissibility_form/admissibilityform_detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="538">
-          <caret line="492" column="46" selection-start-line="492" selection-start-column="46" selection-end-line="492" selection-end-column="46" />
+        <state relative-caret-position="147">
+          <caret line="95" column="35" selection-start-line="73" selection-start-column="40" selection-end-line="109" selection-end-column="46" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/petitionform_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="776">
+          <caret line="393" column="46" selection-start-line="393" selection-start-column="46" selection-end-line="393" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/petitionform_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1292">
+          <caret line="23" column="45" lean-forward="true" selection-start-line="23" selection-start-column="45" selection-end-line="23" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/mypetitionform_list.html">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
