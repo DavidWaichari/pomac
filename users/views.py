@@ -12,7 +12,7 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from djangox.tokens import account_activation_token
-from users.models import CustomUser, Profile
+from users.models import CustomUser
 from .forms import CustomUserCreationForm, ProfileUpdateForm
 
 
@@ -67,9 +67,9 @@ def activate(request, uidb64, token):
 
 class ProfileUpdateView(UpdateView):
     template_name = 'account/update_profile.html'
-    model = Profile
+    model = CustomUser
     form_class = ProfileUpdateForm
 
     def get_success_url(self):
-        view_name = 'petitionform_list'
+        view_name = 'petitions_dashboard'
         return reverse_lazy(view_name)

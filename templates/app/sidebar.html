@@ -10,10 +10,10 @@
         </div>
         <div class="profile_info">
             <span>Welcome,</span>
-            {% if user.profile.firstname == '' or user.profile.lastname == '' %}
-                <p><a class="btn-danger btn-sm" href="{% url 'updateprofile' user.profile.id %}">Update Profile</a></p>
+            {% if user.first_name == '' or user.last_name == '' %}
+                <p><a class="btn-danger btn-sm" href="{% url 'updateprofile' user.id %}">Update Profile</a></p>
             {% else %}
-                <h2>{{ user.profile }}</h2>
+                <h2>{{ user.last_name }} {{ user.first_name }}</h2>
             {% endif %}
             <span>{{ user.email }}</span>
         </div>

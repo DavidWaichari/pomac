@@ -10,7 +10,8 @@ class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = CustomUser
-    list_display = ['email', 'username', ]
+    list_display = ['email','first_name','last_name', 'username','residence','profession','contact' ]
 
 
 admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.site_header = 'POMAC PETITION MASTER ADMINISTRATION'

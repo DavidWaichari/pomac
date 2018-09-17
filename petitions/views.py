@@ -465,6 +465,12 @@ class PetitionFormCreateView(CreateView):
          instance.save()
          sweetify.success(self.request, 'Petition submitted successfully', button=True, timer=15000)
          return  redirect ('petitionform_detail', instance.id)
+    def dispatch(self, request, *args, **kwargs):
+        user = CustomUser.objects.get(id=self.request.user.id)
+        if(user.first_name == '' and user.last_name == ''):
+            sweetify.warning(self.request, 'Please update your profile to submit a petition. Provide the firstname and lastname as they appear In the ID Card/B.C/Passport', button=True, timer=15000)
+            return redirect('updateprofile',self.request.user.id)
+        return super(PetitionFormCreateView, self).dispatch(request, *args, **kwargs)
 
 
 class PetitionFormDetailView(DetailView):
@@ -3103,6 +3109,12 @@ def DeleteExit(request,pk):
 
 @permission_required ('petitions.can_view_main_dashboard', raise_exception=False, login_url='/my-dashboard')
 def dashboard(request):
+    user = CustomUser.objects.get(pk=request.user.id)
+    if (user.first_name == '' and user.last_name == ''):
+        sweetify.warning(request,
+                         'Please update your profile. Provide the firstname and lastname as they appear In the ID Card/B.C/Passport',
+                         button=True, timer=15000)
+        return redirect('updateprofile', request.user.id)
     data = {
         'noofpetitions': PetitionForm.objects.count(),
         'eligiblepetitions': PetitionForm.objects.filter(anypendingcourtmatter=False).count(),
@@ -3149,6 +3161,10 @@ def dashboard(request):
     return render(request, 'petitions/dashboard/index.html',data)
 
 def mydashboard(request):
+    user = CustomUser.objects.get(pk=request.user.id)
+    if (user.first_name == '' and user.last_name == ''):
+        sweetify.warning(request,'Please update your profile. Provide the firstname and lastname as they appear In the ID Card/B.C/Passport',button=True, timer=15000)
+        return redirect('updateprofile', request.user.id)
     data = {
         'noofpetitions': PetitionForm.objects.filter(added_by=request.user).count(),
         'eligiblepetitions': PetitionForm.objects.filter(anypendingcourtmatter=False).filter(added_by=request.user).count(),
@@ -3175,3 +3191,4 @@ def mydashboard(request):
         'mygrants': Grant.objects.all().filter(added_by=request.user).count(),
     }
     return render(request, 'petitions/dashboard/mydashboard.html',data)
+

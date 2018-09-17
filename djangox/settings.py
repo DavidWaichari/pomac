@@ -161,6 +161,7 @@ ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
+#ACCOUNT_SIGNUP_FORM_CLASS = "petitions.forms.UserSignupForm"
 
 
 # default is 'True', use 'optional' for development purposes
