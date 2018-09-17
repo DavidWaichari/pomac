@@ -21,19 +21,23 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
+                            {% block grantstableheader %}
                             <h2>Grants List
                                 <small>| List of all Grants</small>
                             </h2>
+                                {% endblock %}
                             <ul class="nav navbar-right panel_toolbox">
                                <li><a class="btn btn-sm btn-primary" href="{% url 'petitions_grant_create' %}">Add Grant</a></li>
                             </ul>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
+                        {% block grantstabledescription %}
                             <p class="text-muted font-13 m-b-30">
                                 This table shows all grant of petitions. You can search using any
                                 criteria
                             </p>
+                            {% endblock %}
                             <table id="allmytables" class="table table-striped table-bordered dt-responsive " style="width:100%">
                                 <thead style="width:100%">
                                 <tr>

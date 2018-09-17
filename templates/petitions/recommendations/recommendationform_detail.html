@@ -37,48 +37,78 @@
                                             This shows all the recommendation details of the petition with
                                             details from petition form
                                         </p>
-                                                <!-- Modal -->
-                        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true"
-                             style="display: none;">
-                            <div class="modal-dialog modal-ls">
-                                <div class="modal-content">
+                                        <!-- Modal -->
+                                        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog"
+                                             aria-hidden="true"
+                                             style="display: none;">
+                                            <div class="modal-dialog modal-ls">
+                                                <div class="modal-content">
 
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                        <h4 class="modal-title" id="myModalLabel2">Confirm Delete</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <h4>Delete?</h4>
-                                        <p>Are you sure you want to delete the recommendation of the petition
-                                            for <strong>{{ object.interview.hearing.admissibility.petitioner.name }}
-                                            | {{ object.interview.hearing.admissibility.petitioner.prisonno }}.</strong> <span style="color: red">Deleting will also delete the, recommendation and grant if issued</span></p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a type="button" class="btn btn-danger  mr-auto"
-                                           href="{% url 'recommendationform_delete' object.id %}">Delete</a>
-                                        <button type="button" class="btn btn-secondary btn-success"
-                                                data-dismiss="modal">Cancel
-                                        </button>
-                                    </div>
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                        <h4 class="modal-title" id="myModalLabel2">Confirm Delete</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h4>Delete?</h4>
+                                                        <p>Are you sure you want to delete the recommendation of the
+                                                            petition
+                                                            for
+                                                            <strong>{{ object.interview.hearing.admissibility.petitioner.name }}
+                                                                | {{ object.interview.hearing.admissibility.petitioner.prisonno }}.</strong>
+                                                            <span style="color: red">Deleting will also delete the, recommendation and grant if issued</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a type="button" class="btn btn-danger  mr-auto"
+                                                           href="{% url 'recommendationform_delete' object.id %}">Delete</a>
+                                                        <button type="button" class="btn btn-secondary btn-success"
+                                                                data-dismiss="modal">Cancel
+                                                        </button>
+                                                    </div>
 
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /modals -->
-                                    <div class="row">
-                                            <div class="col-md-4"><a class="btn btn-warning btn-sm" href="{{ object.get_update_url }}">Edit
-                                                    Reccommendation</a></div>
-                                            <div class="col-md-3"><button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                data-target=".bs-example-modal-sm">Delete Recommendation
-                        </button></div>
-                                            <div class="col-md-3"><a class="btn btn-info btn-sm"
-                                                                     href="{% url 'recommendationform_list' %}">Go to
-                                                    Recommendations</a></div>
-                                            <div class="col-md-2"><a class="btn btn-success btn-sm"
-                                                                     href="{% url 'recommendationform_print' object.id %}">Print</a>
+                                                </div>
                                             </div>
+                                        </div>
+                                        <!-- /modals -->
+                                        <div class="row">
+                                            {% if perms.petitions.change_recommendationform %}
+                                                <div class="col-md-3"><a class="btn btn-warning btn-sm"
+                                                                     href="{{ object.get_update_url }}">Edit
+                                                Reccommendation</a></div>
+                                            {% else %}
+                                                {% if object.added_by == user %}
+                                                    {% if object.created|date:"Y-m-d" ==  today|date:"Y-m-d" %}
+                                                        <div class="col-md-4"><a class="btn btn-warning btn-sm"
+                                                                     href="{{ object.get_update_url }}">Edit
+                                                Reccommendation</a></div>
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endif %}
+                                            {% if perms.petitions.delete_recommendationform %}
+                                                <div class="col-md-3">
+                                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                                        data-target=".bs-example-modal-sm">Delete Recommendation
+                                                </button>
+                                                </div>
+                                            {% endif %}
+
+                                            {% if perms.petitions.can_view_recommendations %}
+                                                <div class="col-md-4"><a class="btn btn-info btn-sm"
+                                                                     href="{% url 'recommendationform_list' %}">Go to
+                                                Recommendations</a></div>
+                                            {% elif perms.petitions.can_view_myrecommendations %}
+                                                <div class="col-md-2"><a class="btn btn-info btn-sm"
+                                                                     href="{% url 'myrecommendationform_list' %}">Go to
+                                                My Recommendations</a></div>
+                                            {% endif %}
+                                            {% if perms.petitions.can_print_recommendations %}
+                                                <div class="col-md-2"><a class="btn btn-success btn-sm"
+                                                                         href="{% url 'recommendationform_print' object.id %}">Print</a>
+                                                </div>
+                                            {% endif %}
                                         </div>
                                         <table class="table">
                                             <tr>
@@ -89,7 +119,7 @@
                                                 <td>Prison Number</td>
                                                 <td>{{ object.interview.hearing.admissibility.petitioner.prisonno }}</td>
                                             </tr>
-                                        <tr>
+                                            <tr>
                                                 <td>Prison</td>
                                                 <td>{{ object.interview.hearing.admissibility.petitioner.prison }}</td>
                                             </tr>
@@ -115,7 +145,8 @@
                                                 {% if object.interview.hearing.admissibility.petitioner.convictedforlife == True %}
                                                     <td>LIFE IMPRISONMENT</td>
                                                 {% else %}
-                                                    <td>{{ object.interview.hearing.admissibility.petitioner.sentence }} YEARS
+                                                    <td>{{ object.interview.hearing.admissibility.petitioner.sentence }}
+                                                        YEARS
                                                         IMPRISONMENT
                                                     </td>
                                                 {% endif %}
@@ -335,11 +366,11 @@
                                                 <td>Explanation of pending court matter</td>
                                                 <td>{{ object.interview.hearing.admissibility.petitioner.explanationofpendingcourtmatter }}</td>
                                             </tr>
-                                             <tr>
+                                            <tr>
                                                 <td>Petition Added By</td>
                                                 <td>{{ object.interview.hearing.admissibility.petitioner.added_by }}</td>
                                             </tr>
-                                             <tr>
+                                            <tr>
                                                 <td>Petition Submitted On</td>
                                                 <td>{{ object.interview.hearing.admissibility.petitioner.created }}</td>
                                             </tr>
@@ -348,7 +379,8 @@
                                                 <td></td>
                                             </tr>
                                             <tr>
-                                                <td class="text-right text-uppercase text-primary">Start of Recommendation
+                                                <td class="text-right text-uppercase text-primary">Start of
+                                                    Recommendation
                                                     Summary
                                                 </td>
                                                 <td class="text-left text-uppercase text-primary"></td>
@@ -357,7 +389,7 @@
                                                 <td>Mercy Given</td>
                                                 <td>{{ object.mercy }}</td>
                                             </tr>
-                                        <tr>
+                                            <tr>
                                                 <td>Explanation of the final resolution</td>
                                                 <td>{{ object.explanationofrecommedation }}</td>
                                             </tr>
@@ -365,7 +397,7 @@
                                                 <td>Recommendation Details Added By</td>
                                                 <td>{{ object.added_by }}</td>
                                             </tr>
-                                           <tr>
+                                            <tr>
                                                 <td>Recommendation Details Added On</td>
                                                 <td>{{ object.created }}</td>
                                             </tr>
@@ -373,19 +405,47 @@
                                                 <td>Recommendation Details Last Updated By</td>
                                                 <td>{{ object.updated_by }}</td>
                                             </tr>
-                                        <tr>
+                                            <tr>
                                                 <td>Recommendation Details Last Updated On</td>
                                                 <td>{{ object.last_updated }}</td>
                                             </tr>
                                         </table>
-                                    <div class="row">
-                                            <div class="col-md-10">
-                                                <a class="btn btn-warning btn-sm" href="{{ object.get_update_url }}">Edit Recommendation</a>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <a class="btn btn-success btn-sm"
-                                                  href="{% url 'recommendationform_print' object.id %}">Print</a>
-                                            </div>
+                                        <div class="row">
+                                            {% if perms.petitions.change_recommendationform %}
+                                                <div class="col-md-3"><a class="btn btn-warning btn-sm"
+                                                                     href="{{ object.get_update_url }}">Edit
+                                                Reccommendation</a></div>
+                                            {% else %}
+                                                {% if object.added_by == user %}
+                                                    {% if object.created|date:"Y-m-d" ==  today|date:"Y-m-d" %}
+                                                        <div class="col-md-4"><a class="btn btn-warning btn-sm"
+                                                                     href="{{ object.get_update_url }}">Edit
+                                                Reccommendation</a></div>
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endif %}
+                                            {% if perms.petitions.delete_recommendationform %}
+                                                <div class="col-md-3">
+                                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                                        data-target=".bs-example-modal-sm">Delete Recommendation
+                                                </button>
+                                                </div>
+                                            {% endif %}
+
+                                            {% if perms.petitions.can_view_recommendations %}
+                                                <div class="col-md-4"><a class="btn btn-info btn-sm"
+                                                                     href="{% url 'recommendationform_list' %}">Go to
+                                                Recommendations</a></div>
+                                            {% elif perms.petitions.can_view_myrecommendations %}
+                                                <div class="col-md-2"><a class="btn btn-info btn-sm"
+                                                                     href="{% url 'myrecommendationform_list' %}">Go to
+                                                My Recommendations</a></div>
+                                            {% endif %}
+                                            {% if perms.petitions.can_print_recommendations %}
+                                                <div class="col-md-2"><a class="btn btn-success btn-sm"
+                                                                         href="{% url 'recommendationform_print' object.id %}">Print</a>
+                                                </div>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>

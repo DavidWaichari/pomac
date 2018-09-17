@@ -66,17 +66,27 @@
                         <!-- /modals -->
 
                         <div class="row">
-                            <div class="col-md-7">
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                data-target=".bs-example-modal-sm">Delete Grant
-                        </button>
-                            </div>
-                            <div class="col-md-3"><a class="btn btn-info btn-sm"
-                                                     href="{% url 'petitions_grant_list' %}">Go to
-                                Grants</a></div>
-                            <div class="col-md-2"><a class="btn btn-success btn-sm"
-                                                     href="{% url 'grantpetition_print' object.id %}">Print</a>
-                            </div>
+                            {% if  perms.petitions.delete_grant %}
+                                <div class="col-md-5">
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                            data-target=".bs-example-modal-sm">Delete Grant
+                                    </button>
+                                </div>
+                            {% endif %}
+                            {% if perms.petitions.can_view_grants %}
+                                <div class="col-md-4"><a class="btn btn-info btn-sm"
+                                                         href="{% url 'petitions_grant_list' %}">Go to
+                                    Grants</a></div>
+                            {% elif perms.petitions.can_view_mygrants %}
+                                <div class="col-md-3"><a class="btn btn-info btn-sm"
+                                                         href="{% url 'petitions_grant_list' %}">Go to My
+                                    Grants</a></div>
+                            {% endif %}
+                            {% if perms.petitions.can_print_grants %}
+                                <div class="col-md-2"><a class="btn btn-success btn-sm"
+                                                         href="{% url 'grantpetition_print' object.id %}">Print</a>
+                                </div>
+                            {% endif %}
                         </div>
                         <table class="table">
                             <tr>
@@ -364,20 +374,33 @@
                                 <td>Grant Last Updated By</td>
                                 <td>{{ object.updated_by }}</td>
                             </tr>
-                        <tr>
+                            <tr>
                                 <td>Grant Last Updated On</td>
                                 <td>{{ object.last_updated }}</td>
                             </tr>
                         </table>
                         <div class="row">
-                            <div class="col-md-10">
-                                <a class="btn btn-danger btn-sm"
-                                   href="{% url 'petitions_grant_delete' object.id %}">Delete Grant</a>
-                            </div>
-                            <div class="col-md-2">
-                                <a class="btn btn-success btn-sm"
-                                   href="{% url 'grantpetition_print' object.id %}">Print</a>
-                            </div>
+                            {% if  perms.petitions.delete_grant %}
+                                <div class="col-md-5">
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                            data-target=".bs-example-modal-sm">Delete Grant
+                                    </button>
+                                </div>
+                            {% endif %}
+                            {% if perms.petitions.can_view_grants %}
+                                <div class="col-md-4"><a class="btn btn-info btn-sm"
+                                                         href="{% url 'petitions_grant_list' %}">Go to
+                                    Grants</a></div>
+                            {% elif perms.petitions.can_view_mygrants %}
+                                <div class="col-md-3"><a class="btn btn-info btn-sm"
+                                                         href="{% url 'petitions_grant_list' %}">Go to My
+                                    Grants</a></div>
+                            {% endif %}
+                            {% if perms.petitions.can_print_grants %}
+                                <div class="col-md-2"><a class="btn btn-success btn-sm"
+                                                         href="{% url 'grantpetition_print' object.id %}">Print</a>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
