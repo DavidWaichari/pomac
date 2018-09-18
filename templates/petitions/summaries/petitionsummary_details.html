@@ -36,50 +36,81 @@
                                         <p class="text-muted font-13 m-b-30">
                                             This shows the summary of the petition with other details
                                         </p>
-                                    <!-- Modal -->
-                        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true"
-                             style="display: none;">
-                            <div class="modal-dialog modal-ls">
-                                <div class="modal-content">
+                                        <!-- Modal -->
+                                        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog"
+                                             aria-hidden="true"
+                                             style="display: none;">
+                                            <div class="modal-dialog modal-ls">
+                                                <div class="modal-content">
 
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                        <h4 class="modal-title" id="myModalLabel2">Confirm Delete</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <h4>Delete Summary?</h4>
-                                        <p>Are you sure you want to delete the summary of the petition
-                                            for <strong>{{ object.admissibility.petitioner.name }}
-                                            | {{ object.admissibility.petitioner.prisonno }}.</strong></p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a type="button" class="btn btn-danger  mr-auto"
-                                           href="{% url 'petitionsummary_delete' object.id %}">Delete</a>
-                                        <button type="button" class="btn btn-secondary btn-success"
-                                                data-dismiss="modal">Cancel
-                                        </button>
-                                    </div>
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                        <h4 class="modal-title" id="myModalLabel2">Confirm Delete</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h4>Delete Summary?</h4>
+                                                        <p>Are you sure you want to delete the summary of the petition
+                                                            for <strong>{{ object.admissibility.petitioner.name }}
+                                                                | {{ object.admissibility.petitioner.prisonno }}.</strong>
+                                                        </p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <a type="button" class="btn btn-danger  mr-auto"
+                                                           href="{% url 'petitionsummary_delete' object.id %}">Delete</a>
+                                                        <button type="button" class="btn btn-secondary btn-success"
+                                                                data-dismiss="modal">Cancel
+                                                        </button>
+                                                    </div>
 
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /modals -->
-                                        <div class="row">
-                                            <div class="col-md-4"><a class="btn btn-warning btn-sm"
-                                                                     href="{{ object.get_update_url }}">Edit this
-                                                Summary</a></div>
-                                            <div class="col-md-4"><button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                data-target=".bs-example-modal-sm">Delete Summary
-                        </button></div>
-                                            <div class="col-md-2"><a class="btn btn-info btn-sm"
-                                                                     href="{% url 'petitionsummary_list' %}">Go to
-                                                Summaries</a></div>
-                                            <div class="col-md-2"><a class="btn btn-success btn-sm"
-                                                                     href="{% url 'petitionsummary_print' object.id %}">Print</a>
+                                                </div>
                                             </div>
                                         </div>
+                                        <!-- /modals -->
+                                        <div class="row">
+                                            {% if perms.petitions.change_petitionsummary %}
+                                                <div class="col-md-4"><a class="btn btn-warning btn-sm"
+                                                                         href="{{ object.get_update_url }}">Edit this
+                                                    Summary</a></div>
+                                            {% else %}
+                                                {% if object.added_by == user %}
+                                                    {% if object.created|date:"Y-m-d" ==  today|date:"Y-m-d" %}
+                                                        <div class="col-md-4"><a class="btn btn-warning btn-sm"
+                                                                                 href="{{ object.get_update_url }}">Edit
+                                                            this
+                                                            Summary</a></div>
+                                                        {% else %}
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endif %}
+                                            {% if perms.petitions.delete_petitionsummary %}
+                                                <div class="col-md-4">
+                                                    <button type="button" class="btn btn-danger btn-sm"
+                                                            data-toggle="modal"
+                                                            data-target=".bs-example-modal-sm">Delete Summary
+                                                    </button>
+                                                </div>
+                                            {% endif %}
+
+                                            {% if perms.petitions.can_view_petitionsummary %}
+                                                <div class="col-md-2"><a class="btn btn-info btn-sm"
+                                                                         href="{% url 'petitionsummary_list' %}">Go to
+                                                    Summaries</a></div>
+                                            {% elif perms.petitions.can_view_mypetitionsummary %}
+                                                <div class="col-md-2"><a class="btn btn-info btn-sm"
+                                                                         href="{% url 'myinterviewsummary_list' %}">Go
+                                                    to
+                                                    My Summaries</a></div>
+                                            {% endif %}
+                                            {% if perms.petitions.can_print_petitionsummary %}
+                                                <div class="col-md-2"><a class="btn btn-success btn-sm"
+                                                                         href="{% url 'petitionsummary_print' object.id %}">Print</a>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+
                                         <table class="table">
                                             <tr>
                                                 <td>Name</td>
@@ -378,14 +409,44 @@
                                             </tr>
                                         </table>
                                         <div class="row">
-                                            <div class="col-md-10">
-                                                <a class="btn btn-warning btn-sm" href="{{ object.get_update_url }}">Edit
-                                                    Summary</a>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <a class="btn btn-success btn-sm"
-                                                   href="{% url 'petitionsummary_print' object.id %}">Print</a>
-                                            </div>
+                                            {% if perms.petitions.change_petitionsummary %}
+                                                <div class="col-md-4"><a class="btn btn-warning btn-sm"
+                                                                         href="{{ object.get_update_url }}">Edit this
+                                                    Summary</a></div>
+                                            {% else %}
+                                                {% if object.added_by == user %}
+                                                    {% if object.created|date:"Y-m-d" ==  today|date:"Y-m-d" %}
+                                                        <div class="col-md-4"><a class="btn btn-warning btn-sm"
+                                                                                 href="{{ object.get_update_url }}">Edit
+                                                            this
+                                                            Summary</a></div>
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endif %}
+                                            {% if perms.petitions.delete_petitionsummary %}
+                                                <div class="col-md-4">
+                                                    <button type="button" class="btn btn-danger btn-sm"
+                                                            data-toggle="modal"
+                                                            data-target=".bs-example-modal-sm">Delete Summary
+                                                    </button>
+                                                </div>
+                                            {% endif %}
+
+                                            {% if perms.petitions.can_view_petitionsummary %}
+                                                <div class="col-md-2"><a class="btn btn-info btn-sm"
+                                                                         href="{% url 'petitionsummary_list' %}">Go to
+                                                    Summaries</a></div>
+                                            {% elif perms.petitions.can_view_mypetitionsummary %}
+                                                <div class="col-md-2"><a class="btn btn-info btn-sm"
+                                                                         href="{% url 'myinterviewsummary_list' %}">Go
+                                                    to
+                                                    My Summaries</a></div>
+                                            {% endif %}
+                                            {% if perms.petitions.can_print_petitionsummary %}
+                                                <div class="col-md-2"><a class="btn btn-success btn-sm"
+                                                                         href="{% url 'petitionsummary_print' object.id %}">Print</a>
+                                                </div>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>

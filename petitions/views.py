@@ -493,19 +493,18 @@ class PetitionFormUpdateView(UpdateView):
          sweetify.success(self.request, 'Petition details updated successfully', button=True, timer=15000)
          return  redirect ('petitionform_detail', instance.id)
     def dispatch(self, request, *args, **kwargs):
-        petitiontoupdate = PetitionForm.objects.get(pk=self.kwargs.get('pk'))
-        petitiondate = petitiontoupdate.created.date()
+        petititionformtoupdate = PetitionForm.objects.get(pk=self.kwargs.get('pk'))
+        petitiondate = petititionformtoupdate.created.date()
         if not petitiondate == date.today():
             """ Permission check for this class """
             if not request.user.has_perm('petitions.change_petitionform'):
                 raise PermissionDenied("You do not have permission to delete events")
         else:
-            if  request.user.has_perm('petitions.change_petitionform'):
-                return super(PetitionFormUpdateView, self).dispatch(request, *args, **kwargs)
-            else:
-                if not petitiontoupdate.added_by == self.request.user:
+            if not request.user.has_perm('petitions.change_petitionform'):
+                if not petititionformtoupdate.added_by == self.request.user:
                     raise PermissionDenied("You do not have permission to delete events")
         return super(PetitionFormUpdateView, self).dispatch(request, *args, **kwargs)
+
 
 @permission_required ('petitions.delete_petitionform', raise_exception=True)
 def DeletePetitionForm(request,pk):
@@ -1186,6 +1185,11 @@ class PetitionSummaryCreateView(CreateView):
 class PetitionSummaryDetailView(DetailView):
     template_name = 'petitions/summaries/petitionsummary_details.html'
     model = PetitionSummary
+    def get_context_data(self, **kwargs):
+        context = super(PetitionSummaryDetailView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
     def dispatch(self, request, *args, **kwargs):
         """ Permission check for this class """
         if not request.user.has_perm('petitions.can_view_petitionsummarydetails'):
@@ -1204,18 +1208,15 @@ class PetitionSummaryUpdateView(UpdateView):
         summary.save()
         sweetify.success(self.request, 'Petition summary updated successfully', button=True, timer=15000)
         return redirect('petitionsummary_detail', summary.id)
-
     def dispatch(self, request, *args, **kwargs):
         summarytoupdate = PetitionSummary.objects.get(pk=self.kwargs.get('pk'))
         summarydate = summarytoupdate.created.date()
         if not summarydate == date.today():
             """ Permission check for this class """
-            if not request.user.has_perm('petitions.change_admissibilityform'):
+            if not request.user.has_perm('petitions.change_petitionsummary'):
                 raise PermissionDenied("You do not have permission to delete events")
         else:
-            if request.user.has_perm('petitions.change_petitionform'):
-                return super(PetitionSummaryUpdateView, self).dispatch(request, *args, **kwargs)
-            else:
+            if not request.user.has_perm('petitions.change_petitionsummary'):
                 if not summarytoupdate.added_by == self.request.user:
                     raise PermissionDenied("You do not have permission to delete events")
         return super(PetitionSummaryUpdateView, self).dispatch(request, *args, **kwargs)
@@ -3163,7 +3164,7 @@ def dashboard(request):
 def mydashboard(request):
     user = CustomUser.objects.get(pk=request.user.id)
     if (user.first_name == '' and user.last_name == ''):
-        sweetify.warning(request,'Please update your profile. Provide the firstname and lastname as they appear In the ID Card/B.C/Passport',button=True, timer=15000)
+        sweetify.warning(request,'Please update your profile. Provide the firstname and lastname as they appear In the ID Card/B.C/Passport. If you have done that already ignore this message',button=True, timer=15000)
         return redirect('updateprofile', request.user.id)
     data = {
         'noofpetitions': PetitionForm.objects.filter(added_by=request.user).count(),

@@ -72,41 +72,44 @@
                                         <!-- /modals -->
 
                                         <div class="row">
-                                        {% if perms.petitions.change_admissibilityform %}
-                                            <div class="col-md-4"><a class="btn btn-warning btn-sm"
-                                                                     href="{{ object.get_update_url }}">Edit this
-                                                Admissibility</a></div>
-                                        {% else %}
-                                            {% if admissibilityform.added_by == user %}
-                                                {% if admissibilityform.created|date:"Y-m-d" ==  today|date:"Y-m-d"  %}
-                                                               <div class="col-md-4"><a class="btn btn-warning btn-sm"
-                                                                     href="{{ object.get_update_url }}">Edit this
-                                                Admissibility</a></div>
+                                            {% if perms.petitions.change_admissibilityform %}
+                                                <div class="col-md-4"><a class="btn btn-warning btn-sm"
+                                                                         href="{{ object.get_update_url }}">Edit this
+                                                    Admissibility</a></div>
+                                            {% else %}
+                                                {% if admissibilityform.added_by == user %}
+                                                    {% if admissibilityform.created|date:"Y-m-d" ==  today|date:"Y-m-d" %}
+                                                        <div class="col-md-4"><a class="btn btn-warning btn-sm"
+                                                                                 href="{{ object.get_update_url }}">Edit
+                                                            this
+                                                            Admissibility</a></div>
+                                                    {% endif %}
                                                 {% endif %}
                                             {% endif %}
-                                        {% endif %}
                                             {% if perms.petitions.delete_admissibilityform %}
-                                            <div class="col-md-4">
-                                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                                        data-target=".bs-example-modal-sm">Delete Admissibility
-                                                </button>
-                                            </div>
+                                                <div class="col-md-4">
+                                                    <button type="button" class="btn btn-danger btn-sm"
+                                                            data-toggle="modal"
+                                                            data-target=".bs-example-modal-sm">Delete Admissibility
+                                                    </button>
+                                                </div>
                                             {% endif %}
 
                                             {% if perms.petitions.can_view_admissibilityform %}
                                                 <div class="col-md-2"><a class="btn btn-info btn-sm"
-                                                                     href="{% url 'admissibilityform_list' %}">Go to
-                                                Admissabilities</a></div>
+                                                                         href="{% url 'admissibilityform_list' %}">Go to
+                                                    Admissabilities</a></div>
                                             {% elif perms.petitions.can_view_myadmissibilityform %}
-                                                 <div class="col-md-2"><a class="btn btn-info btn-sm"
-                                                                     href="{% url 'myadmissibilityform_list' %}">Go to
-                                                My Admissabilities</a></div>
-                                        {% endif %}
-                                       {% if perms.petitions.can_print_admissibilityform %}
-                                            <div class="col-md-2"><a class="btn btn-success btn-sm"
-                                                                     href="{% url 'admissibilityform_print' object.id %}">Print</a>
-                                            </div>
-                                        {% endif %}
+                                                <div class="col-md-2"><a class="btn btn-info btn-sm"
+                                                                         href="{% url 'myadmissibilityform_list' %}">Go
+                                                    to
+                                                    My Admissabilities</a></div>
+                                            {% endif %}
+                                            {% if perms.petitions.can_print_admissibilityform %}
+                                                <div class="col-md-2"><a class="btn btn-success btn-sm"
+                                                                         href="{% url 'admissibilityform_print' object.id %}">Print</a>
+                                                </div>
+                                            {% endif %}
                                         </div>
                                         <table class="table">
                                             <tr>
@@ -454,42 +457,45 @@
                                                 <td>{{ object.last_updated }}</td>
                                             </tr>
                                         </table>
-                                         <div class="row">
-                                        {% if perms.petitions.change_admissibilityform %}
-                                            <div class="col-md-4"><a class="btn btn-warning btn-sm"
-                                                                     href="{{ object.get_update_url }}">Edit this
-                                                Admissibility</a></div>
-                                        {% else %}
-                                            {% if admissibilityform.added_by == user %}
-                                                {% if admissibilityform.created|date:"Y-m-d" ==  today|date:"Y-m-d"  %}
-                                                               <div class="col-md-4"><a class="btn btn-warning btn-sm"
-                                                                     href="{{ object.get_update_url }}">Edit this
-                                                Admissibility</a></div>
+                                        <div class="row">
+                                            {% if perms.petitions.change_admissibilityform %}
+                                                <div class="col-md-4"><a class="btn btn-warning btn-sm"
+                                                                         href="{{ object.get_update_url }}">Edit this
+                                                    Admissibility</a></div>
+                                            {% else %}
+                                                {% if admissibilityform.added_by == user %}
+                                                    {% if admissibilityform.created|date:"Y-m-d" ==  today|date:"Y-m-d" %}
+                                                        <div class="col-md-4"><a class="btn btn-warning btn-sm"
+                                                                                 href="{{ object.get_update_url }}">Edit
+                                                            this
+                                                            Admissibility</a></div>
+                                                    {% endif %}
                                                 {% endif %}
                                             {% endif %}
-                                        {% endif %}
                                             {% if perms.petitions.delete_admissibilityform %}
-                                            <div class="col-md-4">
-                                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                                        data-target=".bs-example-modal-sm">Delete Admissibility
-                                                </button>
-                                            </div>
+                                                <div class="col-md-4">
+                                                    <button type="button" class="btn btn-danger btn-sm"
+                                                            data-toggle="modal"
+                                                            data-target=".bs-example-modal-sm">Delete Admissibility
+                                                    </button>
+                                                </div>
                                             {% endif %}
 
                                             {% if perms.petitions.can_view_admissibilityform %}
                                                 <div class="col-md-2"><a class="btn btn-info btn-sm"
-                                                                     href="{% url 'admissibilityform_list' %}">Go to
-                                                Admissabilities</a></div>
+                                                                         href="{% url 'admissibilityform_list' %}">Go to
+                                                    Admissabilities</a></div>
                                             {% elif perms.petitions.can_view_myadmissibilityform %}
-                                                 <div class="col-md-2"><a class="btn btn-info btn-sm"
-                                                                     href="{% url 'myadmissibilityform_list' %}">Go to
-                                                My Admissabilities</a></div>
-                                        {% endif %}
-                                       {% if perms.petitions.can_print_admissibilityform %}
-                                            <div class="col-md-2"><a class="btn btn-success btn-sm"
-                                                                     href="{% url 'admissibilityform_print' object.id %}">Print</a>
-                                            </div>
-                                        {% endif %}
+                                                <div class="col-md-2"><a class="btn btn-info btn-sm"
+                                                                         href="{% url 'myadmissibilityform_list' %}">Go
+                                                    to
+                                                    My Admissabilities</a></div>
+                                            {% endif %}
+                                            {% if perms.petitions.can_print_admissibilityform %}
+                                                <div class="col-md-2"><a class="btn btn-success btn-sm"
+                                                                         href="{% url 'admissibilityform_print' object.id %}">Print</a>
+                                                </div>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
