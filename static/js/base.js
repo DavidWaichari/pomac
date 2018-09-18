@@ -198,20 +198,22 @@ $(document).ready(function () {
                 $("#id_sentence").prop('required', false);
                 $("#div_id_inadmissibilityreason").show();
             });
-             $("#id_hearingdate").on('blur',function () {
-                 hearingdate =  $("#id_hearingdate").val();
-                 if (hearingdate < today) {
-                    swal ("Confirm Date!","the proposed date of hearing can not be in the past..please set a future date","error");
-                   $('#id_hearingdate').val('');
-                 }
-             });
-
             $("#div_id_descriptionforcallofevidence").hide();
             $("#id_id_callforevidence_0_1").click(function () {
+                 var hearingdate =  $("#id_hearingdate").datepicker('getDate');
+                 if (hearingdate < today) {
+                    swal ("Confirm Date!","the proposed date of hearing can not be in the past..please set a future date. If you are not sure about the hearing date leave it empty","error");
+                   $('#id_hearingdate').val('');
+                 }
                 $("#div_id_descriptionforcallofevidence").show('slow');
                 $("#id_descriptionforcallofevidence").prop("required", true);
             });
             $("#id_id_callforevidence_0_2").click(function () {
+                var hearingdate =  $("#id_hearingdate").datepicker('getDate');
+                 if (hearingdate < today) {
+                    swal ("Confirm Date!","the proposed date of hearing can not be in the past..please set a future date. If you are not sure about the hearing date leave it empty","error");
+                   $('#id_hearingdate').val('');
+                 }
                  $("#id_descriptionforcallofevidence").val('');
                  $("#div_id_descriptionforcallofevidence").hide('slow');
             });
