@@ -76,15 +76,23 @@
                         {% endif %}
                     </ul>
                 </li>
+             {% if  perms.petitions.can_view_petitionsummary or perms.petitions.add_petitionsummary or perms.petitions.can_view_mypetitionsummary %}
                 <li><a><i class="fa fa-google-wallet"></i>Summaries <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
+                        {% if  perms.petitions.can_view_petitionsummary %}
                         <li><a href="{% url 'petitionsummary_list' %}">Summaries List</a></li>
                         <li><a href="{% url 'awaitingsummary' %}">Awaiting Summaries</a></li>
+                        {% endif %}
+                        {% if  perms.petitions.can_view_mypetitionsummary %}
                         <li><a href="{% url 'mypetitionsummary_list' %}">My Summaries</a></li>
                         <li><a href="{% url 'myawaitingsummary' %}">My Awaiting Summaries</a></li>
+                        {% endif %}
+                    {% if  perms.petitions.add_petitionsummary %}
                         <li><a href="{% url 'petitionsummary_create' %}">Add Summary</a></li>
+                        {% endif %}
                     </ul>
                 </li>
+            {% endif %}
                 {% if  perms.petitions.can_view_hearingsummaries or perms.petitions.add_hearingsummary or perms.petitions.can_view_myhearings %}
                     <li><a><i class="fa fa-clone"></i> Hearings <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
