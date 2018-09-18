@@ -29,6 +29,7 @@
                 <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
                                                                    href="{% url 'myineligiblepetitionform_list' %}">More Details</a></span>
             </div>
+             {% if perms.petitions.can_view_myadmissibilityform %}
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top"><i class="fa fa-user"></i> My Admissibilities</span>
                 <div class="count">{{ totaladmissibilities }}</div>
@@ -56,6 +57,8 @@
                 <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
                                                                    href="{% url 'myawaitingadmissibility' %}">More Details</a></span>
             </div>
+             {% endif %}
+        {% if perms.petitions.can_view_mypetitionsummary %}
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top"><i class="fa fa-user"></i> My Petitions Summaries</span>
                 <div class="count">{{ summaries }}</div>
@@ -69,6 +72,8 @@
                 <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
                                                                    href="{% url 'myawaitingsummary' %}">More Details</a></span>
             </div>
+        {% endif %}
+        {% if perms.petitions.can_view_myhearings %}
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top"><i class="fa fa-user"></i> My Hearings</span>
                 <div class="count">{{ hearings }}</div>
@@ -97,6 +102,8 @@
                 <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
                                                                    href="{% url 'myhearingsummary_declined' %}">More Details</a></span>
             </div>
+        {% endif %}
+        {% if perms.petitions.can_view_myinterviews %}
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top text-warning"><i class="fa fa-user"></i> My Awaiting Schedule for </span>
                 {% if awaitingscheduleforinterview == 0 %}
@@ -143,6 +150,8 @@
                 <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
                                                                    href="{% url 'myinterviewsummary_notrecommended' %}">More Details</a></span>
             </div>
+            {% endif %}
+        {% if perms.petitions.can_view_myrecommendations %}
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top text-success"><i class="fa fa-user"></i>My Recommendations</span>
                 <div class="count">{{ recommendations }}</div>
@@ -155,6 +164,8 @@
                 <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
                                                                    href="{% url 'myawaitingrecommendations' %}">More Details</a></span>
             </div>
+        {% endif %}
+        {% if perms.petitions.can_view_mygrants %}
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top text-warning"><i class="fa fa-user"></i>My Awaiting Grant</span>
                 <div class="count">{{ myawaitingregrant }}</div>
@@ -167,6 +178,7 @@
                 <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
                                                                    href="{% url 'mypetitions_grant_list' %}">More Details</a></span>
             </div>
+        {% endif %}
         </div>
     </div>
 {% endblock content %}

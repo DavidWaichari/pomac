@@ -63,12 +63,16 @@
                         </div>
                         <!-- /modals -->
                                         <div class="row">
+                                            {% if  perms.petitions.change_offence %}
                                             <div class="col-md-4"><a class="btn btn-warning btn-sm"
                                                                      href="{{ object.get_update_url }}">Edit
                                                 Offence</a></div>
+                                            {% endif %}
+                                        {% if  perms.petitions.delete_offence %}
                                             <div class="col-md-4"><button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                 data-target=".bs-example-modal-sm">Delete Offence
                         </button></div>
+                                        {% endif %}
                                             <div class="col-md-2"><a class="btn btn-info btn-sm"
                                                                      href="{% url 'petitions_offence_list' %}">Go to
                                                 Offences</a></div>

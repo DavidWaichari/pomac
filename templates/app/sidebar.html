@@ -221,7 +221,9 @@
                             conviction</a></li>
                         <li><a href="{% url 'specialattributesorskills' %}">Petitioners with special skills</a></li>
                         <li><a href="{% url 'petitions_county_list' %}">Counties</a></li>
+                        {% if  perms.petitions.add_subcounty %}
                         <li><a href="{% url 'petitions_subcounty_list' %}">Sub Counties</a></li>
+                        {% endif %}
                         <li><a href="{% url 'petitions_court_list' %}">Courts</a></li>
                         <li><a href="{% url 'petitions_prison_list' %}">Prisons</a></li>
                         <li><a href="{% url 'petitions_offence_list' %}">Offences</a></li>

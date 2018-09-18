@@ -42,6 +42,8 @@
                                     <td>Name</td>
                                     <td>created</td>
                                     <td>last_updated</td>
+                                     <td class="text-center">No of Petitioners</td>
+                                    <td>View Petitioners</td>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -51,6 +53,8 @@
                                         <td><a href="{{ object.get_absolute_url }}">{{ object.name }}</a></td>
                                         <td>{{ object.created }}</td>
                                         <td>{{ object.last_updated }}</td>
+                                        <td class="text-center" style="color: black;font-size: 16px">{{ object.petitionform_set.count}}</td>
+                                        <td><a class="btn btn-sm btn-info" href="{% url 'countypetitioners' object.id %}">View Petitioners</a></td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>

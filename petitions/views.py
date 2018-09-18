@@ -29,6 +29,11 @@ class CountyListView(ListView):
         queryset = County.objects.order_by('name')
         return queryset
 
+def CountyPetitionersListView(request, pk):
+    county = County.objects.get(id=pk)
+    object_list = PetitionForm.objects.filter(county_id=pk).filter(anypendingcourtmatter=False)
+    return render(request,'petitions/counties/coutypetitioners_list.html',{'object_list':object_list, 'county':county})
+
 
 class CountyCreateView(PermissionRequiredMixin,CreateView):
     template_name = 'petitions/counties/county_form.html'

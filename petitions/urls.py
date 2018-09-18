@@ -96,6 +96,7 @@ urlpatterns = [
     path('county/create/', login_required(views.CountyCreateView.as_view()), name='petitions_county_create'),
     path('county/detail/<int:pk>/', login_required(views.CountyDetailView.as_view()), name='petitions_county_detail'),
     path('county/update/<int:pk>/', login_required(views.CountyUpdateView.as_view()), name='petitions_county_update'),
+    path('county/petitioners/<int:pk>/', login_required(views.CountyPetitionersListView), name='countypetitioners'),
 
     # urls for SubCounty
     path('subcounty/', login_required(views.SubCountyListView.as_view()), name='petitions_subcounty_list'),
