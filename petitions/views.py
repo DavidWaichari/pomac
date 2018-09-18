@@ -590,7 +590,7 @@ class AwaitingAdmissibilityFormListView(ListView):
         context['today'] = today
         return context
     def get_queryset(self):
-        queryset= PetitionForm.objects.filter(anypendingcourtmatter=False).filter(admissibility__isnull=True).filter(exit__isnull=True)
+        queryset= PetitionForm.objects.filter(anypendingcourtmatter=False).filter(admissibilityform__isnull=True).filter(exit__isnull=True)
         return queryset
     def dispatch(self, request, *args, **kwargs):
         """ Permission check for this class """
@@ -607,7 +607,7 @@ class MyAwaitingAdmissibilityFormListView(ListView):
         context['today'] = today
         return context
     def get_queryset(self):
-        queryset = PetitionForm.objects.filter(anypendingcourtmatter=False).filter(admissibility__isnull=True).filter(
+        queryset = PetitionForm.objects.filter(anypendingcourtmatter=False).filter(admissibilityform__isnull=True).filter(
             exit__isnull=True).filter(added_by=self.request.user)
         return queryset
     def dispatch(self, request, *args, **kwargs):
