@@ -47,7 +47,7 @@
                                         <h4 class="modal-title" id="myModalLabel2">Confirm Delete</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <h4>Delete Offence?</h4>
+                                        <h4>Delete Court?</h4>
                                         <p>Are you sure you want to this court ->  <strong>{{ object.name }}.</strong> <span style="color: red">Deleting this court will make all petitioners with convicted from this court  to have an empty value for the court field</span></p>
                                     </div>
                                     <div class="modal-footer">
@@ -63,15 +63,19 @@
                         </div>
                         <!-- /modals -->
                                         <div class="row">
+                                            {% if perms.petitions.change_court %}
                                             <div class="col-md-4"><a class="btn btn-warning btn-sm"
                                                                      href="{{ object.get_update_url }}">Edit
                                                 Court</a></div>
+                                            {% endif %}
+                                        {% if perms.petitions.delete_court %}
                                             <div class="col-md-4"><button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                 data-target=".bs-example-modal-sm">Delete Court
                         </button></div>
+                                        {% endif %}
                                             <div class="col-md-2"><a class="btn btn-info btn-sm"
                                                                      href="{% url 'petitions_court_list' %}">Go to
-                                                Counties</a></div>
+                                                Courts</a></div>
                                         </div>
                                         <table class="table">
                                             <tr>

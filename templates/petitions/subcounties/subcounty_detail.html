@@ -35,9 +35,11 @@
                                             This table show the details of a subcounty
                                         </p>
                                         <div class="row">
+                                             {% if perms.petitions.change_subcounty %}
                                             <div class="col-md-8"><a class="btn btn-warning btn-sm"
                                                                      href="{{ object.get_update_url }}">Edit
                                                 Sub County</a></div>
+                                            {% endif %}
                                             <div class="col-md-2"><a class="btn btn-info btn-sm"
                                                                      href="{% url 'petitions_subcounty_list' %}">Go to
                                                 Sub Counties</a></div>

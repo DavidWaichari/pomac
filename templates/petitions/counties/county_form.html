@@ -19,18 +19,20 @@
                 <div class="col-md-12">
                     <div class="x_panel">
                         <div class="x_title">
+
                             <h2>Adde New County | Add a new county
                                 <small>Add the new county here..</small>
                             </h2>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
-                            <p><a class="btn btn-default" href="{% url 'petitions_county_list' %}">County Listing</a></p>
-<form method="post">
-{% csrf_token %}
-{{form|crispy}}
-<button class="btn btn-primary" type="submit">Submit</button>
-</form>
+                            <p><a class="btn btn-default" href="{% url 'petitions_county_list' %}">County Listing</a>
+                            </p>
+                            <form method="post">
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                                <button class="btn btn-primary" type="submit">Submit</button>
+                            </form>
                         </div>
                     </div>
                 </div>

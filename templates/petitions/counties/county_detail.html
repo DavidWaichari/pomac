@@ -35,9 +35,11 @@
                                             This table shows the details of a county
                                         </p>
                                         <div class="row">
+                                            {% if perms.petitions.change_county %}
                                             <div class="col-md-8"><a class="btn btn-warning btn-sm"
                                                                      href="{{ object.get_update_url }}">Edit this
                                                 County</a></div>
+                                            {% endif %}
                                             <div class="col-md-2"><a class="btn btn-info btn-sm"
                                                                      href="{% url 'petitions_county_list' %}">Go to
                                                 Counties</a></div>
@@ -57,10 +59,14 @@
                                             </tr>
                                         </table>
                                         <div class="row">
-                                            <div class="col-md-10">
-                                                <a class="btn btn-warning btn-sm" href="{{ object.get_update_url }}">Edit
-                                                    County</a>
-                                            </div>
+                                            {% if perms.petitions.change_county %}
+                                            <div class="col-md-8"><a class="btn btn-warning btn-sm"
+                                                                     href="{{ object.get_update_url }}">Edit this
+                                                County</a></div>
+                                            {% endif %}
+                                            <div class="col-md-2"><a class="btn btn-info btn-sm"
+                                                                     href="{% url 'petitions_county_list' %}">Go to
+                                                Counties</a></div>
                                         </div>
                                     </div>
                                 </div>

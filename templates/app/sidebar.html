@@ -76,23 +76,23 @@
                         {% endif %}
                     </ul>
                 </li>
-             {% if  perms.petitions.can_view_petitionsummary or perms.petitions.add_petitionsummary or perms.petitions.can_view_mypetitionsummary %}
-                <li><a><i class="fa fa-google-wallet"></i>Summaries <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        {% if  perms.petitions.can_view_petitionsummary %}
-                        <li><a href="{% url 'petitionsummary_list' %}">Summaries List</a></li>
-                        <li><a href="{% url 'awaitingsummary' %}">Awaiting Summaries</a></li>
-                        {% endif %}
-                        {% if  perms.petitions.can_view_mypetitionsummary %}
-                        <li><a href="{% url 'mypetitionsummary_list' %}">My Summaries</a></li>
-                        <li><a href="{% url 'myawaitingsummary' %}">My Awaiting Summaries</a></li>
-                        {% endif %}
-                    {% if  perms.petitions.add_petitionsummary %}
-                        <li><a href="{% url 'petitionsummary_create' %}">Add Summary</a></li>
-                        {% endif %}
-                    </ul>
-                </li>
-            {% endif %}
+                {% if  perms.petitions.can_view_petitionsummary or perms.petitions.add_petitionsummary or perms.petitions.can_view_mypetitionsummary %}
+                    <li><a><i class="fa fa-google-wallet"></i>Summaries <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            {% if  perms.petitions.can_view_petitionsummary %}
+                                <li><a href="{% url 'petitionsummary_list' %}">Summaries List</a></li>
+                                <li><a href="{% url 'awaitingsummary' %}">Awaiting Summaries</a></li>
+                            {% endif %}
+                            {% if  perms.petitions.can_view_mypetitionsummary %}
+                                <li><a href="{% url 'mypetitionsummary_list' %}">My Summaries</a></li>
+                                <li><a href="{% url 'myawaitingsummary' %}">My Awaiting Summaries</a></li>
+                            {% endif %}
+                            {% if  perms.petitions.add_petitionsummary %}
+                                <li><a href="{% url 'petitionsummary_create' %}">Add Summary</a></li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                {% endif %}
                 {% if  perms.petitions.can_view_hearingsummaries or perms.petitions.add_hearingsummary or perms.petitions.can_view_myhearings %}
                     <li><a><i class="fa fa-clone"></i> Hearings <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
@@ -169,36 +169,41 @@
                         </ul>
                     </li>
                 {% endif %}
-            {% if  perms.petitions.can_view_grants or perms.petitions.add_grant or perms.petitions.can_view_mygrants %}
-                <li><a><i class="fa fa-child"></i> Grant of Petition <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                         {% if  perms.petitions.can_view_grants %}
-                        <li><a href="{% url 'petitions_grant_list' %}">Grants List</a></li>
-                        <li><a href="{% url 'petitions_awaiting_grant_list' %}">Awaiting Grant</a></li>
-                             {% endif %}
-                    {% if  perms.petitions.can_view_mygrants %}
-                        <li><a href="{% url 'mypetitions_grant_list' %}">My Grants List</a></li>
-                        <li><a href="{% url 'mypetitions_awaiting_grant_list' %}">My Awaiting Grants</a></li>
-                        {% endif %}
-                    {% if  perms.petitions.add_grant %}
-                        <li><a href="{% url 'petitions_grant_create' %}">Add Grant</a></li>
-                        {% endif %}
-                    </ul>
-                </li>
-            {% endif %}
-
-                <li><a><i class="fa fa-unlock"></i> Prison Exits <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="{% url 'petitions_exit_list' %}">Exits List</a></li>
-                        <li><a href="{% url 'petitions_exitescape_list' %}">Escapes</a></li>
-                        <li><a href="{% url 'petitions_exitdeaths_list' %}">Deaths </a></li>
-                        <li><a href="{% url 'petitions_exitservedterm_list' %}">Served Sentence</a></li>
-                        <li><a href="{% url 'petitions_exitpomac_list' %}">Released Under POMAC</a></li>
-                        <li><a href="{% url 'petitions_exitresentencing_list' %}">Released after resentencing</a></li>
-                        <li><a href="{% url 'petitions_exit_create' %}">Add Exit</a></li>
-                    </ul>
-                </li>
-
+                {% if  perms.petitions.can_view_grants or perms.petitions.add_grant or perms.petitions.can_view_mygrants %}
+                    <li><a><i class="fa fa-child"></i> Grant of Petition <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            {% if  perms.petitions.can_view_grants %}
+                                <li><a href="{% url 'petitions_grant_list' %}">Grants List</a></li>
+                                <li><a href="{% url 'petitions_awaiting_grant_list' %}">Awaiting Grant</a></li>
+                            {% endif %}
+                            {% if  perms.petitions.can_view_mygrants %}
+                                <li><a href="{% url 'mypetitions_grant_list' %}">My Grants List</a></li>
+                                <li><a href="{% url 'mypetitions_awaiting_grant_list' %}">My Awaiting Grants</a></li>
+                            {% endif %}
+                            {% if  perms.petitions.add_grant %}
+                                <li><a href="{% url 'petitions_grant_create' %}">Add Grant</a></li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                {% endif %}
+                {% if  perms.petitions.can_view_exits or perms.petitions.add_exit %}
+                    <li><a><i class="fa fa-unlock"></i> Prison Exits <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            {% if  perms.petitions.can_view_exits %}
+                                <li><a href="{% url 'petitions_exit_list' %}">Exits List</a></li>
+                                <li><a href="{% url 'petitions_exitescape_list' %}">Escapes</a></li>
+                                <li><a href="{% url 'petitions_exitdeaths_list' %}">Deaths </a></li>
+                                <li><a href="{% url 'petitions_exitservedterm_list' %}">Served Sentence</a></li>
+                                <li><a href="{% url 'petitions_exitpomac_list' %}">Released Under POMAC</a></li>
+                                <li><a href="{% url 'petitions_exitresentencing_list' %}">Released after
+                                    resentencing</a></li>
+                            {% endif %}
+                            {% if  perms.petitions.add_exit %}
+                                <li><a href="{% url 'petitions_exit_create' %}">Add Exit</a></li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                {% endif %}
             </ul>
         </div>
         <div class="menu_section">
