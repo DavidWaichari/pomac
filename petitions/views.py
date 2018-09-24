@@ -13,7 +13,7 @@ from django.views.generic import DetailView, ListView, UpdateView, CreateView, D
 
 from users.models import CustomUser
 from .models import PetitionForm, AdmissibilityForm, HearingSummary, InterviewSummary, RecommendationForm, \
-    PetitionSummary, County, SubCounty, Exit, Prison, Court, Offence, Grant
+    PetitionSummary, County, SubCounty, Exit, Prison, Court, Offence, Grant, Count
 from .forms import PetitionFormForm, HearingSummaryForm, InterviewSummaryForm, InterviewSummaryEditForm, \
     RecommendationFormForm, \
     AdmissibilityCreateForm, AdmissibilityUpdateForm, HearingSummaryUpdateForm, RecommendationUpdateForm, \
@@ -303,6 +303,28 @@ class PetitionFormStatusListView(ListView):
         if not request.user.has_perm('petitions.can_view_petitionformstatus'):
             raise PermissionDenied("You do not have permission to view status events")
         return super(PetitionFormStatusListView, self).dispatch(request, *args, **kwargs)
+
+def PetitionFormDuplicatesFinderView(request):
+    petitions = PetitionForm.objects.all()
+    petlist = []
+    object_list = {}
+    for pet in petitions:
+        petlist.append(pet.name)
+    #print(petlist)
+    x = set(petlist)
+    dup = []
+    for c in x:
+         if (petlist.count(c) > 1):
+             indices = [i for i, x in enumerate(petlist) if x == c]
+             object_list = PetitionForm.objects.filter(name=c)
+             dup.append((c, indices))
+
+    print(dup)
+    data = {
+        'today':date.today(),
+        'object_list': object_list
+    }
+    return render(request,'petitions/duplicatesfinder.html', data)
 
 
 class MyPetitionFormListView(ListView):
@@ -627,7 +649,6 @@ def DeleteAdmissibility(request,pk):
     sweetify.success(request, 'Admissibility form for the petitioner deleted successfully and all consequent information ', button=True, timer=15000)
     return redirect('admissibilityform_list')
 
-@permission_required ('petitions.can_print_admissibilityform', raise_exception=True)
 def GeneratePetitionForm(request, pk):
     petitioner = PetitionForm.objects.get(pk=pk)
     today = date.today()
@@ -3118,7 +3139,7 @@ def dashboard(request):
     user = CustomUser.objects.get(pk=request.user.id)
     if (user.first_name == '' and user.last_name == ''):
         sweetify.warning(request,
-                         'Please update your profile. Provide the firstname and lastname as they appear In the ID Card/B.C/Passport',
+                         'Please update your profile. Provide your official names',
                          button=True, timer=15000)
         return redirect('updateprofile', request.user.id)
     data = {
@@ -3169,7 +3190,7 @@ def dashboard(request):
 def mydashboard(request):
     user = CustomUser.objects.get(pk=request.user.id)
     if (user.first_name == '' and user.last_name == ''):
-        sweetify.warning(request,'Please update your profile. Provide the firstname and lastname as they appear In the ID Card/B.C/Passport. If you have done that already ignore this message',button=True, timer=15000)
+        sweetify.warning(request,'Please update your profile. Provide your official names. If you have done that already ignore this message',button=True, timer=15000)
         return redirect('updateprofile', request.user.id)
     data = {
         'noofpetitions': PetitionForm.objects.filter(added_by=request.user).count(),
