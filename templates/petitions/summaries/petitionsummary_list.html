@@ -44,6 +44,7 @@
                                 <thead style="width:100%">
                                 <tr>
                                     <td>S/No</td>
+                                    <td>PM. Number</td>
                                     <td>Name</td>
                                     <td>Prison No</td>
                                     <td>Prison</td>
@@ -105,6 +106,7 @@
                                 {% for object in object_list %}
                                     <tr>
                                         <td>{{ forloop.counter }}</td>
+                                    <td>PM/{{ object.admissibility.petitioner.created.date.year }}/{{ object.admissibility.petitioner.created.date.month }}/{{ object.admissibility.petitioner.created.date.day }}/{{ object.id }}</td>
                                         <td>
                                             <a href="{{ object.get_absolute_url }}">{{ object.admissibility.petitioner.name }}</a>
                                         </td>

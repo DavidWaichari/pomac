@@ -312,14 +312,16 @@ def PetitionFormDuplicatesFinderView(request):
         petlist.append(pet.name)
     #print(petlist)
     x = set(petlist)
+    print(x)
     dup = []
     for c in x:
          if (petlist.count(c) > 1):
              indices = [i for i, x in enumerate(petlist) if x == c]
-             object_list = PetitionForm.objects.filter(name=c)
+             #object_list=PetitionForm.objects.filter(id=indices)
              dup.append((c, indices))
-
-    print(dup)
+    print(indices)
+    #print(dup)
+    #print(object_list)
     data = {
         'today':date.today(),
         'object_list': object_list

@@ -36,6 +36,7 @@
                                 <thead style="width:100%">
                                 <tr>
                                     <td>S/No</td>
+                                    <td>PM. Number</td>
                                     <td>Name</td>
                                     <td>Prison No</td>
                                     <td>Eligibility</td>
@@ -102,6 +103,7 @@
                                 {% for object in object_list %}
                                     <tr>
                                         <td>{{ forloop.counter}}</td>
+                                        <td>PM/{{ object.created.date.year }}/{{ object.created.date.month }}/{{ object.created.date.day }}/{{ object.id }}</td>
                                         <td><a href="{{object.get_absolute_url}}">{{object.name}}</a></td>
                                         <td>{{ object.prisonno }}</td>
                                     {% if  object.anypendingcourtmatter == False %}
