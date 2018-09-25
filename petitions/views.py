@@ -305,26 +305,12 @@ class PetitionFormStatusListView(ListView):
         return super(PetitionFormStatusListView, self).dispatch(request, *args, **kwargs)
 
 def PetitionFormDuplicatesFinderView(request):
-    petitions = PetitionForm.objects.all()
-    petlist = []
-    object_list = {}
-    for pet in petitions:
-        petlist.append(pet.name)
-    #print(petlist)
-    x = set(petlist)
-    print(x)
-    dup = []
-    for c in x:
-         if (petlist.count(c) > 1):
-             indices = [i for i, x in enumerate(petlist) if x == c]
-             #object_list=PetitionForm.objects.filter(id=indices)
-             dup.append((c, indices))
-    print(indices)
-    #print(dup)
-    #print(object_list)
+    duplicates = PetitionForm.objects.values('name').annotate(Count('id')) .order_by().filter(id__count__gt=1)
+    print(duplicates)
+    duprecords = PetitionForm.objects.filter(name__in=[item['name'] for item in duplicates])
     data = {
         'today':date.today(),
-        'object_list': object_list
+        'object_list': duprecords
     }
     return render(request,'petitions/duplicatesfinder.html', data)
 
