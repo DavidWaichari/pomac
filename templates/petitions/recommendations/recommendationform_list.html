@@ -98,6 +98,7 @@
                                     <td>Appeal Outcome</td>
                                     <td>Pending Court Matter</td>
                                     <td>Pending Court Matter Explanation</td>
+                                    <td>Representative / Applicant</td>
                                     <td>Petition Added By</td>
                                     <td>Petition Added On</td>
                                     <td>Mercy Given</td>
@@ -214,6 +215,11 @@
                                             <td>No</td>
                                         {% endif %}
                                         <td>{{ object.interview.hearing.admissibility.petitioner.explanationofpendingcourtmatter }}</td>
+                                    {% if object.interview.hearing.admissibility.petitioner.isttheapplicantthepetitioner == True %}
+                                    <td>Petitioner</td>
+                                    {% else %}
+                                        <td><strong>{{ object.interview.hearing.admissibility.petitioner.nameofapplicant }}</strong> Relationship: <strong>{{object.admissibility.petitioner.relationshipofapplicantwithpetitioner }}</strong> Address: <strong>{{ object.interview.hearing.admissibility.petitioner.addressoftheapplicant }}</strong> Phone: <strong>{{ object.interview.hearing.admissibility.petitioner.telephonenumberoftheapplicant }}</strong> </td>
+                                    {% endif %}
                                         <td>{{ object.interview.hearing.admissibility.petitioner.added_by }}</td>
                                         <td>{{ object.interview.hearing.admissibility.petitioner.created }}</td>
                                         <td>{{ object.mercy }}</td>

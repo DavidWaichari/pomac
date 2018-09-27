@@ -214,7 +214,9 @@
                          {% if  perms.petitions.can_view_petitionformstatus %}
                         <li><a href="{% url 'petitionformstatus_list' %}">Petitions Status</a></li>
                          {% endif %}
+                      {% if  perms.petitions.can_view_duplicatesfinder %}
                         <li><a href="{% url 'duplicates_finder' %}">Duplicates Finder</a></li>
+                    {% endif %}
                         <li><a href="{% url 'trustees' %}">Trustees</a></li>
                         <li><a href="{% url 'foreigners_list' %}">Foreigners</a></li>
                         <li><a href="{% url 'ppmental_list' %}">PP Mental</a></li>

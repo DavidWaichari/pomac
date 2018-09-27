@@ -93,6 +93,7 @@
                                     <td>Appeal Outcome</td>
                                     <td>Pending Court Matter</td>
                                  <td>Pending Court Matter Explanation</td>
+                                    <td>Representation / Applicant</td>
                                  <td>Petition Added By</td>
                                  <td>Petition Addded On</td>
                                  <td>Type and circumstances of the Offence</td>
@@ -201,6 +202,11 @@
                                             <td>No</td>
                                         {% endif %}
                                         <td>{{ object.admissibility.petitioner.explanationofpendingcourtmatter }}</td>
+                                    {% if object.admissibility.petitioner.isttheapplicantthepetitioner == True %}
+                                    <td>Petitioner</td>
+                                    {% else %}
+                                        <td><strong>{{ object.admissibility.petitioner.nameofapplicant }}</strong> Relationship: <strong>{{object.admissibility.petitioner.relationshipofapplicantwithpetitioner }}</strong> Address: <strong>{{ object.admissibility.petitioner.addressoftheapplicant }}</strong> Phone: <strong>{{ object.admissibility.petitioner.telephonenumberoftheapplicant }}</strong> </td>
+                                    {% endif %}
                                         <td>{{ object.admissibility.petitioner.added_by }}</td>
                                         <td>{{ object.admissibility.petitioner.created }}</td>
                                         <td>{{ object.typeandcircumstancesofoffence }}</td>

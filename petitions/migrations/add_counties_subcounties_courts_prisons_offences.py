@@ -662,6 +662,10 @@ def add_initial_data(apps, schema_editor):
     instance = Prison.objects.create(name='YATTA')
 
 #add few offences
+    instance = Offence.objects.create(name='Assault')
+    instance = Offence.objects.create(name='Handling of stolen goods')
+    instance = Offence.objects.create(name='Grevious harm')
+    instance = Offence.objects.create(name='Attempted defilement')
     instance = Offence.objects.create(name='Robbery With Violence')
     instance = Offence.objects.create(name='Murder')
     instance = Offence.objects.create(name='Robbery')

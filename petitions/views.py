@@ -304,9 +304,10 @@ class PetitionFormStatusListView(ListView):
             raise PermissionDenied("You do not have permission to view status events")
         return super(PetitionFormStatusListView, self).dispatch(request, *args, **kwargs)
 
+
+@permission_required ('petitions.can_view_duplicatesfinder', raise_exception=True)
 def PetitionFormDuplicatesFinderView(request):
     duplicates = PetitionForm.objects.values('name').annotate(Count('id')) .order_by().filter(id__count__gt=1)
-    print(duplicates)
     duprecords = PetitionForm.objects.filter(name__in=[item['name'] for item in duplicates])
     data = {
         'today':date.today(),
@@ -748,6 +749,22 @@ def GeneratePetitionForm(request, pk):
         pendingexplanation = 'None'
     else:
         pendingexplanation = petitioner.explanationofpendingcourtmatter
+    if petitioner.nameofapplicant == '':
+        nameofapplicant = 'None'
+    else:
+        nameofapplicant = petitioner.nameofapplicant
+    if petitioner.relationshipofapplicantwithpetitioner == '':
+        relationshipofapplicantwithpetitioner = 'None'
+    else:
+        relationshipofapplicantwithpetitioner = petitioner.relationshipofapplicantwithpetitioner
+    if petitioner.addressoftheapplicant == '':
+        addressoftheapplicant = 'None'
+    else:
+        addressoftheapplicant = petitioner.addressoftheapplicant
+    if petitioner.telephonenumberoftheapplicant == '':
+        telephonenumberoftheapplicant = 'None'
+    else:
+        telephonenumberoftheapplicant = petitioner.telephonenumberoftheapplicant
     petitiondate = petitioner.created
     data = {
         'name': petitioner.name,
@@ -801,6 +818,10 @@ def GeneratePetitionForm(request, pk):
         'appealcaseno':appealcaseno,
         'pendingcourtmatter':pendingcourtmatter,
         'pendingexplanation':pendingexplanation,
+        'nameofapplicant':nameofapplicant,
+        'relationshipofapplicantwithpetitioner':relationshipofapplicantwithpetitioner,
+        'addressoftheapplicant':addressoftheapplicant,
+        'telephonenumberoftheapplicant':telephonenumberoftheapplicant,
         'month':petitiondate.strftime("%B"),
         'day':petitiondate.day,
         'year':petitiondate.year,
@@ -3127,7 +3148,7 @@ def dashboard(request):
     user = CustomUser.objects.get(pk=request.user.id)
     if (user.first_name == '' and user.last_name == ''):
         sweetify.warning(request,
-                         'Please update your profile. Provide your official names',
+                         'Please update your profile using your official name. If you have already done that ignore this message',
                          button=True, timer=15000)
         return redirect('updateprofile', request.user.id)
     data = {

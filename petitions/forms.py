@@ -175,12 +175,26 @@ class PetitionFormForm(forms.ModelForm):
     appealoutcome = forms.CharField(label='and, the Outome of the Appeal',
                                     widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}), required=False)
     anypendingcourtmatter = forms.TypedChoiceField(
-        label='Do you have any pending court matter even if not related to your conviction??',
+        label='Do you have any pending court matter even if not related to your conviction?',
         coerce=boolean_coerce,
         choices=((True, 'Yes'), (False, 'No')),
         widget=forms.RadioSelect(attrs={'style': 'margin-left: 30px;'}), )
     explanationofpendingcourtmatter = forms.CharField(required=False, label='if yes, please explain',
                                                       widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
+    isttheapplicantthepetitioner = forms.TypedChoiceField(
+        label='Is the applicant of this petition the petitioner?',
+        coerce=boolean_coerce,
+        choices=((True, 'Yes'), (False, 'No')),
+        widget=forms.RadioSelect(attrs={'style': 'margin-left: 30px;'}), )
+    nameofapplicant = forms.CharField(label='If No, the name of the applicant is', required=False,
+                                      widget=forms.TextInput(attrs={'class': 'form-control'}))
+
+    relationshipofapplicantwithpetitioner = forms.CharField(label='And the relationship to the petitioner', required=False,
+                                      widget=forms.TextInput(attrs={'class': 'form-control'}))
+    addressoftheapplicant = forms.CharField(label='And the Postal Adress of the applicant', required=False,
+                                      widget=forms.TextInput(attrs={'class': 'form-control'}))
+    telephonenumberoftheapplicant = forms.CharField(label='And the telephone number of the applicant', required=False,
+                                          widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -210,7 +224,7 @@ class PetitionFormForm(forms.ModelForm):
                   'anyspecialcondition', 'detailsofspecialcondition', 'areyouatrustee', 'dateofpromotiontotrustee',
                   'anyspecialattributesorskills', 'explanationofspecialattributesorskills',
                   'appealedagainsttheconviction', 'appealcaseno', 'appealoutcome', 'anypendingcourtmatter',
-                  'explanationofpendingcourtmatter']
+                  'explanationofpendingcourtmatter','isttheapplicantthepetitioner','nameofapplicant','relationshipofapplicantwithpetitioner','addressoftheapplicant','telephonenumberoftheapplicant']
 
 
 

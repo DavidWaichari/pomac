@@ -69,7 +69,6 @@ class ProfileUpdateView(UpdateView):
     template_name = 'account/update_profile.html'
     model = CustomUser
     form_class = ProfileUpdateForm
-
     def get_success_url(self):
         view_name = 'petitions_dashboard'
         return reverse_lazy(view_name)

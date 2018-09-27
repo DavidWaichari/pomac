@@ -96,6 +96,7 @@
                                     <td>Appeal Outcome</td>
                                     <td>Pending Court Matter</td>
                                     <td>Pending Court Matter Explanation</td>
+                                     <td>Representative / Applicant</td>
                                     <td>Petition Submitted By</td>
                                     <td>Petition Submitted On</td>
                                     <td>Admissibility Status</td>
@@ -205,6 +206,11 @@
                                             <td>No</td>
                                         {% endif %}
                                         <td>{{ object.petitioner.explanationofpendingcourtmatter }}</td>
+                                    {% if object.petitioner.isttheapplicantthepetitioner == True %}
+                                    <td>Petitioner</td>
+                                    {% else %}
+                                        <td><strong>{{ object.petitioner.nameofapplicant }}</strong> Relationship: <strong>{{object.petitioner.relationshipofapplicantwithpetitioner }}</strong> Address: <strong>{{ object.petitioner.addressoftheapplicant }}</strong> Phone: <strong>{{ object.petitioner.telephonenumberoftheapplicant }}</strong> </td>
+                                    {% endif %}
                                         <td>{{ object.petitioner.added_by }}</td>
                                         <td>{{ object.petitioner.created }}</td>
                                     {% if object.admissability == True %}

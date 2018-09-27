@@ -193,6 +193,11 @@ class PetitionForm(models.Model):
     appealoutcome = models.TextField(max_length=100)
     anypendingcourtmatter = models.BooleanField()
     explanationofpendingcourtmatter = models.TextField(max_length=100)
+    isttheapplicantthepetitioner = models.BooleanField()
+    nameofapplicant = models.CharField(max_length=255,null=True)
+    relationshipofapplicantwithpetitioner = models.CharField(max_length=255,null=True)
+    addressoftheapplicant = models.CharField(max_length=255,null=True)
+    telephonenumberoftheapplicant = models.CharField(max_length=255,null=True)
     created = models.DateTimeField(auto_now=True, editable=False)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
@@ -205,6 +210,7 @@ class PetitionForm(models.Model):
             ('can_view_petitionforms', 'User can view all petitions'),
             ('can_view_mypetitionforms', 'User can view all my petitions'),
             ('can_view_petitionformstatus', 'User can view the status of petitions'),
+            ('can_view_duplicatesfinder', 'User can view the petitions duplicates'),
             ('can_view_petitionformdetails', 'User can view the details of petitions'),
             ('can_view_main_dashboard', 'User can view main dashboard'),
         )
