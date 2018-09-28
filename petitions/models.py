@@ -2,17 +2,14 @@ from django.contrib.auth.decorators import user_passes_test
 from django.urls import reverse
 from django.db.models import *
 from django.conf import settings
-from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.auth import get_user_model
-from django.contrib.auth import models as auth_models
 from django.db import models as models
 
 class County(models.Model):
 
     # Fields
     name = models.CharField(max_length=255)
-    created = models.DateTimeField(auto_now_add=True, editable=False)
+    created = models.DateTimeField(auto_now_add=True, editable=False,)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
                                  null=True, blank=True, on_delete=models.SET_NULL)

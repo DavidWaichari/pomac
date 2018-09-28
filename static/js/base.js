@@ -180,7 +180,39 @@ $(document).ready(function () {
 
              $('#id_prisonno').on('blur',function () {
             $('#id_prisonno').val($(this).val().toUpperCase());
-        });
+            });
+
+             $('#div_id_nameofapplicant').hide();
+             $('#div_id_relationshipofapplicantwithpetitioner').hide();
+             $('#div_id_addressoftheapplicant').hide();
+             $('#div_id_telephonenumberoftheapplicant').hide();
+             $('#id_id_isttheapplicantthepetitioner_0_1').on('click',function () {
+                $('#div_id_nameofapplicant').hide('slow');
+                $('#div_id_relationshipofapplicantwithpetitioner').hide('slow');
+                $('#div_id_addressoftheapplicant').hide('slow');
+                $('#div_id_telephonenumberoftheapplicant').hide('slow');
+                $('#id_nameofapplicant').val('');
+                $('#id_relationshipofapplicantwithpetitioner').val('');
+                $('#id_addressoftheapplicant').val('');
+                $('#id_telephonenumberoftheapplicant').val('');
+             });
+
+             $('#id_id_isttheapplicantthepetitioner_0_2').on('click',function () {
+                $('#div_id_nameofapplicant').show('slow');
+                    $('#id_nameofapplicant').on('click',function () {
+                       $('#div_id_relationshipofapplicantwithpetitioner').show('slow');
+                    });
+                     $('#id_relationshipofapplicantwithpetitioner').on('click',function () {
+                        $('#div_id_addressoftheapplicant').show('slow');
+                    });
+                    $('#id_addressoftheapplicant').on('click',function () {
+                        $('#div_id_telephonenumberoftheapplicant').show('slow');
+                    });
+                $('#id_nameofapplicant').prop("required", true);
+                $('#id_relationshipofapplicantwithpetitioner').prop("required", true);;
+                $('#id_addressoftheapplicant').prop("required", true);
+                $('#id_telephonenumberoftheapplicant').prop("required", true);
+             });
 
     //start of admissibility validation
 
