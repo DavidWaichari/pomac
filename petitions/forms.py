@@ -1,8 +1,4 @@
 from django import forms
-from django.http import request
-from pip._internal.cmdoptions import editable
-
-from users.models import CustomUser
 from .models import PetitionForm, AdmissibilityForm, HearingSummary, InterviewSummary, RecommendationForm, \
     PetitionSummary, SubCounty, County, Exit, Prison, Court, Offence, Grant
 
