@@ -38,10 +38,8 @@ class SubCounty(models.Model):
     name = models.CharField(max_length=255)
     created = models.DateTimeField(auto_now_add=True, editable=False)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
-    # Relationship Fields
     county = models.ForeignKey(County,on_delete=models.CASCADE)
-    added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
-                                 null=True, blank=True, on_delete=models.SET_NULL)
+    added_by = models.ForeignKey(settings.AUTH_USER_MODEL,null=True, blank=True, on_delete=models.SET_NULL) #relationship
 
     class Meta:
         ordering = ('-created',)
