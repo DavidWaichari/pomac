@@ -147,7 +147,7 @@ $(document).ready(function () {
                dateofconviction = $('#id_dateofconviction').datepicker('getDate');
                if ( $('#id_dateofconviction').val() != ''){
                    if (dateofcustody > dateofconviction){
-                   swal ("Confirm Dates!","the date of conviction must be recent than the date of custody","error");
+                   swal ("Confirm Dates!","the date of conviction must be recent than the date of custody","error", timer=5000);
                    $('#id_dateofconviction').val('');
                    $('#id_dateofcustody').val('');
                }
