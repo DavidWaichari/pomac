@@ -57,19 +57,19 @@
                     {% endif %}
                     <ul class="nav child_menu">
                         {% if perms.petitions.can_view_admissibilityform %}
+                            <li><a href="{% url 'awaitingadmissibility' %}">Awaiting Admissibility</a></li>
                             <li><a href="{% url 'admissibilityform_list' %}">Admissabilities List</a></li>
                             <li><a href="{% url 'admissibilityformadmissible_list' %}">Admissible Petitions</a></li>
                             <li><a href="{% url 'admissibilityformaindmissible_list' %}">Inadmissible Petitions</a></li>
-                            <li><a href="{% url 'awaitingadmissibility' %}">Awaiting Admissibility</a></li>
                         {% endif %}
                         {% if perms.petitions.can_view_myadmissibilityform %}
+                             <li><a href="{% url 'myawaitingadmissibility' %}">My Awaiting Admissibility</a></li>
                             <li><a href="{% url 'myadmissibilityform_list' %}">My Admissibilities List</a></li>
                             <li><a href="{% url 'myadmissibleadmissibilityform_list' %}">My Admissible
                                 Admissibilities</a>
                             </li>
                             <li><a href="{% url 'myinadmissibleadmissibilityform_list' %}">My InAdmissible
                                 Admissibilities</a></li>
-                            <li><a href="{% url 'myawaitingadmissibility' %}">My Awaiting Admissibility</a></li>
                         {% endif %}
                         {% if perms.petitions.add_admissibilityform %}
                             <li><a href="{% url 'admissibilityform_create' %}">Add Admissibility</a></li>
@@ -80,12 +80,13 @@
                     <li><a><i class="fa fa-google-wallet"></i>Summaries <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             {% if  perms.petitions.can_view_petitionsummary %}
-                                <li><a href="{% url 'petitionsummary_list' %}">Summaries List</a></li>
                                 <li><a href="{% url 'awaitingsummary' %}">Awaiting Summaries</a></li>
+                                <li><a href="{% url 'petitionsummary_list' %}">Summaries List</a></li>
+
                             {% endif %}
                             {% if  perms.petitions.can_view_mypetitionsummary %}
-                                <li><a href="{% url 'mypetitionsummary_list' %}">My Summaries</a></li>
                                 <li><a href="{% url 'myawaitingsummary' %}">My Awaiting Summaries</a></li>
+                                <li><a href="{% url 'mypetitionsummary_list' %}">My Summaries</a></li>
                             {% endif %}
                             {% if  perms.petitions.add_petitionsummary %}
                                 <li><a href="{% url 'petitionsummary_create' %}">Add Summary</a></li>
@@ -97,24 +98,16 @@
                     <li><a><i class="fa fa-clone"></i> Hearings <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             {% if perms.petitions.can_view_hearingsummaries %}
+                                <li><a href="{% url 'awaitingscheduleforhearing' %}">Awaiting Schedule for Hearing</a></li>
+                                <li><a href="{% url 'awaitinghearing' %}">Scheduled / Awaiting Hearing</a></li>
                                 <li><a href="{% url 'hearingsummary_list' %}">Hearings List</a></li>
                                 <li><a href="{% url 'hearingsummary_deferred' %}">Deferred Petitions</a></li>
                                 <li><a href="{% url 'hearingsummary_declined' %}">Declined</a></li>
-                                <li><a href="{% url 'hearingsummary_scheduledforinterview' %}">Scheduled for
-                                    Interview</a></li>
-                                <li><a href="{% url 'awaitinghearing' %}">Awaiting Hearing</a></li>
-                                <li><a href="{% url 'hearingsummary_awaitingscheduleforinterview' %}">Awaiting Schedule
-                                    for
-                                    Interview</a></li>
                                 {% if perms.petitions.can_view_myhearings %}
                                 {% endif %}
+                                <li><a href="{% url 'myhearingsummary_list' %}">My Awaiting Schedule for Hearing</a></li>
+                                <li><a href="{% url 'myawaitinghearing' %}">My Scheduled / Awaiting Hearing</a></li>
                                 <li><a href="{% url 'myhearingsummary_list' %}">My Hearings</a></li>
-                                <li><a href="{% url 'myhearingsummary_awaitingscheduleforinterview' %}">My Schedules for
-                                    Interview</a></li>
-                                <li><a href="{% url 'myhearingsummary_awaitingscheduleforinterview' %}">My Awaiting
-                                    Schedule for
-                                    Interview</a></li>
-                                <li><a href="{% url 'myawaitinghearing' %}">My Awaiting Hearing</a></li>
                                 <li><a href="{% url 'myhearingsummary_deferred' %}">My Deferred Hearings</a></li>
                                 <li><a href="{% url 'myhearingsummary_declined' %}">My Declined Hearings</a></li>
                             {% endif %}
@@ -128,8 +121,9 @@
                     <li><a><i class="fa fa-camera"></i>Interviews<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             {% if  perms.petitions.can_view_interviews %}
+                                <li><a href="{% url 'hearingsummary_awaitingscheduleforinterview' %}">Awaiting Schedule for Interview</a></li>
+                               <li><a href="{% url 'awaitinginterviws' %}">Awaiting / Scheduled for Interviews</a></li>
                                 <li><a href="{% url 'interviewsummary_list' %}">Interviews List</a></li>
-                                <li><a href="{% url 'awaitinginterviws' %}">Awaiting Interviews</a></li>
                                 <li><a href="{% url 'interviewsummary_recommended' %}">Recommended for
                                     Recommendation</a></li>
                                 <li><a href="{% url 'interviewsummary_notrecommended' %}">Not Recommended for
@@ -137,8 +131,9 @@
                                 </li>
                             {% endif %}
                             {% if  perms.petitions.can_view_myinterviews %}
+                                <li><a href="{% url 'myhearingsummary_awaitingscheduleforinterview' %}">My Awaiting Schedule for Interviews</a></li>
+                                <li><a href="{% url 'myawaitinginterviws' %}">My Awaiting / Scheduled for Interviews</a></li>
                                 <li><a href="{% url 'myinterviewsummary_list' %}">My Interviews List</a></li>
-                                <li><a href="{% url 'myawaitinginterviws' %}">My Awaiting Interviews</a></li>
                                 <li><a href="{% url 'myinterviewsummary_recommended' %}">My Recommended for
                                     Recommendation</a>
                                 </li>
@@ -156,12 +151,12 @@
                             class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             {% if  perms.petitions.can_view_recommendations %}
-                                <li><a href="{% url 'recommendationform_list' %}">Recommendations List</a></li>
                                 <li><a href="{% url 'awaitingrecommendations' %}">Awaiting Recommendations</a></li>
+                                <li><a href="{% url 'recommendationform_list' %}">Recommendations List</a></li>
                             {% endif %}
                             {% if  perms.petitions.can_view_myrecommendations %}
-                                <li><a href="{% url 'myrecommendationform_list' %}">My Recommendations</a></li>
                                 <li><a href="{% url 'myawaitingrecommendations' %}">My Awaiting Recommendations</a></li>
+                                <li><a href="{% url 'myrecommendationform_list' %}">My Recommendations</a></li>
                             {% endif %}
                             {% if  perms.petitions.add_recommendationform %}
                                 <li><a href="{% url 'recommendationform_create' %}">Add Recommendation</a></li>
@@ -173,12 +168,12 @@
                     <li><a><i class="fa fa-child"></i> Grant of Petition <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             {% if  perms.petitions.can_view_grants %}
-                                <li><a href="{% url 'petitions_grant_list' %}">Grants List</a></li>
                                 <li><a href="{% url 'petitions_awaiting_grant_list' %}">Awaiting Grant</a></li>
+                                <li><a href="{% url 'petitions_grant_list' %}">Grants List</a></li>
                             {% endif %}
                             {% if  perms.petitions.can_view_mygrants %}
+                                 <li><a href="{% url 'mypetitions_awaiting_grant_list' %}">My Awaiting Grants</a></li>
                                 <li><a href="{% url 'mypetitions_grant_list' %}">My Grants List</a></li>
-                                <li><a href="{% url 'mypetitions_awaiting_grant_list' %}">My Awaiting Grants</a></li>
                             {% endif %}
                             {% if  perms.petitions.add_grant %}
                                 <li><a href="{% url 'petitions_grant_create' %}">Add Grant</a></li>

@@ -488,7 +488,7 @@ class InterviewSummaryForm(forms.ModelForm):
                                                       widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
 
     vicechairvote = forms.TypedChoiceField(required=True,
-        label='Chairpersons Vote',
+        label='Vice Chairpersons Vote',
         coerce=boolean_coerce,
         choices=((True, 'Recommend to President'), (False, 'Not Recommended to President')),
         widget=forms.RadioSelect(attrs={'style': 'margin-left:-15px;'}), )

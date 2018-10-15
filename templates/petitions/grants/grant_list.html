@@ -27,7 +27,9 @@
                             </h2>
                                 {% endblock %}
                             <ul class="nav navbar-right panel_toolbox">
+                                {% if perms.petitions.add_grant %}
                                <li><a class="btn btn-sm btn-primary" href="{% url 'petitions_grant_create' %}">Add Grant</a></li>
+                                {% endif %}
                             </ul>
                             <div class="clearfix"></div>
                         </div>
