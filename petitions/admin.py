@@ -35,7 +35,7 @@ class PetitionFormAdmin(admin.ModelAdmin):
                        'appealoutcome', 'anypendingcourtmatter', 'explanationofpendingcourtmatter']
 
 
-admin.site.register(PetitionForm, PetitionFormAdmin)
+#admin.site.register(PetitionForm, PetitionFormAdmin)
 
 
 class AdmissibilityFormAdminForm(forms.ModelForm):
@@ -50,4 +50,4 @@ class AdmissibilityFormAdmin(admin.ModelAdmin):
     list_display = ['created', 'last_updated', 'admissability', 'hearingdate', 'inadmissibilityreason', 'callforevidence',  'callforevidence', 'descriptionforcallofevidence', 'requestreports', 'descriptionforrequstreport', 'orderforinvestigation', 'orderforinvestigationdescription']
     readonly_fields = ['created', 'last_updated', 'admissability', 'hearingdate', 'inadmissibilityreason', 'callforevidence', 'callforevidence', 'descriptionforcallofevidence', 'requestreports', 'descriptionforrequstreport', 'orderforinvestigation', 'orderforinvestigationdescription']
 
-admin.site.register(AdmissibilityForm, AdmissibilityFormAdmin)
+#admin.site.register(AdmissibilityForm, AdmissibilityFormAdmin)
