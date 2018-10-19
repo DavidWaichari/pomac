@@ -9,12 +9,14 @@ cssselect2==0.2.1
 cymysql==0.9.12
 decorator==4.3.0
 defusedxml==0.5.0
+dj-database-url==0.5.0
 Django==2.0.7
 django-allauth==0.36.0
 django-crispy-forms==1.7.2
 django-cymysql==2.1.0
 django-debug-permissions==1.0.0
 django-debug-toolbar==1.9.1
+django-heroku==0.3.1
 django-mathfilters==0.4.0
 djangoajax==3.0.2
 gunicorn==19.7.1
@@ -28,6 +30,7 @@ oauthlib==2.1.0
 pdfrw==0.4
 Pillow==5.2.0
 pipenv==2018.7.1
+psycopg2==2.7.5
 psycopg2-binary==2.7.5
 public==1.0.3
 pycparser==2.18
@@ -49,7 +52,9 @@ typing==3.6.4
 urllib3==1.23
 virtualenv==16.0.0
 virtualenv-clone==0.3.0
+virtualenvwrapper-win==1.2.5
 WeasyPrint==0.42.3
 webencodings==0.5.1
+whitenoise==4.1
 wrapt==1.10.11
 xhtml2pdf==0.2.2
