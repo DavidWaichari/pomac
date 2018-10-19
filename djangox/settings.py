@@ -1,5 +1,5 @@
 import os
-
+import django_heroku
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -16,10 +16,7 @@ DEBUG = True
 #     # '...
 # }
 
-ALLOWED_HOSTS = [
-    'localhost',
-    'pellefant.db.elephantsql.com',
-]
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -101,14 +98,13 @@ WSGI_APPLICATION = 'djangox.wsgi.application'
 DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.postgresql',
-         'NAME': 'xnezzksj',
-         'USER': 'xnezzksj',
-         'PASSWORD': 'Tkb74Vf45i8sdpm9ENfqoEU1wcGL4NAR',
-         'HOST': 'pellefant.db.elephantsql.com',
+         'NAME': 'itdkpbmo',
+         'USER': 'itdkpbmo',
+         'PASSWORD': 'zNrz30GjX1WBhMhxByUvI_r_KWcU2o9K',
+         'HOST': 'stampy.db.elephantsql.com',
          'PORT': '5432',
      }
 }
-
 
 
 # Password validation
@@ -202,3 +198,6 @@ ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE =True
 
 # controls life time of the session, default is 'None' to ask user "Remember me?"
 ACCOUNT_SESSION_REMEMBER = None
+
+
+django_heroku.settings(locals())
