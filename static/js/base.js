@@ -220,22 +220,26 @@ $(document).ready(function () {
             $("#div_id_inadmissibilityreason").hide();
             $("#id_id_admissability_0_1").click(function () {
                  $("#div_id_hearingdate").show('slow');
-                 $("#id_sentence").prop('required', false);
+                 $("#id_hearingdate").prop('required', false);
                 $("#id_inadmissibilityreason").val('');
+                $("#id_inadmissibilityreason").prop('required', false);
                 $("#div_id_inadmissibilityreason").hide();
             });
             $("#id_id_admissability_0_2").click(function () {
                 $("#id_hearingdate").val('');
+                $("#id_hearingdate").prop('required', false);
                 $("#div_id_hearingdate").hide('slow');
-                $("#id_sentence").prop('required', false);
+                $("#id_inadmissibilityreason").prop('required', false);
                 $("#div_id_inadmissibilityreason").show();
             });
+
             $("#div_id_descriptionforcallofevidence").hide();
             $("#id_id_callforevidence_0_1").click(function () {
                  var hearingdate =  $("#id_hearingdate").datepicker('getDate');
                  if (hearingdate < today) {
                     swal ("Confirm Date!","the proposed date of hearing can not be in the past..please set a future date. If you are not sure about the hearing date leave it empty","error");
                    $('#id_hearingdate').val('');
+                   $('#id_hearingdate').prop('required', false);
                  }
                 $("#div_id_descriptionforcallofevidence").show('slow');
                 $("#id_descriptionforcallofevidence").prop("required", true);
@@ -245,9 +249,11 @@ $(document).ready(function () {
                  if (hearingdate < today) {
                     swal ("Confirm Date!","the proposed date of hearing can not be in the past..please set a future date. If you are not sure about the hearing date leave it empty","error");
                    $('#id_hearingdate').val('');
+                   $('#id_hearingdate').prop('required', false);
                  }
-                 $("#id_descriptionforcallofevidence").val('');
                  $("#div_id_descriptionforcallofevidence").hide('slow');
+                 $("#id_descriptionforcallofevidence").val("");
+                 $("#id_descriptionforcallofevidence").prop("required", false);
             });
 
 
