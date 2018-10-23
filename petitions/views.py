@@ -140,8 +140,7 @@ class PrisonListView(ListView):
 def PrisonPetitionersListView(request, pk):
     prison = Prison.objects.get(id=pk)
     object_list = PetitionForm.objects.filter(prison_id=pk).filter(anypendingcourtmatter=False)
-    return render(request,'petitions/prisons/prisonpetitioners_list.html',{'object_list':object_list, 'prison':prison})
-
+    return render(request,'petitions/prisons/prisonpetitioners_list.html',{'object_list':object_list, 'prison':prison, 'today':date.today()})
 
 class PrisonCreateView(CreateView):
     template_name = 'petitions/prisons/prison_form.html'
@@ -216,7 +215,7 @@ class CourtUpdateView(UpdateView):
 def CourtPetitionersListView(request, pk):
     court = Court.objects.get(id=pk)
     object_list = PetitionForm.objects.filter(court_id=pk).filter(anypendingcourtmatter=False)
-    return render(request,'petitions/courts/court_petitioners_list.html',{'object_list':object_list, 'court': court})
+    return render(request,'petitions/courts/court_petitioners_list.html',{'object_list':object_list, 'court': court, 'today':date.today()})
 
 @permission_required ('petitions.delete_court', raise_exception=True)
 def DeleteCourt(request,pk):
@@ -238,7 +237,8 @@ def OffencePetitioners(request, pk):
     object_list = PetitionForm.objects.filter(offence_id=pk)
     data = {
         'offence':offence,
-        'object_list':object_list
+        'object_list':object_list,
+        'today':date.today()
     }
     return  render(request, 'petitions/offences/offencepetitions_list.html', data)
 
@@ -303,6 +303,21 @@ class PetitionFormStatusListView(ListView):
         if not request.user.has_perm('petitions.can_view_petitionformstatus'):
             raise PermissionDenied("You do not have permission to view status events")
         return super(PetitionFormStatusListView, self).dispatch(request, *args, **kwargs)
+
+
+class PetitionFormMasterExport(ListView):
+    model = PetitionForm
+    template_name = 'petitions/masterexport.html'
+    def get_context_data(self, **kwargs):
+        context = super(PetitionFormMasterExport, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] =today
+        return context
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_petitionformstatus'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(PetitionFormMasterExport, self).dispatch(request, *args, **kwargs)
 
 
 @permission_required ('petitions.can_view_duplicatesfinder', raise_exception=True)

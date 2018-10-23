@@ -208,6 +208,7 @@
                     <ul class="nav child_menu">
                          {% if  perms.petitions.can_view_petitionformstatus %}
                         <li><a href="{% url 'petitionformstatus_list' %}">Petitions Status</a></li>
+                        <li><a href="{% url 'petitionmasterexports_list' %}">Master Export</a></li>
                          {% endif %}
                       {% if  perms.petitions.can_view_duplicatesfinder %}
                         <li><a href="{% url 'duplicates_finder' %}">Duplicates Finder</a></li>

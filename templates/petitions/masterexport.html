@@ -2,7 +2,7 @@
 {% load static %}
 {% load mathfilters %}
 {% load crispy_forms_tags %}
-{% block title %} Prison Petitions {% endblock title %}
+{% block title %} Master Export {% endblock title %}
 
 {% block stylesheets %}
     {{ block.super }}
@@ -22,20 +22,30 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Petitions List for | {{ prison.name }}
-                                <small>| List of all petitions for {{ prison.name }}</small>
+                            {% block petitiontableheading %}
+                            <h2>Master Export
+                                <small>| List of all petitions with all its related information</small>
                             </h2>
+                                {% endblock %}
+                            <ul class="nav navbar-right panel_toolbox">
+                                {% block addbutton %}
+                               <li><a class="btn btn-sm btn-primary" href="{% url 'petitionform_create' %}">Add Petition</a></li>
+                                    {% endblock %}
+                            </ul>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
+                        {% block petitiontabledescription %}
                             <p class="text-muted font-13 m-b-30">
-                                This table shows all the petitions submitted and are eligible from {{ prison.name }}. You can search using any
+                                This table shows all the petitions submitted from across all the prisons and their all related infomation. You can search using any
                                 criteria
                             </p>
+                            {% endblock %}
                             <table id="allmytables" class="table table-striped table-bordered dt-responsive" style="width:100%">
                                 <thead style="width:100%">
                                 <tr>
                                     <td>S/No</td>
+                                    <td>PM. Number</td>
                                     <td>Name</td>
                                     <td>Prison No</td>
                                     <td>Prison</td>
@@ -84,15 +94,33 @@
                                     <td>Appeal Outcome</td>
                                     <td>Pending Court Matter</td>
                                     <td>Pending Court Matter Explanation</td>
+                                    <td>Representative / Applicant</td>
                                     <td>Submitted By</td>
                                     <td>Created At</td>
+                                     <td>Last Updated By</td>
                                     <td>Last Updated</td>
+                                    <td>Start of Admissibility</td>
+                                    <td>Admissibility Status</td>
+                                    <td>Set Hearing Date</td>
+                                    <td>Inadmissibility Reason</td>
+                                    <td>Called for Evidence</td>
+                                    <td>Description of Call of Evidence</td>
+                                    <td>Called for Reports</td>
+                                    <td>Description of Call of Reports</td>
+                                    <td>Ordered for Investigation</td>
+                                    <td>Description of Order for Investigation</td>
+                                    <td>Admissibility Added By</td>
+                                    <td>Admissibility Added On</td>
+                                    <td>Admissibility last Updated By</td>
+                                    <td>Admissibility last Updated On</td>
+                                    <td>Start of Summary</td>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 {% for object in object_list %}
                                     <tr>
                                         <td>{{ forloop.counter}}</td>
+                                        <td>PM/{{ object.created.date.year }}/{{ object.created.date.month }}/{{ object.created.date.day }}/{{ object.id }}</td>
                                         <td><a href="{{object.get_absolute_url}}">{{object.name}}</a></td>
                                         <td>{{ object.prisonno }}</td>
                                         <td>{{ object.prison }}</td>
@@ -181,9 +209,47 @@
                                             <td>No</td>
                                         {% endif %}
                                         <td>{{ object.explanationofpendingcourtmatter }}</td>
+                                    {% if object.isttheapplicantthepetitioner == True %}
+                                    <td>Petitioner</td>
+                                    {% else %}
+                                        <td><strong>{{ object.nameofapplicant }}</strong> Relationship: <strong>{{ object.relationshipofapplicantwithpetitioner }}</strong> Address: <strong>{{ object.addressoftheapplicant }}</strong> Phone: <strong>{{ object.telephonenumberoftheapplicant }}</strong> </td>
+                                    {% endif %}
+
                                     <td>{{ object.added_by }}</td>
                                     <td>{{ object.created }}</td>
+                                        <td>{{ object.updated_by }}</td>
                                         <td>{{ object.last_updated }}</td>
+                                    <td>Start of Admissibility</td>
+                                    {% if object.admissibilityform.admissability == True %}
+                                        <td class="text-success">ADMISSIBLE</td>
+                                        {% else %}
+                                            <td class="text-danger">INADMISSIBLE</td>
+                                        {% endif %}
+                                    <td>{{ object.admissibilityform.hearingdate }}</td>
+                                    <td>{{ object.admissibilityform.inadmissibilityreason }}</td>
+                                    {% if object.admissibilityform.callforevidence == True %}
+                                        <td>Yes</td>
+                                        {% else %}
+                                            <td>No</td>
+                                        {% endif %}
+                                    <td>{{ object.admissibilityform.descriptionforcallofevidence }}</td>
+                                    {% if object.admissibilityform.requestreports == True %}
+                                        <td>Yes</td>
+                                        {% else %}
+                                            <td>No</td>
+                                        {% endif %}
+                                    <td>{{ object.admissibilityform.descriptionforrequstreport }}</td>
+                                    {% if object.admissibilityform.orderforinvestigation == True %}
+                                        <td>Yes</td>
+                                        {% else %}
+                                            <td>No</td>
+                                        {% endif %}
+                                    <td>{{ object.admissibilityform.orderforinvestigationdescription }}</td>
+                                    <td>{{ object.admissibilityform.added_by }}</td>
+                                    <td>{{ object.admissibilityform.created }}</td>
+                                        <td>{{ object.admissibilityform.updated_by }}</td>
+                                        <td>{{ object.admissibilityform.last_updated }}</td>
+                                        <td>Start of Summary</td
                                     </tr>
                                 {% endfor %}
                                 </tbody>

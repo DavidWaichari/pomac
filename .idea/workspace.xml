@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="bd264c29-9605-4953-a0c8-a41219d982cc" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangox/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangox/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petitions/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/petitions/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petitions/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/petitions/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/app/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/app/sidebar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/petitions/prisons/prisonpetitioners_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/petitions/prisons/prisonpetitioners_list.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -152,39 +155,40 @@
           <entry key="project.open.time.137" value="1" />
           <entry key="project.open.time.19" value="1" />
           <entry key="project.open.time.41" value="1" />
+          <entry key="project.open.time.55" value="1" />
           <entry key="project.open.time.69" value="1" />
           <entry key="project.open.time.74" value="1" />
-          <entry key="project.opened" value="5" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="html" value="14" />
+          <entry key="html" value="23" />
           <entry key="js" value="2" />
-          <entry key="py" value="3" />
+          <entry key="py" value="6" />
           <entry key="stackdump" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="14" />
+          <entry key="HTML" value="23" />
           <entry key="JavaScript" value="2" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="3" />
+          <entry key="Python" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="35" />
+          <entry key="html" value="294" />
           <entry key="js" value="138" />
-          <entry key="py" value="59" />
+          <entry key="py" value="140" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="35" />
+          <entry key="HTML" value="294" />
           <entry key="JavaScript" value="138" />
-          <entry key="Python" value="59" />
+          <entry key="Python" value="140" />
         </counts>
       </usages-collector>
     </session>
@@ -194,8 +198,70 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/djangox/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="215">
-              <caret line="108" selection-start-line="108" selection-end-line="117" selection-end-column="1" />
+            <state relative-caret-position="92">
+              <caret line="79" selection-start-line="79" selection-start-column="2" selection-end-line="88" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/petitions/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="401">
+              <caret line="240" column="8" selection-start-line="240" selection-start-column="8" selection-end-line="240" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/petitions/offences/offencepetitions_list.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/petitions/prisons/prisonpetitioners_list.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="108" column="88" selection-start-line="108" selection-start-column="88" selection-end-line="108" selection-end-column="88" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/petitions/courts/court_petitioners_list.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-357" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/petitions/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="20" column="84" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="84" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/petitions/masterexport.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="96">
+              <caret line="115" column="61" selection-start-line="115" selection-start-column="61" selection-end-line="115" selection-end-column="61" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/mypetitionform_list.html">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/petitionform_list.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-line="237" />
             </state>
           </provider>
         </entry>
@@ -203,8 +269,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/js/base.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="407">
-              <caret line="257" lean-forward="true" selection-start-line="236" selection-start-column="12" selection-end-line="257" />
+            <state relative-caret-position="4369">
+              <caret line="257" selection-start-line="236" selection-start-column="12" selection-end-line="257" />
             </state>
           </provider>
         </entry>
@@ -221,10 +287,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>petitionsumma</find>
-      <find>exits</find>
-      <find>countyc</find>
-      <find>prisonc</find>
       <find>subcountycre</find>
       <find>countylis</find>
       <find>prisonpe</find>
@@ -251,6 +313,10 @@
       <find>dashboard</find>
       <find>interviewsumm</find>
       <find>GeneratePet</find>
+      <find>statusli</find>
+      <find>prisonli</find>
+      <find>COURTL</find>
+      <find>offencelis</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -259,8 +325,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/petitions/subcounties/subcounty_detail.html" />
-        <option value="$PROJECT_DIR$/templates/petitions/counties/coutypetitioners_list.html" />
         <option value="$PROJECT_DIR$/templates/petitions/counties/county_list.html" />
         <option value="$PROJECT_DIR$/templates/petitions/courts/court_petitioners_list.html" />
         <option value="$PROJECT_DIR$/templates/petitions/offences/offence_list.html" />
@@ -270,7 +334,6 @@
         <option value="$PROJECT_DIR$/templates/petitions/exits/exitsescapes_list.html" />
         <option value="$PROJECT_DIR$/templates/petitions/hearings/hearingsummary_print.html" />
         <option value="$PROJECT_DIR$/templates/petitions/interviews/interviewsummary_print.html" />
-        <option value="$PROJECT_DIR$/petitions/urls.py" />
         <option value="$PROJECT_DIR$/templates/registration/login.html" />
         <option value="$PROJECT_DIR$/templates/petitions/appealedagainstconviction_list.html" />
         <option value="$PROJECT_DIR$/templates/petitions/foreigners_list.html" />
@@ -282,7 +345,6 @@
         <option value="$PROJECT_DIR$/templates/petitions/petitionstatus_list.html" />
         <option value="$PROJECT_DIR$/users/views.py" />
         <option value="$PROJECT_DIR$/petitions/add_counties_subcounties_courts_prisons_offences.py" />
-        <option value="$PROJECT_DIR$/petitions/views.py" />
         <option value="$PROJECT_DIR$/templates/petitions/petition_form/petitionform_list.html" />
         <option value="$PROJECT_DIR$/templates/petitions/duplicatesfinder.html" />
         <option value="$PROJECT_DIR$/templates/petitions/dashboard/index.html" />
@@ -296,7 +358,6 @@
         <option value="$PROJECT_DIR$/djangox/urls.py" />
         <option value="$PROJECT_DIR$/petitions/models.py" />
         <option value="$PROJECT_DIR$/templates/base.html" />
-        <option value="$PROJECT_DIR$/templates/app/sidebar.html" />
         <option value="$PROJECT_DIR$/petitions/forms.py" />
         <option value="$PROJECT_DIR$/templates/petitions/exits/exits_list.html" />
         <option value="$PROJECT_DIR$/templates/petitions/grants/grant_list.html" />
@@ -309,6 +370,11 @@
         <option value="$PROJECT_DIR$/templates/petitions/interviews/interviewsummary_list.html" />
         <option value="$PROJECT_DIR$/templates/petitions/recommendations/recommendationform_list.html" />
         <option value="$PROJECT_DIR$/static/js/base.js" />
+        <option value="$PROJECT_DIR$/templates/app/sidebar.html" />
+        <option value="$PROJECT_DIR$/petitions/urls.py" />
+        <option value="$PROJECT_DIR$/templates/petitions/masterexport.html" />
+        <option value="$PROJECT_DIR$/templates/petitions/prisons/prisonpetitioners_list.html" />
+        <option value="$PROJECT_DIR$/petitions/views.py" />
         <option value="$PROJECT_DIR$/djangox/settings.py" />
       </list>
     </option>
@@ -399,7 +465,13 @@
             <path>
               <item name="pomac" type="b2602c69:ProjectViewProjectNode" />
               <item name="pomac" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pomac" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pomac" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="petitions" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -428,11 +500,11 @@
       <recent name="D:\Django Projects\Cloned\djangox\templates\petitions" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Django Projects\petitions-master\pomac\templates\petitions" />
       <recent name="D:\Django Projects\Cloned\djangox\templates\petitions" />
       <recent name="D:\Django Projects\Cloned\djangox\templates\petitions\counties" />
       <recent name="D:\Django Projects\Cloned\djangox\templates\petitions\courts" />
       <recent name="D:\Django Projects\Cloned\djangox\templates\petitions\hearings" />
-      <recent name="D:\Django Projects\Cloned\djangox\static\images" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -489,7 +561,7 @@
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25945538" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2632375" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -501,8 +573,8 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49848714" weight="0.3451613" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5015129" side_tool="true" weight="0.31935483" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4977307" visible="true" weight="0.3451613" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50226927" side_tool="true" weight="0.3451613" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32903227" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32903227" />
       <window_info anchor="bottom" id="TypeScript" order="13" />
@@ -543,36 +615,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/users/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/app/base_site.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="214" column="9" selection-start-line="214" selection-start-column="9" selection-end-line="214" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/allauth/account/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="258" selection-start-line="258" selection-end-line="258" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/admin.py" />
-    <entry file="file://$PROJECT_DIR$/pages/models.py" />
-    <entry file="file://$PROJECT_DIR$/djangox/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/users/migrations/0001_initial.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-255" />
@@ -637,9 +679,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/petitions/urls.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/petitions/forms.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8330">
@@ -658,13 +697,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2873">
           <caret line="169" column="21" selection-start-line="169" selection-start-column="21" selection-end-line="169" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/app/sidebar.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="538">
-          <caret line="174" column="118" selection-start-line="174" selection-start-column="118" selection-end-line="174" selection-end-column="118" />
         </state>
       </provider>
     </entry>
@@ -687,13 +719,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="711">
           <caret line="71" column="66" selection-start-line="71" selection-start-column="66" selection-end-line="71" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/petitions/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13719">
-          <caret line="828" column="80" selection-start-line="828" selection-start-column="80" selection-end-line="828" selection-end-column="80" />
         </state>
       </provider>
     </entry>
@@ -722,22 +747,8 @@
         <state relative-caret-position="-2318" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/petitions/admissibility_form/admissibilityform_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-765">
-          <caret line="57" column="68" lean-forward="true" selection-start-line="57" selection-start-column="68" selection-end-line="57" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/petitions/summaries/mypetitionsummary_list.html">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/petitions/summaries/petitionsummary_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="214" column="62" selection-start-line="214" selection-start-column="62" selection-end-line="214" selection-end-column="62" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/petitions/hearings/hearingsummary_list.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -804,17 +815,84 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/base.js">
+    <entry file="file://$PROJECT_DIR$/templates/app/sidebar.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="257" lean-forward="true" selection-start-line="236" selection-start-column="12" selection-end-line="257" />
+        <state relative-caret-position="3570">
+          <caret line="210" column="44" selection-start-line="210" selection-start-column="44" selection-end-line="210" selection-end-column="44" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/petitions/summaries/petitionsummary_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3689">
+          <caret line="217" column="74" selection-start-line="212" selection-start-column="40" selection-end-line="217" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/petitions/admissibility_form/admissibilityform_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3995">
+          <caret line="235" column="48" selection-start-line="216" selection-start-column="36" selection-end-line="244" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/mypetitionform_list.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/petitionform_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="237" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/base.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4369">
+          <caret line="257" selection-start-line="236" selection-start-column="12" selection-end-line="257" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/petitions/masterexport.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="115" column="61" selection-start-line="115" selection-start-column="61" selection-end-line="115" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/petitions/prisons/prisonpetitioners_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="108" column="88" selection-start-line="108" selection-start-column="88" selection-end-line="108" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/petitions/courts/court_petitioners_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-357" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/petitions/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="20" column="84" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="84" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/petitions/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="240" column="8" selection-start-line="240" selection-start-column="8" selection-end-line="240" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/petitions/offences/offencepetitions_list.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/djangox/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="108" selection-start-line="108" selection-end-line="117" selection-end-column="1" />
+        <state relative-caret-position="92">
+          <caret line="79" selection-start-line="79" selection-start-column="2" selection-end-line="88" selection-end-column="3" />
         </state>
       </provider>
     </entry>
