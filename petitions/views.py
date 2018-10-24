@@ -304,22 +304,6 @@ class PetitionFormStatusListView(ListView):
             raise PermissionDenied("You do not have permission to view status events")
         return super(PetitionFormStatusListView, self).dispatch(request, *args, **kwargs)
 
-
-class PetitionFormMasterExport(ListView):
-    model = PetitionForm
-    template_name = 'petitions/masterexport.html'
-    def get_context_data(self, **kwargs):
-        context = super(PetitionFormMasterExport, self).get_context_data(**kwargs)
-        today = date.today()
-        context['today'] =today
-        return context
-    def dispatch(self, request, *args, **kwargs):
-        """ Permission check for this class """
-        if not request.user.has_perm('petitions.can_view_petitionformstatus'):
-            raise PermissionDenied("You do not have permission to view status events")
-        return super(PetitionFormMasterExport, self).dispatch(request, *args, **kwargs)
-
-
 @permission_required ('petitions.can_view_duplicatesfinder', raise_exception=True)
 def PetitionFormDuplicatesFinderView(request):
     duplicates = PetitionForm.objects.values('name').annotate(Count('id')) .order_by().filter(id__count__gt=1)
