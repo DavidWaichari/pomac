@@ -698,9 +698,15 @@ class RecommendationFormForm(forms.ModelForm):
                                         ('remitting all or part of a punishment','remitting all or part of a punishment')
                                                                        ],
                                                               attrs={'class': 'form-control'}))
+    circumstanceofoffence = forms.CharField(required=False,
+                                                 label='Circumstances sorrounding the commission of the offence',
+                                                 widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 10}))
+    compellingremarks = forms.CharField(required=False,
+                                            label='Compelling Recommendation Remarks',
+                                            widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 10}))
     class Meta:
         model = RecommendationForm
-        fields = ['interview','mercy','explanationofrecommedation' ]
+        fields = ['interview','mercy','explanationofrecommedation' ,'circumstanceofoffence','compellingremarks']
 
 class RecommendationUpdateForm(forms.ModelForm):
     def boolean_coerce(value):
@@ -727,10 +733,16 @@ class RecommendationUpdateForm(forms.ModelForm):
                                                           'remitting all or part of a punishment')
                                                          ],
                                                 attrs={'class': 'form-control'}))
+    circumstanceofoffence = forms.CharField(required=False,
+                                            label='Circumstances sorrounding the commission of the offence',
+                                            widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 10}))
+    compellingremarks = forms.CharField(required=False,
+                                        label='Compelling Recommendation Remarks',
+                                        widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 10}))
 
     class Meta:
         model = RecommendationForm
-        fields = ['interview', 'mercy','explanationofrecommedation' ]
+        fields = ['interview', 'mercy','explanationofrecommedation','circumstanceofoffence','compellingremarks' ]
 
 
 class ExitForm(forms.ModelForm):

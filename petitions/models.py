@@ -442,7 +442,8 @@ class RecommendationForm(models.Model):
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     explanationofrecommedation = models.TextField(max_length=1000)
     mercy = models.CharField(max_length=200)
-
+    circumstanceofoffence = models.TextField(max_length=1500, null=True)
+    compellingremarks = models.TextField(max_length=1500, null=True)
     # Relationship Fields
     interview = models.OneToOneField(InterviewSummary,on_delete=models.CASCADE)
     added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
