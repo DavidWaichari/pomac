@@ -1054,10 +1054,10 @@ def GenerateAdmissibilityForm(request, pk):
         evidence = 'None'
     else:
         evidence = admissibility.descriptionforcallofevidence
-    if admissibility.descriptionforrequstreport =='':
+    if admissibility.descriptionforrequstreport == '':
         reports = 'None'
     else:
-        reports = admissibility.requestreports
+        reports = admissibility.descriptionforrequstreport
     if admissibility.orderforinvestigationdescription =='':
         investigations = 'None'
     else:
