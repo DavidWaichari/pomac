@@ -2543,6 +2543,20 @@ class RecommendationFormListView(ListView):
             raise PermissionDenied("You do not have permission to view status events")
         return super(RecommendationFormListView, self).dispatch(request, *args, **kwargs)
 
+class MasterRecommendationFormListView(ListView):
+    template_name = 'petitions/recommendations/master_recommendationform_list.html'
+    model = RecommendationForm
+    def get_context_data(self, **kwargs):
+        context = super(MasterRecommendationFormListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_master_recommendations'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(MasterRecommendationFormListView, self).dispatch(request, *args, **kwargs)
+
 class MyRecommendationFormListView(ListView):
     template_name = 'petitions/recommendations/myrecommendationform_list.html'
     model = RecommendationForm

@@ -153,6 +153,9 @@
                             {% if  perms.petitions.can_view_recommendations %}
                                 <li><a href="{% url 'awaitingrecommendations' %}">Awaiting Recommendations</a></li>
                                 <li><a href="{% url 'recommendationform_list' %}">Recommendations List</a></li>
+                             {% if  perms.petitions.can_view_recommendations %}
+                                <li><a href="{% url 'master_recommendationform_list' %}">Master Recommendations List</a></li>
+                            {% endif %}
                             {% endif %}
                             {% if  perms.petitions.can_view_myrecommendations %}
                                 <li><a href="{% url 'myawaitingrecommendations' %}">My Awaiting Recommendations</a></li>

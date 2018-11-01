@@ -458,6 +458,7 @@ class RecommendationForm(models.Model):
             ('can_view_myrecommendations', 'User can view all his/her recommendations'),
             ('can_print_recommendations', 'User can  print a recommendation'),
             ('can_view_recommendationdetails', 'User can view details of a recommendation'),
+            ('can_view_master_recommendations', 'User can view master_recommendations'),
         )
 
     def __unicode__(self):
