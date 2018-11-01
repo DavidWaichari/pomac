@@ -91,6 +91,7 @@ urlpatterns = [
     path('recommendationform/my-recommendations', login_required(views.MyRecommendationFormListView.as_view()), name='myrecommendationform_list'),
     path('recommendationform/my-awaiting-recommendation', login_required(views.MyAwaitingRecommendationFormListView.as_view()), name='myawaitingrecommendations'),
     path('recommendationform/delete/<int:pk>/', login_required(views.DeleteRecommendationForm), name='recommendationform_delete'),
+    path('ajax/get-circumstance-from-summary/', login_required(views.get_circumstance_from_summary), name='getcircumstance'),
 
     # urls for County
     path('county/', login_required(views.CountyListView.as_view()), name='petitions_county_list'),

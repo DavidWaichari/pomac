@@ -2654,6 +2654,16 @@ class RecommendationFormUpdateView(UpdateView):
                     raise PermissionDenied("You do not have permission to delete events")
         return super(RecommendationFormUpdateView, self).dispatch(request, *args, **kwargs)
 
+def get_circumstance_from_summary(request):
+    interview_id = request.GET.get('interview')
+    interview = InterviewSummary.objects.get(pk=interview_id)
+    admissibility = interview.hearing.admissibility
+    try:
+        summary = PetitionSummary.objects.get(admissibility=admissibility.id).typeandcircumstancesofoffence
+    except PetitionSummary.DoesNotExist:
+        summary = ''
+    return render(request, 'petitions/recommendations/get-circumstance-from-summary.html', {'summary': summary})
+
 
 @permission_required ('petitions.can_print_recommendations', raise_exception=True)
 def GenerateRecommendationForm(request, pk):

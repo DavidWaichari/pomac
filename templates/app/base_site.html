@@ -197,6 +197,25 @@
                 }
             })
         });
+
+        //function to load all the circumstance for the recommendation
+
+         $("#id_interview").change(function () {
+            var url = $("#RecommendationForm").attr("data-summary-url");  // get the url of the `get-circumstance-from-summary` view
+            var interviewId = $(this).val();  // get the selected interview ID from the HTML input
+
+            $.ajax({                       // initialize an AJAX request
+                url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+                data: {
+                    'interview': interviewId       // add the country id to the GET parameters
+                },
+                success: function (data) {   // `data` is the return of the `load_cities` view function
+                    $("#id_circumstanceofoffence").html(data);  // replace the contents of the city input with the data that came from the server
+                    $("#id_circumstanceofoffence").attr("placeholder", 'There is no summary for this circumstance or its empty. Please create a summary for the selected petitioner or type a circumstance from scratch here for recommendation purposes. If you do not intend to do that now you can leave it empty' );
+                }
+            })
+        });
+
         $('#feedbackmessages').delay(10000).fadeOut();
         $('#allmytables').DataTable({
             dom: "lBfrtip",
