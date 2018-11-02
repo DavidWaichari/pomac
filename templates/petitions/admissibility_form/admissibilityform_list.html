@@ -57,6 +57,7 @@
                                     <td>Current Age</td>
                                     <td>Period Spent in Custody</td>
                                     <td>Sentence</td>
+                                    <td>Court</td>
                                     <td>Offense Age</td>
                                     <td>Next of Kin</td>
                                     <td>Next of Kin Relationship</td>
@@ -132,6 +133,7 @@
                                         {% else %}
                                             <td>{{ object.petitioner.sentence }} YEARS IMPRISONMENT</td>
                                         {% endif %}
+                                        <td>{{ object.petitioner.court }}</td>
                                         <td>{{ object.petitioner.agewhenoffensewascommited }} YEARS</td>
                                         <td>{{ object.petitioner.nextofkin }}</td>
                                         <td>{{ object.petitioner.relationshipwithnextofkin }}</td>

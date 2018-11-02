@@ -45,6 +45,7 @@
                                     <td>Current Age</td>
                                     <td>Period Spent in Custody</td>
                                     <td>Sentence</td>
+                                    <td>Court</td>
                                     <td>Offense Age</td>
                                     <td>Next of Kin</td>
                                     <td>Next of Kin Relationship</td>
@@ -106,6 +107,7 @@
                                         {% else %}
                                             <td>{{ object.sentence }} YEARS IMPRISONMENT</td>
                                         {% endif %}
+                                        <td>{{ object.court }}</td>
                                         <td>{{ object.agewhenoffensewascommited }} YEARS</td>
                                         <td>{{ object.nextofkin }}</td>
                                         <td>{{ object.relationshipwithnextofkin }}</td>

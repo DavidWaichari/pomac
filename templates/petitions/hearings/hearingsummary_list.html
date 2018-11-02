@@ -57,6 +57,7 @@
                                     <td>Current Age</td>
                                     <td>Period Spent in Custody</td>
                                     <td>Sentence</td>
+                                    <td>Court</td>
                                     <td>Offense Age</td>
                                     <td>Next of Kin</td>
                                     <td>Next of Kin Relationship</td>
@@ -144,6 +145,7 @@
                                         {% else %}
                                             <td>{{ object.admissibility.petitioner.sentence }} YEARS IMPRISONMENT</td>
                                         {% endif %}
+                                        <td>{{ object.admissibility.petitioner.court }}</td>
                                         <td>{{ object.admissibility.petitioner.agewhenoffensewascommited }} YEARS</td>
                                         <td>{{ object.admissibility.petitioner.nextofkin }}</td>
                                         <td>{{ object.admissibility.petitioner.relationshipwithnextofkin }}</td>

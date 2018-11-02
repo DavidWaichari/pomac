@@ -153,6 +153,10 @@
                                                 <td>Age at conviction
                                                 <td>{{ object.admissibility.petitioner.ageatconviction }} YEARS</td>
                                             </tr>
+                                           <tr>
+                                                <td>Court
+                                                <td>{{ object.admissibility.petitioner.court }}</td>
+                                            </tr>
                                             <tr>
                                                 <td>Current Age
                                                 <td>{{ today.year|sub:object.admissibility.petitioner.dateofconviction.year|add:object.admissibility.petitioner.ageatconviction }}
