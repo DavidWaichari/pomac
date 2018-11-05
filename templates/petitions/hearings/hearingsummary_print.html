@@ -72,24 +72,24 @@
             </h2>
         </div>
         <div style="font-size: 16px; text-align: justify">
-            PETITIONER: <strong>{{ name }} <i>(Name of Prisoner/Petitioner)</i></strong><br/><br/>
-            Prison Number: <strong>{{ prisonno }}</strong>............Prison:<strong>{{ prison }}</strong><br/><br/>
-            Name: <strong>{{ name }}</strong>...............................Current Age: <strong>{{ currentage }} YEARS</strong><br/><br/>
-            Offence(s): <strong>{{ offence }}</strong><br/><br/>
+            PETITIONER: <strong>{{ name |title }} <i>(Name of Prisoner/Petitioner)</i></strong><br/><br/>
+            Prison Number: <strong>{{ prisonno }}</strong>............Prison:<strong>{{ prison |title }}</strong><br/><br/>
+            Prisoner's Name: <strong>{{ name |title }}</strong>...............................Current Age: <strong>{{ currentage }} Years</strong><br/><br/>
+            Offence(s): <strong>{{ offence |lower|capfirst }}</strong><br/><br/>
             Date of Sentence:
-            <strong>{{ dateofconviction }}</strong>.........................Sentence:<strong>{{ sentence }}</strong><br/><br/>
-            Court where convicted: <strong>{{ court }}</strong>.....Court Case No:
+            <strong>{{ dateofconviction }}</strong>.........................Sentence:<strong>{{ sentence |title }}</strong><br/><br/>
+            Court where convicted: <strong>{{ court  |title}}</strong>.....Court Case No:
             <strong>{{ courtno }}</strong><br/><br/>
 
             Appeal No <i>(if any)</i>: <strong>{{ appealcaseno }}</strong>.....................Outcome of Appeal:
             <strong>{{ appealoutcome }}</strong><br><br>
-            E.P.D: <strong>Not working</strong>.........................................L.P.D:
-            <strong>Not Working</strong><br/><br/>
+            E.P.D: <strong>................................................................</strong>L.P.D:
+            <strong>........................................................</strong><br/><br/>
             No of Previous Convictions: <strong>{{ previousconvictions }}</strong><br/><br/>
             Prison Offences (if any): <strong>{{ explanationofdisciplinaryaction }}</strong><br/><br/>
             Where the offense was committed: <strong>{{ offensecommitted }}</strong><br/><br/>
             Date of Custody: <strong>{{ dateofcustody }}</strong>..................................Years Served:
-            <strong>{{ yearsserved }} YEARS</strong><br/><br/>
+            <strong>{{ yearsserved }} Years</strong><br/><br/>
             Health Status: <strong>{{ healthstatus }}</strong><br/><br/>
             Family Status: <strong>{{ familystatus }}</strong><br/><br/>
         </div>
@@ -98,16 +98,16 @@
                 <strong>Committee's remarks taking into account the criteria prescribed by the Power of Mercy Act
                     S.22</strong><br><br>
                 (a) The age of the convicted criminal prisoner at the time of the commission of the offence:
-                <strong>{{ ageoffense }} YEARS</strong><br><br>
+                <strong>{{ ageoffense }} Years</strong><br><br>
                 (b) The circumstances surrounding the commission of the offence:
                 <strong>{{ natureofoffense }}</strong><br><br>
                 (c) Whether the person, for whose benefit the petition is made, is a first offender:
                 <strong>{{ chargedalone }}</strong><br><br>
                 (d) The nature and seriousness of the offence: <strong>{{ seriousnessofoffence }}</strong><br><br>
                 (e) The length of period so far served by the convicted criminal prisoner: <strong>{{ yearsserved }}
-                YEARS</strong><br><br>
+                Years</strong><br><br>
                 (f) The length of period served by the convicted criminal prisoner in remard:
-                <strong>{{ yearsinremand }} YEARS</strong><br><br>
+                <strong>{{ yearsinremand }} Years</strong><br><br>
                 (g) The personal circumstances of the offender at the time of making the petition, including mental and
                 physical health and any disabilities: <strong>{{ personalcircumstances }}</strong><br><br>
                 (h) The interest of State and community: <strong>{{ interestofstate }}</strong><br><br>

@@ -54,34 +54,34 @@
 <div class='wrapper' style="padding: 20px;">
     <div class='header'>
         <img src="{% static 'images/picture.jpg' %}" style="zoom: 100%;" alt="Image">
-        <p class='title'>PETITION SUMMARY <br/>The power of Mercy Advisory Committee</p>
+        <p class='title'>PETITION SUMMARY <br/>The Power of Mercy Advisory Committee</p>
     </div>
     <hr class='hrItem' size="2.5"/>
     <div>
         <div style="font-size: 16px; text-align: justify">
-            NAME: <strong>{{ name }}</strong>.......................PRISON NUMBER: <strong>{{ prisonno }}</strong><br/><br/>
+            Name: <strong>{{ name|title }}</strong>........................................P.M Number: <strong>{{ pmnumber }}</strong><br/><br/>
             Prison Number: <strong>{{ prisonno }}</strong>..........................Nationality:
-            <strong>{{ nationality }}</strong><br/><br/>
-            Name of Prison where held: <strong>{{ prison }}</strong><br/><br/>
-            Court where convicted: <strong>{{ court }}</strong>.....Court Case No:
+            <strong>{{ nationality |title}}</strong><br/><br/>
+            Name of Prison where held: <strong>{{ prison|title }}</strong><br/><br/>
+            Court where convicted: <strong>{{ court |title}}</strong>.....Court Case No:
             <strong>{{ courtno }}</strong><br/><br/>
-            Offence: <strong>{{ offence }}</strong><br/><br/>
-            Age at Conviction: <strong>{{ ageatconviction }} YEARS</strong>..............................Date of
+            Offence: <strong>{{ offence|title }}</strong><br/><br/>
+            Age at Conviction: <strong>{{ ageatconviction }} Years</strong>..............................Date of
             Conviction: <strong>{{ dateofconviction }}</strong><br/><br/>
-            Current Age: <strong>{{ currentage }} YEARS</strong>......................................Age when offense
-            was Committed: <strong>{{ ageoffense }} YEARS</strong><br/><br/>
-            Next of Kin: <strong>{{ nextofkin }}</strong>................................................Relationship:
-            <strong>{{ nextofkinrelationship }}</strong><br/><br/>
+            Current Age: <strong>{{ currentage }} Years</strong>......................................Age when offense
+            was Committed: <strong>{{ ageoffense }} Years</strong><br/><br/>
+            Next of Kin: <strong>{{ nextofkin|title }}</strong>................................................Relationship:
+            <strong>{{ nextofkinrelationship|title }}</strong><br/><br/>
             Contact Person: <strong>{{ contactperson }}</strong>.........................................Tel No:
             <strong>{{ telno }}</strong><br/><br/>
-            Home County: <strong>{{ county }}</strong>.......................Sub County:
-            <strong>{{ subcounty }}</strong><br/><br/>
-            Home Location: <strong>{{ location }}</strong>...................Nearest School:
-            <strong>{{ nearestschool }}</strong><br/><br/>
-            Years Served in Remand: <strong>{{ yearsinremand }} YEARS</strong>.........Name of Home Chief: <strong>{{ nameofhomechief }}</strong><br/><br/>
+            Home County: <strong>{{ county|title }}</strong>.......................Sub County:
+            <strong>{{ subcounty|title }}</strong><br/><br/>
+            Home Location: <strong>{{ location|title }}</strong>...................Nearest School:
+            <strong>{{ nearestschool|title }}</strong><br/><br/>
+            Years Served in Remand: <strong>{{ yearsinremand }} Years</strong>.........Name of Home Chief: <strong>{{ nameofhomechief }}</strong><br/><br/>
             Where the offense was committed: <strong>{{ offensecommitted }}</strong><br/><br/>
             Date of Custody: <strong>{{ dateofcustody }}</strong>..................................Years Served:
-            <strong>{{ yearsserved }} YEARS</strong><br><br><br><br>
+            <strong>{{ yearsserved }} Years</strong><br><br><br><br>
             <strong>TYPE AND CIRCUMSTANCES OF THE OFFENCE</strong><br>
             {{ typeandcircumstances }}<br><br>
             <strong>PETITION OVERVIEW</strong><br>

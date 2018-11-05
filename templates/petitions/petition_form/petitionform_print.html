@@ -65,34 +65,34 @@
             The Power of Mercy Advisory Committee
         </div>
         <div style="font-size: 16px">
-            1. The humble petition of: <strong>{{ name }} <i>(Name of convicted criminal
+            1. The humble petition of: <strong>{{ name |title }} <i>(Name of convicted criminal
             offender)</i></strong><br/><br/>
             Prison Number: <strong>{{ prisonno }}</strong>..........................Nationality:
-            <strong>{{ nationality }}</strong><br/><br/>
-            Name of Prison where held: <strong>{{ prison }}</strong><br/><br/>
-            Court where convicted: <strong>{{ court }}</strong>.....Court Case No:
+            <strong>{{ nationality|title }}</strong><br/><br/>
+            Name of Prison where held: <strong>{{ prison|title }}</strong><br/><br/>
+            Court where convicted: <strong>{{ court|title }}</strong>.....Court Case No:
             <strong>{{ courtno }}</strong><br/><br/>
-            Offence: <strong>{{ offence }}</strong><br/><br/>
-            Age at Conviction: <strong>{{ ageatconviction }} YEARS</strong>..............................Date of
+            Offence: <strong>{{ offence |lower|capfirst }}</strong><br/><br/>
+            Age at Conviction: <strong>{{ ageatconviction }} Years</strong>..............................Date of
             Conviction: <strong>{{ dateofconviction }}</strong><br/><br/>
-            Current Age: <strong>{{ currentage }} YEARS</strong>......................................Age when offense
-            was Committed: <strong>{{ ageoffense }} YEARS</strong><br/><br/>
-            Next of Kin: <strong>{{ nextofkin }}</strong>................................................Relationship:
-            <strong>{{ nextofkinrelationship }}</strong><br/><br/>
-            Contact Person: <strong>{{ contactperson }}</strong>.........................................Tel No:
+            Current Age: <strong>{{ currentage }} Years</strong>......................................Age when offense
+            was Committed: <strong>{{ ageoffense }} Years</strong><br/><br/>
+            Next of Kin: <strong>{{ nextofkin |title }}</strong>................................................Relationship:
+            <strong>{{ nextofkinrelationship|title }}</strong><br/><br/>
+            Contact Person: <strong>{{ contactperson |title}}</strong>.........................................Tel No:
             <strong>{{ telno }}</strong><br/><br/>
-            Home County: <strong>{{ county }}</strong>.......................Sub County:
-            <strong>{{ subcounty }}</strong><br/><br/>
-            Home Location: <strong>{{ location }}</strong>...................Nearest School:
-            <strong>{{ nearestschool }}</strong><br/><br/>
-            Name of Home Chief: <strong>{{ nameofhomechief }}</strong><br/><br/>
-            Where the offense was committed: <strong>{{ offensecommitted }}</strong><br/><br/>
+            Home County: <strong>{{ county|title }}</strong>.......................Sub County:
+            <strong>{{ subcounty|title }}</strong><br/><br/>
+            Home Location: <strong>{{ location|title }}</strong>...................Nearest School:
+            <strong>{{ nearestschool|title }}</strong><br/><br/>
+            Name of Home Chief: <strong>{{ nameofhomechief|title }}</strong><br/><br/>
+            Where the offense was committed: <strong>{{ offensecommitted |lower|capfirst}}</strong><br/><br/>
             Date of Custody: <strong>{{ dateofcustody }}</strong>..................................Years Served:
-            <strong>{{ yearsserved }} YEARS</strong><br/><br/>
-            Years Served in Remand: <strong>{{ yearsinremand }} YEARS</strong><br/><br/>
+            <strong>{{ yearsserved }} Years</strong><br/><br/>
+            Years Served in Remand: <strong>{{ yearsinremand }} Years</strong><br/><br/>
         </div>
         <div style="font-size: 16px">
-            2. Number of counts and sentence terms(s) imposed: <strong>{{ sentence }}</strong><br/><br/>
+            2. Number of counts and sentence terms(s) imposed: <strong>{{ sentence|lower|capfirst }}</strong><br/><br/>
             4. The nature,particulars and circumstances surrounding the commission of the offence :
             <strong>{{ natureofoffense }}</strong><br/><br/>
             5. Were you charged alone for the offence?: <strong>{{ chargedalone }}</strong><br/>
@@ -101,8 +101,8 @@
             6. Do you know the victim of the offence for which you were charged?:
             <strong>{{ knowledgeofvictim }}</strong><br/>
             if YES, provide details of :<br/>
-            Name of victim: <strong>{{ nameofvictim }}</strong><br>
-            Area of Residence (if known): <strong>{{ areaofresidence }}</strong><br/><br/>
+            Name of victim: <strong>{{ nameofvictim|title }}</strong><br>
+            Area of Residence (if known): <strong>{{ areaofresidence|lower|capfirst }}</strong><br/><br/>
             7. State and explain any previous conviction(s): <strong>{{ previousconvictions }}</strong><br/><br/>
             8. Has the prisoner made any previous petition: <strong>{{ previouspetition }}</strong><br/>
             if YES, Date of the previous petition was: <strong>{{ dateofpreviouspetition }}</strong><br/>
@@ -148,12 +148,12 @@
                     style="font-size: 22px;"><i>{{ day }}</i></span><strong>........Day of.........</strong><span
                     style="font-size: 22px;"><i>{{ month }}</i></span><strong>..................<span
                     style="font-size: 24px;">/</span></strong><span style="font-size: 22px;"><i>{{ year }}</i></span>.........<br/><br/>
-                <i>Name of the petitioner:.</i> <strong>{{ name }}</strong>..<i>Signature/thumb print</i>................................
+                <i>Name of the petitioner:.</i> <strong>{{ name |title}}</strong>..<i>Signature/thumb print</i>................................
             </div>
             <div style="font-size: 16px;">
                 <strong>If applicant is different from the petitioner</strong><br/>
-                Representative / Advocate: <strong>{{ nameofapplicant }}</strong> <br/>
-                Relationship with convicted offender: <strong>{{ relationshipofapplicantwithpetitioner }}</strong> <br/>
+                Representative / Advocate: <strong>{{ nameofapplicant |title}}</strong> <br/>
+                Relationship with convicted offender: <strong>{{ relationshipofapplicantwithpetitioner|title }}</strong> <br/>
                 P.O Box: <strong>{{ addressoftheapplicant }} </strong><br/>
                 Telephone No: <strong>{{ telephonenumberoftheapplicant }} </strong><br/><br/>
                 Signature:.......................................................................................................................................

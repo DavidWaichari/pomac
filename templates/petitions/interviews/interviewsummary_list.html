@@ -144,42 +144,41 @@
                                         <td>{{ forloop.counter }}</td>
                                         <td>PM/{{ object.hearing.admissibility.petitioner.created.date.year }}/{{ object.hearing.admissibility.petitioner.created.date.month }}/{{ object.hearing.admissibility.petitioner.created.date.day }}/{{ object.id }}</td>
                                         <td>
-                                            <a href="{{ object.get_absolute_url }}">{{ object.hearing.admissibility.petitioner.name }}</a>
+                                            <a href="{{ object.get_absolute_url }}">{{ object.hearing.admissibility.petitioner.name |title }}</a>
                                         </td>
                                         <td>{{ object.hearing.admissibility.petitioner.prisonno }}</td>
-                                        <td>{{ object.hearing.admissibility.petitioner.prison }}</td>
-                                        <td>{{ object.hearing.admissibility.petitioner.nationality }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.prison|title }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.nationality|title }}</td>
                                         <td>{{ object.hearing.admissibility.petitioner.courtcaseno }}</td>
-                                        <td>{{ object.hearing.admissibility.petitioner.ageatconviction }} YEARS</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.ageatconviction }} Years</td>
                                         <td>{{ today.year|sub:object.hearing.admissibility.petitioner.dateofconviction.year|add:object.hearing.admissibility.petitioner.ageatconviction }}
-                                            YEARS
+                                            Years
                                         </td>
                                         <td>{{ today.year|sub:object.hearing.admissibility.petitioner.dateofcustody.year }}
-                                            YEARS
+                                            Years
                                         </td>
                                         {% if object.hearing.admissibility.petitioner.convictedforlife == True %}
-                                            <td>LIFE IMPRISONMENT</td>
+                                            <td>Life</td>
                                         {% else %}
-                                            <td>{{ object.hearing.admissibility.petitioner.sentence }} YEARS
-                                                IMPRISONMENT
+                                            <td>{{ object.hearing.admissibility.petitioner.sentence }} Years
                                             </td>
                                         {% endif %}
-                                        <td>{{ object.hearing.admissibility.petitioner.court }}</td>
-                                        <td>{{ object.hearing.admissibility.petitioner.agewhenoffensewascommited }} YEARS</td>
-                                        <td>{{ object.hearing.admissibility.petitioner.nextofkin }}</td>
-                                        <td>{{ object.hearing.admissibility.petitioner.relationshipwithnextofkin }}</td>
-                                        <td>{{ object.hearing.admissibility.petitioner.contactperson }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.court|title }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.agewhenoffensewascommited }} Years</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.nextofkin |title}}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.relationshipwithnextofkin |title}}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.contactperso|titlen }}</td>
                                         <td>{{ object.hearing.admissibility.petitioner.telnoofcontactperson }}</td>
-                                        <td>{{ object.hearing.admissibility.petitioner.county }}</td>
-                                        <td>{{ object.hearing.admissibility.petitioner.subcounty }}</td>
-                                        <td>{{ object.hearing.admissibility.petitioner.location }}</td>
-                                        <td>{{ object.hearing.admissibility.petitioner.nearestschool }}</td>
-                                        <td>{{ object.hearing.admissibility.petitioner.homechief }}</td>
-                                        <td>{{ object.hearing.admissibility.petitioner.whereoffensewascommitted }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.county |title}}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.subcounty|title }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.location|title }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.nearestschool|title }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.homechief|title }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.whereoffensewascommitted |lower|capfirst }}</td>
                                         <td>{{ object.hearing.admissibility.petitioner.dateofconviction }}</td>
                                         <td>{{ object.hearing.admissibility.petitioner.dateofcustody }}</td>
                                         <td>{{ object.hearing.admissibility.petitioner.reliefsought }}</td>
-                                        <td>{{ object.hearing.admissibility.petitioner.offence }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.offence |title}}</td>
                                         <td>{{ object.hearing.admissibility.petitioner.natureandparticularsofoffense }}</td>
                                         {% if object.hearing.admissibility.petitioner.chargedalonefortheoffense == True %}
                                             <td>Yes</td>
@@ -245,7 +244,7 @@
                                     {% else %}
                                         <td><strong>{{ object.hearing.admissibility.petitioner.nameofapplicant }}</strong> Relationship: <strong>{{object.hearing.admissibility.petitioner.relationshipofapplicantwithpetitioner }}</strong> Address: <strong>{{ object.hearing.admissibility.petitioner.addressoftheapplicant }}</strong> Phone: <strong>{{ object.hearing.admissibility.petitioner.telephonenumberoftheapplicant }}</strong> </td>
                                     {% endif %}
-                                        <td>{{ object.hearing.admissibility.petitioner.added_by }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.added_by |title}}</td>
                                         <td>{{ object.hearing.admissibility.petitioner.created }}</td>
                                         <td>{{ object.ownaccountofcircumstances }}</td>
                                         <td>{{ object.reconciliationefforts }}</td>
@@ -254,64 +253,64 @@
                                         <td>{{ object.representationofthevictim }}</td>
                                         <td>{{ object.concludingobservations }}</td>
                                         {% if object.chairpersonvote == True %}
-                                            <td class="text-success">RECOMMENDED for release</td>
+                                            <td class="text-success">Recommended</td>
                                         {% else %}
-                                            <td class="text-danger">NOT RECOMMENDED for release</td>
+                                            <td class="text-danger">Not Recommended</td>
                                         {% endif %}
                                         <td>{{ object.chairpersonvotereason }}</td>
                                         {% if object.vicechairvote == True %}
-                                            <td class="text-success">RECOMMENDED for release</td>
+                                            <td class="text-success">Recommended</td>
                                         {% else %}
-                                            <td class="text-danger">NOT RECOMMENDED for release</td>
+                                            <td class="text-danger">Not Recommended</td>
                                         {% endif %}
                                         <td>{{ object.vicechairvotereason }}</td>
                                         {% if object.csvote == True %}
-                                            <td class="text-success">RECOMMENDED for release</td>
+                                            <td class="text-success">Recommended</td>
                                         {% else %}
-                                            <td class="text-danger">NOT RECOMMENDED for release</td>
+                                            <td class="text-danger">Not Recommended</td>
                                         {% endif %}
                                         <td>{{ object.csvotereason }}</td>
                                         {% if object.m1vote == True %}
-                                            <td class="text-success">RECOMMENDED for release</td>
+                                            <td class="text-success">Recommended</td>
                                         {% else %}
-                                            <td class="text-danger">NOT RECOMMENDED for release</td>
+                                            <td class="text-danger">Not Recommended</td>
                                         {% endif %}
                                         <td>{{ object.m1votereason }}</td>
                                         {% if object.m2vote == True %}
-                                            <td class="text-success">RECOMMENDED for release</td>
+                                            <td class="text-success">Recommended</td>
                                         {% else %}
-                                            <td class="text-danger">NOT RECOMMENDED for release</td>
+                                            <td class="text-danger">Not Recommended</td>
                                         {% endif %}
                                         <td>{{ object.m2votereason }}</td>
                                         {% if object.m3vote == True %}
-                                            <td class="text-success">RECOMMENDED for release</td>
+                                            <td class="text-success">Recommended</td>
                                         {% else %}
-                                            <td class="text-danger">NOT RECOMMENDED for release</td>
+                                            <td class="text-danger">Not Recommended</td>
                                         {% endif %}
                                         <td>{{ object.m3votereason }}</td>
                                         {% if object.m4vote == True %}
-                                            <td class="text-success">RECOMMENDED for release</td>
+                                            <td class="text-success">Recommended</td>
                                         {% else %}
-                                            <td class="text-danger">NOT RECOMMENDED for release</td>
+                                            <td class="text-danger">Not Recommended</td>
                                         {% endif %}
                                         <td>{{ object.m4votereason }}</td>
                                         {% if object.m5vote == True %}
-                                            <td class="text-success">RECOMMENDED for release</td>
+                                            <td class="text-success">Recommended</td>
                                         {% else %}
-                                            <td class="text-danger">NOT RECOMMENDED for release</td>
+                                            <td class="text-danger">Not Recommended</td>
                                         {% endif %}
                                         <td>{{ object.m5votereason }}</td>
                                         {% if object.m6vote == True %}
-                                            <td class="text-success">RECOMMENDED for release</td>
+                                            <td class="text-success">Recommended</td>
                                         {% else %}
-                                            <td class="text-danger">NOT RECOMMENDED for release</td>
+                                            <td class="text-danger">Not Recommended</td>
                                         {% endif %}
                                         <td>{{ object.m6votereason }}</td>
                                         <td>{{ object.finalresolution }}</td>
 
-                                        <td>{{ object.added_by }}</td>
+                                        <td>{{ object.added_by|title }}</td>
                                         <td>{{ object.created }}</td>
-                                        <td>{{ object.updated_by }}</td>
+                                        <td>{{ object.updated_by |title}}</td>
                                         <td>{{ object.last_updated }}</td>
                                     </tr>
                                 {% endfor %}

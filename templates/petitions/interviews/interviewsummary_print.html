@@ -72,24 +72,24 @@
             </h2>
         </div>
         <div style="font-size: 16px; text-align: justify">
-            PETITIONER: <strong>{{ name }} <i>(Name of Prisoner/Petitioner)</i></strong><br/><br/>
-            Prison Number: <strong>{{ prisonno }}</strong>............Prison:<strong>{{ prison }}</strong><br/><br/>
-            Name: <strong>{{ name }}</strong><br/><br/>
-            Current Age: <strong>{{ currentage }} YEARS</strong>.................................Age When Offence was Committed: <strong>{{ ageoffense }} YEARS</strong><br/><br/>
-            Offence(s): <strong>{{ offence }}</strong><br/><br/>
+            PETITIONER: <strong>{{ name|title }} <i>(Name of Prisoner/Petitioner)</i></strong><br/><br/>
+            Prison Number: <strong>{{ prisonno }}</strong>............Prison:<strong>{{ prison|title }}</strong><br/><br/>
+            Name: <strong>{{ name|title }}</strong><br/><br/>
+            Current Age: <strong>{{ currentage }} Years</strong>.................................Age When Offence was Committed: <strong>{{ ageoffense }} Years</strong><br/><br/>
+            Offence(s): <strong>{{ offence|lower|capfirst }}</strong><br/><br/>
             Date of Sentence:
-            <strong>{{ dateofconviction }}</strong>.........................Sentence:<strong>{{ sentence }}</strong><br/><br/>
-            Court where convicted: <strong>{{ court }}</strong>.....Court Case No:
+            <strong>{{ dateofconviction }}</strong>.........................Sentence:<strong>{{ sentence|lower|capfirst }}</strong><br/><br/>
+            Court where convicted: <strong>{{ court|title }}</strong>.....Court Case No:
             <strong>{{ courtno }}</strong><br/><br/>
 
             Appeal No <i>(if any)</i>: <strong>{{ appealcaseno }}</strong>.....................Outcome of Appeal:
             <strong>{{ appealoutcome }}</strong><br><br>
-            E.P.D: <strong>Not working</strong>.........................................L.P.D:
-            <strong>Not Working</strong><br/><br/>
+            E.P.D: <strong>.............................................................</strong>L.P.D:
+            <strong>.........................................................</strong><br/><br/>
             No of Previous Convictions: <strong>{{ previousconvictions }}</strong>..................Prison Offences (if any): <strong>{{ explanationofdisciplinaryaction }}</strong><br/><br/>
             Where the offense was committed: <strong>{{ offensecommitted }}</strong><br/><br/>
             Date of Custody: <strong>{{ dateofcustody }}</strong>..................................Years Served:
-            <strong>{{ yearsserved }} YEARS</strong><br/><br/>
+            <strong>{{ yearsserved }} Years</strong><br/><br/>
             Health Status: <strong>{{ healthstatus }}</strong><br/><br/>
             Family Status: <strong>{{ familystatus }}</strong><br/><br/>
             (a) Own account of circumstances surrounding commission of Offence : <strong>{{ ownaccount }}</strong><br/><br/>

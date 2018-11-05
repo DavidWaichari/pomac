@@ -120,35 +120,35 @@
                                     <tr>
                                         <td>{{ forloop.counter}}</td>
                                     <td>PM/{{ object.petitioner.created.date.year }}/{{ object.petitioner.created.date.month }}/{{ object.petitioner.created.date.day }}/{{ object.id }}</td>
-                                        <td><a href="{{object.get_absolute_url}}">{{object.petitioner.name}}</a></td>
+                                        <td><a href="{{object.get_absolute_url}}">{{object.petitioner.name | title}}</a></td>
                                         <td>{{ object.petitioner.prisonno }}</td>
-                                        <td>{{ object.petitioner.prison }}</td>
-                                        <td>{{ object.petitioner.nationality }}</td>
+                                        <td>{{ object.petitioner.prison | title }}</td>
+                                        <td>{{ object.petitioner.nationality | title}}</td>
                                         <td>{{ object.petitioner.courtcaseno }}</td>
-                                        <td>{{ object.petitioner.ageatconviction }} YEARS</td>
-                                        <td>{{ today.year|sub:object.petitioner.dateofconviction.year|add:object.petitioner.ageatconviction }} YEARS</td>
-                                        <td>{{ today.year|sub:object.petitioner.dateofcustody.year }} YEARS</td>
+                                        <td>{{ object.petitioner.ageatconviction }} Years</td>
+                                        <td>{{ today.year|sub:object.petitioner.dateofconviction.year|add:object.petitioner.ageatconviction }} Years</td>
+                                        <td>{{ today.year|sub:object.petitioner.dateofcustody.year }} Years</td>
                                     {% if object.petitioner.convictedforlife == True %}
-                                        <td>LIFE IMPRISONMENT</td>
+                                        <td>Life</td>
                                         {% else %}
-                                            <td>{{ object.petitioner.sentence }} YEARS IMPRISONMENT</td>
+                                            <td>{{ object.petitioner.sentence }} Years</td>
                                         {% endif %}
-                                        <td>{{ object.petitioner.court }}</td>
-                                        <td>{{ object.petitioner.agewhenoffensewascommited }} YEARS</td>
-                                        <td>{{ object.petitioner.nextofkin }}</td>
-                                        <td>{{ object.petitioner.relationshipwithnextofkin }}</td>
-                                        <td>{{ object.petitioner.contactperson }}</td>
+                                        <td>{{ object.petitioner.court | title}}</td>
+                                        <td>{{ object.petitioner.agewhenoffensewascommited }} Years</td>
+                                        <td>{{ object.petitioner.nextofkin | title }}</td>
+                                        <td>{{ object.petitioner.relationshipwithnextofkin | title }}</td>
+                                        <td>{{ object.petitioner.contactperson| title  }}</td>
                                         <td>{{ object.petitioner.telnoofcontactperson }}</td>
-                                        <td>{{ object.petitioner.county }}</td>
-                                        <td>{{ object.petitioner.subcounty }}</td>
-                                        <td>{{ object.petitioner.location }}</td>
-                                        <td>{{ object.petitioner.nearestschool }}</td>
-                                        <td>{{ object.petitioner.homechief }}</td>
-                                        <td>{{ object.petitioner.whereoffensewascommitted }}</td>
+                                        <td>{{ object.petitioner.county | title }}</td>
+                                        <td>{{ object.petitioner.subcounty | title }}</td>
+                                        <td>{{ object.petitioner.location | title }}</td>
+                                        <td>{{ object.petitioner.nearestschool| title  }}</td>
+                                        <td>{{ object.petitioner.homechief| title  }}</td>
+                                        <td>{{ object.petitioner.whereoffensewascommitted| lower|capfirst  }}</td>
                                         <td>{{ object.petitioner.dateofconviction }}</td>
                                         <td>{{ object.petitioner.dateofcustody }}</td>
                                         <td>{{ object.petitioner.reliefsought }}</td>
-                                        <td>{{ object.petitioner.offence }}</td>
+                                        <td>{{ object.petitioner.offence | lower | capfirst  }}</td>
                                         <td>{{ object.petitioner.natureandparticularsofoffense }}</td>
                                         {% if object.petitioner.chargedalonefortheoffense == True %}
                                         <td>Yes</td>
@@ -161,8 +161,8 @@
                                         {% else %}
                                             <td>No</td>
                                         {% endif %}
-                                        <td>{{ object.petitioner.nameofvictim }}</td>
-                                        <td>{{ object.petitioner.areaofresidence }}</td>
+                                        <td>{{ object.petitioner.nameofvictim| title  }}</td>
+                                        <td>{{ object.petitioner.areaofresidence | lower | capfirst }}</td>
                                         <td>{{ object.petitioner.previousconvictions }}</td>
                                      {% if object.petitioner.previouspetition == True %}
                                         <td>Yes</td>
@@ -214,12 +214,12 @@
                                     {% else %}
                                         <td><strong>{{ object.petitioner.nameofapplicant }}</strong> Relationship: <strong>{{object.petitioner.relationshipofapplicantwithpetitioner }}</strong> Address: <strong>{{ object.petitioner.addressoftheapplicant }}</strong> Phone: <strong>{{ object.petitioner.telephonenumberoftheapplicant }}</strong> </td>
                                     {% endif %}
-                                        <td>{{ object.petitioner.added_by }}</td>
+                                        <td>{{ object.petitioner.added_by | title }}</td>
                                         <td>{{ object.petitioner.created }}</td>
                                     {% if object.admissability == True %}
-                                        <td class="text-success">ADMISSIBLE</td>
+                                        <td class="text-success">Admissible</td>
                                         {% else %}
-                                            <td class="text-danger">INADMISSIBLE</td>
+                                            <td class="text-danger">Inadmissible</td>
                                         {% endif %}
                                     <td>{{ object.hearingdate }}</td>
                                     <td>{{ object.inadmissibilityreason }}</td>
@@ -241,9 +241,9 @@
                                             <td>No</td>
                                         {% endif %}
                                     <td>{{ object.orderforinvestigationdescription }}</td>
-                                    <td>{{ object.added_by }}</td>
+                                    <td>{{ object.added_by | title  }}</td>
                                     <td>{{ object.created }}</td>
-                                        <td>{{ object.updated_by }}</td>
+                                        <td>{{ object.updated_by | title }}</td>
                                         <td>{{ object.last_updated }}</td>
                                     </tr>
                                 {% endfor %}

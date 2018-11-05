@@ -66,8 +66,8 @@
     </h2>
 </div>
     <div style="font-size: 18px">
-        PETITIONER: <strong>{{ name }}</strong> ...<strong>{{ prisonno }}</strong><i>(Name and Prison No)</i><br>
-        Arising from his/her custodial sentence of: <strong>{{ sentence }} </strong>(sentence)<br>
+        PETITIONER: <strong>{{ name|title }}</strong> ...<strong>{{ prisonno }}</strong><i>(Name and Prison No)</i><br>
+        Arising from his/her custodial sentence of <strong>{{ sentence | title }} </strong>for the offence of <strong>{{ offence|lower| capfirst }}</strong><br>
         <div style="text-align: justify">
          The Power of Mercy Advisory Committee having perused the subject petition and the annexed documents notes
             that the application meets the eligibility and admissibility criteria pursuant to S.19 and S.21 of the Power of
@@ -76,12 +76,12 @@
 
         <div>
             Following this preliminary review, the committee determines it is necessary to: <br>
-            1. <strong> {{ information }}</strong><br><br>
-            2. Call for the following evidence: <strong>{{ evidence }}</strong><br><br>
+            1. <strong> {{ information }}</strong><br>
+            2. Call for the following evidence: <strong>{{ evidence }}</strong><br>
             3. Request reports from the following government agencies: <strong>{{ reports }}</strong><br>
             4. Order the following investigations: <strong>{{ investigations }}</strong>
         </div>
-         <div style="margin-top: 20px;">
+         <div>
             Signed <br><br>
             <strong>Chairperson of the Petition Sub-Committee</strong><br><br>
             <strong>Dated this..............<span>{{ day }}</span>.............Day of...........<span>{{ month }}</span>................<span>/{{ year }}</span></strong>

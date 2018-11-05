@@ -61,20 +61,20 @@
     <hr class='hrItem' size="2.5"/>
     <div>
         <div class="details" style="font-style: italic">
-            To:<br/> <strong>{{ name }} </strong><br/>
+            To:<br/> <strong>{{ name|title }} </strong><br/>
             <strong>{{ prisonno }}</strong><br>
 
             <strong>Through</strong><br/>
-            <strong>{{ prison }}</strong>
+            <strong>{{ prison|title }}</strong>
         </div>
         <div style="font-size: 18px; text-align: justify">
             TAKE NOTICE that following your petition to the President of the republic of kenya for Grant of Mercy dated
             <strong>{{ petitionmonth }} {{ petitionday }}, {{ petitionyear }}</strong> in
             respect of your conviction arising from Criminal Case Number <strong>{{ courtno }}</strong> in which the
             court sitting at
-            <strong>{{ court }}</strong>, found you guilty of <strong>{{ offence }}</strong> and sentenced you to
-            <strong>{{ sentence }}</strong> and
-            following the consideration of the <strong>POWER OF MERCY ADVISORY COMMITTEE</strong> and its
+            <strong>{{ court|title }}</strong>, found you guilty of <strong>{{ offence|lower|capfirst }}</strong> and sentenced you to
+            <strong>{{ sentence|title }}</strong> and
+            following the consideration of the <strong>Power of Mercy Advisory Committee</strong> and its
             recommendation to the President, your petition has been granted and you have been conditionally
             pardoned.<br>
 
@@ -88,7 +88,7 @@
             of.............</strong><span
                 style="font-size: 22px;"><i>{{ grantmonth }}</i></span><strong>.....................<span
                 style="font-size: 24px;">/</span></strong><span style="font-size: 22px;"><i>{{ grantyear }}</i></span>..................<br/><br/>
-            .......................................................................................................................................................<br>
+            ...............................................................................................................................................<br>
             <strong>    CHAIRPERSON: Power of Mercy Advisory Committee</strong><br><br>
             Copy to:<br>
             <strong>The Principal Secretary/ Interior Coordination of National Government</strong><br>

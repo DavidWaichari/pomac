@@ -1370,6 +1370,7 @@ def GeneratePetitionSummary(request, pk):
     summarydate = summary.created
     data = {
         'name': summary.admissibility.petitioner.name,
+        'pmnumber': 'PM/'+str(summary.admissibility.petitioner.created.year)+'/'+str(summary.admissibility.petitioner.created.month)+'/'+str(summary.admissibility.petitioner.created.day)+'/'+str(summary.admissibility.petitioner.id),
         'prisonno':summary.admissibility.petitioner.prisonno,
         'created_at': summary.admissibility.petitioner.created,
         'prison': summary.admissibility.petitioner.prison,
