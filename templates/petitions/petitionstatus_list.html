@@ -54,7 +54,6 @@
                                     <td>Current Age</td>
                                     <td>Period Spent in Custody</td>
                                     <td>Sentence</td>
-                                    <td>Court</td>
                                     <td>Offense Age</td>
                                     <td>Next of Kin</td>
                                     <td>Next of Kin Relationship</td>
@@ -105,7 +104,7 @@
                                     <tr>
                                         <td>{{ forloop.counter}}</td>
                                         <td>PM/{{ object.created.date.year }}/{{ object.created.date.month }}/{{ object.created.date.day }}/{{ object.id }}</td>
-                                        <td><a href="{{object.get_absolute_url}}">{{object.name}}</a></td>
+                                        <td><a href="{{object.get_absolute_url}}">{{object.name |title}}</a></td>
                                         <td>{{ object.prisonno }}</td>
                                     {% if  object.anypendingcourtmatter == False %}
                                         <td>Yes <i class="fa fa-check text-success"></i></td>
@@ -147,8 +146,8 @@
                                     {% else %}
                                         <td>Yes <i class="fa fa-check text-success"></i></td>
                                     {% endif %}
-                                        <td>{{ object.prison|title }}</td>
-                                        <td>{{ object.nationality|title }}</td>
+                                        <td>{{ object.prison |title }}</td>
+                                        <td>{{ object.nationality  |title}}</td>
                                         <td>{{ object.courtcaseno }}</td>
                                         <td>{{ object.ageatconviction }} Years</td>
                                         <td>{{ today.year|sub:object.dateofconviction.year|add:object.ageatconviction }} Years</td>
@@ -156,24 +155,23 @@
                                      {% if object.convictedforlife == True %}
                                         <td>Life</td>
                                         {% else %}
-                                            <td>{{ object.sentence }}Years</td>
+                                            <td>{{ object.sentence }} Years</td>
                                         {% endif %}
-                                        <td>{{ object.court|title}}<td>
                                         <td>{{ object.agewhenoffensewascommited }}</td>
-                                        <td>{{ object.nextofkin|title }}</td>
-                                        <td>{{ object.relationshipwithnextofkin|title }}</td>
-                                        <td>{{ object.contactperson|title }}</td>
+                                        <td>{{ object.nextofkin |title }}</td>
+                                        <td>{{ object.relationshipwithnextofkin |title }}</td>
+                                        <td>{{ object.contactperson |title }}</td>
                                         <td>{{ object.telnoofcontactperson }}</td>
-                                        <td>{{ object.county|title }}</td>
-                                        <td>{{ object.subcounty|title }}</td>
-                                        <td>{{ object.location|title }}</td>
-                                        <td>{{ object.nearestschool|title }}</td>
-                                        <td>{{ object.homechief |title}}</td>
-                                        <td>{{ object.whereoffensewascommitted|lower|capfirst }}</td>
+                                        <td>{{ object.county |title }}</td>
+                                        <td>{{ object.subcounty |title }}</td>
+                                        <td>{{ object.location |title }}</td>
+                                        <td>{{ object.nearestschool |title }}</td>
+                                        <td>{{ object.homechief |title }}</td>
+                                        <td>{{ object.whereoffensewascommitted |lower|capfirst }}</td>
                                         <td>{{ object.dateofconviction }}</td>
                                         <td>{{ object.dateofcustody }}</td>
                                         <td>{{ object.reliefsought }}</td>
-                                        <td>{{ object.offence|lower|capfirst }}</td>
+                                        <td>{{ object.offence |lower|capfirst }}</td>
                                         <td>{{ object.natureandparticularsofoffense }}</td>
                                         {% if object.chargedalonefortheoffense == True %}
                                         <td>Yes</td>
@@ -186,8 +184,8 @@
                                         {% else %}
                                             <td>No</td>
                                         {% endif %}
-                                        <td>{{ object.nameofvictim }}</td>
-                                        <td>{{ object.areaofresidence }}</td>
+                                        <td>{{ object.nameofvictim |title }}</td>
+                                        <td>{{ object.areaofresidence |title }}</td>
                                         <td>{{ object.previousconvictions }}</td>
                                      {% if object.previouspetition == True %}
                                         <td>Yes</td>
@@ -234,9 +232,9 @@
                                             <td>No</td>
                                         {% endif %}
                                         <td>{{ object.explanationofpendingcourtmatter }}</td>
-                                    <td>{{ object.added_by|title }}</td>
+                                    <td>{{ object.added_by  |title}}</td>
                                     <td>{{ object.created }}</td>
-                                        <td>{{ object.updated_by|title }}</td>
+                                        <td>{{ object.updated_by  |title}}</td>
                                         <td>{{ object.last_updated }}</td>
                                     </tr>
                                 {% endfor %}
