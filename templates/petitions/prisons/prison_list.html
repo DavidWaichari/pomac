@@ -42,8 +42,10 @@
                                     <td>Name</td>
                                     <td>created</td>
                                     <td>last_updated</td>
-                                    <td class="text-center">No of Petitioners</td>
-                                    <td>View Petitioners</td>
+                                    <td class="text-center">All Petitioners</td>
+                                     <td>View Current Petitioners</td>
+                                    <td>View All Petitioners</td>
+
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -54,7 +56,8 @@
                                         <td>{{ object.created }}</td>
                                         <td>{{ object.last_updated }}</td>
                                         <td class="text-center" style="color: black;font-size: 16px">{{ object.petitionform_set.count}}</td>
-                                        <td><a class="btn btn-success btn-sm" href="{% url 'prisonpetitioners' object.id %}">View Petitioners</a></td>
+                                        <td><a class="btn btn-info btn-sm" href="{% url 'current_prisonpetitioners' object.id %}">View Current Petitioners</a></td>
+                                        <td><a class="btn btn-success btn-sm" href="{% url 'prisonpetitioners' object.id %}">View All Petitioners</a></td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>

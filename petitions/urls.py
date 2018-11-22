@@ -126,6 +126,7 @@ urlpatterns = [
     path('petitions/prison/detail/<int:pk>/', login_required(views.PrisonDetailView.as_view()), name='petitions_prison_detail'),
     path('petitions/prison/update/<int:pk>/', login_required(views.PrisonUpdateView.as_view()), name='petitions_prison_update'),
     path('petitions/prison/petitioners/<int:pk>/', login_required(views.PrisonPetitionersListView), name='prisonpetitioners'),
+    path('petitions/prison/current-petitioners/<int:pk>/', login_required(views.CurrentPrisonPetitionersListView), name='current_prisonpetitioners'),
     path('petitions/prison/delete/<int:pk>/', login_required(views.DeletePrison), name='petitions_prison_delete'),
 
     # urls for Court

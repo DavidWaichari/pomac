@@ -15,3 +15,5 @@ class CustomUserAdmin(UserAdmin):
 
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.site_header = 'POMAC PETITION MASTER ADMINISTRATION'
+admin.site.index_title = 'Pomac'
+admin.site.site_title = 'System Administration'

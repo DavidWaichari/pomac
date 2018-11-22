@@ -142,6 +142,12 @@ def PrisonPetitionersListView(request, pk):
     object_list = PetitionForm.objects.filter(prison_id=pk).filter(anypendingcourtmatter=False)
     return render(request,'petitions/prisons/prisonpetitioners_list.html',{'object_list':object_list, 'prison':prison, 'today':date.today()})
 
+def CurrentPrisonPetitionersListView(request, pk):
+    prison = Prison.objects.get(id=pk)
+    object_list = PetitionForm.objects.filter(prison_id=pk).filter(anypendingcourtmatter=False).filter(exit__isnull=True)
+    return render(request,'petitions/prisons/prisonpetitioners_current_list.html',{'object_list':object_list, 'prison':prison, 'today':date.today()})
+
+
 class PrisonCreateView(CreateView):
     template_name = 'petitions/prisons/prison_form.html'
     model = Prison
