@@ -14,9 +14,9 @@
         <!-- top tiles -->
         <div class="row tile_count">
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                <span class="count_top"><i class="fa fa-user"></i> My Petitions</span>
+                <span class="count_top text-primary"><i class="fa fa-user"></i> My Petitions</span>
                 <div class="count">{{ noofpetitions }}</div>
-                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-primary"
                                                                    href="{% url 'mypetitionform_list' %}">More Details</a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
@@ -28,24 +28,24 @@
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top text-danger"><i class="fa fa-user"></i> My InEligible Petitions</span>
                 <div class="count">{{ ineligiblepetitions }}</div>
-                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-danger"
                                                                    href="{% url 'myineligiblepetitionform_list' %}">More Details</a></span>
             </div>
             {% if perms.petitions.can_view_myadmissibilityform %}
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top text-warning"><i class="fa fa-user"></i> My Awaiting Admissibility</span>
                     <div class="count">{{ awaitingadmissibility }}</div>
-                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-warning"
                                                                        href="{% url 'myawaitingadmissibility' %}">More Details</a></span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-user"></i> My Admissibilities</span>
+                    <span class="count_top text-primary"><i class="fa fa-user"></i> My Admissibilities</span>
                     <div class="count">{{ totaladmissibilities }}</div>
-                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-primary"
                                                                        href="{% url 'myadmissibilityform_list' %}">More Details</a></span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-user"></i> My Admissible Petitions</span>
+                    <span class="count_top text-success"><i class="fa fa-user"></i> My Admissible Petitions</span>
                     <div class="count">{{ admissiblepetitions }}</div>
                     <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
                                                                        href="{% url 'myadmissibleadmissibilityform_list' %}">More Details</a></span>
@@ -56,7 +56,7 @@
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top text-danger"><i class="fa fa-user"></i> My InAdmissible Petitions</span>
                     <div class="count">{{ inadmissiblepetitions }}</div>
-                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-danger"
                                                                        href="{% url 'myinadmissibleadmissibilityform_list' %}">More Details</a></span>
                 </div>
             {% endif %}
@@ -64,13 +64,13 @@
                  <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top text-warning"><i class="fa fa-user"></i> My Awaiting Summaries</span>
                     <div class="count">{{ awaitingsummaries }}</div>
-                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-warning"
                                                                        href="{% url 'myawaitingsummary' %}">More Details</a></span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-user"></i> My Petitions Summaries</span>
+                    <span class="count_top text-primary"><i class="fa fa-user"></i> My Petitions Summaries</span>
                     <div class="count">{{ summaries }}</div>
-                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-primary"
                                                                        href="{% url 'mypetitionsummary_list' %}">More Details</a></span>
                 </div>
             {% endif %}
@@ -78,19 +78,19 @@
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top text-warning"><i class="fa fa-user"></i> My Awaiting Hearing</span>
                     <div class="count">{{ awaitinghearing }}</div>
-                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-warning"
                                                                        href="{% url 'myawaitinghearing' %}">More Details</a></span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top"><i class="fa fa-user"></i> My Hearings</span>
+                    <span class="count_top text-primary"><i class="fa fa-user"></i> My Hearings</span>
                     <div class="count">{{ hearings }}</div>
-                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-primary"
                                                                        href="{% url 'myhearingsummary_list' %}">More Details</a></span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top text-danger"><i class="fa fa-user"></i> My Deferred Hearings</span>
                     <div class="count">{{ deferredhearings }}</div>
-                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-danger"
                                                                        href="{% url 'myhearingsummary_deferred' %}">More Details</a></span>
                 </div>
                 </div>
@@ -100,38 +100,28 @@
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top text-danger"><i class="fa fa-user"></i> My Declined Hearings</span>
                     <div class="count">{{ declinedhearings }}</div>
-                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-danger"
                                                                        href="{% url 'myhearingsummary_declined' %}">More Details</a></span>
                 </div>
             {% endif %}
             {% if perms.petitions.can_view_myinterviews %}
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top text-warning"><i class="fa fa-user"></i> My Awaiting Schedule for </span>
-                    {% if awaitingscheduleforinterview == 0 %}
-                        <div class="count text-success">{{ awaitingscheduleforinterview }}</div>
-                    {% else %}
-                        <div class="count text-danger">{{ awaitingscheduleforinterview }}</div>
-                    {% endif %}
+                    <div class="count">{{ awaitingscheduleforinterview }}</div>
                     <span class="text-warning">Interview</span>
-                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-warning"
                                                                        href="{% url 'myhearingsummary_awaitingscheduleforinterview' %}">More Details</a></span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top text-success"><i class="fa fa-user"></i> My Scheduled for Interview</span>
-                    <div class="count">{{ scheduledforinterview }}</div>
-                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
-                                                                       href="{% url 'myhearingsummary_scheduledforinterview' %}">More Details</a></span>
-                </div>
-                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top text-warning"><i class="fa fa-user"></i>My Awaiting Interview</span>
-                    <div class="count text-danger">{{ awaitinginterviews }}</div>
-                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                    <div class="count">{{ awaitinginterviews }}</div>
+                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-warning"
                                                                        href="{% url 'myawaitinginterviws' %}">More Details</a></span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top text-success"><i class="fa fa-user"></i>My Interviews Done</span>
+                    <span class="count_top text-primary"><i class="fa fa-user"></i>My Interviews Done</span>
                     <div class="count">{{ interviews }}</div>
-                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-primary"
                                                                        href="{% url 'myinterviewsummary_list' %}">More Details</a></span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
@@ -148,7 +138,7 @@
                     <span class="count_top text-danger"><i class="fa fa-user"></i>My Interviews Not </span>
                     <div class="count">{{ notinterviewsrecommended }}</div>
                     <span class="text-danger">Recommended</span>
-                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-danger"
                                                                        href="{% url 'myinterviewsummary_notrecommended' %}">More Details</a></span>
                 </div>
             {% endif %}
@@ -156,13 +146,13 @@
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top text-warning"><i class="fa fa-user"></i>My Awaiting Recommendations</span>
                     <div class="count">{{ awaitingrecommendations }}</div>
-                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-warning"
                                                                        href="{% url 'myawaitingrecommendations' %}">More Details</a></span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top text-success"><i class="fa fa-user"></i>My Recommendations</span>
+                    <span class="count_top text-primary"><i class="fa fa-user"></i>My Recommendations</span>
                     <div class="count">{{ recommendations }}</div>
-                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-primary"
                                                                        href="{% url 'myrecommendationform_list' %}">More Details</a></span>
                 </div>
             {% endif %}
@@ -170,13 +160,13 @@
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top text-warning"><i class="fa fa-user"></i>My Awaiting Grant</span>
                     <div class="count">{{ myawaitingregrant }}</div>
-                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-warning"
                                                                        href="{% url 'mypetitions_awaiting_grant_list' %}">More Details</a></span>
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top text-warning"><i class="fa fa-user"></i>My Grants</span>
+                    <span class="count_top text-primary"><i class="fa fa-user"></i>My Grants</span>
                     <div class="count">{{ mygrants }}</div>
-                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-primary"
                                                                        href="{% url 'mypetitions_grant_list' %}">More Details</a></span>
                 </div>
             {% endif %}
