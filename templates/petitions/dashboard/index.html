@@ -12,13 +12,13 @@
         <!-- top tiles -->
         <div class="row tile_count">
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                <span class="count_top"><i class="fa fa-user"></i> Petitions Submitted</span>
+                <span class="count_top text-primary"><i class="fa fa-user"></i> Petitions Submitted</span>
                 <div class="count">{{ noofpetitions }}</div>
-                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                <span class="count_bottom"><i class="blue"></i><a class="btn-sm btn-primary"
                                                                    href="{% url 'petitionform_list' %}">More Details</a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                <span class="count_top"><i class="fa fa-user"></i> Eligible Petitions</span>
+                <span class="count_top text-success"><i class="fa fa-user"></i> Eligible Petitions</span>
                 <div class="count">{{ eligiblepetitions }}</div>
                 <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
                                                                    href="{% url 'petitionform_eligible' %}">More Details</a></span>
@@ -26,23 +26,23 @@
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top text-danger"><i class="fa fa-user"></i> InEligible Petitions</span>
                 <div class="count">{{ ineligiblepetitions }}</div>
-                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-danger"
                                                                    href="{% url 'petitionform_ineligible' %}">More Details</a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top text-warning"><i class="fa fa-user"></i> Awaiting Admissibility</span>
                 <div class="count">{{ awaitingadmissibility }}</div>
-                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-warning"
                                                                    href="{% url 'awaitingadmissibility' %}">More Details</a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                <span class="count_top"><i class="fa fa-user"></i> Admissibilities Done</span>
+                <span class="count_top text-primary"><i class="fa fa-user"></i> Admissibilities Done</span>
                 <div class="count">{{ totaladmissibilities }}</div>
-                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-primary"
                                                                    href="{% url 'admissibilityform_list' %}">More Details</a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                <span class="count_top"><i class="fa fa-user"></i> Admissible Petitions</span>
+                <span class="count_top text-success"><i class="fa fa-user"></i> Admissible Petitions</span>
                 <div class="count">{{ admissiblepetitions }}</div>
                 <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
                                                                    href="{% url 'admissibilityformadmissible_list' %}">More Details</a></span>
@@ -53,38 +53,38 @@
              <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top text-danger"><i class="fa fa-user"></i> InAdmissible Petitions</span>
                 <div class="count">{{ inadmissiblepetitions }}</div>
-                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                <span class="count_bottom"><i class="red"></i><a class="btn-sm btn-danger"
                                                                    href="{% url 'admissibilityformaindmissible_list' %}">More Details</a></span>
             </div>
              <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top text-warning"><i class="fa fa-user"></i> Awaiting Summaries</span>
                 <div class="count">{{ awaitingsummaries }}</div>
-                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-warning"
                                                                    href="{% url 'awaitingsummary' %}">More Details</a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                <span class="count_top"><i class="fa fa-user"></i>Summaries</span>
+                <span class="count_top text-primary"><i class="fa fa-user"></i>Summaries</span>
                 <div class="count">{{ summaries }}</div>
-                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-primary"
                                                                    href="{% url 'petitionsummary_list' %}">More Details</a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                <span class="count_top"><i class="fa fa-user"></i> Awaiting Schedule for</span>
+                <span class="count_top text-info"><i class="fa fa-user"></i> Awaiting Schedule for</span>
                 <div class="count">{{ awaitingscheduleforhearing }}</div>
-               <span class="text-warning">Hearings</span>
-                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+               <span class="text-info">Hearings</span>
+                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-info"
                                                                    href="{% url 'awaitingscheduleforhearing' %}">More Details</a></span>
             </div>
              <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top text-warning"><i class="fa fa-user"></i> Awaiting Hearing</span>
                 <div class="count">{{ awaitinghearing }}</div>
-                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-warning"
                                                                    href="{% url 'awaitinghearing' %}">More Details</a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                <span class="count_top"><i class="fa fa-user"></i> Hearings</span>
+                <span class="count_top text-primary"><i class="fa fa-user"></i> Hearings</span>
                 <div class="count">{{ hearings }}</div>
-                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-primary"
                                                                    href="{% url 'hearingsummary_list' %}">More Details</a></span>
             </div>
         </div>
@@ -94,36 +94,32 @@
          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top text-danger"><i class="fa fa-user"></i> Deferred Hearings</span>
                 <div class="count">{{ deferredhearings }}</div>
-                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-danger"
                                                                    href="{% url 'hearingsummary_deferred' %}">More Details</a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top text-danger"><i class="fa fa-user"></i> Declined Hearings</span>
                 <div class="count">{{ declinedhearings }}</div>
-                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                <span class="count_bottom"><i class="red"></i><a class="btn-sm btn-danger"
                                                                    href="{% url 'hearingsummary_declined' %}">More Details</a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                <span class="count_top text-warning"><i class="fa fa-user"></i> Awaiting Schedule for </span>
-                {% if awaitingscheduleforinterview == 0 %}
-                    <div class="count text-success">{{ awaitingscheduleforinterview }}</div>
-                {% else %}
-                    <div class="count text-danger">{{ awaitingscheduleforinterview }}</div>
-                {% endif %}
-                <span class="text-warning">Interview</span>
-                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                <span class="count_top text-info"><i class="fa fa-user"></i> Awaiting Schedule for </span>
+                <div class="count">{{ awaitingscheduleforinterview }}</div>
+                <span class="text-info">Interview</span>
+                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-info"
                                                                    href="{% url 'hearingsummary_awaitingscheduleforinterview' %}">More Details</a></span>
             </div>
          <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top text-warning"><i class="fa fa-user"></i>Awaiting Interview</span>
-                <div class="count text-danger">{{ awaitinginterviews }}</div>
-                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                <div class="count">{{ awaitinginterviews }}</div>
+                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-warning"
                                                                    href="{% url 'awaitinginterviws' %}">More Details</a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                <span class="count_top text-success"><i class="fa fa-user"></i>Interviews Done</span>
+                <span class="count_top text-primary"><i class="fa fa-user"></i>Interviews Done</span>
                 <div class="count">{{ interviews }}</div>
-                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-primary"
                                                                    href="{% url 'interviewsummary_list' %}">More Details</a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
@@ -137,35 +133,42 @@
         <!-- /top tiles -->
         <div class="row tile_count">
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                <span class="count_top text-danger"><i class="fa fa-user"></i>Interviews Not </span>
-                <div class="count">{{ notinterviewsrecommended }}</div>
+                <span class="count_top text-danger"><i class="fa fa-user"></i>Interviews Not </span><br>
                 <span class="text-danger">Recommended</span>
-                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                <div class="count">{{ notinterviewsrecommended }}</div>
+                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-danger"
                                                                    href="{% url 'interviewsummary_notrecommended' %}">More Details</a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top text-warning"><i class="fa fa-user"></i>Awaiting Recommendations</span>
                 <div class="count">{{ awaitingrecommendations }}</div>
-                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-warning"
                                                                    href="{% url 'awaitingrecommendations' %}">More Details</a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                <span class="count_top text-success"><i class="fa fa-user"></i>Recommendations</span>
+                <span class="count_top text-primary"><i class="fa fa-user"></i>Recommendations</span>
                 <div class="count">{{ recommendations }}</div>
-                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-primary"
                                                                    href="{% url 'recommendationform_list' %}">More Details</a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                 <span class="count_top text-warning"><i class="fa fa-user"></i>Awaiting Grant</span>
                 <div class="count">{{ awaitingregrant }}</div>
-                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-warning"
                                                                    href="{% url 'petitions_awaiting_grant_list' %}">More Details</a></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                <span class="count_top text-warning"><i class="fa fa-user"></i>Grants</span>
+                <span class="count_top text-primary"><i class="fa fa-user"></i>Grants</span>
                 <div class="count">{{ grants }}</div>
-                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-primary"
                                                                    href="{% url 'petitions_grant_list' %}">More Details</a></span>
+            </div>
+
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                <span class="count_top text-success"><i class="fa fa-user"></i>Exits</span>
+                <div class="count">{{ exitslist }}</div>
+                <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-success"
+                                                                   href="{% url 'petitions_exit_list' %}">More Details</a></span>
             </div>
 
         </div>
@@ -193,100 +196,94 @@
                             <td class="text-center">1</td>
                           <td>Trustees Petitioners</td>
                           <td class="text-center" style="color: black;font-size: 16px">{{ trustees }}</td>
-                          <td class="text-center"><a class="btn btn-primary btn-sm" href="{% url 'trustees' %}">More Details</a></td>
+                          <td class="text-center"><a class="btn btn-dark btn-sm" href="{% url 'trustees' %}">More Details</a></td>
                         </tr>
                       <tr>
                             <td class="text-center">2</td>
                           <td>Special Conditions (sickness, physical, mental health)</td>
                           <td class="text-center" style="color: black;font-size: 16px">{{ specialcondition }}</td>
-                          <td class="text-center"><a class="btn btn-sm btn-primary" href="{% url 'specialcondition' %}">More Details</a></td>
+                          <td class="text-center"><a class="btn btn-sm btn-dark" href="{% url 'specialcondition' %}">More Details</a></td>
                         </tr>
                       <tr>
                             <td class="text-center">3</td>
                           <td>Petitioners who appealed against the conviction</td>
                           <td class="text-center" style="color: black;font-size: 16px">{{ appealed }}</td>
-                          <td class="text-center"><a class="btn btn-sm btn-primary" href="{% url 'appealedagainstconviction' %}">More Details</a></td>
+                          <td class="text-center"><a class="btn btn-sm btn-dark" href="{% url 'appealedagainstconviction' %}">More Details</a></td>
                         </tr>
                       <tr>
                             <td class="text-center">4</td>
                           <td>Petitioners with skills attained in prison</td>
                           <td class="text-center" style="color: black;font-size: 16px">{{ withskillsattainedinprison }}</td>
-                          <td class="text-center"><a class="btn btn-sm btn-primary" href="{% url 'specialattributesorskills' %}">More Details</a></td>
+                          <td class="text-center"><a class="btn btn-sm btn-dark" href="{% url 'specialattributesorskills' %}">More Details</a></td>
                         </tr>
                       <tr>
                             <td class="text-center">5</td>
                           <td>Offences</td>
                           <td class="text-center" style="color: black;font-size: 16px">{{ offences }}</td>
-                          <td class="text-center"><a class="btn btn-sm btn-primary" href="{% url 'petitions_offence_list' %}">More Details</a></td>
+                          <td class="text-center"><a class="btn btn-sm btn-dark" href="{% url 'petitions_offence_list' %}">More Details</a></td>
                         </tr>
                      <tr>
                             <td class="text-center">6</td>
                           <td>Foreigners</td>
                           <td class="text-center" style="color: black;font-size: 16px">{{ foreigners }}</td>
-                          <td class="text-center"><a class="btn btn-sm btn-primary" href="{% url 'foreigners_list' %}">More Details</a></td>
+                          <td class="text-center"><a class="btn btn-sm btn-dark" href="{% url 'foreigners_list' %}">More Details</a></td>
                         </tr>
                       <tr>
                             <td class="text-center">7</td>
                           <td>Presidential Pleasure (P.P) Mental</td>
                           <td class="text-center" style="color: black;font-size: 16px">{{ ppmental }}</td>
-                          <td class="text-center"><a class="btn btn-sm btn-primary" href="{% url 'ppmental_list' %}">More Details</a></td>
+                          <td class="text-center"><a class="btn btn-sm btn-dark" href="{% url 'ppmental_list' %}">More Details</a></td>
                         </tr>
                       <tr>
                             <td class="text-center">8</td>
                           <td>Presidential Pleasure (P.P) Under Age</td>
                           <td class="text-center" style="color: black;font-size: 16px">{{ ppunderage }}</td>
-                          <td class="text-center"><a class="btn btn-sm btn-primary" href="{% url 'ppunderage_list' %}">More Details</a></td>
+                          <td class="text-center"><a class="btn btn-sm btn-dark" href="{% url 'ppunderage_list' %}">More Details</a></td>
                         </tr>
                       <tr>
                             <td class="text-center">9</td>
-                          <td>Prison Exits: List</td>
-                          <td class="text-center" style="color: black;font-size: 16px">{{ exitslist }}</td>
-                          <td class="text-center"><a class="btn btn-sm btn-primary" href="{% url 'petitions_exit_list' %}">More Details</a></td>
-                        </tr>
-                      <tr>
-                            <td class="text-center">10</td>
                           <td>Prison Exits: Escaped</td>
                           <td class="text-center" style="color: black;font-size: 16px">{{ exitslistescaped }}</td>
-                          <td class="text-center"><a class="btn btn-sm btn-primary" href="{% url 'petitions_exitescape_list' %}">More Details</a></td>
+                          <td class="text-center"><a class="btn btn-sm btn-dark" href="{% url 'petitions_exitescape_list' %}">More Details</a></td>
+                        </tr>
+                      <tr>
+                       <tr>
+                            <td class="text-center">10</td>
+                          <td>Prison Exits: Deaths</td>
+                          <td class="text-center" style="color: black;font-size: 16px">{{ exitsdeath }}</td>
+                          <td class="text-center"><a class="btn btn-sm btn-dark" href="{% url 'petitions_exitdeaths_list' %}">More Details</a></td>
                         </tr>
                       <tr>
                        <tr>
                             <td class="text-center">11</td>
-                          <td>Prison Exits: Deaths</td>
-                          <td class="text-center" style="color: black;font-size: 16px">{{ exitsdeath }}</td>
-                          <td class="text-center"><a class="btn btn-sm btn-primary" href="{% url 'petitions_exitdeaths_list' %}">More Details</a></td>
+                          <td>Prison Exits: Served Sentence</td>
+                          <td class="text-center" style="color: black;font-size: 16px">{{ exitsservedsentence }}</td>
+                          <td class="text-center"><a class="btn btn-sm btn-dark" href="{% url 'petitions_exitservedterm_list' %}">More Details</a></td>
                         </tr>
                       <tr>
                        <tr>
                             <td class="text-center">12</td>
-                          <td>Prison Exits: Served Sentence</td>
-                          <td class="text-center" style="color: black;font-size: 16px">{{ exitsservedsentence }}</td>
-                          <td class="text-center"><a class="btn btn-sm btn-primary" href="{% url 'petitions_exitservedterm_list' %}">More Details</a></td>
-                        </tr>
-                      <tr>
-                       <tr>
-                            <td class="text-center">13</td>
                           <td>Prison Exits: Released Under POMAC</td>
                           <td class="text-center" style="color: black;font-size: 16px">{{ exitsreleasedbypomac }}</td>
-                          <td class="text-center"><a class="btn btn-sm btn-primary" href="{% url 'petitions_exitpomac_list' %}">More Details</a></td>
+                          <td class="text-center"><a class="btn btn-sm btn-dark" href="{% url 'petitions_exitpomac_list' %}">More Details</a></td>
+                        </tr>
+                      <tr>
+                            <td class="text-center">13</td>
+                          <td>Prison Exits: Released after resentencing</td>
+                          <td class="text-center" style="color: black;font-size: 16px">{{ exitsresetencing }}</td>
+                          <td class="text-center"><a class="btn btn-sm btn-dark" href="{% url 'petitions_exitresentencing_list' %}">More Details</a></td>
                         </tr>
                       <tr>
                             <td class="text-center">14</td>
-                          <td>Prison Exits: Released after resentencing</td>
-                          <td class="text-center" style="color: black;font-size: 16px">{{ exitsresetencing }}</td>
-                          <td class="text-center"><a class="btn btn-sm btn-primary" href="{% url 'petitions_exitresentencing_list' %}">More Details</a></td>
+                          <td>Prisons</td>
+                          <td class="text-center" style="color: black;font-size: 16px">{{ prisons }}</td>
+                          <td class="text-center"><a class="btn btn-sm btn-dark" href="{% url 'petitions_prison_list' %}">More Details</a></td>
                         </tr>
                       <tr>
                             <td class="text-center">15</td>
-                          <td>Prisons</td>
-                          <td class="text-center" style="color: black;font-size: 16px">{{ prisons }}</td>
-                          <td class="text-center"><a class="btn btn-sm btn-primary" href="{% url 'petitions_prison_list' %}">More Details</a></td>
-                        </tr>
-                      <tr>
-                            <td class="text-center">16</td>
                           <td>Courts</td>
                           <td class="text-center" style="color: black;font-size: 16px">{{ courts }}</td>
-                          <td class="text-center"><a class="btn btn-sm btn-primary" href="{% url 'petitions_court_list' %}">More Details</a></td>
+                          <td class="text-center"><a class="btn btn-sm btn-dark" href="{% url 'petitions_court_list' %}">More Details</a></td>
                         </tr>
                       </tbody>
                     </table>
