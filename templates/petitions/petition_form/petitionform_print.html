@@ -1,22 +1,35 @@
-{% load static %}
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <title>POMAC | Petition</title>
-    <style type="text/css">
-        body {
+       <style>
+td, th {
+  border: 1px solid #2F4F4F;
+  padding: 3px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+     body {
             font-weight: 200;
             font-size: 14px;
         }
+    .hrItem {
+            border: none;
+            height: 1px;
+            /* Set the hr color */
+            color: #333; /* old IE */
+            background-color: #fff; /* Modern Browsers */
+        }
 
-        .header {
+     .header {
             padding-top: 500px;
             font-size: 20px;
             font-weight: 100;
             text-align: center;
             color: #0f0f0f;
         }
-
         .title {
             font-size: 22px;
             font-weight: 100;
@@ -27,24 +40,31 @@
         .title span {
             color: #007cae;
         }
-
-        .details {
-            padding: 10px 20px 0px 20px;
-            text-align: left !important;
-            margin-left: 50px;
+    @page {
+        size: a4 portrait;
+        @frame content_frame {          /* Content Frame */
+            left: 50pt; width: 512pt; top: 50pt; height: 720pt;
         }
-
-        .hrItem {
-            border: none;
-            height: 1px;
-            /* Set the hr color */
-            color: #333; /* old IE */
-            background-color: #fff; /* Modern Browsers */
+        @frame footer_frame {           /* Another static Frame */
+            -pdf-frame-content: footer_content;
+             width: 512pt; top: 772pt; height: 20pt;
         }
+    }
+
+
+
 
     </style>
 </head>
 <body>
+<!-- Content for Static Frame 'footer_frame' -->
+<div id="footer_content" style="text-align:center">
+    page
+    <pdf:pagenumber>
+        of
+        <pdf:pagecount>
+
+</div>
 <p style="text-align:center;padding: 0;margin: 0;">
 
 <img style="height: 130px; width: 130px;"
@@ -61,7 +81,7 @@
             To:<br/> The President <br/>
             Republic of Kenya<br/><br/>
 
-            <strong>Through</strong><br/><br/>
+            <strong>Through</strong><br/>
             The Power of Mercy Advisory Committee
         </div>
         <div style="font-size: 16px">
@@ -75,7 +95,7 @@
             Offence: <strong>{{ offence |lower|capfirst }}</strong><br/><br/>
             Age at Conviction: <strong>{{ ageatconviction }} Years</strong>..............................Date of
             Conviction: <strong>{{ dateofconviction }}</strong><br/><br/>
-            Current Age: <strong>{{ currentage }} Years</strong>......................................Age when offense
+            Current Age: <strong>{{ currentage }} Years</strong>...................................Age when offense
             was Committed: <strong>{{ ageoffense }} Years</strong><br/><br/>
             Next of Kin: <strong>{{ nextofkin |title }}</strong>................................................Relationship:
             <strong>{{ nextofkinrelationship|title }}</strong><br/><br/>

@@ -2020,6 +2020,7 @@ def GenerateHearingForm(request, pk):
         'month':hearingdate.strftime("%B"),
         'day':hearingdate.day,
         'year':hearingdate.year,
+        'printedon':today
     }
     pdf = render_to_pdf('petitions/hearings/hearingsummary_print.html', data)
     return HttpResponse(pdf, content_type='application/pdf')

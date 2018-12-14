@@ -2,10 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd264c29-9605-4953-a0c8-a41219d982cc" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/templates/petitions/dashboard/mydashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/petitions/dashboard/mydashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangox/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangox/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petitions/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/petitions/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/petitions/admissibility_form/admissibilityform_print.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/petitions/admissibility_form/admissibilityform_print.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/petitions/grants/grantpetition_print.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/petitions/grants/grantpetition_print.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/petitions/hearings/hearingsummary_print.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/petitions/hearings/hearingsummary_print.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/petitions/interviews/interviewsummary_print.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/petitions/interviews/interviewsummary_print.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/petitions/petition_form/petitionform_print.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/petitions/petition_form/petitionform_print.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/petitions/recommendations/recommendation_print.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/petitions/recommendations/recommendation_print.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -193,90 +200,140 @@
     <session id="-1133378723">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.12" value="1" />
+          <entry key="project.open.time.22" value="1" />
+          <entry key="project.open.time.26" value="1" />
+          <entry key="project.open.time.30" value="1" />
           <entry key="project.open.time.33" value="1" />
           <entry key="project.open.time.40" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="3" />
-          <entry key="html" value="15" />
+          <entry key="html" value="25" />
           <entry key="js" value="1" />
-          <entry key="py" value="15" />
+          <entry key="py" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="3" />
-          <entry key="HTML" value="15" />
+          <entry key="HTML" value="25" />
           <entry key="JavaScript" value="1" />
-          <entry key="Python" value="15" />
+          <entry key="Python" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="1345" />
-          <entry key="py" value="931" />
+          <entry key="html" value="2059" />
+          <entry key="py" value="949" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="1345" />
-          <entry key="Python" value="931" />
+          <entry key="HTML" value="2059" />
+          <entry key="Python" value="949" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/petitions/dashboard/index.html">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/petitions/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="135" column="104" selection-start-line="135" selection-start-column="104" selection-end-line="135" selection-end-column="104" />
+            <state relative-caret-position="-2178">
+              <caret line="2383" column="12" lean-forward="true" selection-start-line="2383" selection-start-column="12" selection-end-line="2383" selection-end-column="12" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mydashboard.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/templates/petitions/dashboard/mydashboard.html">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/petitionform_print.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="168" column="96" selection-start-line="168" selection-start-column="96" selection-end-line="168" selection-end-column="96" />
+            <state relative-caret-position="51">
+              <caret line="3" column="4" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="35" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#src#0;n#img#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#88358#88381#0" expanded="true" />
+                <element signature="e#91259#91303#0" expanded="true" />
+                <element signature="e#91329#91353#0" expanded="true" />
+                <element signature="e#92520#92543#0" expanded="true" />
+                <element signature="e#92624#92648#0" expanded="true" />
+                <element signature="e#92738#92762#0" expanded="true" />
+                <element signature="e#92840#92864#0" expanded="true" />
+                <element signature="e#92888#92912#0" expanded="true" />
+                <element signature="e#93137#93161#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="interviewsummary_list.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/petitions/interviews/interviewsummary_list.html">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/petitions/interviews/interviewsummary_print.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="169" column="105" lean-forward="true" selection-start-line="169" selection-start-column="105" selection-end-line="169" selection-end-column="105" />
+            <state relative-caret-position="188">
+              <caret line="61" column="4" selection-start-line="61" selection-end-line="68" selection-end-column="6" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#89452#89470#0" expanded="true" />
+                <element signature="e#89660#89685#0" expanded="true" />
+                <element signature="e#89985#90010#0" expanded="true" />
+                <element signature="e#90290#90315#0" expanded="true" />
+                <element signature="e#90853#90878#0" expanded="true" />
+                <element signature="e#91194#91219#0" expanded="true" />
+                <element signature="e#91535#91560#0" expanded="true" />
+                <element signature="e#91875#91900#0" expanded="true" />
+                <element signature="e#92216#92241#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="petitionform_eligible.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/petitionform_eligible.html">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/petitions/recommendations/recommendation_print.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+            <state relative-caret-position="221">
+              <caret line="46" column="58" selection-start-line="46" selection-start-column="58" selection-end-line="46" selection-end-column="59" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/css/base.css">
-          <provider selected="true" editor-type-id="text-editor" />
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/djangox/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="111" column="19" selection-start-line="111" selection-start-column="19" selection-end-line="111" selection-end-column="19" />
+            </state>
+          </provider>
         </entry>
       </file>
-      <file leaf-file-name="custom.min.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/build/css/custom.min.css">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/petitions/grants/grantpetition_print.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret column="25201" lean-forward="true" selection-start-column="25201" selection-end-column="25201" />
+            <state relative-caret-position="391">
+              <caret line="86" column="33" selection-start-line="86" selection-start-column="33" selection-end-line="86" selection-end-column="33" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#p#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -288,13 +345,12 @@
       <list>
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>interviewsumm</find>
-      <find>GeneratePet</find>
       <find>statusli</find>
       <find>prisonli</find>
       <find>COURTL</find>
@@ -323,6 +379,8 @@
       <find>petitionformlis</find>
       <find>count</find>
       <find>.count</find>
+      <find>generatehe</find>
+      <find>generatein</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -331,7 +389,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Pipfile" />
         <option value="$PROJECT_DIR$/static/js/base.js" />
         <option value="$PROJECT_DIR$/templates/petitions/masterexport.html" />
         <option value="$PROJECT_DIR$/petitions/forms.py" />
@@ -354,34 +411,35 @@
         <option value="$PROJECT_DIR$/templates/petitions/recommendations/recommendationform_detail.html" />
         <option value="$PROJECT_DIR$/templates/petitions/petition_form/petitionform_list.html" />
         <option value="$PROJECT_DIR$/templates/petitions/admissibility_form/admissibilityform_list.html" />
-        <option value="$PROJECT_DIR$/templates/petitions/admissibility_form/admissibilityform_print.html" />
         <option value="$PROJECT_DIR$/templates/petitions/summaries/petitionsummary_print.html" />
-        <option value="$PROJECT_DIR$/templates/petitions/petition_form/petitionform_print.html" />
         <option value="$PROJECT_DIR$/templates/petitions/hearings/hearingsummary_list.html" />
-        <option value="$PROJECT_DIR$/templates/petitions/hearings/hearingsummary_print.html" />
-        <option value="$PROJECT_DIR$/templates/petitions/interviews/interviewsummary_print.html" />
         <option value="$PROJECT_DIR$/templates/petitions/recommendations/recommendationform_list.html" />
-        <option value="$PROJECT_DIR$/templates/petitions/recommendations/recommendation_print.html" />
         <option value="$PROJECT_DIR$/templates/petitions/recommendations/master_recommendationform_list.html" />
         <option value="$PROJECT_DIR$/templates/petitions/grants/grant_list.html" />
-        <option value="$PROJECT_DIR$/templates/petitions/grants/grantpetition_print.html" />
         <option value="$PROJECT_DIR$/templates/petitions/exits/exits_list.html" />
         <option value="$PROJECT_DIR$/templates/petitions/summaries/petitionsummary_list.html" />
         <option value="$PROJECT_DIR$/templates/petitions/courts/court_petitioners_list.html" />
         <option value="$PROJECT_DIR$/templates/petitions/counties/coutypetitioners_list.html" />
         <option value="$PROJECT_DIR$/templates/petitions/offences/offencepetitions_list.html" />
         <option value="$PROJECT_DIR$/templates/petitions/petitionstatus_list.html" />
-        <option value="$PROJECT_DIR$/djangox/settings.py" />
         <option value="$PROJECT_DIR$/users/admin.py" />
         <option value="$PROJECT_DIR$/templates/petitions/prisons/prisonpetitioners_list.html" />
         <option value="$PROJECT_DIR$/templates/petitions/prisons/prisonpetitioners_current_list.html" />
         <option value="$PROJECT_DIR$/petitions/urls.py" />
-        <option value="$PROJECT_DIR$/petitions/views.py" />
         <option value="$PROJECT_DIR$/templates/petitions/prisons/prison_list.html" />
         <option value="$PROJECT_DIR$/static/build/css/custom.min.css" />
         <option value="$PROJECT_DIR$/templates/petitions/dashboard/index.html" />
         <option value="$PROJECT_DIR$/templates/petitions/interviews/interviewsummary_list.html" />
         <option value="$PROJECT_DIR$/templates/petitions/dashboard/mydashboard.html" />
+        <option value="$PROJECT_DIR$/petitions/views.py" />
+        <option value="$PROJECT_DIR$/templates/petitions/petition_form/zdcadadad.html" />
+        <option value="$PROJECT_DIR$/templates/petitions/petition_form/petitionform_print.html" />
+        <option value="$PROJECT_DIR$/templates/petitions/hearings/hearingsummary_print.html" />
+        <option value="$PROJECT_DIR$/templates/petitions/admissibility_form/admissibilityform_print.html" />
+        <option value="$PROJECT_DIR$/templates/petitions/interviews/interviewsummary_print.html" />
+        <option value="$PROJECT_DIR$/templates/petitions/grants/grantpetition_print.html" />
+        <option value="$PROJECT_DIR$/templates/petitions/recommendations/recommendation_print.html" />
+        <option value="$PROJECT_DIR$/djangox/settings.py" />
       </list>
     </option>
   </component>
@@ -443,7 +501,7 @@
       <path value="$PROJECT_DIR$/staticfiles/vendors/transitionize/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="227" />
     <option name="width" value="1080" />
     <option name="height" value="728" />
@@ -467,20 +525,7 @@
             <path>
               <item name="pomac" type="b2602c69:ProjectViewProjectNode" />
               <item name="pomac" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pomac" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pomac" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="petitions" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pomac" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pomac" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="petitions" type="462c0819:PsiDirectoryNode" />
-              <item name="dashboard" type="462c0819:PsiDirectoryNode" />
+              <item name="djangox" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -489,6 +534,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SearchEverywhereHistoryKey" value="titel&#9;FILE&#9;file://E:/David/Projects/pomac/templates/petitions/petition_form/petitionform_eligible.html&#10;views&#9;null&#9;null&#10;IMPRISONMENT&#9;null&#9;null&#10;generate&#9;null&#9;null&#10;sidebar&#9;FILE&#9;file://D:/Django Projects/Cloned/djangox/templates/app/sidebar.html" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.last.introduce.type" value="LET" />
@@ -500,19 +546,19 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PyCharm 2018.2.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Django Projects\Cloned\djangox\petitions\migrations" />
-      <recent name="D:\Django Projects\Cloned\djangox\petitions" />
-      <recent name="D:\Django Projects\Cloned\djangox\templates\petitions\grants" />
-      <recent name="D:\Django Projects\Cloned\djangox\templates\petitions\exits" />
-      <recent name="D:\Django Projects\Cloned\djangox\templates\petitions" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\David\Projects\pomac\templates\petitions\prisons" />
       <recent name="B:\Projects\pomac\templates\petitions\recommendations" />
       <recent name="D:\Django Projects\petitions-master\pomac\templates\petitions" />
       <recent name="D:\Django Projects\Cloned\djangox\templates\petitions" />
       <recent name="D:\Django Projects\Cloned\djangox\templates\petitions\counties" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Django Projects\Cloned\djangox\petitions\migrations" />
+      <recent name="D:\Django Projects\Cloned\djangox\petitions" />
+      <recent name="D:\Django Projects\Cloned\djangox\templates\petitions\grants" />
+      <recent name="D:\Django Projects\Cloned\djangox\templates\petitions\exits" />
+      <recent name="D:\Django Projects\Cloned\djangox\templates\petitions" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -565,54 +611,54 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24479167" />
+      <window_info id="Favorites" order="1" side_tool="true" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32903227" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50226927" side_tool="true" weight="0.3451613" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4977307" weight="0.29180327" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50226927" side_tool="true" weight="0.3451613" />
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32786885" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32903227" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4977307" weight="0.30081302" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2299427" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="4" weight="0.32980332" />
-      <window_info anchor="right" id="SciView" order="3" weight="0.3295129" />
-      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TypeScript" order="13" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32903227" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.3295129" />
+      <window_info anchor="right" id="Database" order="4" weight="0.32980332" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26928896" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="11" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32903227" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="right" id="Database" order="4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.42258066" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32903227" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="right" id="Database" order="4" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -622,12 +668,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/petitions/admissibility_form/admissibilityform_form.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/myeligiblepetitionform_list.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/myineligiblepetitionform_list.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -656,24 +696,10 @@
         <state relative-caret-position="-170" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/petitions/admissibility_form/admissibilityform_print.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="70" column="20" lean-forward="true" selection-start-line="70" selection-start-column="20" selection-end-line="70" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/petitions/summaries/petitionsummary_print.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="61" column="87" selection-start-line="61" selection-start-column="87" selection-end-line="61" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/petitionform_print.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="150" column="70" selection-start-line="150" selection-start-column="70" selection-end-line="150" selection-end-column="70" />
         </state>
       </provider>
     </entry>
@@ -683,13 +709,6 @@
     <entry file="file://$PROJECT_DIR$/templates/petitions/hearings/hearingsummary_scheduledforinterview.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/petitions/hearings/hearingsummary_print.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="86" column="75" selection-start-line="86" selection-start-column="75" selection-end-line="86" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/petitions/hearings/hearingsummary_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="341">
@@ -697,24 +716,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/petitions/interviews/interviewsummary_print.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-187">
-          <caret line="78" column="57" selection-start-line="78" selection-start-column="57" selection-end-line="78" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/petitions/recommendations/recommendationform_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1173">
           <caret line="225" column="112" selection-start-line="225" selection-start-column="112" selection-end-line="225" selection-end-column="112" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/petitions/recommendations/recommendation_print.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="59" column="162" selection-start-line="59" selection-start-column="162" selection-end-line="59" selection-end-column="162" />
         </state>
       </provider>
     </entry>
@@ -729,13 +734,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3672">
           <caret line="216" column="72" selection-start-line="216" selection-start-column="72" selection-end-line="216" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/petitions/grants/grantpetition_print.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2958">
-          <caret line="90" column="155" selection-start-line="90" selection-start-column="155" selection-end-line="90" selection-end-column="155" />
         </state>
       </provider>
     </entry>
@@ -801,34 +799,15 @@
     <entry file="file://$PROJECT_DIR$/templates/petitions/ppmental_list.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/djangox/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="79" selection-start-line="79" selection-end-line="89" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/djangox/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="23" lean-forward="true" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/users/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/users/admin.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -848,16 +827,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/petitions/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="297" selection-start-line="297" selection-end-line="297" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -889,17 +858,51 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/petitionform_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="50" column="32" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/petitions/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="509" column="10" selection-start-line="509" selection-start-column="6" selection-end-line="509" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/petitions/dashboard/mydashboard.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2686">
+          <caret line="158" column="54" selection-start-line="158" selection-start-column="54" selection-end-line="158" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/petitions/dashboard/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="131" column="27" selection-start-line="131" selection-start-column="27" selection-end-line="131" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../hearingprint.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="10" selection-start-line="6" selection-start-column="7" selection-end-line="9" selection-end-column="9" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#src#0;n#img#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/petitions/interviews/interviewsummary_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="170" column="105" selection-start-line="170" selection-start-column="105" selection-end-line="170" selection-end-column="105" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/petitionform_eligible.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -908,36 +911,167 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/build/css/custom.min.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret column="25201" lean-forward="true" selection-start-column="25201" selection-end-column="25201" />
+        <state>
+          <caret column="25201" selection-start-column="25201" selection-end-column="25201" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/petitions/interviews/interviewsummary_list.html">
+    <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/zdcadadad.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="169" column="105" lean-forward="true" selection-start-line="169" selection-start-column="105" selection-end-line="169" selection-end-column="105" />
+        <state relative-caret-position="153">
+          <caret line="54" selection-start-line="54" selection-end-line="54" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#src#0;n#img#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#88358#88381#0" expanded="true" />
+            <element signature="e#91259#91303#0" expanded="true" />
+            <element signature="e#91329#91353#0" expanded="true" />
+            <element signature="e#92520#92543#0" expanded="true" />
+            <element signature="e#92624#92648#0" expanded="true" />
+            <element signature="e#92738#92762#0" expanded="true" />
+            <element signature="e#92840#92864#0" expanded="true" />
+            <element signature="e#92888#92912#0" expanded="true" />
+            <element signature="e#93137#93161#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/petitionform_eligible.html">
+    <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/petitionform_form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="16" lean-forward="true" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
+        <state relative-caret-position="850">
+          <caret line="50" column="32" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/petitions/dashboard/index.html">
+    <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/petitionform_print.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="135" column="104" selection-start-line="135" selection-start-column="104" selection-end-line="135" selection-end-column="104" />
+        <state relative-caret-position="51">
+          <caret line="3" column="4" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="35" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#src#0;n#img#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#88358#88381#0" expanded="true" />
+            <element signature="e#91259#91303#0" expanded="true" />
+            <element signature="e#91329#91353#0" expanded="true" />
+            <element signature="e#92520#92543#0" expanded="true" />
+            <element signature="e#92624#92648#0" expanded="true" />
+            <element signature="e#92738#92762#0" expanded="true" />
+            <element signature="e#92840#92864#0" expanded="true" />
+            <element signature="e#92888#92912#0" expanded="true" />
+            <element signature="e#93137#93161#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/petitions/dashboard/mydashboard.html">
+    <entry file="file://$PROJECT_DIR$/templates/petitions/admissibility_form/admissibilityform_print.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="168" column="96" selection-start-line="168" selection-start-column="96" selection-end-line="168" selection-end-column="96" />
+        <state relative-caret-position="-1139">
+          <caret line="2" column="19" lean-forward="true" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#body#0;n#html#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#p#0;n#body#0;n#html#1;n#!!top" expanded="true" />
+            <element signature="n#src#0;n#img#0;n#p#0;n#body#0;n#html#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#body#0;n#html#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#1;n#div#1;n#body#0;n#html#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/petitions/hearings/hearingsummary_print.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="186" column="23" lean-forward="true" selection-start-line="144" selection-start-column="8" selection-end-line="200" selection-end-column="16" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#src#0;n#img#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#div#1;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#1;n#table#0;n#div#1;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#2;n#table#0;n#div#1;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#3;n#table#0;n#div#1;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#4;n#table#0;n#div#1;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#5;n#table#0;n#div#1;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#6;n#table#0;n#div#1;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#7;n#table#0;n#div#1;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#8;n#table#0;n#div#1;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#9;n#table#0;n#div#1;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#10;n#table#0;n#div#1;n#div#4;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/petitions/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2178">
+          <caret line="2383" column="12" lean-forward="true" selection-start-line="2383" selection-start-column="12" selection-end-line="2383" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/petitions/interviews/interviewsummary_print.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="61" column="4" selection-start-line="61" selection-end-line="68" selection-end-column="6" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#89452#89470#0" expanded="true" />
+            <element signature="e#89660#89685#0" expanded="true" />
+            <element signature="e#89985#90010#0" expanded="true" />
+            <element signature="e#90290#90315#0" expanded="true" />
+            <element signature="e#90853#90878#0" expanded="true" />
+            <element signature="e#91194#91219#0" expanded="true" />
+            <element signature="e#91535#91560#0" expanded="true" />
+            <element signature="e#91875#91900#0" expanded="true" />
+            <element signature="e#92216#92241#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/petitions/grants/grantpetition_print.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="86" column="33" selection-start-line="86" selection-start-column="33" selection-end-line="86" selection-end-column="33" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#p#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#p#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/petitions/recommendations/recommendation_print.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="46" column="58" selection-start-line="46" selection-start-column="58" selection-end-line="46" selection-end-column="59" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/djangox/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="111" column="19" selection-start-line="111" selection-start-column="19" selection-end-line="111" selection-end-column="19" />
         </state>
       </provider>
     </entry>

@@ -3,38 +3,20 @@
 <html>
 <head>
     <title>POMAC | Grant</title>
-    <style type="text/css">
-        body {
+           <style>
+td, th {
+  border: 1px solid #2F4F4F;
+  padding: 3px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+     body {
             font-weight: 200;
             font-size: 14px;
         }
-
-        .header {
-            padding-top: 500px;
-            font-size: 20px;
-            font-weight: 100;
-            text-align: center;
-            color: #0f0f0f;
-        }
-
-        .title {
-            font-size: 20px;
-            font-weight: 100;
-            /* text-align: right;*/
-            padding: 5px 0px 0px 20px;
-        }
-
-        .title span {
-            color: #0f0f0f;
-        }
-
-        .details {
-            padding: 0px 20px 0px 20px;
-            text-align: left !important;
-            margin-left: 50px;
-        }
-
-        .hrItem {
+    .hrItem {
             border: none;
             height: 1px;
             /* Set the hr color */
@@ -42,9 +24,44 @@
             background-color: #fff; /* Modern Browsers */
         }
 
+     .header {
+            padding-top: 500px;
+            font-size: 20px;
+            font-weight: 100;
+            text-align: center;
+            color: #0f0f0f;
+        }
+        .title {
+            font-size: 22px;
+            font-weight: 100;
+            /* text-align: right;*/
+            padding: 10px 2px 0px 20px;
+        }
+
+        .title span {
+            color: #007cae;
+        }
+    @page {
+        size: a4 portrait;
+        @frame content_frame {          /* Content Frame */
+            left: 50pt; width: 512pt; top: 50pt; height: 700pt;
+        }
+        @frame footer_frame {           /* Another static Frame */
+            -pdf-frame-content: footer_content;
+             width: 512pt; top: 772pt; height: 20pt;
+        }
+    }
+
     </style>
 </head>
 <body>
+<div id="footer_content" style="text-align:center">
+    page
+    <pdf:pagenumber>
+        of
+        <pdf:pagecount>
+
+</div>
 <p style="text-align:center;padding: 0;margin: 0;">
 
     <img style="height: 130px; width: 130px;"
@@ -62,7 +79,7 @@
     <div>
         <div class="details" style="font-style: italic">
             To:<br/> <strong>{{ name|title }} </strong><br/>
-            <strong>{{ prisonno }}</strong><br>
+            <strong>{{ prisonno }}</strong><br><br>
 
             <strong>Through</strong><br/>
             <strong>{{ prison|title }}</strong>
@@ -83,10 +100,10 @@
             This notice is issued on behalf of the President by the POWER OF MERCY ADVISORY COMMITTEE
         </div>
         <div style="font-size: 16px; margin-top: 0px;">
-            <strong>Dated this...............</strong><span
+            <strong>Dated this............</strong><span
                 style="font-size: 22px;"><i>{{ grantday }}</i></span><strong>........Day
-            of.............</strong><span
-                style="font-size: 22px;"><i>{{ grantmonth }}</i></span><strong>.....................<span
+            of........</strong><span
+                style="font-size: 22px;"><i>{{ grantmonth }}</i></span><strong>..............<span
                 style="font-size: 24px;">/</span></strong><span style="font-size: 22px;"><i>{{ grantyear }}</i></span>..................<br/><br/>
             ...............................................................................................................................................<br>
             <strong>    CHAIRPERSON: Power of Mercy Advisory Committee</strong><br><br>

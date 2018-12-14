@@ -3,43 +3,70 @@
  <html>
      <head>
          <title>POMAC | Recommendation</title>
-         <style type="text/css">
-             body {
-                 font-weight: 200;
-                 font-size: 14px;
-             }
-             .header {
-                 padding-top: 500px;
-                 font-size: 20px;
-                 font-weight: 100;
-                 text-align: center;
-                 color: #0f0f0f;
-             }
-             .title {
-                 font-size: 22px;
-                 font-weight: 100;
-                /* text-align: right;*/
-                padding: 10px 2px 0px 20px;
-             }
-             .title span {
-                 color: #007cae;
-             }
-             .details {
-                 padding: 10px 20px 0px 20px;
-                 text-align: left !important;
-                 /*margin-left: 40%;*/
-             }
-             .hrItem {
-                 border: none;
-                 height: 1px;
-                 /* Set the hr color */
-                 color: #333; /* old IE */
-                 background-color: #fff; /* Modern Browsers */
-             }
+         <style>
+td, th {
+  border: 1px solid #2F4F4F;
+  padding: 3px;
+}
 
-         </style>
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+     body {
+            font-weight: 200;
+            font-size: 14px;
+        }
+    .hrItem {
+            border: none;
+            height: 1px;
+            /* Set the hr color */
+            color: #333; /* old IE */
+            background-color: #fff; /* Modern Browsers */
+        }
+
+     .header {
+            padding-top: 500px;
+            font-size: 20px;
+            font-weight: 100;
+            text-align: center;
+            color: #0f0f0f;
+        }
+        .title {
+            font-size: 22px;
+            font-weight: 100;
+            /* text-align: right;*/
+            padding: 10px 2px 0px 20px;
+        }
+
+        .title span {
+            color: #007cae;
+        }
+    @page {
+        size: a4 portrait;
+        @frame content_frame {          /* Content Frame */
+            left: 50pt; width: 512pt; top: 50pt; height: 700pt;
+        }
+        @frame footer_frame {           /* Another static Frame */
+            -pdf-frame-content: footer_content;
+             width: 512pt; top: 772pt; height: 20pt;
+        }
+    }
+
+
+
+
+
+    </style>
      </head>
      <body>
+     <!-- Content for Static Frame 'footer_frame' -->
+<div id="footer_content" style="text-align:center">
+    page
+    <pdf:pagenumber>
+        of
+        <pdf:pagecount>
+
+</div>
      <p style="text-align:center;padding: 0;margin: 0;">
 
 <img style="height: 130px; width: 130px;"
@@ -62,10 +89,10 @@
              Following the investigations conducted, evidence gathered, interviews held and consideration of the
              reports from appropriate government agencies, the Committee forms the opinion that the Petitioner: <br/> <strong>
 {{ explanationforrecommendation }}
-</strong><br><br>
+</strong><br>
                 In view of this, the Advisory Committee <strong>recommends</strong> grant of petition.<br><br><br>
                  <strong>Signed by the Chairperson of the Petition Sub Committee</strong><br/>
-                     Dated this ........<strong>{{ day }}</strong>..........................Day of...................<strong>{{ month }}</strong>......,/<strong>{{ year }}</strong>...........
+                     Dated this ........<strong>{{ day }}</strong>...................Day of..............<strong>{{ month }}</strong>......,/<strong>{{ year }}</strong>...........
                  </div>
          </div>
          </div>
