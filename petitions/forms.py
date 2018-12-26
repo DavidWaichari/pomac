@@ -797,3 +797,11 @@ class ExitFormUpdate(forms.ModelForm):
     class Meta:
         model = Exit
         fields = [ 'petitioner','exitreason']
+
+
+class PetitionsDateFilter(forms.Form):
+    reservation = forms.CharField(label='', max_length=50, widget=forms.TextInput(attrs={
+       'type':'text', 'style':'width:200px', 'id':'reservation','class':'form-control'
+    }))
+    class Meta:
+        fields = ['reservation']

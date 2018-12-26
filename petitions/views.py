@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 
 import sweetify
 from django.contrib import messages
@@ -9,6 +9,8 @@ from django.http import HttpResponse, request, HttpResponseRedirect, HttpRespons
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
+from django.utils.dateparse import parse_date
+from django.views.decorators.http import require_POST
 from django.views.generic import DetailView, ListView, UpdateView, CreateView, DeleteView
 
 from users.models import CustomUser
@@ -18,7 +20,7 @@ from .forms import PetitionFormForm, HearingSummaryForm, InterviewSummaryForm, I
     RecommendationFormForm, \
     AdmissibilityCreateForm, AdmissibilityUpdateForm, HearingSummaryUpdateForm, RecommendationUpdateForm, \
     PetitionSummaryForm, PetitionSummaryEditForm, CountyForm, SubCountyForm, ExitForm, ExitFormUpdate, PrisonForm, \
-    CourtForm, OffenceForm, GrantForm
+    CourtForm, OffenceForm, GrantForm, PetitionsDateFilter
 from djangox.utils import render_to_pdf  # created in step 4
 
 
@@ -293,8 +295,34 @@ class PetitionFormListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(PetitionFormListView, self).get_context_data(**kwargs)
         today = date.today()
+        petitionsdatefilterform = PetitionsDateFilter
         context['today'] =today
+        context['petitionsdatefilterform'] =petitionsdatefilterform
         return context
+@require_POST
+def FilterPetitionsByDate(request):
+    form = PetitionsDateFilter(request.POST)
+    if form.is_valid():
+        filterdate = request.POST['reservation']
+        daterange = filterdate.split("-")
+        start = daterange[0]
+        startdate = start.split("/")
+        startfilterdate = datetime(int(startdate[2]),int(startdate[0]),int(startdate[1]))
+        end = daterange[1]
+        enddate = end.split("/")
+        endfilterdatepassed = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))
+        endfilterdate = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))+timedelta(days=1)
+
+        object_list = PetitionForm.objects.filter(created__range=[startfilterdate.date(), endfilterdate.date()])
+
+        context = {
+            'startdate': startfilterdate.date(),
+            'enddate': endfilterdatepassed.date(),
+            'petitionsdatefilterform':PetitionsDateFilter,
+            'object_list' : object_list
+        }
+        return render(request, 'petitions/petition_form/filteredpetitionsbydate_list.html',context)
+    return  redirect('petitionform_list')
 
 class PetitionFormStatusListView(ListView):
     model = PetitionForm
