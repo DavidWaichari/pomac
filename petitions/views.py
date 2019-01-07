@@ -19,7 +19,7 @@ from .forms import PetitionFormForm, HearingSummaryForm, InterviewSummaryForm, I
     RecommendationFormForm, \
     AdmissibilityCreateForm, AdmissibilityUpdateForm, HearingSummaryUpdateForm, RecommendationUpdateForm, \
     PetitionSummaryForm, PetitionSummaryEditForm, CountyForm, SubCountyForm, ExitForm, ExitFormUpdate, PrisonForm, \
-    CourtForm, OffenceForm, GrantForm, PetitionsDateFilterForm, AdmissibilitiesDateFilterForm
+    CourtForm, OffenceForm, GrantForm, PetitionsDateFilterForm, AdmissibilitiesDateFilterForm,SummariesDateFilterForm
 from djangox.utils import render_to_pdf  # created in step 4
 
 
@@ -319,6 +319,7 @@ def FilterPetitionsByDate(request):
                 'startdate': startfilterdate.date(),
                 'enddate': endfilterdatepassed.date(),
                 'petitionsdatefilterform':PetitionsDateFilterForm,
+                'today': date.today(),
                 'object_list' : object_list
             }
             return render(request, 'petitions/petition_form/filteredpetitionsbydate_list.html',context)
@@ -599,6 +600,7 @@ def FilterAdmissibilitiesByDate(request):
                 'startdate': startfilterdate.date(),
                 'enddate': endfilterdatepassed.date(),
                 'form':AdmissibilitiesDateFilterForm,
+                'today': date.today(),
                 'object_list' : object_list
             }
             return render(request, 'petitions/admissibility_form/filteredadmissibilitiesbydate_list.html',context)
@@ -1200,13 +1202,44 @@ class PetitionSummaryListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(PetitionSummaryListView, self).get_context_data(**kwargs)
         today = date.today()
+        form = SummariesDateFilterForm
         context['today'] = today
+        context['form'] = form
         return context
     def dispatch(self, request, *args, **kwargs):
         """ Permission check for this class """
         if not request.user.has_perm('petitions.can_view_petitionsummary'):
             raise PermissionDenied("You do not have permission to view status events")
         return super(PetitionSummaryListView, self).dispatch(request, *args, **kwargs)
+
+def SummariesByDate(request):
+    if request.method == 'POST':
+        form = SummariesDateFilterForm(request.POST)
+        if form.is_valid():
+            filterdate = request.POST['reservation']
+            daterange = filterdate.split("-")
+            start = daterange[0]
+            startdate = start.split("/")
+            startfilterdate = datetime(int(startdate[2]),int(startdate[0]),int(startdate[1]))
+            end = daterange[1]
+            enddate = end.split("/")
+            endfilterdatepassed = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))
+            endfilterdate = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))+timedelta(days=1)
+
+            object_list = PetitionSummary.objects.filter(created__range=[startfilterdate.date(), endfilterdate.date()])
+
+            context = {
+                'startdate': startfilterdate.date(),
+                'enddate': endfilterdatepassed.date(),
+                'form':SummariesDateFilterForm,
+                'today':date.today(),
+                'object_list' : object_list
+            }
+            return render(request, 'petitions/summaries/filteredsummariesbydate_list.html',context)
+        return  redirect('petitionsummary_list')
+    else:
+        return redirect('petitionsummary_list')
+
 
 class MyPetitionSummaryListView(ListView):
     template_name = 'petitions/summaries/mypetitionsummary_list.html'

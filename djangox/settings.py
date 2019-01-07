@@ -77,16 +77,16 @@ WSGI_APPLICATION = 'djangox.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-# DATABASES = {
-#      'default': {
-#          'ENGINE': 'mysql_cymysql',
-#          'NAME': 'pomac',
-#          'USER': 'root',
-#          'PASSWORD': '',
-#          'HOST': '127.0.0.1',
-#          'PORT': '3306',
-#      }
-# }
+DATABASES = {
+     'default': {
+         'ENGINE': 'mysql_cymysql',
+         'NAME': 'pomac',
+         'USER': 'root',
+         'PASSWORD': '',
+         'HOST': '127.0.0.1',
+         'PORT': '3306',
+     }
+}
 
 # DATABASES = {
 #     'default': {
@@ -106,16 +106,16 @@ WSGI_APPLICATION = 'djangox.wsgi.application'
 #      }
 # }
 #
-DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.postgresql',
-         'NAME': 'itdkpbmo',
-         'USER': 'itdkpbmo',
-         'PASSWORD': 'zNrz30GjX1WBhMhxByUvI_r_KWcU2o9K',
-         'HOST': 'stampy.db.elephantsql.com',
-         'PORT': '5432',
-     }
-}
+# DATABASES = {
+#      'default': {
+#          'ENGINE': 'django.db.backends.postgresql',
+#          'NAME': 'itdkpbmo',
+#          'USER': 'itdkpbmo',
+#          'PASSWORD': 'zNrz30GjX1WBhMhxByUvI_r_KWcU2o9K',
+#          'HOST': 'stampy.db.elephantsql.com',
+#          'PORT': '5432',
+#      }
+# }
 
 
 # Password validation
