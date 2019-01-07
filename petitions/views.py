@@ -19,7 +19,7 @@ from .forms import PetitionFormForm, HearingSummaryForm, InterviewSummaryForm, I
     RecommendationFormForm, \
     AdmissibilityCreateForm, AdmissibilityUpdateForm, HearingSummaryUpdateForm, RecommendationUpdateForm, \
     PetitionSummaryForm, PetitionSummaryEditForm, CountyForm, SubCountyForm, ExitForm, ExitFormUpdate, PrisonForm, \
-    CourtForm, OffenceForm, GrantForm, PetitionsDateFilter
+    CourtForm, OffenceForm, GrantForm, PetitionsDateFilterForm, AdmissibilitiesDateFilterForm
 from djangox.utils import render_to_pdf  # created in step 4
 
 
@@ -294,14 +294,14 @@ class PetitionFormListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(PetitionFormListView, self).get_context_data(**kwargs)
         today = date.today()
-        petitionsdatefilterform = PetitionsDateFilter
+        petitionsdatefilterform = PetitionsDateFilterForm
         context['today'] =today
-        context['petitionsdatefilterform'] =petitionsdatefilterform
+        context['petitionsdatefilterform'] = petitionsdatefilterform
         return context
 
 def FilterPetitionsByDate(request):
     if request.method == 'POST':
-        form = PetitionsDateFilter(request.POST)
+        form = PetitionsDateFilterForm(request.POST)
         if form.is_valid():
             filterdate = request.POST['reservation']
             daterange = filterdate.split("-")
@@ -318,7 +318,7 @@ def FilterPetitionsByDate(request):
             context = {
                 'startdate': startfilterdate.date(),
                 'enddate': endfilterdatepassed.date(),
-                'petitionsdatefilterform':PetitionsDateFilter,
+                'petitionsdatefilterform':PetitionsDateFilterForm,
                 'object_list' : object_list
             }
             return render(request, 'petitions/petition_form/filteredpetitionsbydate_list.html',context)
@@ -569,7 +569,9 @@ class AdmissibilityFormListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(AdmissibilityFormListView, self).get_context_data(**kwargs)
         today = date.today()
+        admissibilitydatefilter = AdmissibilitiesDateFilterForm
         context['today'] = today
+        context['form'] = admissibilitydatefilter
         return context
     def dispatch(self, request, *args, **kwargs):
         """ Permission check for this class """
@@ -577,6 +579,32 @@ class AdmissibilityFormListView(ListView):
             raise PermissionDenied("You do not have permission to view status events")
         return super(AdmissibilityFormListView, self).dispatch(request, *args, **kwargs)
 
+def FilterAdmissibilitiesByDate(request):
+    if request.method == 'POST':
+        form = AdmissibilitiesDateFilterForm(request.POST)
+        if form.is_valid():
+            filterdate = request.POST['reservation']
+            daterange = filterdate.split("-")
+            start = daterange[0]
+            startdate = start.split("/")
+            startfilterdate = datetime(int(startdate[2]),int(startdate[0]),int(startdate[1]))
+            end = daterange[1]
+            enddate = end.split("/")
+            endfilterdatepassed = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))
+            endfilterdate = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))+timedelta(days=1)
+
+            object_list = AdmissibilityForm.objects.filter(created__range=[startfilterdate.date(), endfilterdate.date()])
+
+            context = {
+                'startdate': startfilterdate.date(),
+                'enddate': endfilterdatepassed.date(),
+                'form':AdmissibilitiesDateFilterForm,
+                'object_list' : object_list
+            }
+            return render(request, 'petitions/admissibility_form/filteredadmissibilitiesbydate_list.html',context)
+        return  redirect('admissibilityform_list')
+    else:
+        return redirect('admissibilityform_list')
 
 class MyAdmissibilityFormListView(ListView):
     template_name = 'petitions/admissibility_form/myadmissibilityform_list.html'

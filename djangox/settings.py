@@ -212,3 +212,5 @@ ACCOUNT_SESSION_REMEMBER = None
 
 
 django_heroku.settings(locals())
+
+USE_TZ = False

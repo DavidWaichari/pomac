@@ -165,6 +165,7 @@ urlpatterns = [
     path('petitionform/pp-mental', login_required(views.PPMentalListView.as_view()), name='ppmental_list'),
     path('petitionform/pp-underage', login_required(views.PPUnderAgelListView.as_view()), name='ppunderage_list'),
     path('petitionform/filter-petitions-by-date', login_required(views.FilterPetitionsByDate), name='filterpetitionsbydate'),
+    path('admissibilityform/filter-admissibilities-by-date', login_required(views.FilterAdmissibilitiesByDate), name='filteradmissibilitiesbydate'),
 
 ]
 

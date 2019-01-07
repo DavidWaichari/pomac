@@ -79,7 +79,7 @@ class PetitionFormForm(forms.ModelForm):
                                     widget=forms.TextInput(attrs={'class': 'form-control'}))
     telnoofcontactperson = forms.CharField(label='Tel No. of the contact person', required=False,
                                            widget=forms.TextInput(attrs={'class': 'form-control'}))
-    nearestschool = forms.CharField(label='Nearest school', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    nearestschool = forms.CharField(label='Nearest school', required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
     homechief = forms.CharField(label='Name of Home the Chief', required=False,
                                 widget=forms.TextInput(attrs={'class': 'form-control'}))
     whereoffensewascommitted = forms.CharField(label='Where the offense was committed',
@@ -799,7 +799,14 @@ class ExitFormUpdate(forms.ModelForm):
         fields = [ 'petitioner','exitreason']
 
 
-class PetitionsDateFilter(forms.Form):
+class PetitionsDateFilterForm(forms.Form):
+    reservation = forms.CharField(label='', max_length=50, widget=forms.TextInput(attrs={
+       'type':'text', 'style':'width:200px', 'id':'reservation','class':'form-control'
+    }))
+    class Meta:
+        fields = ['reservation']
+
+class AdmissibilitiesDateFilterForm(forms.Form):
     reservation = forms.CharField(label='', max_length=50, widget=forms.TextInput(attrs={
        'type':'text', 'style':'width:200px', 'id':'reservation','class':'form-control'
     }))
