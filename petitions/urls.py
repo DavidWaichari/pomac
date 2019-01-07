@@ -167,6 +167,7 @@ urlpatterns = [
     path('petitionform/filter-petitions-by-date', login_required(views.FilterPetitionsByDate), name='filterpetitionsbydate'),
     path('admissibilityform/filter-admissibilities-by-date', login_required(views.FilterAdmissibilitiesByDate), name='filteradmissibilitiesbydate'),
     path('petitionsummary/filter-summaries-by-date', login_required(views.SummariesByDate), name='filtersummariesbydate'),
+    path('petitionshearings/filter-hearings-by-date', login_required(views.FilterHearingsByDate), name='filterhearingsbydate'),
 
 ]
 

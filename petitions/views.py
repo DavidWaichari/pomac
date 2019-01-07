@@ -19,7 +19,7 @@ from .forms import PetitionFormForm, HearingSummaryForm, InterviewSummaryForm, I
     RecommendationFormForm, \
     AdmissibilityCreateForm, AdmissibilityUpdateForm, HearingSummaryUpdateForm, RecommendationUpdateForm, \
     PetitionSummaryForm, PetitionSummaryEditForm, CountyForm, SubCountyForm, ExitForm, ExitFormUpdate, PrisonForm, \
-    CourtForm, OffenceForm, GrantForm, PetitionsDateFilterForm, AdmissibilitiesDateFilterForm,SummariesDateFilterForm
+    CourtForm, OffenceForm, GrantForm, PetitionsDateFilterForm, AdmissibilitiesDateFilterForm,SummariesDateFilterForm,HearingsDateFilterForm
 from djangox.utils import render_to_pdf  # created in step 4
 
 
@@ -296,7 +296,7 @@ class PetitionFormListView(ListView):
         today = date.today()
         petitionsdatefilterform = PetitionsDateFilterForm
         context['today'] =today
-        context['petitionsdatefilterform'] = petitionsdatefilterform
+        context['form'] = petitionsdatefilterform
         return context
 
 def FilterPetitionsByDate(request):
@@ -318,7 +318,7 @@ def FilterPetitionsByDate(request):
             context = {
                 'startdate': startfilterdate.date(),
                 'enddate': endfilterdatepassed.date(),
-                'petitionsdatefilterform':PetitionsDateFilterForm,
+                'form':PetitionsDateFilterForm,
                 'today': date.today(),
                 'object_list' : object_list
             }
@@ -1539,14 +1539,43 @@ class HearingSummaryListView(ListView):
     model = HearingSummary
     def get_context_data(self, **kwargs):
         context = super(HearingSummaryListView, self).get_context_data(**kwargs)
-        today = date.today()
-        context['today'] = today
+        context['today'] = date.today()
+        context['form'] = HearingsDateFilterForm
         return context
     def dispatch(self, request, *args, **kwargs):
         """ Permission check for this class """
         if not request.user.has_perm('petitions.can_view_hearingsummaries'):
             raise PermissionDenied("You do not have permission to view status events")
         return super(HearingSummaryListView, self).dispatch(request, *args, **kwargs)
+
+def FilterHearingsByDate(request):
+    if request.method == 'POST':
+        form = HearingsDateFilterForm(request.POST)
+        if form.is_valid():
+            filterdate = request.POST['reservation']
+            daterange = filterdate.split("-")
+            start = daterange[0]
+            startdate = start.split("/")
+            startfilterdate = datetime(int(startdate[2]),int(startdate[0]),int(startdate[1]))
+            end = daterange[1]
+            enddate = end.split("/")
+            endfilterdatepassed = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))
+            endfilterdate = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))+timedelta(days=1)
+
+            object_list = HearingSummary.objects.filter(created__range=[startfilterdate.date(), endfilterdate.date()])
+
+            context = {
+                'startdate': startfilterdate.date(),
+                'enddate': endfilterdatepassed.date(),
+                'form':HearingsDateFilterForm,
+                'today': date.today(),
+                'object_list' : object_list
+            }
+            return render(request, 'petitions/hearings/filteredhearingsbydate_list.html',context)
+        return  redirect('hearingsummary_list')
+    else:
+        return redirect('hearingsummary_list')
+
 
 class MyHearingSummaryListView(ListView):
     template_name = 'petitions/hearings/myhearingsummary_list.html'

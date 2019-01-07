@@ -22,28 +22,60 @@
                     <div class="x_panel">
                         <div class="x_title">
                             {% block hearingtabletitle %}
-                            <h2>Hearings List
-                                <small>| List of all Hearings</small>
-                            </h2>
+                                <h2>Hearings List
+                                    <small>| List of all Hearings</small>
+                                </h2>
+                            {% endblock %}
+                            <ul class="nav navbar-right panel_toolbox">
+                                {% block addbutton %}
+                                    {% if perms.petitions.add_hearingsummary %}
+                                        <li><a class="btn btn-sm btn-primary" href="{% url 'hearingsummary_create' %}">Add
+                                            Hearing</a></li>
+                                    {% endif %}
                                 {% endblock %}
-                             <ul class="nav navbar-right panel_toolbox">
-                             {% block addbutton %}
-                                 {% if perms.petitions.add_hearingsummary %}
-                               <li><a class="btn btn-sm btn-primary" href="{% url 'hearingsummary_create' %}">Add Hearing</a></li>
-                                 {% endif %}
-                                 {% endblock %}
                             </ul>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
-                        {% block hearingtabledescription %}
-                            <p class="text-muted font-13 m-b-30">
-                                This table shows all the hearing summary for petitions submitted from
-                                across all the prisons. You can search using any
-                                criteria
-                            </p>
+                            {% block hearingtabledescription %}
+                                <p class="text-muted font-13 m-b-30">
+                                    This table shows all the hearing summary for petitions submitted from
+                                    across all the prisons. You can search using any
+                                    criteria
+                                </p>
                             {% endblock %}
-                            <table id="allmytables" class="table table-striped table-bordered dt-responsive " style="width:100%">
+                            {% block replacedatefilter %}
+                                <div class="col-md-4">
+                                    Hearings Date Range Filter
+                                    <form class="form-horizontal" action="{% url 'filterhearingsbydate' %}"
+                                          method="POST">
+                                        <fieldset>
+                                            <div class="control-group">
+                                                <div class="controls">
+                                                    <div class="input-prepend input-group">
+                                                <span class="add-on input-group-addon"><i
+                                                        class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
+                                                        <div class="row">
+
+                                                            {% csrf_token %}
+                                                            <div class="col-md-8">
+                                                                {{ form.reservation }}
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <button class="form-control btn-info" type="submit">
+                                                                    Search
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            {% endblock %}
+                            <table id="allmytables" class="table table-striped table-bordered dt-responsive "
+                                   style="width:100%">
                                 <thead style="width:100%">
                                 <tr>
                                     <td>S/No</td>
@@ -93,21 +125,27 @@
                                     <td>Skills</td>
                                     <td>Skills Details</td>
                                     <td>Appealed</td>
-                                  <td>Appeal Case No</td>
+                                    <td>Appeal Case No</td>
                                     <td>Appeal Outcome</td>
                                     <td>Pending Court Matter</td>
-                                 <td>Pending Court Matter Explanation</td>
-                                 <td>Representative / Applicant</td>
-                                 <td>Petition added By</td>
-                                 <td>Petition Added On</td>
-                                      <td>Hearing Status</td>
-                                     <td>Hearing Status Description</td>
+                                    <td>Pending Court Matter Explanation</td>
+                                    <td>Representative / Applicant</td>
+                                    <td>Petition added By</td>
+                                    <td>Petition Added On</td>
+                                    <td>Hearing Status</td>
+                                    <td>Hearing Status Description</td>
                                     <td>Nature and Seriousness of the Offense</td>
                                     <td>Personal circumstances of the offender at the time of making the Petition</td>
                                     <td>The interest of the State and community</td>
-                                    <td>The post conviction conduct, character and reputation of the convicted criminal prisoner</td>
-                                    <td>The official recommendations and reports from the State organ or department responsible for correctional services</td>
-                                    <td>Where the petitioner has opted to pursue other remedies, the outcome of such avenue</td>
+                                    <td>The post conviction conduct, character and reputation of the convicted criminal
+                                        prisoner
+                                    </td>
+                                    <td>The official recommendations and reports from the State organ or department
+                                        responsible for correctional services
+                                    </td>
+                                    <td>Where the petitioner has opted to pursue other remedies, the outcome of such
+                                        avenue
+                                    </td>
                                     <td>The representation of the victim where applicable</td>
                                     <td>Where applicable, a report of fellow inmates</td>
                                     <td>Reports from probation services</td>
@@ -125,7 +163,8 @@
                                 {% for object in object_list %}
                                     <tr>
                                         <td>{{ forloop.counter }}</td>
-                                        <td>PM/{{ object.admissibility.petitioner.created.date.year }}/{{ object.admissibility.petitioner.created.date.month }}/{{ object.admissibility.petitioner.created.date.day }}/{{ object.id }}</td>
+                                        <td>
+                                            PM/{{ object.admissibility.petitioner.created.date.year }}/{{ object.admissibility.petitioner.created.date.month }}/{{ object.admissibility.petitioner.created.date.day }}/{{ object.id }}</td>
                                         <td>
                                             <a href="{{ object.get_absolute_url }}">{{ object.admissibility.petitioner.name |title }}</a>
                                         </td>
@@ -173,7 +212,7 @@
                                         {% else %}
                                             <td>No</td>
                                         {% endif %}
-                                        <td>{{ object.admissibility.petitioner.nameofvictim  |title}}</td>
+                                        <td>{{ object.admissibility.petitioner.nameofvictim  |title }}</td>
                                         <td>{{ object.admissibility.petitioner.areaofresidence |title }}</td>
                                         <td>{{ object.admissibility.petitioner.previousconvictions }}</td>
                                         {% if object.admissibility.petitioner.previouspetition == True %}
@@ -213,7 +252,7 @@
                                         {% else %}
                                             <td>No</td>
                                         {% endif %}
-                                      <td>{{ object.admissibility.petitioner.appealcaseno }}</td>
+                                        <td>{{ object.admissibility.petitioner.appealcaseno }}</td>
                                         <td>{{ object.admissibility.petitioner.appealoutcome }}</td>
                                         {% if object.admissibility.petitioner.anypendingcourtmatter == True %}
                                             <td>Yes</td>
@@ -221,12 +260,20 @@
                                             <td>No</td>
                                         {% endif %}
                                         <td>{{ object.admissibility.petitioner.explanationofpendingcourtmatter }}</td>
-                                    {% if object.admissibility.petitioner.isttheapplicantthepetitioner == True %}
-                                    <td>Petitioner</td>
-                                    {% else %}
-                                        <td><strong>{{ object.admissibility.petitioner.nameofapplicant |title }}</strong> Relationship: <strong>{{object.admissibility.petitioner.relationshipofapplicantwithpetitioner |title }}</strong> Address: <strong>{{ object.admissibility.petitioner.addressoftheapplicant }}</strong> Phone: <strong>{{ object.admissibility.petitioner.telephonenumberoftheapplicant }}</strong> </td>
-                                    {% endif %}
-                                        <td>{{ object.admissibility.petitioner.added_by  |title}}</td>
+                                        {% if object.admissibility.petitioner.isttheapplicantthepetitioner == True %}
+                                            <td>Petitioner</td>
+                                        {% else %}
+                                            <td>
+                                                <strong>{{ object.admissibility.petitioner.nameofapplicant |title }}</strong>
+                                                Relationship:
+                                                <strong>{{ object.admissibility.petitioner.relationshipofapplicantwithpetitioner |title }}</strong>
+                                                Address:
+                                                <strong>{{ object.admissibility.petitioner.addressoftheapplicant }}</strong>
+                                                Phone:
+                                                <strong>{{ object.admissibility.petitioner.telephonenumberoftheapplicant }}</strong>
+                                            </td>
+                                        {% endif %}
+                                        <td>{{ object.admissibility.petitioner.added_by  |title }}</td>
                                         <td>{{ object.admissibility.petitioner.created }}</td>
                                         <td>{{ object.action }}</td>
                                         <td>{{ object.actiondescription }}</td>
@@ -240,9 +287,9 @@
                                         <td>{{ object.reportoffellowinmates }}</td>
                                         <td>{{ object.reportsfromprobationservices }}</td>
                                         <td>{{ object.observationswithmainreasons }}</td>
-                                    <td>{{ object.interviewdate }}</td>
+                                        <td>{{ object.interviewdate }}</td>
                                         <td>{{ object.reviewdate }}</td>
-                                       <td>
+                                        <td>
                                             {{ object.member1 }},
                                             {{ object.member2 }},
                                             {{ object.member3 }},
@@ -254,7 +301,7 @@
                                             {{ object.member9 }},
                                             {{ object.member10 }}
                                         </td>
-                                        <td>{{ object.added_by  |title}}</td>
+                                        <td>{{ object.added_by  |title }}</td>
                                         <td>{{ object.created }}</td>
                                         <td>{{ object.updated_by |title }}</td>
                                         <td>{{ object.last_updated }}</td>
