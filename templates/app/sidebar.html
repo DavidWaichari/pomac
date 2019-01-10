@@ -40,9 +40,11 @@
                 {#          {% endif %}#}
                 <li><a><i class="fa fa-book"></i> Petitions <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
+                         {% if perms.petitions.can_view_petitionforms %}
                         <li><a href="{% url 'petitionform_list' %}">Petitions List</a></li>
                         <li><a href="{% url 'petitionform_eligible' %}">Eligible Petitions</a></li>
                         <li><a href="{% url 'petitionform_ineligible' %}">Ineligible Petitions</a></li>
+                        {% endif %}
                         <li><a href="{% url 'mypetitionform_list' %}">My Petitions</a></li>
                         <li><a href="{% url 'myeligiblepetitionform_list' %}">My Eligible Petitions</a></li>
                         <li><a href="{% url 'myineligiblepetitionform_list' %}">My InEligible Petitions</a></li>
@@ -204,6 +206,7 @@
                 {% endif %}
             </ul>
         </div>
+     {% if perms.petitions.can_view_more_reports %}
         <div class="menu_section">
             <h3>Additional Pages</h3>
             <ul class="nav side-menu">
@@ -234,6 +237,7 @@
                 </li>
             </ul>
         </div>
+    {% endif %}
     </div>
     <!-- /sidebar menu -->
 

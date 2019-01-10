@@ -208,6 +208,7 @@ class PetitionForm(models.Model):
             ('can_view_duplicatesfinder', 'User can view the petitions duplicates'),
             ('can_view_petitionformdetails', 'User can view the details of petitions'),
             ('can_view_main_dashboard', 'User can view main dashboard'),
+            ('can_view_more_reports', 'User can view more reports dashboard'),
         )
         ordering = ('-created',)
 

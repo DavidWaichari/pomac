@@ -298,6 +298,11 @@ class PetitionFormListView(ListView):
         context['today'] =today
         context['form'] = petitionsdatefilterform
         return context
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_petitionforms'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(PetitionFormListView, self).dispatch(request, *args, **kwargs)
 
 def FilterPetitionsByDate(request):
     if request.method == 'POST':
@@ -403,6 +408,11 @@ class PetitionFormIneligibleListView(ListView):
         today = date.today()
         context['today'] = today
         return context
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_petitionforms'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(PetitionFormIneligibleListView, self).dispatch(request, *args, **kwargs)
 
 
 class PetitionFormEligibleListView(ListView):
@@ -417,6 +427,11 @@ class PetitionFormEligibleListView(ListView):
         today = date.today()
         context['today'] = today
         return context
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_petitionforms'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(PetitionFormEligibleListView, self).dispatch(request, *args, **kwargs)
 
 class TrusteesListView(ListView):
     model = PetitionForm
