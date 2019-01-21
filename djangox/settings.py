@@ -106,16 +106,16 @@ WSGI_APPLICATION = 'djangox.wsgi.application'
 #      }
 # }
 #
-DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.postgresql',
-         'NAME': 'itdkpbmo',
-         'USER': 'itdkpbmo',
-         'PASSWORD': 'zNrz30GjX1WBhMhxByUvI_r_KWcU2o9K',
-         'HOST': 'stampy.db.elephantsql.com',
-         'PORT': '5432',
-     }
-}
+# DATABASES = {
+#      'default': {
+#          'ENGINE': 'django.db.backends.postgresql',
+#          'NAME': 'itdkpbmo',
+#          'USER': 'itdkpbmo',
+#          'PASSWORD': 'zNrz30GjX1WBhMhxByUvI_r_KWcU2o9K',
+#          'HOST': 'stampy.db.elephantsql.com',
+#          'PORT': '5432',
+#      }
+# }
 
 
 # Password validation
