@@ -903,8 +903,10 @@ def GeneratePetitionForm(request, pk):
         'addressoftheapplicant':addressoftheapplicant,
         'telephonenumberoftheapplicant':telephonenumberoftheapplicant,
         'month':petitiondate.strftime("%B"),
+        'petitonmonth':petitiondate.month,
         'day':petitiondate.day,
         'year':petitiondate.year,
+        'id':petitioner.pk,
     }
     pdf = render_to_pdf('petitions/petition_form/petitionform_print.html', data)
     return HttpResponse(pdf, content_type='application/pdf')
@@ -2180,6 +2182,20 @@ class InterviewSummaryListView(ListView):
         if not request.user.has_perm('petitions.can_view_interviews'):
             raise PermissionDenied("You do not have permission to view status events")
         return super(InterviewSummaryListView, self).dispatch(request, *args, **kwargs)
+
+class MasterInterviewsListView(ListView):
+    template_name = 'petitions/interviews/master_interviews_list.html'
+    model = InterviewSummary
+    def get_context_data(self, **kwargs):
+        context = super(MasterInterviewsListView, self).get_context_data(**kwargs)
+        today = date.today()
+        context['today'] = today
+        return context
+    def dispatch(self, request, *args, **kwargs):
+        """ Permission check for this class """
+        if not request.user.has_perm('petitions.can_view_interviews'):
+            raise PermissionDenied("You do not have permission to view status events")
+        return super(MasterInterviewsListView, self).dispatch(request, *args, **kwargs)
 
 class MyInterviewSummaryListView(ListView):
     template_name = 'petitions/interviews/myinterviewsummary_list.html'

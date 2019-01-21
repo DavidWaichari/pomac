@@ -2,7 +2,7 @@
 {% load static %}
 {% load mathfilters %}
 {% load crispy_forms_tags %}
-{% block title %} Master Recommendations{% endblock title %}
+{% block title %} Master Interviews{% endblock title %}
 {% block stylesheets %}
     {{ block.super }}
     <link href="/static/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
@@ -22,15 +22,15 @@
                     <div class="x_panel">
                         <div class="x_title">
                             {% block recommendationstableheader %}
-                                <h2>Master Recommendations List
-                                    <small>| List of all Recommendations with all the other related information for Admissibility, Hearing and Interviews</small>
+                                <h2>Master Interviews List
+                                    <small>| List of all Interviews with all the other related information for Admissibility and Hearing</small>
                                 </h2>
                             {% endblock %}
                             <ul class="nav navbar-right panel_toolbox">
                                 {% block addbutton %}
-                                    {% if perms.petitions.add_recommendationform %}
+                                    {% if perms.petitions.add_interviewsummary %}
                                         <li><a class="btn btn-sm btn-primary"
-                                               href="{% url 'recommendationform_create' %}">Add Recommendation</a></li>
+                                               href="{% url 'interviewsummary_create' %}">Add Interview</a></li>
                                     {% endif %}
                                 {% endblock %}
                             </ul>
@@ -39,7 +39,7 @@
                         <div class="x_content">
                             {% block recommendationstabledescription %}
                                 <p class="text-muted font-13 m-b-30">
-                                    Table showing Recommendations with all the other related information for Admissibility, Hearing and Interviews. You can
+                                    Table showing Interviews with all the other related information for Admissibility and Hearing. You can
                                     search using any
                                     criteria
                                 </p>
@@ -170,270 +170,249 @@
                                     <td>Interview Summary Created on</td>
                                     <td>Interview Summary last updated By</td>
                                     <td>Interview Summary last updated on</td>
-
-
-                                    <td>Start of Recommendation</td>
-                                    <td>Mercy Given</td>
-                                    <td>Explanation of the FINAL RECOMMENDATION</td>
-                                    <td>Circumstances of the offence</td>
-                                    <td>Compelling Recommendation Remarks</td>
-                                    <td>Recommendation Created By</td>
-                                    <td>Recommendation Created on</td>
-                                    <td>Recommendation last updated By</td>
-                                    <td>Recommendation last updated on</td>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 {% for object in object_list %}
                                     <tr>
                                         <td>{{ forloop.counter }}</td>
-                                     <td>PM/{{ object.interview.hearing.admissibility.petitioner.created.date.year }}/{{ object.interview.hearing.admissibility.petitioner.created.date.month }}/{{ object.interview.hearing.admissibility.petitioner.created.date.day }}/{{ object.id }}</td>
+                                     <td>PM/{{ object.hearing.admissibility.petitioner.created.date.year }}/{{ object.hearing.admissibility.petitioner.created.date.month }}/{{ object.hearing.admissibility.petitioner.created.date.day }}/{{ object.id }}</td>
                                         <td>
-                                            <a href="{{ object.get_absolute_url }}">{{ object.interview.hearing.admissibility.petitioner.name |title}}</a>
+                                            <a href="{{ object.get_absolute_url }}">{{ object.hearing.admissibility.petitioner.name |title}}</a>
                                         </td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.prisonno }}</td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.prison|title }}</td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.nationality|title }}</td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.courtcaseno }}</td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.ageatconviction }}
+                                        <td>{{ object.hearing.admissibility.petitioner.prisonno }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.prison|title }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.nationality|title }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.courtcaseno }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.ageatconviction }}
                                             Years
                                         </td>
-                                        <td>{{ today.year|sub:object.interview.hearing.admissibility.petitioner.dateofconviction.year|add:object.interview.hearing.admissibility.petitioner.ageatconviction }}
+                                        <td>{{ today.year|sub:object.hearing.admissibility.petitioner.dateofconviction.year|add:object.hearing.admissibility.petitioner.ageatconviction }}
                                             Years
                                         </td>
-                                        <td>{{ today.year|sub:object.interview.hearing.admissibility.petitioner.dateofcustody.year }}
+                                        <td>{{ today.year|sub:object.hearing.admissibility.petitioner.dateofcustody.year }}
                                             Years
                                         </td>
-                                        {% if object.interview.hearing.admissibility.petitioner.convictedforlife == True %}
+                                        {% if object.hearing.admissibility.petitioner.convictedforlife == True %}
                                             <td>Life</td>
                                         {% else %}
-                                            <td>{{ object.interview.hearing.admissibility.petitioner.sentence }} Years
+                                            <td>{{ object.hearing.admissibility.petitioner.sentence }} Years
                                             </td>
                                         {% endif %}
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.court |title}}
+                                        <td>{{ object.hearing.admissibility.petitioner.court |title}}
                                         </td>
-                                         <td>{{ object.interview.hearing.admissibility.petitioner.agewhenoffensewascommited }}
+                                         <td>{{ object.hearing.admissibility.petitioner.agewhenoffensewascommited }}
                                             Years
                                         </td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.nextofkin|title }}</td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.relationshipwithnextofkin|title }}</td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.contactperson|title }}</td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.telnoofcontactperson }}</td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.county|title }}</td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.subcounty|title }}</td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.location |title}}</td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.nearestschool|title }}</td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.homechief |title}}</td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.whereoffensewascommitted |lower|capfirst }}</td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.dateofconviction }}</td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.dateofcustody }}</td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.reliefsought }}</td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.offence|lower|capfirst }}</td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.natureandparticularsofoffense }}</td>
-                                        {% if object.interview.hearing.admissibility.petitioner.chargedalonefortheoffense == True %}
+                                        <td>{{ object.hearing.admissibility.petitioner.nextofkin|title }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.relationshipwithnextofkin|title }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.contactperson|title }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.telnoofcontactperson }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.county|title }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.subcounty|title }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.location |title}}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.nearestschool|title }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.homechief |title}}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.whereoffensewascommitted |lower|capfirst }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.dateofconviction }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.dateofcustody }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.reliefsought }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.offence|lower|capfirst }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.natureandparticularsofoffense }}</td>
+                                        {% if object.hearing.admissibility.petitioner.chargedalonefortheoffense == True %}
                                             <td>Yes</td>
                                         {% else %}
                                             <td>No</td>
                                         {% endif %}
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.namesofcoaccused }}</td>
-                                        {% if object.interview.hearing.admissibility.petitioner.knowledgeofthevictim == True %}
+                                        <td>{{ object.hearing.admissibility.petitioner.namesofcoaccused }}</td>
+                                        {% if object.hearing.admissibility.petitioner.knowledgeofthevictim == True %}
                                             <td>Yes</td>
                                         {% else %}
                                             <td>No</td>
                                         {% endif %}
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.nameofvictim|title }}</td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.areaofresidence |title}}</td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.previousconvictions }}</td>
-                                        {% if object.interview.hearing.admissibility.petitioner.previouspetition == True %}
+                                        <td>{{ object.hearing.admissibility.petitioner.nameofvictim|title }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.areaofresidence |title}}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.previousconvictions }}</td>
+                                        {% if object.hearing.admissibility.petitioner.previouspetition == True %}
                                             <td>Yes</td>
                                         {% else %}
                                             <td>No</td>
                                         {% endif %}
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.dateofpreviouspetition }}</td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.reasonofdenialofpreviouspetition }}</td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.reasonforcurrentpetition }}</td>
-                                        {% if object.interview.hearing.admissibility.petitioner.anydisplinaryactioninprison == True %}
+                                        <td>{{ object.hearing.admissibility.petitioner.dateofpreviouspetition }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.reasonofdenialofpreviouspetition }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.reasonforcurrentpetition }}</td>
+                                        {% if object.hearing.admissibility.petitioner.anydisplinaryactioninprison == True %}
                                             <td>Yes</td>
                                         {% else %}
                                             <td>No</td>
                                         {% endif %}
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.detailsofdisplinaryactioninprison }}</td>
-                                        {% if object.interview.hearing.admissibility.petitioner.anyspecialcondition == True %}
+                                        <td>{{ object.hearing.admissibility.petitioner.detailsofdisplinaryactioninprison }}</td>
+                                        {% if object.hearing.admissibility.petitioner.anyspecialcondition == True %}
                                             <td>Yes</td>
                                         {% else %}
                                             <td>No</td>
                                         {% endif %}
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.detailsofspecialcondition }}</td>
-                                        {% if object.interview.hearing.admissibility.petitioner.areyouatrustee == True %}
+                                        <td>{{ object.hearing.admissibility.petitioner.detailsofspecialcondition }}</td>
+                                        {% if object.hearing.admissibility.petitioner.areyouatrustee == True %}
                                             <td>Yes</td>
                                         {% else %}
                                             <td>No</td>
                                         {% endif %}
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.dateofpromotiontotrustee }}</td>
-                                        {% if object.interview.hearing.admissibility.petitioner.anyspecialattributesorskills == True %}
+                                        <td>{{ object.hearing.admissibility.petitioner.dateofpromotiontotrustee }}</td>
+                                        {% if object.hearing.admissibility.petitioner.anyspecialattributesorskills == True %}
                                             <td>Yes</td>
                                         {% else %}
                                             <td>No</td>
                                         {% endif %}
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.explanationofspecialattributesorskills }}</td>
-                                        {% if object.interview.hearing.admissibility.petitioner.appealedagainsttheconviction == True %}
+                                        <td>{{ object.hearing.admissibility.petitioner.explanationofspecialattributesorskills }}</td>
+                                        {% if object.hearing.admissibility.petitioner.appealedagainsttheconviction == True %}
                                             <td>Yes</td>
                                         {% else %}
                                             <td>No</td>
                                         {% endif %}
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.appealcaseno }}</td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.appealoutcome }}</td>
-                                        {% if object.interview.hearing.admissibility.petitioner.anypendingcourtmatter == True %}
+                                        <td>{{ object.hearing.admissibility.petitioner.appealcaseno }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.appealoutcome }}</td>
+                                        {% if object.hearing.admissibility.petitioner.anypendingcourtmatter == True %}
                                             <td>Yes</td>
                                         {% else %}
                                             <td>No</td>
                                         {% endif %}
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.explanationofpendingcourtmatter }}</td>
-                                    {% if object.interview.hearing.admissibility.petitioner.isttheapplicantthepetitioner == True %}
+                                        <td>{{ object.hearing.admissibility.petitioner.explanationofpendingcourtmatter }}</td>
+                                    {% if object.hearing.admissibility.petitioner.isttheapplicantthepetitioner == True %}
                                     <td>Petitioner</td>
                                     {% else %}
-                                        <td><strong>{{ object.interview.hearing.admissibility.petitioner.nameofapplicant }}</strong> Relationship: <strong>{{object.admissibility.petitioner.relationshipofapplicantwithpetitioner }}</strong> Address: <strong>{{ object.interview.hearing.admissibility.petitioner.addressoftheapplicant }}</strong> Phone: <strong>{{ object.interview.hearing.admissibility.petitioner.telephonenumberoftheapplicant }}</strong> </td>
+                                        <td><strong>{{ object.hearing.admissibility.petitioner.nameofapplicant }}</strong> Relationship: <strong>{{object.admissibility.petitioner.relationshipofapplicantwithpetitioner }}</strong> Address: <strong>{{ object.hearing.admissibility.petitioner.addressoftheapplicant }}</strong> Phone: <strong>{{ object.hearing.admissibility.petitioner.telephonenumberoftheapplicant }}</strong> </td>
                                     {% endif %}
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.added_by |title}}</td>
-                                        <td>{{ object.interview.hearing.admissibility.petitioner.created }}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.added_by |title}}</td>
+                                        <td>{{ object.hearing.admissibility.petitioner.created }}</td>
                                          <td>Start of Admissibility</td>
-                                        {% if object.interview.hearing.admissibility.admissability == True %}
+                                        {% if object.hearing.admissibility.admissability == True %}
                                         <td class="text-success">Admissible</td>
                                         {% else %}
                                             <td class="text-danger">Inadmissible</td>
                                         {% endif %}
-                                    <td>{{ object.interview.hearing.admissibility.hearingdate }}</td>
-                                    <td>{{ object.interview.hearing.admissibility.inadmissibilityreason }}</td>
-                                    {% if object.interview.hearing.admissibility.callforevidence == True %}
+                                    <td>{{ object.hearing.admissibility.hearingdate }}</td>
+                                    <td>{{ object.hearing.admissibility.inadmissibilityreason }}</td>
+                                    {% if object.hearing.admissibility.callforevidence == True %}
                                         <td>Yes</td>
                                         {% else %}
                                             <td>No</td>
                                         {% endif %}
-                                    <td>{{ object.interview.hearing.admissibility.descriptionforcallofevidence }}</td>
-                                    {% if object.interview.hearing.admissibility.requestreports == True %}
+                                    <td>{{ object.hearing.admissibility.descriptionforcallofevidence }}</td>
+                                    {% if object.hearing.admissibility.requestreports == True %}
                                         <td>Yes</td>
                                         {% else %}
                                             <td>No</td>
                                         {% endif %}
-                                    <td>{{ object.interview.hearing.admissibility.descriptionforrequstreport }}</td>
-                                    {% if object.interview.hearing.admissibility.orderforinvestigation == True %}
+                                    <td>{{ object.hearing.admissibility.descriptionforrequstreport }}</td>
+                                    {% if object.hearing.admissibility.orderforinvestigation == True %}
                                         <td>Yes</td>
                                         {% else %}
                                             <td>No</td>
                                         {% endif %}
-                                    <td>{{ object.interview.hearing.admissibility.orderforinvestigationdescription }}</td>
-                                    <td>{{ object.interview.hearing.admissibility.added_by|title }}</td>
-                                    <td>{{ object.interview.hearing.admissibility.created }}</td>
-                                        <td>{{ object.interview.hearing.admissibility.updated_by |title}}</td>
-                                        <td>{{ object.interview.hearing.admissibility.last_updated }}</td>
+                                    <td>{{ object.hearing.admissibility.orderforinvestigationdescription }}</td>
+                                    <td>{{ object.hearing.admissibility.added_by|title }}</td>
+                                    <td>{{ object.hearing.admissibility.created }}</td>
+                                        <td>{{ object.hearing.admissibility.updated_by |title}}</td>
+                                        <td>{{ object.hearing.admissibility.last_updated }}</td>
                                         <td>Start of Hearing</td>
-                                        <td>{{ object.interview.hearing.action }}</td>
-                                        <td>{{ object.interview.hearing.actiondescription }}</td>
-                                        <td>{{ object.interview.hearing.natureandseriousnessoftheoffense }}</td>
-                                        <td>{{ object.interview.hearing.personalcircumstances }}</td>
-                                        <td>{{ object.interview.hearing.interestofstateandcommunity }}</td>
-                                        <td>{{ object.interview.hearing.postconvictionconduct }}</td>
-                                        <td>{{ object.interview.hearing.officialrecommendationsandreports }}</td>
-                                        <td>{{ object.interview.hearing.wherethepetitionerhaspersued }}</td>
-                                        <td>{{ object.interview.hearing.representationofvictim }}</td>
-                                        <td>{{ object.interview.hearing.reportoffellowinmates }}</td>
-                                        <td>{{ object.interview.hearing.reportsfromprobationservices }}</td>
-                                        <td>{{ object.interview.hearing.observationswithmainreasons }}</td>
-                                    <td>{{ object.interview.hearing.interviewdate }}</td>
-                                        <td>{{ object.interview.hearing.reviewdate }}</td>
+                                        <td>{{ object.hearing.action }}</td>
+                                        <td>{{ object.hearing.actiondescription }}</td>
+                                        <td>{{ object.hearing.natureandseriousnessoftheoffense }}</td>
+                                        <td>{{ object.hearing.personalcircumstances }}</td>
+                                        <td>{{ object.hearing.interestofstateandcommunity }}</td>
+                                        <td>{{ object.hearing.postconvictionconduct }}</td>
+                                        <td>{{ object.hearing.officialrecommendationsandreports }}</td>
+                                        <td>{{ object.hearing.wherethepetitionerhaspersued }}</td>
+                                        <td>{{ object.hearing.representationofvictim }}</td>
+                                        <td>{{ object.hearing.reportoffellowinmates }}</td>
+                                        <td>{{ object.hearing.reportsfromprobationservices }}</td>
+                                        <td>{{ object.hearing.observationswithmainreasons }}</td>
+                                    <td>{{ object.hearingdate }}</td>
+                                        <td>{{ object.hearing.reviewdate }}</td>
                                        <td>
-                                            {{ object.interview.hearing.member1 }},
-                                            {{ object.interview.hearing.member2 }},
-                                            {{ object.interview.hearing.member3 }},
-                                            {{ object.interview.hearing.member4 }},
-                                            {{ object.interview.hearing.member5 }},
-                                            {{ object.interview.hearing.member6 }},
-                                            {{ object.interview.hearing.member7 }},
-                                            {{ object.interview.hearing.member8 }},
-                                            {{ object.interview.hearing.member9 }},
-                                            {{ object.interview.hearing.member10 }}
+                                            {{ object.hearing.member1 }},
+                                            {{ object.hearing.member2 }},
+                                            {{ object.hearing.member3 }},
+                                            {{ object.hearing.member4 }},
+                                            {{ object.hearing.member5 }},
+                                            {{ object.hearing.member6 }},
+                                            {{ object.hearing.member7 }},
+                                            {{ object.hearing.member8 }},
+                                            {{ object.hearing.member9 }},
+                                            {{ object.hearing.member10 }}
                                         </td>
-                                        <td>{{ object.interview.hearing.added_by|title }}</td>
-                                        <td>{{ object.interview.hearing.created }}</td>
-                                        <td>{{ object.interview.hearing.updated_by |title}}</td>
-                                        <td>{{ object.interview.hearing.last_updated }}</td>
+                                        <td>{{ object.hearing.added_by|title }}</td>
+                                        <td>{{ object.hearing.created }}</td>
+                                        <td>{{ object.hearing.updated_by |title}}</td>
+                                        <td>{{ object.hearing.last_updated }}</td>
                                         <td>Start of Interview</td>
-                                        <td>{{ object.interview.ownaccountofcircumstances }}</td>
-                                        <td>{{ object.interview.reconciliationefforts }}</td>
-                                        <td>{{ object.interview.indicationofremosefulness }}</td>
-                                        <td>{{ object.interview.anyothercomments }}</td>
-                                        <td>{{ object.interview.representationofthevictim }}</td>
-                                        <td>{{ object.interview.concludingobservations }}</td>
-                                        {% if object.interview.chairpersonvote == True %}
+                                        <td>{{ object.ownaccountofcircumstances }}</td>
+                                        <td>{{ object.reconciliationefforts }}</td>
+                                        <td>{{ object.indicationofremosefulness }}</td>
+                                        <td>{{ object.anyothercomments }}</td>
+                                        <td>{{ object.representationofthevictim }}</td>
+                                        <td>{{ object.concludingobservations }}</td>
+                                        {% if object.chairpersonvote == True %}
                                             <td class="text-success">Recommended</td>
                                         {% else %}
                                             <td class="text-danger">Not Recommended</td>
                                         {% endif %}
-                                        <td>{{ object.interview.chairpersonvotereason }}</td>
-                                        {% if object.interview.vicechairvote == True %}
+                                        <td>{{ object.chairpersonvotereason }}</td>
+                                        {% if object.vicechairvote == True %}
                                             <td class="text-success">Recommended</td>
                                         {% else %}
                                             <td class="text-danger">Not Recommended</td>
                                         {% endif %}
-                                        <td>{{ object.interview.vicechairvotereason }}</td>
-                                        {% if object.interview.csvote == True %}
+                                        <td>{{ object.vicechairvotereason }}</td>
+                                        {% if object.csvote == True %}
                                             <td class="text-success">Recommended</td>
                                         {% else %}
                                             <td class="text-danger">Not Recommended</td>
                                         {% endif %}
-                                        <td>{{ object.interview.csvotereason }}</td>
-                                        {% if object.interview.m1vote == True %}
+                                        <td>{{ object.csvotereason }}</td>
+                                        {% if object.m1vote == True %}
                                             <td class="text-success">Recommended</td>
                                         {% else %}
                                             <td class="text-danger">Not Recommended</td>
                                         {% endif %}
-                                        <td>{{ object.interview.m1votereason }}</td>
-                                        {% if object.interview.m2vote == True %}
+                                        <td>{{ object.m1votereason }}</td>
+                                        {% if object.m2vote == True %}
                                             <td class="text-success">Recommended</td>
                                         {% else %}
                                             <td class="text-danger">Not Recommended</td>
                                         {% endif %}
-                                        <td>{{ object.interview.m2votereason }}</td>
-                                        {% if object.interview.m3vote == True %}
+                                        <td>{{ object.m2votereason }}</td>
+                                        {% if object.m3vote == True %}
                                             <td class="text-success">Recommended</td>
                                         {% else %}
                                             <td class="text-danger">Not Recommended</td>
                                         {% endif %}
-                                        <td>{{ object.interview.m3votereason }}</td>
-                                        {% if object.interview.m4vote == True %}
+                                        <td>{{ object.m3votereason }}</td>
+                                        {% if object.m4vote == True %}
                                             <td class="text-success">Recommended</td>
                                         {% else %}
                                             <td class="text-danger">Not Recommended</td>
                                         {% endif %}
-                                        <td>{{ object.interview.m4votereason }}</td>
-                                        {% if object.interview.m5vote == True %}
+                                        <td>{{ object.m4votereason }}</td>
+                                        {% if object.m5vote == True %}
                                             <td class="text-success">Recommended</td>
                                         {% else %}
                                             <td class="text-danger">Not Recommended</td>
                                         {% endif %}
-                                        <td>{{ object.interview.m5votereason }}</td>
-                                        {% if object.interview.m6vote == True %}
+                                        <td>{{ object.m5votereason }}</td>
+                                        {% if object.m6vote == True %}
                                             <td class="text-success">Recommended</td>
                                         {% else %}
                                             <td class="text-danger">Not Recommended</td>
                                         {% endif %}
-                                        <td>{{ object.interview.m6votereason }}</td>
-                                        <td>{{ object.interview.finalresolution }}</td>
+                                        <td>{{ object.m6votereason }}</td>
+                                        <td>{{ object.finalresolution }}</td>
 
-                                        <td>{{ object.interview.added_by |title}}</td>
-                                        <td>{{ object.interview.created }}</td>
-                                        <td>{{ object.interview.updated_by |title}}</td>
-                                        <td>{{ object.interview.last_updated }}</td>
-
-                                        <td>Start of Recommendation</td>
-                                        <td>{{ object.mercy }}</td>
-                                        <td>{{ object.explanationofrecommedation }}</td>
-                                        <td>{{ object.circumstanceofoffence }}</td>
-                                        <td>{{ object.compellingremarks }}</td>
                                         <td>{{ object.added_by |title}}</td>
                                         <td>{{ object.created }}</td>
-                                        <td>{{ object.updated_by }}</td>
-                                        <td>{{ object.last_updated |title}}</td>
+                                        <td>{{ object.updated_by |title}}</td>
+                                        <td>{{ object.last_updated }}</td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
