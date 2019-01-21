@@ -69,6 +69,7 @@ urlpatterns = [
     # urls for InterviewSummary
     path('interviewsummary/', login_required(views.InterviewSummaryListView.as_view()),name='interviewsummary_list'),
     path('interviewsummary/filtered-by-date', login_required(views.FilterInterviewsByDate),name='interviewsummary_filterbydatelist'),
+    path('interviewsummary/filtered-master-by-date', login_required(views.FilterMasterInteviewsByDate),name='interviewsummary_filtermasterbydatelist'),
     path('interviewsummary/master-recommendations', login_required(views.MasterInterviewsListView.as_view()),name='interviewsummary_master_list'),
     path('interviewsummary/awaiting-interviews', login_required(views.AwaitingInterviewFormListView.as_view()),name='awaitinginterviws'),
     path('interviewsummary/recommended', login_required(views.InterviewSummaryRecommendedListView.as_view()),name='interviewsummary_recommended'),

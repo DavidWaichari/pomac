@@ -19,7 +19,7 @@ from .forms import PetitionFormForm, HearingSummaryForm, InterviewSummaryForm, I
     RecommendationFormForm, \
     AdmissibilityCreateForm, AdmissibilityUpdateForm, HearingSummaryUpdateForm, RecommendationUpdateForm, \
     PetitionSummaryForm, PetitionSummaryEditForm, CountyForm, SubCountyForm, ExitForm, ExitFormUpdate, PrisonForm, \
-    CourtForm, OffenceForm, GrantForm, PetitionsDateFilterForm, AdmissibilitiesDateFilterForm,SummariesDateFilterForm,HearingsDateFilterForm, InterviewsDateFilterForm
+    CourtForm, OffenceForm, GrantForm, PetitionsDateFilterForm, AdmissibilitiesDateFilterForm,SummariesDateFilterForm,HearingsDateFilterForm, InterviewsDateFilterForm,MasterInterviewsDateFilterForm
 from djangox.utils import render_to_pdf  # created in step 4
 
 
@@ -2203,7 +2203,7 @@ def FilterInterviewsByDate(request):
             context = {
                 'startdate': startfilterdate.date(),
                 'enddate': endfilterdatepassed.date(),
-                'form':PetitionsDateFilterForm,
+                'form':InterviewsDateFilterForm,
                 'today': date.today(),
                 'object_list' : object_list
             }
@@ -2220,12 +2220,41 @@ class MasterInterviewsListView(ListView):
         context = super(MasterInterviewsListView, self).get_context_data(**kwargs)
         today = date.today()
         context['today'] = today
+        context['form'] = MasterInterviewsDateFilterForm
         return context
     def dispatch(self, request, *args, **kwargs):
         """ Permission check for this class """
         if not request.user.has_perm('petitions.can_view_interviews'):
             raise PermissionDenied("You do not have permission to view status events")
         return super(MasterInterviewsListView, self).dispatch(request, *args, **kwargs)
+
+def FilterMasterInteviewsByDate(request):
+    if request.method == 'POST':
+        form = MasterInterviewsDateFilterForm(request.POST)
+        if form.is_valid():
+            filterdate = request.POST['reservation']
+            daterange = filterdate.split("-")
+            start = daterange[0]
+            startdate = start.split("/")
+            startfilterdate = datetime(int(startdate[2]),int(startdate[0]),int(startdate[1]))
+            end = daterange[1]
+            enddate = end.split("/")
+            endfilterdatepassed = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))
+            endfilterdate = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))+timedelta(days=1)
+
+            object_list = InterviewSummary.objects.filter(created__range=[startfilterdate.date(), endfilterdate.date()])
+
+            context = {
+                'startdate': startfilterdate.date(),
+                'enddate': endfilterdatepassed.date(),
+                'form':MasterInterviewsDateFilterForm,
+                'today': date.today(),
+                'object_list' : object_list
+            }
+            return render(request, 'petitions/interviews/filtermasterpetitionsbydate.html',context)
+        return  redirect('interviewsummary_list')
+    else:
+        return redirect('interviewsummary_list')
 
 class MyInterviewSummaryListView(ListView):
     template_name = 'petitions/interviews/myinterviewsummary_list.html'

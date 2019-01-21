@@ -77,16 +77,16 @@ WSGI_APPLICATION = 'djangox.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-# DATABASES = {
-#      'default': {
-#          'ENGINE': 'mysql_cymysql',
-#          'NAME': 'pomac',
-#          'USER': 'root',
-#          'PASSWORD': '',
-#          'HOST': '127.0.0.1',
-#          'PORT': '3306',
-#      }
-# }
+DATABASES = {
+     'default': {
+         'ENGINE': 'mysql_cymysql',
+         'NAME': 'pomac',
+         'USER': 'root',
+         'PASSWORD': '',
+         'HOST': '127.0.0.1',
+         'PORT': '3306',
+     }
+}
 
 # DATABASES = {
 #     'default': {
