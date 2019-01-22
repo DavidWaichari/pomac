@@ -86,6 +86,7 @@ urlpatterns = [
 
     # urls for RecommendationForm
     path('recommendationform/', login_required(views.RecommendationFormListView.as_view()), name='recommendationform_list'),
+    path('recommendationform/filtered-recommendations-by-date', login_required(views.FilterRecommendationsByDate), name='filteredbydate_recommendationform_list'),
     path('recommendationform/awaiting-recommendation', login_required(views.AwaitingRecommendationFormListView.as_view()), name='awaitingrecommendations'),
     path('recommendationform/create/', login_required(views.RecommendationFormCreateView.as_view()), name='recommendationform_create'),
     path('recommendationform/detail/<int:pk>/', login_required(views.RecommendationFormDetailView.as_view()), name='recommendationform_detail'),
@@ -95,6 +96,7 @@ urlpatterns = [
     path('recommendationform/my-awaiting-recommendation', login_required(views.MyAwaitingRecommendationFormListView.as_view()), name='myawaitingrecommendations'),
     path('recommendationform/delete/<int:pk>/', login_required(views.DeleteRecommendationForm), name='recommendationform_delete'),
     path('recommendationform/master', login_required(views.MasterRecommendationFormListView.as_view()),name='master_recommendationform_list'),
+    path('recommendationform/filtered-master-by-date', login_required(views.FilterMasterRecommendationsByDate),name='filteredbydate_master_recommendationform_list'),
     path('ajax/get-circumstance-from-summary/', login_required(views.get_circumstance_from_summary), name='getcircumstance'),
 
     # urls for County

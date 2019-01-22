@@ -204,7 +204,7 @@
                                 {% for object in object_list %}
                                     <tr>
                                         <td>{{ forloop.counter }}</td>
-                                     <td>PM/{{ object.hearing.admissibility.petitioner.created.date.year }}/{{ object.hearing.admissibility.petitioner.created.date.month }}/{{ object.hearing.admissibility.petitioner.created.date.day }}/{{ object.id }}</td>
+                                     <td>PM/{{ object.hearing.admissibility.petitioner.created.date.year }}/{{ object.hearing.admissibility.petitioner.created.date.month }}/{{ object.hearing.admissibility.petitioner.created.date.day }}/{{ object.hearing.admissibility.petitioner.pk }}</td>
                                         <td>
                                             <a href="{{ object.get_absolute_url }}">{{ object.hearing.admissibility.petitioner.name |title}}</a>
                                         </td>

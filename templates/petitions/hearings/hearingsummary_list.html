@@ -164,7 +164,7 @@
                                     <tr>
                                         <td>{{ forloop.counter }}</td>
                                         <td>
-                                            PM/{{ object.admissibility.petitioner.created.date.year }}/{{ object.admissibility.petitioner.created.date.month }}/{{ object.admissibility.petitioner.created.date.day }}/{{ object.id }}</td>
+                                            PM/{{ object.admissibility.petitioner.created.date.year }}/{{ object.admissibility.petitioner.created.date.month }}/{{ object.admissibility.petitioner.created.date.day }}/{{ object.admissibility.petitioner.pk }}</td>
                                         <td>
                                             <a href="{{ object.get_absolute_url }}">{{ object.admissibility.petitioner.name |title }}</a>
                                         </td>

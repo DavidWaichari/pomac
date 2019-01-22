@@ -799,42 +799,7 @@ class ExitFormUpdate(forms.ModelForm):
         fields = [ 'petitioner','exitreason']
 
 
-class PetitionsDateFilterForm(forms.Form):
-    reservation = forms.CharField(label='', max_length=50, widget=forms.TextInput(attrs={
-       'type':'text', 'style':'width:200px', 'id':'reservation','class':'form-control'
-    }))
-    class Meta:
-        fields = ['reservation']
-
-class AdmissibilitiesDateFilterForm(forms.Form):
-    reservation = forms.CharField(label='', max_length=50, widget=forms.TextInput(attrs={
-       'type':'text', 'style':'width:200px', 'id':'reservation','class':'form-control'
-    }))
-    class Meta:
-        fields = ['reservation']
-
-class SummariesDateFilterForm(forms.Form):
-    reservation = forms.CharField(label='', max_length=50, widget=forms.TextInput(attrs={
-       'type':'text', 'style':'width:200px', 'id':'reservation','class':'form-control'
-    }))
-    class Meta:
-        fields = ['reservation']
-
-class HearingsDateFilterForm(forms.Form):
-    reservation = forms.CharField(label='', max_length=50, widget=forms.TextInput(attrs={
-       'type':'text', 'style':'width:200px', 'id':'reservation','class':'form-control'
-    }))
-    class Meta:
-        fields = ['reservation']
-
-class InterviewsDateFilterForm(forms.Form):
-    reservation = forms.CharField(label='', max_length=50, widget=forms.TextInput(attrs={
-       'type':'text', 'style':'width:200px', 'id':'reservation','class':'form-control'
-    }))
-    class Meta:
-        fields = ['reservation']
-
-class MasterInterviewsDateFilterForm(forms.Form):
+class DateFilterForm(forms.Form):
     reservation = forms.CharField(label='', max_length=50, widget=forms.TextInput(attrs={
        'type':'text', 'style':'width:200px', 'id':'reservation','class':'form-control'
     }))

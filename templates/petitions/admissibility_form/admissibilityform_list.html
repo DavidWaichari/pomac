@@ -147,7 +147,7 @@
                                 {% for object in object_list %}
                                     <tr>
                                         <td>{{ forloop.counter}}</td>
-                                    <td>PM/{{ object.petitioner.created.date.year }}/{{ object.petitioner.created.date.month }}/{{ object.petitioner.created.date.day }}/{{ object.id }}</td>
+                                    <td>PM/{{ object.petitioner.created.date.year }}/{{ object.petitioner.created.date.month }}/{{ object.petitioner.created.date.day }}/{{ object.petitioner.pk }}</td>
                                         <td><a href="{{object.get_absolute_url}}">{{object.petitioner.name | title}}</a></td>
                                         <td>{{ object.petitioner.prisonno }}</td>
                                         <td>{{ object.petitioner.prison | title }}</td>
