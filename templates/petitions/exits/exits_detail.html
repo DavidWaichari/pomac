@@ -347,6 +347,10 @@
                                                 <td>Exit Reason</td>
                                                 <td>{{ object.exitreason }}</td>
                                             </tr>
+                                             <tr>
+                                                <td>Reatention Period</td>
+                                                <td>{{ today.year|sub:object.created.year}} Years</td>
+                                            </tr>
                                             <tr>
                                                 <td>Exit Details Added By</td>
                                                 <td>{{ object.added_by }}</td>

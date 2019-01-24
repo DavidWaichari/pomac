@@ -98,6 +98,7 @@
                                     <td>Petition Submitted By</td>
                                     <td>Petition Submitted On</td>
                                     <td>Exit Reason</td>
+                                    <td>Retention Period</td>
                                     <td>Exit Added By</td>
                                     <td>Exit Added On</td>
                                     <td>Exit last Updated By</td>
@@ -206,6 +207,7 @@
                                         <td>{{ object.petitioner.added_by|title }}</td>
                                         <td>{{ object.petitioner.created }}</td>
                                          <td>{{ object.exitreason }}</td>
+                                         <td>{{ today.year|sub:object.created.year }} Years</td>
                                         <td>{{ object.added_by }}</td>
                                         <td>{{ object.created }}</td>
                                         <td>{{ object.updated_by|title }}</td>
