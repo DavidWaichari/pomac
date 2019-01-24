@@ -107,7 +107,6 @@
                                 <li><a href="{% url 'hearingsummary_declined' %}">Declined</a></li>
                                 {% if perms.petitions.can_view_myhearings %}
                                 {% endif %}
-                                <li><a href="{% url 'myhearingsummary_list' %}">My Awaiting Schedule for Hearing</a></li>
                                 <li><a href="{% url 'myawaitinghearing' %}">My Scheduled / Awaiting Hearing</a></li>
                                 <li><a href="{% url 'myhearingsummary_list' %}">My Hearings</a></li>
                                 <li><a href="{% url 'myhearingsummary_deferred' %}">My Deferred Hearings</a></li>
