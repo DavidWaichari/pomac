@@ -30,10 +30,12 @@
                 {#        {%  if perms.petitions.add_county %}#}
                 <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
+                    {% if user.is_staff %}
+                    <li><a href="/admin">Admin Dashboard</a></li>
+                    {% endif %}
                         {% if perms.petitions.can_view_main_dashboard %}
                             <li><a href="{% url 'petitions_dashboard' %}">Dashboard</a></li>
                         {% endif %}
-
                         <li><a href="{% url 'mypetitions_dashboard' %}">My Dashboard</a></li>
                     </ul>
                 </li>
