@@ -690,14 +690,25 @@ class RecommendationFormForm(forms.ModelForm):
     explanationofrecommedation = forms.CharField(required=True, label='Following the investigations conducted, evidence gathered, interviews held and '
                                                                        'consideration of the reports from appropriate Government agencis, the Committee forms the opinion that the Petitioner: ',
                     widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-    mercy = forms.CharField(label='His Excellency the President to exercise the power of mercy by',
-                                          widget=forms.Select(choices=[('', 'Choose Appropritely'), (
-                                          'granting a free or conditional pardon to a person convicted of an office', 'granting a free or conditional pardon to a person convicted of an office'),
-                                        ('postponing the carrying out of a punishment, either for a specified or indefinite period','postponing the carrying out of a punishment, either for a specified or indefinite period'),
-                                        ('substituting a less severe form of punishment','substituting a less severe form of punishment'),
-                                        ('remitting all or part of a punishment','remitting all or part of a punishment')
-                                                                       ],
-                                                              attrs={'class': 'form-control'}))
+    mercy = forms.CharField(label='His Excellency the President to exercise the power of mercy and',
+                            widget=forms.Select(choices=[('', 'Choose Appropritely'), (
+                                'grant a free pardon', 'grant a free pardon'),
+                                                         ('grant a conditional pardon', 'grant a conditional pardon'),
+                                                         ('postpone the punishment imposed indefinitely',
+                                                          'postpone the punishment imposed indefinitely'),
+                                                         ('postpone the punishment imposed for _________ years',
+                                                          'postpone the punishment imposed for _________ years'),
+                                                         ('commute the death sentence to life imprisonment',
+                                                          'commute the death sentence to life imprisonment'),
+                                                         (
+                                                             'commute the __________________ sentence to __________________ sentence',
+                                                             'commute the __________________ sentence to __________________ sentence'),
+                                                         ('remit the unexpired portion of the sentence',
+                                                          'remit the unexpired portion of the sentence'),
+                                                         ('remit ___________ years of the ______________ sentence',
+                                                          'remit ___________ years of the ______________ sentence')],
+                                                attrs={'class': 'form-control'}))
+
     circumstanceofoffence = forms.CharField(required=False,
                                                  label='Circumstances sorrounding the commission of the offence',
                                                  widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 10}))
@@ -720,18 +731,22 @@ class RecommendationUpdateForm(forms.ModelForm):
                                                                        'consideration of the reports from appropriate Government agencis, the Committee forms the opinion that the Petitioner: ',
                     widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
 
-    mercy = forms.CharField(label='His Excellency the President to exercise the power of mercy by',
+    mercy = forms.CharField(label='His Excellency the President to exercise the power of mercy and',
                             widget=forms.Select(choices=[('', 'Choose Appropritely'), (
-                                'granting a free or conditional pardon to a person convicted of an office',
-                                'granting a free or conditional pardon to a person convicted of an office'),
+                                'grant a free pardon', 'grant a free pardon'),
+                                                         ('grant a conditional pardon', 'grant a conditional pardon'),
+                                                         ('postpone the punishment imposed indefinitely',
+                                                          'postpone the punishment imposed indefinitely'),
+                                                         ('postpone the punishment imposed for _________ years',
+                                                          'postpone the punishment imposed for _________ years'),
+                                                         ('commute the death sentence to life imprisonment', 'commute the death sentence to life imprisonment'),
                                                          (
-                                                         'postponing the carrying out of a punishment, either for a specified or indefinite period',
-                                                         'postponing the carrying out of a punishment, either for a specified or indefinite period'),
-                                                         ('substituting a less severe form of punishment',
-                                                          'substituting a less severe form of punishment'),
-                                                         ('remitting all or part of a punishment',
-                                                          'remitting all or part of a punishment')
-                                                         ],
+                                                             'commute the __________________ sentence to __________________ sentence',
+                                                             'commute the __________________ sentence to __________________ sentence'),
+                                                         ('remit the unexpired portion of the sentence',
+                                                          'remit the unexpired portion of the sentence'),
+                                                         ('remit ___________ years of the ______________ sentence',
+                                                          'remit ___________ years of the ______________ sentence')],
                                                 attrs={'class': 'form-control'}))
     circumstanceofoffence = forms.CharField(required=False,
                                             label='Circumstances sorrounding the commission of the offence',
@@ -748,17 +763,17 @@ class RecommendationUpdateForm(forms.ModelForm):
 class ExitForm(forms.ModelForm):
     exitreason = forms.CharField(label='Reason why the petitioner exited the prison',
                                  widget=forms.Select(choices=[('', 'Choose Appropritely'), (
-                                     'Released under POMAC',
-                                     'Released under POMAC'),
+                                     'Pardoned under article 133 of the constitution',
+                                     'Pardoned under article 133 of the constitution'),
                                                               (
-                                                                  'Released after serving the term',
-                                                                  'Released after serving the term'),
-                                                              ('The Petitioner escaped the prison',
-                                                               'The Petitioner escaped the prison'),
-                                                              ('The petitioner died',
-                                                               'The petitioner died'),
-                                                              ('The petitioner was released after resentencing',
-                                                               'The petitioner was released after resentencing')
+                                                                  'Discharged upon completion of sentence',
+                                                                  'Discharged upon completion of sentence'),
+                                                              ('The Petitioner escaped from prison',
+                                                               'The Petitioner escaped from prison'),
+                                                              ('Deceased',
+                                                               'Deceased'),
+                                                              ('Released following resentencing',
+                                                               'Released following resentencing')
                                                               ],
                                                      attrs={'class': 'form-control'}))
     petitioner = forms.ModelChoiceField(queryset=PetitionForm.objects.all().filter(exit__isnull=True),
@@ -778,17 +793,17 @@ class GrantForm(forms.ModelForm):
 class ExitFormUpdate(forms.ModelForm):
     exitreason = forms.CharField(label='Reason why the petitioner exited the prison',
                                  widget=forms.Select(choices=[('', 'Choose Appropritely'), (
-                                     'Released under POMAC',
-                                     'Released under POMAC'),
+                                     'Pardoned under article 133 of the constitution',
+                                     'Pardoned under article 133 of the constitution'),
                                                               (
-                                                                  'Released after serving the term',
-                                                                  'Released after serving the term'),
-                                                              ('The Petitioner escaped the prison',
-                                                               'The Petitioner escaped the prison'),
-                                                              ('The petitioner died while in prison',
-                                                               'The petitioner died while in prison'),
-                                                              ('The petitioner was released after resentencing',
-                                                               'The petitioner was released after resentencing')
+                                                                  'Discharged upon completion of sentence',
+                                                                  'Discharged upon completion of sentence'),
+                                                              ('The Petitioner escaped from prison',
+                                                               'The Petitioner escaped from prison'),
+                                                              ('Deceased',
+                                                               'Deceased'),
+                                                              ('Released following resentencing',
+                                                               'Released following resentencing')
                                                               ],
                                                      attrs={'class': 'form-control'}))
     petitioner = forms.ModelChoiceField(queryset=PetitionForm.objects.all(),

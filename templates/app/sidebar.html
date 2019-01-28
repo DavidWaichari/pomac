@@ -193,12 +193,11 @@
                         <ul class="nav child_menu">
                             {% if  perms.petitions.can_view_exits %}
                                 <li><a href="{% url 'petitions_exit_list' %}">Exits List</a></li>
-                                <li><a href="{% url 'petitions_exitescape_list' %}">Escapes</a></li>
-                                <li><a href="{% url 'petitions_exitdeaths_list' %}">Deaths </a></li>
-                                <li><a href="{% url 'petitions_exitservedterm_list' %}">Served Sentence</a></li>
-                                <li><a href="{% url 'petitions_exitpomac_list' %}">Released Under POMAC</a></li>
-                                <li><a href="{% url 'petitions_exitresentencing_list' %}">Released after
-                                    resentencing</a></li>
+                                <li><a href="{% url 'petitions_exitescape_list' %}">Escaped from prison</a></li>
+                                <li><a href="{% url 'petitions_exitdeaths_list' %}">Deceased </a></li>
+                                <li><a href="{% url 'petitions_exitservedterm_list' %}">Discharged upon completion of sentence</a></li>
+                                <li><a href="{% url 'petitions_exitpomac_list' %}">Released Under Article 133 of the Constitution</a></li>
+                                <li><a href="{% url 'petitions_exitresentencing_list' %}">Released following resentencing</a></li>
                             {% endif %}
                             {% if  perms.petitions.add_exit %}
                                 <li><a href="{% url 'petitions_exit_create' %}">Add Exit</a></li>

@@ -3290,7 +3290,7 @@ class ExitEscapeListView(ListView):
         context['today'] = today
         return context
     def get_queryset(self):
-        queryset = Exit.objects.filter(exitreason='The Petitioner escaped the prison')
+        queryset = Exit.objects.filter(exitreason='The Petitioner escaped from prison')
         return queryset
     def dispatch(self, request, *args, **kwargs):
         """ Permission check for this class """
@@ -3307,7 +3307,7 @@ class ExitDeathsListView(ListView):
         context['today'] = today
         return context
     def get_queryset(self):
-        queryset = Exit.objects.filter(exitreason='The petitioner died while in prison')
+        queryset = Exit.objects.filter(exitreason='Deceased')
         return queryset
 
     def dispatch(self, request, *args, **kwargs):
@@ -3325,7 +3325,7 @@ class ExitReleasedUnderPomacListView(ListView):
         context['today'] = today
         return context
     def get_queryset(self):
-        queryset = Exit.objects.filter(exitreason='Released under POMAC')
+        queryset = Exit.objects.filter(exitreason='Pardoned under article 133 of the constitution')
         return queryset
     def dispatch(self, request, *args, **kwargs):
         """ Permission check for this class """
@@ -3342,7 +3342,7 @@ class ExitServedTermListView(ListView):
         context['today'] = today
         return context
     def get_queryset(self):
-        queryset = Exit.objects.filter(exitreason='Released after serving the term')
+        queryset = Exit.objects.filter(exitreason='Discharged upon completion of sentence')
         return queryset
     def dispatch(self, request, *args, **kwargs):
         """ Permission check for this class """
@@ -3359,7 +3359,7 @@ class ExitAfterResentencingListView(ListView):
         context['today'] = today
         return context
     def get_queryset(self):
-        queryset = Exit.objects.filter(exitreason='The petitioner was released after resentencing')
+        queryset = Exit.objects.filter(exitreason='Released following resentencing')
         return queryset
     def dispatch(self, request, *args, **kwargs):
         """ Permission check for this class """
@@ -3486,11 +3486,11 @@ def dashboard(request):
         'withskillsattainedinprison': PetitionForm.objects.filter(anypendingcourtmatter=False).filter(anyspecialattributesorskills=True).count(),
         'offences': Offence.objects.count(),
         'exitslist': Exit.objects.count(),
-        'exitslistescaped': Exit.objects.filter(exitreason='The Petitioner escaped the prison').count(),
-        'exitsdeath': Exit.objects.filter(exitreason='The petitioner died while in prison').count(),
-        'exitsservedsentence': Exit.objects.filter(exitreason='Released after serving the term').count(),
-        'exitsreleasedbypomac': Exit.objects.filter(exitreason='exitsreleasedbypomac').count(),
-        'exitsresetencing': Exit.objects.filter(exitreason='The petitioner was released after resentencing').count(),
+        'exitslistescaped': Exit.objects.filter(exitreason='The Petitioner escaped from prison').count(),
+        'exitsdeath': Exit.objects.filter(exitreason='Deceased').count(),
+        'exitsservedsentence': Exit.objects.filter(exitreason='Discharged upon completion of sentence').count(),
+        'exitsreleasedbypomac': Exit.objects.filter(exitreason='Pardoned under article 133 of the constitution').count(),
+        'exitsresetencing': Exit.objects.filter(exitreason='Released following resentencing').count(),
         'prisons': Prison.objects.count(),
         'courts': Court.objects.count(),
 
