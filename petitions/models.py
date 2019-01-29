@@ -514,6 +514,7 @@ class Exit(models.Model):
     created = models.DateTimeField(auto_now_add=True, editable=False)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     exitreason = models.CharField(max_length=100)
+    exitdate = models.DateField(null=True, blank=True)
 
     # Relationship Fields
     petitioner = models.OneToOneField(PetitionForm, on_delete=models.CASCADE, related_name='exit')

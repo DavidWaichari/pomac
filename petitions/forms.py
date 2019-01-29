@@ -776,12 +776,16 @@ class ExitForm(forms.ModelForm):
                                                                'Released following resentencing')
                                                               ],
                                                      attrs={'class': 'form-control'}))
+    exitdate = forms.DateField(required=False,
+                                  label='Date when the petitioner exited',
+                                  widget=forms.DateInput(format=('%m/%d/%Y'),
+                                                         attrs={'class': 'datepicker form-control'}))
     petitioner = forms.ModelChoiceField(queryset=PetitionForm.objects.all().filter(exit__isnull=True),
                                         label='Choose Petitioner',
                                         widget=forms.Select(attrs={'class': 'form-control'}))
     class Meta:
         model = Exit
-        fields = [ 'petitioner','exitreason']
+        fields = [ 'petitioner','exitreason','exitdate']
 
 class GrantForm(forms.ModelForm):
     recommendation = forms.ModelChoiceField(queryset=RecommendationForm.objects.all().filter(grant__isnull=True).filter(interview__hearing__admissibility__petitioner__exit__isnull=True),
@@ -809,9 +813,13 @@ class ExitFormUpdate(forms.ModelForm):
     petitioner = forms.ModelChoiceField(queryset=PetitionForm.objects.all(),
                                         label='Choose Petitioner',
                                         widget=forms.Select(attrs={'class': 'form-control'}))
+    exitdate = forms.DateField(required=False,
+                               label='Date when the petitioner exited',
+                               widget=forms.DateInput(format=('%m/%d/%Y'),
+                                                      attrs={'class': 'datepicker form-control'}))
     class Meta:
         model = Exit
-        fields = [ 'petitioner','exitreason']
+        fields = [ 'petitioner','exitreason','exitdate']
 
 
 class DateFilterForm(forms.Form):
