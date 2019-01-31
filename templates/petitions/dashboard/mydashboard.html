@@ -76,12 +76,6 @@
             {% endif %}
             {% if perms.petitions.can_view_myhearings %}
                 <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-                    <span class="count_top text-warning"><i class="fa fa-user"></i> My Awaiting Schedule for Hearing</span>
-                    <div class="count">{{ myawaitingscheduleforhearing }}</div>
-                    <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-warning"
-                                                                       href="{% url 'myawaitingscheduleforhearing' %}">More Details</a></span>
-                </div>
-                <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                     <span class="count_top text-warning"><i class="fa fa-user"></i> My Awaiting Hearing</span>
                     <div class="count">{{ awaitinghearing }}</div>
                     <span class="count_bottom"><i class="green"></i><a class="btn-sm btn-warning"
