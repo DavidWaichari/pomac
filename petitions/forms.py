@@ -44,7 +44,7 @@ class PetitionFormForm(forms.ModelForm):
         ('Free or conditional pardon', 'Free or conditional pardon'),
         ('Postponing the carrying out of a punishment for a specific or indefinite period ',
          'Postponing the carrying out of a punishment for a specific or indefinite period '),
-        ('Subsituting a less severe form of punishment', 'Subsituting a less severe form of punishment'),
+        ('Substituting a less severe form of punishment', 'Substituting a less severe form of punishment'),
         ('Remitting all or part of punishment', 'Remitting all or part of punishment')
     ]
 

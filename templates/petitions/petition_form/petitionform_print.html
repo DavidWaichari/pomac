@@ -86,31 +86,27 @@ tr:nth-child(even) {
             <strong>PM/{{ year }}/{{ petitonmonth }}/{{ day }}/{{ id }}</strong>
         </div>
         <div style="font-size: 16px">
-            1. The humble petition of: <strong>{{ name |title }} <i>(Name of convicted criminal
-            offender)</i></strong><br/><br/>
-            Prison Number: <strong>{{ prisonno }}</strong>..........................Nationality:
-            <strong>{{ nationality|title }}</strong><br/><br/>
+            1. The humble petition of: <strong>{{ name |title }}</strong>....Current Age: <strong>{{ currentage }} Years</strong><br/><br/>
+            Prison Number: <strong>{{ prisonno }}</strong>................................Years Served:
+            <strong>{{ yearsserved }} Years</strong><br/><br/>
             Name of Prison where held: <strong>{{ prison|title }}</strong><br/><br/>
             Court where convicted: <strong>{{ court|title }}</strong>.....Court Case No:
             <strong>{{ courtno }}</strong><br/><br/>
             Offence: <strong>{{ offence |lower|capfirst }}</strong><br/><br/>
-            Age at Conviction: <strong>{{ ageatconviction }} Years</strong>..............................Date of
-            Conviction: <strong>{{ dateofconviction }}</strong><br/><br/>
-            Current Age: <strong>{{ currentage }} Years</strong>...................................Age when offense
+            Date of Custody: <strong>{{ dateofcustody }}</strong>......Age when offense
             was Committed: <strong>{{ ageoffense }} Years</strong><br/><br/>
+            Date of Conviction: <strong>{{ dateofconviction }}</strong>.........................Age at Conviction: <strong>{{ ageatconviction }} Years</strong><br/><br/>
+            E.P.D : <strong>{{ epd }}</strong>........................................................L.P.D:
+            <strong>{{ lpd }}</strong><br/><br/>
+            Where the offense was committed: <strong>{{ offensecommitted |lower|capfirst}}</strong>...Years Served in Remand: <strong>{{ yearsinremand }} Years</strong><br/><br/>
+            Nationality:<strong>{{ nationality|title }}</strong>.....Home County: <strong>{{ county|title }}</strong>.....Sub County:<strong>{{ subcounty|title }}</strong><br/><br/>
+            Home Location: <strong>{{ location|title }}</strong>...................Nearest School:
+            <strong>{{ nearestschool|title }}</strong><br/><br/>
             Next of Kin: <strong>{{ nextofkin |title }}</strong>................................................Relationship:
             <strong>{{ nextofkinrelationship|title }}</strong><br/><br/>
             Contact Person: <strong>{{ contactperson |title}}</strong>.........................................Tel No:
             <strong>{{ telno }}</strong><br/><br/>
-            Home County: <strong>{{ county|title }}</strong>.......................Sub County:
-            <strong>{{ subcounty|title }}</strong><br/><br/>
-            Home Location: <strong>{{ location|title }}</strong>...................Nearest School:
-            <strong>{{ nearestschool|title }}</strong><br/><br/>
             Name of Home Chief: <strong>{{ nameofhomechief|title }}</strong><br/><br/>
-            Where the offense was committed: <strong>{{ offensecommitted |lower|capfirst}}</strong><br/><br/>
-            Date of Custody: <strong>{{ dateofcustody }}</strong>..................................Years Served:
-            <strong>{{ yearsserved }} Years</strong><br/><br/>
-            Years Served in Remand: <strong>{{ yearsinremand }} Years</strong><br/><br/>
         </div>
         <div style="font-size: 16px">
             2. Number of counts and sentence terms(s) imposed: <strong>{{ sentence|lower|capfirst }}</strong><br/><br/>

@@ -845,6 +845,17 @@ def GeneratePetitionForm(request, pk):
         telephonenumberoftheapplicant = 'None'
     else:
         telephonenumberoftheapplicant = petitioner.telephonenumberoftheapplicant
+    if petitioner.nearestschool == '':
+        nearestschool = 'None'
+    else:
+        nearestschool = petitioner.nearestschool
+
+    if petitioner.convictedforlife == True:
+        epd = 'Life'
+        lpd = 'Life'
+    else:
+        epd = '______________'
+        lpd = '______________'
     petitiondate = petitioner.created
     data = {
         'name': petitioner.name,
@@ -856,6 +867,8 @@ def GeneratePetitionForm(request, pk):
         'courtno': petitioner.courtcaseno,
         'ageatconviction': petitioner.ageatconviction,
         'dateofconviction': petitioner.dateofconviction,
+        'epd':epd,
+        'lpd':lpd,
         'currentage': today.year - petitioner.dateofconviction.year + petitioner.ageatconviction,
         'ageoffense': petitioner.agewhenoffensewascommited,
         'nextofkin':nextofkin,
@@ -865,7 +878,7 @@ def GeneratePetitionForm(request, pk):
         'county':petitioner.county,
         'subcounty':petitioner.subcounty,
         'location':petitioner.location,
-        'nearestschool':petitioner.nearestschool,
+        'nearestschool':nearestschool,
         'nameofhomechief':nameofhomechief,
         'offensecommitted':petitioner.whereoffensewascommitted,
         'dateofcustody':petitioner.dateofcustody,
