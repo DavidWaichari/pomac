@@ -87,34 +87,37 @@ tr:nth-child(even) {
             </h2>
         </div>
         <div style="font-size: 16px; text-align: justify">
-            PETITIONER: <strong>{{ name|title }} <i>(Name of Prisoner/Petitioner)</i></strong><br/><br/>
-            Prison Number: <strong>{{ prisonno }}</strong>............Prison:
-            <strong>{{ prison|title }}</strong><br/><br/>
-            Name: <strong>{{ name|title }}</strong><br/><br/>
-            Current Age: <strong>{{ currentage }} Years</strong>.................................Age When Offence was
-            Committed: <strong>{{ ageoffense }} Years</strong><br/><br/>
-            Offence(s): <strong>{{ offence|lower|capfirst }}</strong><br/><br/>
-            Date of Sentence:
-            <strong>{{ dateofconviction }}</strong>.........................Sentence:
-            <strong>{{ sentence|lower|capfirst }}</strong><br/><br/>
+            P.M Number: <strong>{{ pmnumber }}</strong><br/><br/>
+            Petitioner's Name: <strong>{{ name |title }}</strong>....Current Age: <strong>{{ currentage }} Years</strong><br/><br/>
+            Prison Number: <strong>{{ prisonno }}</strong>................................Years Served:
+            <strong>{{ yearsserved }} Years</strong><br/><br/>
+            Name of Prison where held: <strong>{{ prison|title }}</strong><br/><br/>
             Court where convicted: <strong>{{ court|title }}</strong>.....Court Case No:
             <strong>{{ courtno }}</strong><br/><br/>
-
-            Appeal No <i>(if any)</i>: <strong>{{ appealcaseno }}</strong>.....................Outcome of Appeal:
-            <strong>{{ appealoutcome }}</strong><br><br>
-            E.P.D: <strong>.............................................................</strong>L.P.D:
-            <strong>.........................................................</strong><br/><br/>
-            No of Previous Convictions: <strong>{{ previousconvictions }}</strong>..................Prison Offences (if
-            any): <strong>{{ explanationofdisciplinaryaction }}</strong><br/><br/>
-            Where the offense was committed: <strong>{{ offensecommitted }}</strong><br/><br/>
-            Date of Custody: <strong>{{ dateofcustody }}</strong>..................................Years Served:
-            <strong>{{ yearsserved }} Years</strong><br/><br/>
+            Offence: <strong>{{ offence |lower|capfirst }}</strong><br/><br/>
+            Date of Custody: <strong>{{ dateofcustody }}</strong>......Age when offense
+            was Committed: <strong>{{ ageoffense }} Years</strong><br/><br/>
+            Date of Conviction: <strong>{{ dateofconviction }}</strong>.........................Age at Conviction:
+            <strong>{{ ageatconviction }} Years</strong><br/><br/>
+            E.P.D : <strong>{{ epd }}</strong>........................................................L.P.D:
+            <strong>{{ lpd }}</strong><br/><br/>
+            Where the offense was committed: <strong>{{ offensecommitted |lower|capfirst }}</strong>...Years Served in
+            Remand: <strong>{{ yearsinremand }} Years</strong><br/><br/>
+            Nationality:<strong>{{ nationality|title }}</strong>.....Home County: <strong>{{ county|title }}</strong>.....Sub
+            County:<strong>{{ subcounty|title }}</strong><br/><br/>
+            Home Location: <strong>{{ location|title }}</strong>...................Nearest School:
+            <strong>{{ nearestschool|title }}</strong><br/><br/>
+            Next of Kin: <strong>{{ nextofkin |title }}</strong>................................................Relationship:
+            <strong>{{ nextofkinrelationship|title }}</strong><br/><br/>
+            Contact Person: <strong>{{ contactperson |title }}</strong>.........................................Tel No:
+            <strong>{{ telno }}</strong><br/><br/>
+            Name of Home Chief: <strong>{{ nameofhomechief|title }}</strong><br/><br/>
             Health Status: <strong>{{ healthstatus }}</strong><br/><br/>
             Family Status: <strong>{{ familystatus }}</strong><br/><br/>
-            (a) Own account of circumstances surrounding commission of Offence : <strong>{{ ownaccount
-            }}</strong><br/><br/>
-            (b) Reconciliation efforts with victims of the offence that led to current conviction : <strong>{{
-            reconciliationefforts }}</strong><br/><br/>
+            (a) Own account of circumstances surrounding commission of Offence :
+            <strong>{{ ownaccount}}</strong><br/><br/>
+            (b) Reconciliation efforts with victims of the offence that led to current conviction :
+            <strong>{{reconciliationefforts }}</strong><br/><br/>
             (c) Indication of Remorsefulness or otherwise : <strong>{{ indicationofremorsefulness }}</strong><br/><br/>
             (c) Any other comments: <strong>{{ anyothercomments }}</strong><br/><br/>
             (d) Representation of victims (if applicable): <strong>{{ representationofvictim }}</strong><br/><br/>

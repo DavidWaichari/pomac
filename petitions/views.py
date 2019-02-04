@@ -1494,9 +1494,17 @@ def GeneratePetitionSummary(request, pk):
         pendingexplanation = 'None'
     else:
         pendingexplanation = summary.admissibility.petitioner.explanationofpendingcourtmatter
+    if summary.admissibility.petitioner.convictedforlife == True:
+        epd = 'Life'
+        lpd = 'Life'
+    else:
+        epd = '______________'
+        lpd = '______________'
     summarydate = summary.created
     data = {
         'name': summary.admissibility.petitioner.name,
+        'epd':epd,
+        'lpd':lpd,
         'pmnumber': 'PM/'+str(summary.admissibility.petitioner.created.year)+'/'+str(summary.admissibility.petitioner.created.month)+'/'+str(summary.admissibility.petitioner.created.day)+'/'+str(summary.admissibility.petitioner.id),
         'prisonno':summary.admissibility.petitioner.prisonno,
         'created_at': summary.admissibility.petitioner.created,
@@ -2090,10 +2098,21 @@ def GenerateHearingForm(request, pk):
         member10 = 'None'
     else:
         member10 = hearing.member10
+    if hearing.admissibility.petitioner.convictedforlife == True:
+        epd = 'Life'
+        lpd = 'Life'
+    else:
+        epd = '______________'
+        lpd = '______________'
 
     hearingdate = hearing.created
     data = {
         'name': hearing.admissibility.petitioner.name,
+        'epd':epd,
+        'lpd':lpd,
+        'pmnumber': 'PM/' + str(hearing.admissibility.petitioner.created.year) + '/' + str(
+            hearing.admissibility.petitioner.created.month) + '/' + str(
+            hearing.admissibility.petitioner.created.day) + '/' + str(hearing.admissibility.petitioner.id),
         'prisonno':hearing.admissibility.petitioner.prisonno,
         'created_at': hearing.admissibility.petitioner.created,
         'prison': hearing.admissibility.petitioner.prison,
@@ -2668,9 +2687,21 @@ def GenerateInterviewSummary(request, pk):
     else:
         member6votereason = interview.m6votereason
 
+    if interview.hearing.admissibility.petitioner.convictedforlife == True:
+        epd = 'Life'
+        lpd = 'Life'
+    else:
+        epd = '______________'
+        lpd = '______________'
+
     interviewdate = interview.created
     data = {
         'name': interview.hearing.admissibility.petitioner.name,
+        'pmnumber': 'PM/' + str(interview.hearing.admissibility.petitioner.created.year) + '/' + str(
+            interview.hearing.admissibility.petitioner.created.month) + '/' + str(
+            interview.hearing.admissibility.petitioner.created.day) + '/' + str(interview.hearing.admissibility.petitioner.id),
+        'epd':epd,
+        'lpd':lpd,
         'prisonno':interview.hearing.admissibility.petitioner.prisonno,
         'created_at': interview.hearing.admissibility.petitioner.created,
         'prison': interview.hearing.admissibility.petitioner.prison,
