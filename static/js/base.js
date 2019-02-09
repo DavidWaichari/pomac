@@ -1324,9 +1324,13 @@ $(document).ready(function () {
         $('#div_id_relationshipofapplicantwithpetitioner').hide('slow');
         $('#div_id_addressoftheapplicant').hide('slow');
         $('#div_id_telephonenumberoftheapplicant').hide('slow');
+        $('#id_nameofapplicant').prop("required", false);
         $('#id_nameofapplicant').val('');
+        $('#id_relationshipofapplicantwithpetitioner').prop("required", false);
         $('#id_relationshipofapplicantwithpetitioner').val('');
+        $('#id_addressoftheapplicant').prop("required", false);
         $('#id_addressoftheapplicant').val('');
+        $('#id_telephonenumberoftheapplicant').prop("required", false);
         $('#id_telephonenumberoftheapplicant').val('');
     });
 
@@ -1369,21 +1373,30 @@ $(document).ready(function () {
 
     $("#div_id_descriptionforcallofevidence").hide();
     $("#id_id_callforevidence_0_1").click(function () {
-        var hearingdate = $("#id_hearingdate").datepicker('getDate');
-        if (hearingdate < today) {
-            swal("Confirm Date!", "the proposed date of hearing can not be in the past..please set a future date. If you are not sure about the hearing date leave it empty", "error");
-            $('#id_hearingdate').val('');
-            $('#id_hearingdate').prop('required', false);
+        if ($('#id_hearingdate').val() == '') {
+
+        } else {
+            var hearingdate = $("#id_hearingdate").datepicker('getDate');
+            if (hearingdate < today) {
+                swal("Confirm Date!", "the proposed date of hearing can not be in the past..please set a future date. If you are not sure about the hearing date leave it empty", "error");
+                $('#id_hearingdate').prop('required', false);
+                $('#id_hearingdate').val('');
+
+            }
         }
         $("#div_id_descriptionforcallofevidence").show('slow');
         $("#id_descriptionforcallofevidence").prop("required", true);
     });
     $("#id_id_callforevidence_0_2").click(function () {
-        var hearingdate = $("#id_hearingdate").datepicker('getDate');
-        if (hearingdate < today) {
-            swal("Confirm Date!", "the proposed date of hearing can not be in the past..please set a future date. If you are not sure about the hearing date leave it empty", "error");
-            $('#id_hearingdate').val('');
-            $('#id_hearingdate').prop('required', false);
+        if ($('#id_hearingdate').val() == '') {
+        } else {
+            var hearingdate = $("#id_hearingdate").datepicker('getDate');
+            if (hearingdate < today) {
+                swal("Confirm Date!", "the proposed date of hearing can not be in the past..please set a future date. If you are not sure about the hearing date leave it empty", "error");
+                $('#id_hearingdate').prop('required', false);
+                $('#id_hearingdate').val('');
+
+            }
         }
         $("#div_id_descriptionforcallofevidence").hide('slow');
         $("#id_descriptionforcallofevidence").val("");
@@ -1397,8 +1410,10 @@ $(document).ready(function () {
         $("#id_descriptionforrequstreport").prop("required", true);
     });
     $("#id_id_requestreports_0_2").click(function () {
+        $("#id_descriptionforrequstreport").prop("required", false);
         $("#id_descriptionforrequstreport").val('');
         $("#div_id_descriptionforrequstreport").hide('slow');
+
     });
 
     $("#div_id_orderforinvestigationdescription").hide();
@@ -1407,6 +1422,7 @@ $(document).ready(function () {
         $("#id_orderforinvestigationdescription").prop("required", true);
     });
     $("#id_id_orderforinvestigation_0_2").click(function () {
+        $("#id_orderforinvestigationdescription").prop("required", false);
         $("#id_orderforinvestigationdescription").val('');
         $("#div_id_orderforinvestigationdescription").hide('slow');
     });
@@ -1419,12 +1435,15 @@ $(document).ready(function () {
         choice = $('#id_action').val();
         if (choice == 'Interview the Petitioner') {
             $("#div_id_interviewdate").show('slow');
+            $("#div_id_deferdate").hide('slow');
             $("#id_deferdate").val('');
+            $("#id_actiondescription").prop('required', false);
         }
         if (choice == 'Defer the petition to a later date') {
             $("#div_id_deferdate").show('slow');
             $("#div_id_interviewdate").hide('slow');
             $("#id_interviewdate").val('');
+            $("#id_actiondescription").prop('required', false);
 
         }
 
