@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="bd264c29-9605-4953-a0c8-a41219d982cc" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/base.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangox/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangox/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/petitions/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/petitions/forms.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -251,11 +252,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/djangox/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+            <state relative-caret-position="85">
+              <caret line="83" column="20" selection-start-line="83" selection-start-column="20" selection-end-line="83" selection-end-column="20" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -263,11 +264,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/petitions/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="58" column="390" selection-start-line="58" selection-start-column="390" selection-end-line="58" selection-end-column="390" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="base.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/static/js/base.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="1169" column="60" lean-forward="true" selection-start-line="1169" selection-start-column="60" selection-end-line="1169" selection-end-column="60" />
+            <state relative-caret-position="20043">
+              <caret line="1169" column="60" selection-start-line="1169" selection-start-column="60" selection-end-line="1169" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -275,8 +285,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/petitions/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="331" column="9" lean-forward="true" selection-start-line="331" selection-start-column="9" selection-end-line="331" selection-end-column="9" />
+            <state relative-caret-position="5627">
+              <caret line="331" column="9" selection-start-line="331" selection-start-column="9" selection-end-line="331" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -335,12 +345,12 @@
     <findStrings>
       <find>recommendationform</find>
       <find>exit</find>
-      <find>The Petitioner escaped the prison</find>
-      <find>Released after serving the term</find>
-      <find>The petitioner died while in prison</find>
+      <find />
+      <find />
+      <find />
       <find>ExitLi</find>
       <find>dece</find>
-      <find>Released following resentencing</find>
+      <find />
       <find>Exitlist</find>
       <find>consti</find>
       <find>exitre</find>
@@ -348,7 +358,6 @@
       <find>mydash</find>
       <find>myawaitingscheduleforhearing</find>
       <find>myawaiting</find>
-      <find>petitionform</find>
       <find>generatepe</find>
       <find>convic</find>
       <find>sente</find>
@@ -363,6 +372,7 @@
       <find>inter</find>
       <find>hearingsumm</find>
       <find>admis</find>
+      <find>petitionform</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -414,7 +424,6 @@
         <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/templates/petitions/petition_form/petitionform_print.html" />
         <option value="$PROJECT_DIR$/templates/petitions/petition_form/petitionform_update.html" />
-        <option value="$PROJECT_DIR$/petitions/forms.py" />
         <option value="$PROJECT_DIR$/templates/petitions/admissibility_form/admissibilityform_print.html" />
         <option value="$PROJECT_DIR$/templates/petitions/summaries/petitionsummary_print.html" />
         <option value="$PROJECT_DIR$/templates/petitions/hearings/hearingsummary_print.html" />
@@ -422,6 +431,7 @@
         <option value="$PROJECT_DIR$/templates/petitions/interviews/interviewsummary_print.html" />
         <option value="$PROJECT_DIR$/static/js/base.js" />
         <option value="$PROJECT_DIR$/djangox/settings.py" />
+        <option value="$PROJECT_DIR$/petitions/forms.py" />
       </list>
     </option>
   </component>
@@ -483,7 +493,7 @@
       <path value="$PROJECT_DIR$/staticfiles/vendors/transitionize/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="227" />
     <option name="width" value="1080" />
     <option name="height" value="728" />
@@ -496,7 +506,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -513,6 +522,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -601,8 +611,8 @@
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32786885" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32903227" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49641833" visible="true" weight="0.2590759" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19213313" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49641833" visible="true" weight="0.43069306" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19515885" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="4" weight="0.32980332" />
       <window_info anchor="right" id="SciView" order="3" weight="0.3295129" />
@@ -622,24 +632,24 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26928896" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32903227" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.42258066" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="11" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32903227" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -886,13 +896,6 @@
         <state relative-caret-position="-255" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/petitions/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="274" column="25" selection-start-line="274" selection-start-column="19" selection-end-line="274" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/petitions/petition_form/petitionform_print.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3077">
@@ -924,13 +927,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/petitions/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45577">
-          <caret line="2703" column="17" selection-start-line="2703" selection-start-column="17" selection-end-line="2703" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/petitions/interviews/interviewsummary_print.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3451">
@@ -940,25 +936,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/petitions/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="331" column="9" lean-forward="true" selection-start-line="331" selection-start-column="9" selection-end-line="331" selection-end-column="9" />
+        <state relative-caret-position="5627">
+          <caret line="331" column="9" selection-start-line="331" selection-start-column="9" selection-end-line="331" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/base.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="1169" column="60" lean-forward="true" selection-start-line="1169" selection-start-column="60" selection-end-line="1169" selection-end-column="60" />
+        <state relative-caret-position="20043">
+          <caret line="1169" column="60" selection-start-line="1169" selection-start-column="60" selection-end-line="1169" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/petitions/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45577">
+          <caret line="2703" column="17" selection-start-line="2703" selection-start-column="17" selection-end-line="2703" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/djangox/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        <state relative-caret-position="85">
+          <caret line="83" column="20" selection-start-line="83" selection-start-column="20" selection-end-line="83" selection-end-column="20" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/petitions/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="58" column="390" selection-start-line="58" selection-start-column="390" selection-end-line="58" selection-end-column="390" />
         </state>
       </provider>
     </entry>

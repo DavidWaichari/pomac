@@ -56,7 +56,8 @@ class PetitionFormForm(forms.ModelForm):
                                                widget=forms.RadioSelect(attrs={'style': 'margin-left: 30px;'}))
     nationality = forms.CharField(label='Nationality', widget=forms.TextInput(attrs={'class': 'form-control','value':'Kenyan'}))
     prison = forms.ModelChoiceField(queryset=Prison.objects.order_by('name'), label='Prison where held', widget=forms.Select(attrs={'class':'form-control'}))
-    prisonno = forms.CharField(label='Prison Number', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    prisonno = forms.CharField(label='Prison Number (format: eg KAM/NUMBER/YYYY/LS 0r PP)', widget=forms.TextInput(attrs={'class': 'form-control','pattern':'[A-Z]{3}/[^0][0-9]*/\d{4}/(ls|LS|pp|PP)','title':'Please enter the Prison Number using the fomat given e.g if prison number is 29 in the year 2011 in Kamiti Maximum Prison, the Prison Number will be KAM/29/2011/LS (use LS or PP only )'
+                                                                                                                                                                        ''}))
     court = forms.ModelChoiceField(queryset=Court.objects.order_by('name'), label='Court Where Convicted', widget=forms.Select(attrs={'class':'form-control'}))
     courtcaseno = forms.CharField(label='Court case number', widget=forms.TextInput(attrs={'class': 'form-control'}))
     dateofconviction = forms.DateField(label='Date of conviction', widget=forms.DateInput(format=('%m/%d/%Y'), attrs={
