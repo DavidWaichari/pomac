@@ -233,7 +233,7 @@ class AdmissibilityCreateForm(forms.ModelForm):
         elif str(value).lower() in ('0', 'false'):
             return False
 
-    petitioner = forms.ModelChoiceField(label='Choose Petitioner',queryset=PetitionForm.objects.filter(anypendingcourtmatter=False).filter(admissibilityform__isnull=True).filter(exit__isnull=True), widget=forms.Select(attrs={'class': 'form-control'}))
+    petitioner = forms.ModelChoiceField(label='Choose Petitioner',queryset=PetitionForm.objects.filter(anypendingcourtmatter=False).filter(admissibilityform__isnull=True).filter(exit__isnull=True).order_by('prisonno'), widget=forms.Select(attrs={'class': 'form-control'}))
 
     admissability = forms.TypedChoiceField(
         label='Do you wish to render the this petition ADMISSIBLE?',
@@ -281,7 +281,7 @@ class AdmissibilityUpdateForm(forms.ModelForm):
         elif str(value).lower() in ('0', 'false'):
             return False
 
-    petitioner = forms.ModelChoiceField(label='Choose Petitioner',queryset=PetitionForm.objects.filter(anypendingcourtmatter=False), widget=forms.Select(attrs={'class': 'form-control'}))
+    petitioner = forms.ModelChoiceField(label='Name of the Petitioner',queryset=PetitionForm.objects.filter(anypendingcourtmatter=False), widget=forms.Select(attrs={'class': 'form-control','style':'pointer-events:none'}))
 
     admissability = forms.TypedChoiceField(
         label='Do you wish to render the this petition ADMISSIBLE?',
@@ -329,7 +329,7 @@ class PetitionSummaryForm(forms.ModelForm):
         fields = ['admissibility','typeandcircumstancesofoffence', 'petitionoverview']
 
 class PetitionSummaryEditForm(forms.ModelForm):
-    admissibility = forms.ModelChoiceField(label='Select the Petitioner', queryset=AdmissibilityForm.objects.filter(admissability=True), widget=forms.Select(attrs={'class': 'form-control'}))
+    admissibility = forms.ModelChoiceField(label='Name of the Petitioner', queryset=AdmissibilityForm.objects.filter(admissability=True), widget=forms.Select(attrs={'class': 'form-control','style':'pointer-events:none'}))
     typeandcircumstancesofoffence = forms.CharField(label='Type and circumstances of the offence', widget=forms.Textarea(attrs={'rows':12,'class':'form-control'}))
     petitionoverview = forms.CharField(label='Petition overview', widget=forms.Textarea(attrs={'rows':12,'class':'form-control'}))
     class Meta:
@@ -394,7 +394,7 @@ class HearingSummaryForm(forms.ModelForm):
                   'interviewdate','deferdate','actiondescription','member1','member2','member3','member4','member5','member6','member7','member8','member9','member10' ]
 
 class HearingSummaryUpdateForm(forms.ModelForm):
-    admissibility = forms.ModelChoiceField(label='Choose Petitioner',queryset=AdmissibilityForm.objects.filter(admissability=True), widget=forms.Select(attrs={'class': 'form-control','readonly':True}))
+    admissibility = forms.ModelChoiceField(label='Name of the Petitioner',queryset=AdmissibilityForm.objects.filter(admissability=True), widget=forms.Select(attrs={'class': 'form-control','style':'pointer-events:none'}))
     healthstatus = forms.CharField(required=False, label='Health Status',
                                                       widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
     familystatus = forms.CharField(required=False, label='Family Status (parents, spouse,children etc)',
@@ -573,8 +573,8 @@ class InterviewSummaryEditForm(forms.ModelForm):
             elif str(value).lower() in ('0', 'false'):
                 return False
 
-    hearing = forms.ModelChoiceField(label='Select the Petitioner', queryset=HearingSummary.objects.filter(
-            action='Interview the Petitioner').filter(interviewdate__isnull=False), widget=forms.Select(attrs={'class': 'form-control'}))
+    hearing = forms.ModelChoiceField(label='Name of the Petitioner', queryset=HearingSummary.objects.filter(
+            action='Interview the Petitioner').filter(interviewdate__isnull=False), widget=forms.Select(attrs={'class': 'form-control','style':'pointer-events:none'}))
     ownaccountofcircumstances = forms.CharField(required=False,
                                                     label='Own account of circumstances sorrounding the commission of Offense ',
                                                     widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
@@ -727,7 +727,7 @@ class RecommendationUpdateForm(forms.ModelForm):
             return True
         elif str(value).lower() in ('0', 'false'):
             return False
-    interview = forms.ModelChoiceField(label='Select the Petitioner', queryset= InterviewSummary.objects.all(),widget=forms.Select(attrs={'class':'form-control'}))
+    interview = forms.ModelChoiceField(label='Name of the Petitioner', queryset= InterviewSummary.objects.all(),widget=forms.Select(attrs={'class':'form-control','style':'pointer-events:none'}))
     explanationofrecommedation = forms.CharField(required=True, label='Following the investigations conducted, evidence gathered, interviews held and '
                                                                        'consideration of the reports from appropriate Government agencis, the Committee forms the opinion that the Petitioner: ',
                     widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
@@ -812,8 +812,8 @@ class ExitFormUpdate(forms.ModelForm):
                                                               ],
                                                      attrs={'class': 'form-control'}))
     petitioner = forms.ModelChoiceField(queryset=PetitionForm.objects.all(),
-                                        label='Choose Petitioner',
-                                        widget=forms.Select(attrs={'class': 'form-control'}))
+                                        label='Name of the Petitioner',
+                                        widget=forms.Select(attrs={'class': 'form-control','style':'pointer-events:none'}))
     exitdate = forms.DateField(required=False,
                                label='Date when the petitioner exited',
                                widget=forms.DateInput(format=('%m/%d/%Y'),
