@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bd264c29-9605-4953-a0c8-a41219d982cc" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/djangox/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangox/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/petitions/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/petitions/forms.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -245,8 +244,26 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/petitions/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="1000" column="33" selection-start-line="1000" selection-start-column="33" selection-end-line="1000" selection-end-column="33" />
+            <state relative-caret-position="54400">
+              <caret line="3516" column="81" selection-start-line="3516" selection-start-column="81" selection-end-line="3516" selection-end-column="81" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="awaitingpetitionsummary_list.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/petitions/summaries/awaitingpetitionsummary_list.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="96" selection-start-line="11" selection-start-column="96" selection-end-line="11" selection-end-column="96" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="myawaitingpetitionsummary_list.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/petitions/summaries/myawaitingpetitionsummary_list.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="141" selection-start-line="11" selection-start-column="141" selection-end-line="11" selection-end-column="141" />
             </state>
           </provider>
         </entry>
@@ -254,8 +271,8 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/djangox/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="111" column="13" selection-start-line="111" selection-start-column="13" selection-end-line="111" selection-end-column="13" />
+            <state relative-caret-position="374">
+              <caret line="109" lean-forward="true" selection-start-line="109" selection-end-line="109" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -266,8 +283,8 @@
       <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/petitions/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="815" column="120" selection-start-line="815" selection-start-column="120" selection-end-line="815" selection-end-column="120" />
+            <state relative-caret-position="286">
+              <caret line="331" column="136" selection-start-line="331" selection-start-column="136" selection-end-line="331" selection-end-column="136" />
             </state>
           </provider>
         </entry>
@@ -275,8 +292,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/petitions/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2233">
-              <caret line="331" column="9" selection-start-line="331" selection-start-column="9" selection-end-line="331" selection-end-column="9" />
+            <state relative-caret-position="4502">
+              <caret line="298" column="77" lean-forward="true" selection-start-line="298" selection-start-column="77" selection-end-line="298" selection-end-column="77" />
             </state>
           </provider>
         </entry>
@@ -312,7 +329,6 @@
       <find>admissibilityc</find>
       <find>admi</find>
       <find>admissibilityformc</find>
-      <find>petitionsumm</find>
       <find>generatehe</find>
       <find>generatein</find>
       <find>decline</find>
@@ -323,6 +339,8 @@
       <find>exit</find>
       <find>AdmissibilityFormU</find>
       <find>admissibilityform</find>
+      <find>petitionsumm</find>
+      <find>awaitingpetitionsummary</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -456,7 +474,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -469,10 +486,29 @@
               <item name="pomac" type="462c0819:PsiDirectoryNode" />
               <item name="petitions" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="pomac" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pomac" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pomac" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pomac" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="petitions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pomac" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pomac" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="petitions" type="462c0819:PsiDirectoryNode" />
+              <item name="summaries" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -562,8 +598,8 @@
       <window_info anchor="bottom" id="Version Control" order="11" weight="0.32786885" />
       <window_info anchor="bottom" id="Python Console" order="12" weight="0.32903227" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49641833" visible="true" weight="0.3184282" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19770774" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49641833" weight="0.3184282" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20630373" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="4" weight="0.32980332" />
       <window_info anchor="right" id="SciView" order="3" weight="0.3295129" />
@@ -571,36 +607,50 @@
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="TypeScript" order="13" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19770774" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.3295129" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32786885" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Database Changes" order="8" />
+      <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Database" order="4" weight="0.32980332" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50358164" side_tool="true" weight="0.21680216" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info id="Favorites" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32903227" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49641833" visible="true" weight="0.3184282" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32903227" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26928896" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32903227" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.42258066" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="11" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32903227" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32954547" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -889,31 +939,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/petitions/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="331" column="136" selection-start-line="331" selection-start-column="136" selection-end-line="331" selection-end-column="136" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/petitions/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2233">
-          <caret line="331" column="9" selection-start-line="331" selection-start-column="9" selection-end-line="331" selection-end-column="9" />
+        <state relative-caret-position="4502">
+          <caret line="298" column="77" lean-forward="true" selection-start-line="298" selection-start-column="77" selection-end-line="298" selection-end-column="77" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/petitions/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="1000" column="33" selection-start-line="1000" selection-start-column="33" selection-end-line="1000" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/petitions/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="815" column="120" selection-start-line="815" selection-start-column="120" selection-end-line="815" selection-end-column="120" />
+        <state relative-caret-position="54400">
+          <caret line="3516" column="81" selection-start-line="3516" selection-start-column="81" selection-end-line="3516" selection-end-column="81" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/djangox/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="111" column="13" selection-start-line="111" selection-start-column="13" selection-end-line="111" selection-end-column="13" />
+        <state relative-caret-position="374">
+          <caret line="109" lean-forward="true" selection-start-line="109" selection-end-line="109" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>

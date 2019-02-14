@@ -106,6 +106,8 @@ WSGI_APPLICATION = 'djangox.wsgi.application'
 #      }
 # }
 #
+#this is the database for elephantsql
+
 DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.postgresql',
