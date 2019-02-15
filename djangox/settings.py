@@ -105,7 +105,7 @@ WSGI_APPLICATION = 'djangox.wsgi.application'
 #          'PORT': '5432',
 #      }
 # }
-#
+
 #this is the database for elephantsql
 
 DATABASES = {
