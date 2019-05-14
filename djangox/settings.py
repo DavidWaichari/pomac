@@ -10,7 +10,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '4(j*7q=-dm@4&d8hb)-ivy#b(&_3ew19ujzo#h_hq-39!6-5d+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 # DEBUG_TOOLBAR_CONFIG = {
 #     'SHOW_TOOLBAR_CALLBACK': lambda r: False,  # disables it
 #     # '...
@@ -77,16 +77,16 @@ WSGI_APPLICATION = 'djangox.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-# DATABASES = {
-#      'default': {
-#          'ENGINE': 'mysql_cymysql',
-#          'NAME': 'pomac',
-#          'USER': 'root',
-#          'PASSWORD': '',
-#          'HOST': '127.0.0.1',
-#          'PORT': '3306',
-#      }
-# }
+DATABASES = {
+     'default': {
+         'ENGINE': 'mysql_cymysql',
+         'NAME': 'pomac',
+         'USER': 'root',
+         'PASSWORD': '',
+         'HOST': '127.0.0.1',
+         'PORT': '3306',
+     }
+}
 
 # DATABASES = {
 #     'default': {
@@ -108,16 +108,16 @@ WSGI_APPLICATION = 'djangox.wsgi.application'
 
 #this is the database for elephantsql
 
-DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.postgresql',
-         'NAME': 'itdkpbmo',
-         'USER': 'itdkpbmo',
-         'PASSWORD': 'zNrz30GjX1WBhMhxByUvI_r_KWcU2o9K',
-         'HOST': 'stampy.db.elephantsql.com',
-         'PORT': '5432',
-     }
-}
+# DATABASES = {
+#      'default': {
+#          'ENGINE': 'django.db.backends.postgresql',
+#          'NAME': 'itdkpbmo',
+#          'USER': 'itdkpbmo',
+#          'PASSWORD': 'zNrz30GjX1WBhMhxByUvI_r_KWcU2o9K',
+#          'HOST': 'stampy.db.elephantsql.com',
+#          'PORT': '5432',
+#      }
+# }
 
 
 # Password validation
@@ -167,13 +167,13 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 INTERNAL_IPS = ['127.0.0.1']
 
 # Authentication settings
-#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'petitionsmaster@gmail.com'
-EMAIL_HOST_PASSWORD = 'PASSnimimi003'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_USE_TLS = True
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'petitionsmaster@gmail.com'
+# EMAIL_HOST_PASSWORD = 'PASSnimimi003'
 
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",

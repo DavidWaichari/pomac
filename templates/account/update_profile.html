@@ -21,7 +21,7 @@
                 <div class="x_content">
                     <form method="post" class="authenticationforms">
                         {% csrf_token %}
-                        {{ form|crispy }}
+                        {{ form.as_p }}
                         <button class="btn btn-primary" type="submit">Submit</button>
                     </form>
                 </div>
