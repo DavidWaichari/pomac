@@ -183,6 +183,12 @@
     });
 
     $(document).ready(function () {
+        $('#div_id_created').hide();
+        var checkmodifydate = $('#dateModification').val();
+        if (checkmodifydate === 'Date modification Allowed') {
+            $('#div_id_created').show();
+            $('#id_created').prop("required", true);
+        }
         $("#id_county").change(function () {
             var url = $("#PetitionForm").attr("data-subcounties-url");  // get the url of the `load_cities` view
             var countyId = $(this).val();  // get the selected country ID from the HTML input

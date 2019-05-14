@@ -4,6 +4,7 @@ from django.db.models import *
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.db import models as models
+from django.utils.timezone import now
 
 class County(models.Model):
 
@@ -193,7 +194,7 @@ class PetitionForm(models.Model):
     relationshipofapplicantwithpetitioner = models.CharField(max_length=255,null=True)
     addressoftheapplicant = models.CharField(max_length=255,null=True)
     telephonenumberoftheapplicant = models.CharField(max_length=255,null=True)
-    created = models.DateTimeField(auto_now=True, editable=False)
+    created = models.DateTimeField(default=now, editable=True)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     added_by = models.ForeignKey(settings.AUTH_USER_MODEL,
                                  null=True, blank=True, on_delete=models.SET_NULL)
@@ -209,6 +210,7 @@ class PetitionForm(models.Model):
             ('can_view_petitionformdetails', 'User can view the details of petitions'),
             ('can_view_main_dashboard', 'User can view main dashboard'),
             ('can_view_more_reports', 'User can view more reports dashboard'),
+            ('can_modifydates_created', 'User can modify dates of creation/submission'),
         )
         ordering = ('-created',)
 

@@ -537,7 +537,7 @@ class PetitionFormCreateView(CreateView):
         if(user.first_name == '' and user.last_name == ''):
             sweetify.warning(self.request, 'Please update your profile to submit a petition. Provide the firstname and lastname as they appear In the ID Card/B.C/Passport', button=True, timer=15000)
             return redirect('updateprofile',self.request.user.id)
-        return super(PetitionFormCreateView, self).dispatch(request, *args, **kwargs)
+        return super(PetitionFormCreateView, self).dispatch(request,*args, **kwargs)
 
 
 class PetitionFormDetailView(DetailView):

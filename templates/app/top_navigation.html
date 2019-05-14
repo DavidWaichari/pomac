@@ -3,7 +3,9 @@
         <div class="nav toggle">
             <a id="menu_toggle"><i class="fa fa-bars"></i></a>
         </div>
-
+    {% if perms.petitions.can_modifydates_created %}
+        <input type="text" value="Date modification Allowed" id="dateModification" hidden>
+    {% endif %}
         <ul class="nav navbar-nav navbar-right">
             <li class="">
                 {% if user.first_name == '' or user.last_name == '' %}
