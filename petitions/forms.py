@@ -62,9 +62,9 @@ class PetitionFormForm(forms.ModelForm):
                                                                                                                                                                         ''}))
     court = forms.ModelChoiceField(queryset=Court.objects.order_by('name'), label='Court Where Convicted', widget=forms.Select(attrs={'class':'form-control'}))
     courtcaseno = forms.CharField(label='Court case number', widget=forms.TextInput(attrs={'class': 'form-control'}))
-    dateofconviction = forms.DateField(label='Date of conviction', widget=forms.DateInput(format=('%m/%d/%Y'), attrs={
+    dateofconviction = forms.DateField(label='Date of conviction', widget=forms.DateInput(format=('%d/%m/%Y'), attrs={
         'class': 'form-control datepicker'}))
-    dateofcustody = forms.DateField(label='Date of custody (remand)', widget=forms.DateInput(format=('%m/%d/%Y'),
+    dateofcustody = forms.DateField(label='Date of custody (remand)', widget=forms.DateInput(format=('%d/%m/%Y'),
                                                                                              attrs={
                                                                                                  'class': 'datepicker form-control'}))
     ageatconviction = forms.IntegerField(label='Age at conviction',
@@ -126,7 +126,7 @@ class PetitionFormForm(forms.ModelForm):
                                               choices=((True, 'Yes'), (False, 'No')),
                                               widget=forms.RadioSelect(attrs={'style': 'margin-left: 30px;'}), )
     dateofpreviouspetition = forms.DateField(required=False, label='If yes, Date of the previous petition was',
-                                             widget=forms.DateInput(format=('%m/%d/%Y'),
+                                             widget=forms.DateInput(format=('%d/%m/%Y'),
                                                                     attrs={'class': 'datepicker form-control'}))
     reasonofdenialofpreviouspetition = forms.CharField(label='And the reason of denial of previous petition',
                                                        required=False,
@@ -155,7 +155,7 @@ class PetitionFormForm(forms.ModelForm):
                                             choices=((True, 'Yes'), (False, 'No')),
                                             widget=forms.RadioSelect(attrs={'style': 'margin-left: 30px;'}), )
     dateofpromotiontotrustee = forms.DateField(required=False, label='If yes, when were you promoted to trustee',
-                                               widget=forms.DateInput(format=('%m/%d/%Y'),
+                                               widget=forms.DateInput(format=('%d/%m/%Y'),
                                                                       attrs={'class': 'datepicker form-control'}))
     anyspecialattributesorskills = forms.TypedChoiceField(
         label='Are you recognized for special attributes, achievements or skills attained in prison?',
@@ -243,7 +243,7 @@ class AdmissibilityCreateForm(forms.ModelForm):
         widget=forms.RadioSelect(attrs={'style': 'margin-left: 30px;'}), )
     hearingdate = forms.DateField(required=False, label='If yes, Hear the petition taking into account the criteria provided in Section 22 of the '
                                                         'Power of Mercy Act, 2011 on the following date',
-                                               widget=forms.DateInput(format=('%m/%d/%Y'),
+                                               widget=forms.DateInput(format=('%d/%m/%Y'),
                                                                       attrs={'class': 'datepicker form-control'}))
     inadmissibilityreason = forms.CharField(required=False, label='If no, give a reason why it is  INADMISSIBLE',
                                                       widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
@@ -326,8 +326,8 @@ class HearingSummaryForm(forms.ModelForm):
                                                                 ('Defer the petition to a later date', 'Defer the petition to a later date'),
                                                                 ('Decline the Petition', 'Decline the Petition')],
                                                        attrs={'class': 'form-control'}))
-    interviewdate = forms.DateField(required=False, label='Set the Interview to take place on', widget=forms.DateInput(format=('%m/%d/%Y'), attrs={'class': 'form-control datepicker'}))
-    deferdate = forms.DateField(required=False, label='If you choose to Defer the Petion, set the Review Date', widget=forms.DateInput(format=('%m/%d/%Y'), attrs={'class': 'form-control datepicker'}))
+    interviewdate = forms.DateField(required=False, label='Set the Interview to take place on', widget=forms.DateInput(format=('%d/%m/%Y'), attrs={'class': 'form-control datepicker'}))
+    deferdate = forms.DateField(required=False, label='If you choose to Defer the Petion, set the Review Date', widget=forms.DateInput(format=('%d/%m/%Y'), attrs={'class': 'form-control datepicker'}))
     actiondescription = forms.CharField(required=False, label='Describe your Action ',
                                                       widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
     member1 = forms.CharField(required=False, label='Member 1 Present', widget=forms.TextInput(attrs={'class': 'form-control'}))
@@ -522,7 +522,7 @@ class ExitForm(forms.ModelForm):
                                                      attrs={'class': 'form-control'}))
     exitdate = forms.DateField(required=False,
                                   label='Date when the petitioner exited',
-                                  widget=forms.DateInput(format=('%m/%d/%Y'),
+                                  widget=forms.DateInput(format=('%d/%m/%Y'),
                                                          attrs={'class': 'datepicker form-control'}))
     petitioner = forms.ModelChoiceField(queryset=PetitionForm.objects.all().filter(exit__isnull=True),
                                         label='Choose Petitioner',
@@ -547,11 +547,7 @@ class GrantForm(forms.ModelForm):
         fields = ['recommendation','created']
 
 
-class DateFilterForm(forms.Form):
-    reservation = forms.CharField(label='', max_length=50, widget=forms.TextInput(attrs={
-       'type':'text', 'style':'width:200px', 'id':'reservation','class':'form-control'
-    }))
-
-    class Meta:
-        fields = ['reservation']
+class DateFilterFormforModal(forms.Form):
+    startdate = forms.DateField(widget=forms.DateInput(format=('%d/%m/%Y'),attrs={'class': 'datepicker form-control'}))
+    enddate = forms.DateField(widget=forms.DateInput(format=('%d/%m/%Y'),attrs={'class': 'datepicker form-control'}))
 

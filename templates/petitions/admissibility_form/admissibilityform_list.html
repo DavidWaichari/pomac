@@ -42,35 +42,51 @@
                                 across all the prisons. You can search using any
                                 criteria
                             </p>
-                            {% endblock %}
-                        {% block replacedatefilter%}
-                        <div class="col-md-4">
-                            Admissibility Date Range Filter
-                            <form class="form-horizontal" action="{% url 'filteradmissibilitiesbydate' %}" method="POST">
-                                <fieldset>
-                                    <div class="control-group">
-                                        <div class="controls">
-                                            <div class="input-prepend input-group">
-                                                <span class="add-on input-group-addon"><i
-                                                        class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
-                                                <div class="row">
+                            {% block replacedatefilter %}
+                                <div class="col-md-6">
+                                    <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog"
+                                         aria-hidden="true" style="display: none;">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
 
-                                                    {% csrf_token %}
-                                                    <div class="col-md-8">
-                                                        {{form.reservation}}
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <button class="form-control btn-info" type="submit">Search
-                                                        </button>
-                                                    </div>
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close"><span aria-hidden="true">×</span>
+                                                    </button>
+                                                    <h4 class="modal-title" id="myModalLabel2">Filter Admissibilities By Date
+                                                        Range</h4>
                                                 </div>
+                                                <div class="modal-body">
+                                                    <form class="form-horizontal"
+                                                          action="{% url 'filteradmissibilitiesbydate' %}" method="POST">
+                                                        {% csrf_token %}
+                                                         <div class="row">
+                                                            <div class="col-md-4">Start Date :</div>
+                                                            <div class="col-md-8">{{ form.startdate }}</div>
+                                                        </div>
+                                                        <hr>
+                                                         <div class="row">
+                                                            <div class="col-md-4">End Date :</div>
+                                                            <div class="col-md-8">{{ form.enddate }}</div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                        Close
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                                    </form>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
-                                </fieldset>
-                            </form>
-                        </div>
-                        {%endblock%}
+                                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target=".bs-example-modal-sm">Filter Admissibilities By Date Range
+                                    </button>
+                                </div>
+                            {% endblock %}
+                            {% endblock %}
                             <table id="allmytables" class="table table-striped table-bordered dt-responsive " style="width:100%">
                                 <thead style="width:100%">
                                 <tr>

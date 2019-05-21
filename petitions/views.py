@@ -19,7 +19,7 @@ from .forms import PetitionFormForm, HearingSummaryForm, InterviewSummaryForm, I
     RecommendationFormForm, \
     AdmissibilityCreateForm, AdmissibilityUpdateForm, HearingSummaryUpdateForm, RecommendationUpdateForm, \
     PetitionSummaryForm, PetitionSummaryEditForm, CountyForm, SubCountyForm, ExitForm, ExitFormUpdate, PrisonForm, \
-    CourtForm, OffenceForm, GrantForm, DateFilterForm
+    CourtForm, OffenceForm, GrantForm,DateFilterFormforModal
 from djangox.utils import render_to_pdf  # created in step 4
 
 
@@ -294,7 +294,7 @@ class PetitionFormListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(PetitionFormListView, self).get_context_data(**kwargs)
         today = date.today()
-        petitionsdatefilterform = DateFilterForm
+        petitionsdatefilterform = DateFilterFormforModal
         context['today'] =today
         context['form'] = petitionsdatefilterform
         return context
@@ -306,24 +306,19 @@ class PetitionFormListView(ListView):
 
 def FilterPetitionsByDate(request):
     if request.method == 'POST':
-        form = DateFilterForm(request.POST)
+        form = DateFilterFormforModal(request.POST)
         if form.is_valid():
-            filterdate = request.POST['reservation']
-            daterange = filterdate.split("-")
-            start = daterange[0]
-            startdate = start.split("/")
-            startfilterdate = datetime(int(startdate[2]),int(startdate[0]),int(startdate[1]))
-            end = daterange[1]
-            enddate = end.split("/")
-            endfilterdatepassed = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))
-            endfilterdate = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))+timedelta(days=1)
-
-            object_list = PetitionForm.objects.filter(created__range=[startfilterdate.date(), endfilterdate.date()])
+            getstartdate = request.POST['startdate']
+            getenddate = request.POST['enddate']
+            startdate = datetime.strptime(getstartdate, '%d/%m/%Y')
+            enddate = datetime.strptime(getenddate, '%d/%m/%Y')
+            print(type(startdate), type(enddate))
+            object_list = PetitionForm.objects.filter(created__gte=startdate, created__lte=enddate+timedelta(days=1))
 
             context = {
-                'startdate': startfilterdate.date(),
-                'enddate': endfilterdatepassed.date(),
-                'form':DateFilterForm,
+                'startdate':startdate.date(),
+                'enddate': enddate.date(),
+                'form':DateFilterFormforModal,
                 'today': date.today(),
                 'object_list' : object_list
             }
@@ -585,7 +580,7 @@ class AdmissibilityFormListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(AdmissibilityFormListView, self).get_context_data(**kwargs)
         today = date.today()
-        admissibilitydatefilter = DateFilterForm
+        admissibilitydatefilter = DateFilterFormforModal
         context['today'] = today
         context['form'] = admissibilitydatefilter
         return context
@@ -597,26 +592,21 @@ class AdmissibilityFormListView(ListView):
 
 def FilterAdmissibilitiesByDate(request):
     if request.method == 'POST':
-        form = DateFilterForm(request.POST)
+        form = DateFilterFormforModal(request.POST)
         if form.is_valid():
-            filterdate = request.POST['reservation']
-            daterange = filterdate.split("-")
-            start = daterange[0]
-            startdate = start.split("/")
-            startfilterdate = datetime(int(startdate[2]),int(startdate[0]),int(startdate[1]))
-            end = daterange[1]
-            enddate = end.split("/")
-            endfilterdatepassed = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))
-            endfilterdate = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))+timedelta(days=1)
-
-            object_list = AdmissibilityForm.objects.filter(created__range=[startfilterdate.date(), endfilterdate.date()])
+            getstartdate = request.POST['startdate']
+            getenddate = request.POST['enddate']
+            startdate = datetime.strptime(getstartdate, '%d/%m/%Y')
+            enddate = datetime.strptime(getenddate, '%d/%m/%Y')
+            print(type(startdate), type(enddate))
+            object_list = AdmissibilityForm.objects.filter(created__gte=startdate, created__lte=enddate + timedelta(days=1))
 
             context = {
-                'startdate': startfilterdate.date(),
-                'enddate': endfilterdatepassed.date(),
-                'form':DateFilterForm,
+                'startdate': startdate.date(),
+                'enddate': enddate.date(),
+                'form': DateFilterFormforModal,
                 'today': date.today(),
-                'object_list' : object_list
+                'object_list': object_list
             }
             return render(request, 'petitions/admissibility_form/filteredadmissibilitiesbydate_list.html',context)
         return  redirect('admissibilityform_list')
@@ -1232,7 +1222,7 @@ class PetitionSummaryListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(PetitionSummaryListView, self).get_context_data(**kwargs)
         today = date.today()
-        form = DateFilterForm
+        form = DateFilterFormforModal
         context['today'] = today
         context['form'] = form
         return context
@@ -1244,26 +1234,21 @@ class PetitionSummaryListView(ListView):
 
 def SummariesByDate(request):
     if request.method == 'POST':
-        form = DateFilterForm(request.POST)
+        form = DateFilterFormforModal(request.POST)
         if form.is_valid():
-            filterdate = request.POST['reservation']
-            daterange = filterdate.split("-")
-            start = daterange[0]
-            startdate = start.split("/")
-            startfilterdate = datetime(int(startdate[2]),int(startdate[0]),int(startdate[1]))
-            end = daterange[1]
-            enddate = end.split("/")
-            endfilterdatepassed = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))
-            endfilterdate = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))+timedelta(days=1)
-
-            object_list = PetitionSummary.objects.filter(created__range=[startfilterdate.date(), endfilterdate.date()])
+            getstartdate = request.POST['startdate']
+            getenddate = request.POST['enddate']
+            startdate = datetime.strptime(getstartdate, '%d/%m/%Y')
+            enddate = datetime.strptime(getenddate, '%d/%m/%Y')
+            print(type(startdate), type(enddate))
+            object_list = PetitionSummary.objects.filter(created__gte=startdate, created__lte=enddate + timedelta(days=1))
 
             context = {
-                'startdate': startfilterdate.date(),
-                'enddate': endfilterdatepassed.date(),
-                'form':DateFilterForm,
-                'today':date.today(),
-                'object_list' : object_list
+                'startdate': startdate.date(),
+                'enddate': enddate.date(),
+                'form': DateFilterFormforModal,
+                'today': date.today(),
+                'object_list': object_list
             }
             return render(request, 'petitions/summaries/filteredsummariesbydate_list.html',context)
         return  redirect('petitionsummary_list')
@@ -1578,7 +1563,7 @@ class HearingSummaryListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(HearingSummaryListView, self).get_context_data(**kwargs)
         context['today'] = date.today()
-        context['form'] = DateFilterForm
+        context['form'] = DateFilterFormforModal
         return context
     def dispatch(self, request, *args, **kwargs):
         """ Permission check for this class """
@@ -1588,26 +1573,21 @@ class HearingSummaryListView(ListView):
 
 def FilterHearingsByDate(request):
     if request.method == 'POST':
-        form = DateFilterForm(request.POST)
+        form = DateFilterFormforModal(request.POST)
         if form.is_valid():
-            filterdate = request.POST['reservation']
-            daterange = filterdate.split("-")
-            start = daterange[0]
-            startdate = start.split("/")
-            startfilterdate = datetime(int(startdate[2]),int(startdate[0]),int(startdate[1]))
-            end = daterange[1]
-            enddate = end.split("/")
-            endfilterdatepassed = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))
-            endfilterdate = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))+timedelta(days=1)
-
-            object_list = HearingSummary.objects.filter(created__range=[startfilterdate.date(), endfilterdate.date()])
+            getstartdate = request.POST['startdate']
+            getenddate = request.POST['enddate']
+            startdate = datetime.strptime(getstartdate, '%d/%m/%Y')
+            enddate = datetime.strptime(getenddate, '%d/%m/%Y')
+            print(type(startdate), type(enddate))
+            object_list = HearingSummary.objects.filter(created__gte=startdate, created__lte=enddate + timedelta(days=1))
 
             context = {
-                'startdate': startfilterdate.date(),
-                'enddate': endfilterdatepassed.date(),
-                'form':DateFilterForm,
+                'startdate': startdate.date(),
+                'enddate': enddate.date(),
+                'form': DateFilterFormforModal,
                 'today': date.today(),
-                'object_list' : object_list
+                'object_list': object_list
             }
             return render(request, 'petitions/hearings/filteredhearingsbydate_list.html',context)
         return  redirect('hearingsummary_list')
@@ -2208,7 +2188,7 @@ class InterviewSummaryListView(ListView):
         context = super(InterviewSummaryListView, self).get_context_data(**kwargs)
         today = date.today()
         context['today'] = today
-        context['form'] = DateFilterForm
+        context['form'] = DateFilterFormforModal
         return context
     def dispatch(self, request, *args, **kwargs):
         """ Permission check for this class """
@@ -2218,26 +2198,21 @@ class InterviewSummaryListView(ListView):
 
 def FilterInterviewsByDate(request):
     if request.method == 'POST':
-        form = DateFilterForm(request.POST)
+        form = DateFilterFormforModal(request.POST)
         if form.is_valid():
-            filterdate = request.POST['reservation']
-            daterange = filterdate.split("-")
-            start = daterange[0]
-            startdate = start.split("/")
-            startfilterdate = datetime(int(startdate[2]),int(startdate[0]),int(startdate[1]))
-            end = daterange[1]
-            enddate = end.split("/")
-            endfilterdatepassed = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))
-            endfilterdate = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))+timedelta(days=1)
-
-            object_list = InterviewSummary.objects.filter(created__range=[startfilterdate.date(), endfilterdate.date()])
+            getstartdate = request.POST['startdate']
+            getenddate = request.POST['enddate']
+            startdate = datetime.strptime(getstartdate, '%d/%m/%Y')
+            enddate = datetime.strptime(getenddate, '%d/%m/%Y')
+            print(type(startdate), type(enddate))
+            object_list = InterviewSummary.objects.filter(created__gte=startdate, created__lte=enddate + timedelta(days=1))
 
             context = {
-                'startdate': startfilterdate.date(),
-                'enddate': endfilterdatepassed.date(),
-                'form':DateFilterForm,
+                'startdate': startdate.date(),
+                'enddate': enddate.date(),
+                'form': DateFilterFormforModal,
                 'today': date.today(),
-                'object_list' : object_list
+                'object_list': object_list
             }
             return render(request, 'petitions/interviews/interviewsummary_filteredbydate.html',context)
         return  redirect('interviewsummary_list')
@@ -2252,7 +2227,7 @@ class MasterInterviewsListView(ListView):
         context = super(MasterInterviewsListView, self).get_context_data(**kwargs)
         today = date.today()
         context['today'] = today
-        context['form'] = DateFilterForm
+        context['form'] = DateFilterFormforModal
         return context
     def dispatch(self, request, *args, **kwargs):
         """ Permission check for this class """
@@ -2262,26 +2237,22 @@ class MasterInterviewsListView(ListView):
 
 def FilterMasterInteviewsByDate(request):
     if request.method == 'POST':
-        form = DateFilterForm(request.POST)
+        form = DateFilterFormforModal(request.POST)
         if form.is_valid():
-            filterdate = request.POST['reservation']
-            daterange = filterdate.split("-")
-            start = daterange[0]
-            startdate = start.split("/")
-            startfilterdate = datetime(int(startdate[2]),int(startdate[0]),int(startdate[1]))
-            end = daterange[1]
-            enddate = end.split("/")
-            endfilterdatepassed = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))
-            endfilterdate = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))+timedelta(days=1)
-
-            object_list = InterviewSummary.objects.filter(created__range=[startfilterdate.date(), endfilterdate.date()])
+            getstartdate = request.POST['startdate']
+            getenddate = request.POST['enddate']
+            startdate = datetime.strptime(getstartdate, '%d/%m/%Y')
+            enddate = datetime.strptime(getenddate, '%d/%m/%Y')
+            print(type(startdate), type(enddate))
+            object_list = InterviewSummary.objects.filter(created__gte=startdate,
+                                                            created__lte=enddate + timedelta(days=1))
 
             context = {
-                'startdate': startfilterdate.date(),
-                'enddate': endfilterdatepassed.date(),
-                'form':DateFilterForm,
+                'startdate': startdate.date(),
+                'enddate': enddate.date(),
+                'form': DateFilterFormforModal,
                 'today': date.today(),
-                'object_list' : object_list
+                'object_list': object_list
             }
             return render(request, 'petitions/interviews/filtermasterpetitionsbydate.html',context)
         return  redirect('interviewsummary_list')
@@ -2798,7 +2769,7 @@ class RecommendationFormListView(ListView):
         context = super(RecommendationFormListView, self).get_context_data(**kwargs)
         today = date.today()
         context['today'] = today
-        context['form'] = DateFilterForm
+        context['form'] = DateFilterFormforModal
         return context
     def dispatch(self, request, *args, **kwargs):
         """ Permission check for this class """
@@ -2809,26 +2780,21 @@ class RecommendationFormListView(ListView):
 
 def FilterRecommendationsByDate(request):
     if request.method == 'POST':
-        form = DateFilterForm(request.POST)
+        form = DateFilterFormforModal(request.POST)
         if form.is_valid():
-            filterdate = request.POST['reservation']
-            daterange = filterdate.split("-")
-            start = daterange[0]
-            startdate = start.split("/")
-            startfilterdate = datetime(int(startdate[2]),int(startdate[0]),int(startdate[1]))
-            end = daterange[1]
-            enddate = end.split("/")
-            endfilterdatepassed = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))
-            endfilterdate = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))+timedelta(days=1)
-
-            object_list = RecommendationForm.objects.filter(created__range=[startfilterdate.date(), endfilterdate.date()])
+            getstartdate = request.POST['startdate']
+            getenddate = request.POST['enddate']
+            startdate = datetime.strptime(getstartdate, '%d/%m/%Y')
+            enddate = datetime.strptime(getenddate, '%d/%m/%Y')
+            print(type(startdate), type(enddate))
+            object_list = RecommendationForm.objects.filter(created__gte=startdate, created__lte=enddate + timedelta(days=1))
 
             context = {
-                'startdate': startfilterdate.date(),
-                'enddate': endfilterdatepassed.date(),
-                'form':DateFilterForm,
+                'startdate': startdate.date(),
+                'enddate': enddate.date(),
+                'form': DateFilterFormforModal,
                 'today': date.today(),
-                'object_list' : object_list
+                'object_list': object_list
             }
             return render(request, 'petitions/recommendations/filteredrecommendationsbydate_list.html',context)
         return  redirect('recommendationform_list')
@@ -2842,7 +2808,7 @@ class MasterRecommendationFormListView(ListView):
         context = super(MasterRecommendationFormListView, self).get_context_data(**kwargs)
         today = date.today()
         context['today'] = today
-        context['form'] = DateFilterForm
+        context['form'] = DateFilterFormforModal
         return context
     def dispatch(self, request, *args, **kwargs):
         """ Permission check for this class """
@@ -2852,26 +2818,21 @@ class MasterRecommendationFormListView(ListView):
 
 def FilterMasterRecommendationsByDate(request):
     if request.method == 'POST':
-        form = DateFilterForm(request.POST)
+        form = DateFilterFormforModal(request.POST)
         if form.is_valid():
-            filterdate = request.POST['reservation']
-            daterange = filterdate.split("-")
-            start = daterange[0]
-            startdate = start.split("/")
-            startfilterdate = datetime(int(startdate[2]),int(startdate[0]),int(startdate[1]))
-            end = daterange[1]
-            enddate = end.split("/")
-            endfilterdatepassed = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))
-            endfilterdate = datetime(int(enddate[2]), int(enddate[0]), int(enddate[1]))+timedelta(days=1)
-
-            object_list = RecommendationForm.objects.filter(created__range=[startfilterdate.date(), endfilterdate.date()])
+            getstartdate = request.POST['startdate']
+            getenddate = request.POST['enddate']
+            startdate = datetime.strptime(getstartdate, '%d/%m/%Y')
+            enddate = datetime.strptime(getenddate, '%d/%m/%Y')
+            print(type(startdate), type(enddate))
+            object_list = RecommendationForm.objects.filter(created__gte=startdate, created__lte=enddate + timedelta(days=1))
 
             context = {
-                'startdate': startfilterdate.date(),
-                'enddate': endfilterdatepassed.date(),
-                'form':DateFilterForm,
+                'startdate': startdate.date(),
+                'enddate': enddate.date(),
+                'form': DateFilterFormforModal,
                 'today': date.today(),
-                'object_list' : object_list
+                'object_list': object_list
             }
             return render(request, 'petitions/recommendations/filteredmasterrecommendationsbydate_list.html',context)
         return redirect('master_recommendationform_list')
