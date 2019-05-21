@@ -8,10 +8,12 @@ class CountyForm(forms.ModelForm):
         model = County
         fields = ['name']
 
+
 class SubCountyForm(forms.ModelForm):
     class Meta:
         model = SubCounty
         fields = ['name', 'county']
+
 
 class PrisonForm(forms.ModelForm):
     class Meta:
@@ -224,7 +226,6 @@ class PetitionFormForm(forms.ModelForm):
                   'explanationofpendingcourtmatter','isttheapplicantthepetitioner','nameofapplicant','relationshipofapplicantwithpetitioner','addressoftheapplicant','telephonenumberoftheapplicant','created']
 
 
-
 class AdmissibilityCreateForm(forms.ModelForm):
     def boolean_coerce(value):
         # value is received as a unicode string
@@ -273,68 +274,22 @@ class AdmissibilityCreateForm(forms.ModelForm):
         fields = [ 'petitioner','admissability', 'hearingdate', 'inadmissibilityreason', 'callforevidence', 'descriptionforcallofevidence', 'requestreports', 'descriptionforrequstreport', 'orderforinvestigation', 'orderforinvestigationdescription']
 
 
-class AdmissibilityUpdateForm(forms.ModelForm):
-    def boolean_coerce(value):
-        # value is received as a unicode string
-        if str(value).lower() in ('1', 'true'):
-            return True
-        elif str(value).lower() in ('0', 'false'):
-            return False
-
+class AdmissibilityUpdateForm(AdmissibilityCreateForm):
     petitioner = forms.ModelChoiceField(label='Name of the Petitioner',queryset=PetitionForm.objects.filter(anypendingcourtmatter=False), widget=forms.Select(attrs={'class': 'form-control','style':'pointer-events:none'}))
 
-    admissability = forms.TypedChoiceField(
-        label='Do you wish to render the this petition ADMISSIBLE?',
-        coerce=boolean_coerce,
-        choices=((True, 'Yes'), (False, 'No')),
-        widget=forms.RadioSelect(attrs={'style': 'margin-left: 30px;'}), )
-    hearingdate = forms.DateField(required=False, label='If yes, Hear the petition taking into account the criteria provided in Section 22 of the '
-                                                        'Power of Mercy Act, 2011 on the following date',
-                                               widget=forms.DateInput(format=('%m/%d/%Y'),
-                                                                      attrs={'class': 'datepicker form-control'}))
-    inadmissibilityreason = forms.CharField(required=False, label='If no, give a reason why it is  INADMISSIBLE',
-                                                      widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-    callforevidence = forms.TypedChoiceField(
-        label='Do you wish to call for more evidence?',
-        coerce=boolean_coerce,
-        choices=((True, 'Yes'), (False, 'No')),
-        widget=forms.RadioSelect(attrs={'style': 'margin-left: 30px;'}), )
-    descriptionforcallofevidence =  forms.CharField(required=False, label='if yes, please explain',
-                                                      widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-    requestreports =  forms.TypedChoiceField(
-        label='Do you wish to Request reports from various Goverrment Agencies?',
-        coerce=boolean_coerce,
-        choices=((True, 'Yes'), (False, 'No')),
-        widget=forms.RadioSelect(attrs={'style': 'margin-left: 30px;'}), )
-    descriptionforrequstreport = forms.CharField(required=False, label='if yes, please list the Government Agencies',
-                                                      widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-    orderforinvestigation = forms.TypedChoiceField(
-        label='Do you wish to order for more investigations?',
-        coerce=boolean_coerce,
-        choices=((True, 'Yes'), (False, 'No')),
-        widget=forms.RadioSelect(attrs={'style': 'margin-left: 30px;'}), )
-    orderforinvestigationdescription = forms.CharField(required=False, label='if yes, please explain',
-                                                      widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-
-    class Meta:
-        model = AdmissibilityForm
-        fields = [ 'petitioner','admissability', 'hearingdate', 'inadmissibilityreason', 'callforevidence', 'descriptionforcallofevidence', 'requestreports', 'descriptionforrequstreport', 'orderforinvestigation', 'orderforinvestigationdescription']
 
 class PetitionSummaryForm(forms.ModelForm):
     admissibility = forms.ModelChoiceField(label='Select the Petitioner', queryset=AdmissibilityForm.objects.filter(admissability=True).filter(petitionsummary__isnull=True), widget=forms.Select(attrs={'class': 'form-control'}))
     typeandcircumstancesofoffence = forms.CharField(label='Type and circumstances of the offence', widget=forms.Textarea(attrs={'rows':12,'class':'form-control'}))
     petitionoverview = forms.CharField(label='Petition overview', widget=forms.Textarea(attrs={'rows':12,'class':'form-control'}))
     class Meta:
+        abstract = True
         model = PetitionSummary
         fields = ['admissibility','typeandcircumstancesofoffence', 'petitionoverview']
 
-class PetitionSummaryEditForm(forms.ModelForm):
+
+class PetitionSummaryEditForm(PetitionSummaryForm):
     admissibility = forms.ModelChoiceField(label='Name of the Petitioner', queryset=AdmissibilityForm.objects.filter(admissability=True), widget=forms.Select(attrs={'class': 'form-control','style':'pointer-events:none'}))
-    typeandcircumstancesofoffence = forms.CharField(label='Type and circumstances of the offence', widget=forms.Textarea(attrs={'rows':12,'class':'form-control'}))
-    petitionoverview = forms.CharField(label='Petition overview', widget=forms.Textarea(attrs={'rows':12,'class':'form-control'}))
-    class Meta:
-        model = PetitionSummary
-        fields = ['admissibility','typeandcircumstancesofoffence', 'petitionoverview']
 
 
 class HearingSummaryForm(forms.ModelForm):
@@ -393,73 +348,12 @@ class HearingSummaryForm(forms.ModelForm):
                       'reportoffellowinmates', 'reportsfromprobationservices', 'observationswithmainreasons','action',
                   'interviewdate','deferdate','actiondescription','member1','member2','member3','member4','member5','member6','member7','member8','member9','member10' ]
 
-class HearingSummaryUpdateForm(forms.ModelForm):
+
+class HearingSummaryUpdateForm(HearingSummaryForm):
     admissibility = forms.ModelChoiceField(label='Name of the Petitioner',queryset=AdmissibilityForm.objects.filter(admissability=True), widget=forms.Select(attrs={'class': 'form-control','style':'pointer-events:none'}))
-    healthstatus = forms.CharField(required=False, label='Health Status',
-                                                      widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-    familystatus = forms.CharField(required=False, label='Family Status (parents, spouse,children etc)',
-                                                      widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-    natureandseriousnessoftheoffense = forms.CharField(required=False, label='The nature and seriousness of the offense  )',
-                                                      widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-    personalcircumstances = forms.CharField(required=False, label='The personal circumstances of the offender at the time of making the petition, '
-                                                                  'including mental and physical health and any disabilities',
-                                                      widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-    interestofstateandcommunity = forms.CharField(required=False, label='The interest of State and Community',
-                                                      widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-    postconvictionconduct = forms.CharField(required=False, label='The post conviction conduct, character and reputation of the convicted criminal prisoner',
-                                                      widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-    officialrecommendationsandreports = forms.CharField(required=False, label='The official recommendations and reports from State organ or '
-                                                                              'department responsible fro correctional services',
-                                                      widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-    wherethepetitionerhaspersued = forms.CharField(required=False, label='Where the petitioner has opted to pursue other available remedies, the outcome'
-                                                                         'of such avenues',
-                                                      widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-    representationofvictim = forms.CharField(required=False, label='The representation of the victim where applicable',
-                                                      widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-    reportoffellowinmates = forms.CharField(required=False, label='Where applicable, a report of fellow inmates',
-                                                      widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-    reportsfromprobationservices = forms.CharField(required=False, label='Reports from probational services',
-                                                      widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-    observationswithmainreasons = forms.CharField(required=False, label='Observations with main reasons',
-                                                      widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-    action = forms.CharField(label='Action',
-                                   widget=forms.Select(choices=[('',' Take the action appropriately'),('Interview the Petitioner','Interview the Petitioner'),
-                                                                ('Defer the petition to a later date', 'Defer the petition to a later date'),
-                                                                ('Decline the Petition', 'Decline the Petition')],
-                                                       attrs={'class': 'form-control'}))
-    interviewdate = forms.DateField(required=False, label='Set the Interview to take place on', widget=forms.DateInput(format=('%m/%d/%Y'), attrs={'class': 'form-control datepicker'}))
-    deferdate = forms.DateField(required=False, label='If you choose to Defer the Petion, set the Review Date', widget=forms.DateInput(format=('%m/%d/%Y'), attrs={'class': 'form-control datepicker'}))
-    actiondescription = forms.CharField(required=False, label='Describe your Action ',
-                                                      widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-    member1 = forms.CharField(required=False, label='Member 1 Present',
-                              widget=forms.TextInput(attrs={'class': 'form-control'}))
-    member2 = forms.CharField(required=False, label='Member 2 Present',
-                              widget=forms.TextInput(attrs={'class': 'form-control'}))
-    member3 = forms.CharField(required=False, label='Member 3 Present',
-                              widget=forms.TextInput(attrs={'class': 'form-control'}))
-    member4 = forms.CharField(required=False, label='Member 4 Present',
-                              widget=forms.TextInput(attrs={'class': 'form-control'}))
-    member5 = forms.CharField(required=False, label='Member 5 Present',
-                              widget=forms.TextInput(attrs={'class': 'form-control'}))
-    member6 = forms.CharField(required=False, label='Member 6 Present',
-                              widget=forms.TextInput(attrs={'class': 'form-control'}))
-    member7 = forms.CharField(required=False, label='Member 7 Present',
-                              widget=forms.TextInput(attrs={'class': 'form-control'}))
-    member8 = forms.CharField(required=False, label='Member 8 Present',
-                              widget=forms.TextInput(attrs={'class': 'form-control'}))
-    member9 = forms.CharField(required=False, label='Member 9 Present',
-                              widget=forms.TextInput(attrs={'class': 'form-control'}))
-    member10 = forms.CharField(required=False, label='Member 10 Present',
-                               widget=forms.TextInput(attrs={'class': 'form-control'}))
-    class Meta:
-        model = HearingSummary
-        fields = ['admissibility','healthstatus','familystatus','natureandseriousnessoftheoffense', 'personalcircumstances', 'interestofstateandcommunity', 'postconvictionconduct',
-                      'officialrecommendationsandreports', 'wherethepetitionerhaspersued', 'representationofvictim',
-                      'reportoffellowinmates', 'reportsfromprobationservices', 'observationswithmainreasons','action',
-                  'interviewdate','deferdate','actiondescription','member1','member2','member3','member4','member5','member6','member7','member8','member9','member10' ]
+
 
 class InterviewSummaryForm(forms.ModelForm):
-
     def boolean_coerce(value):
         # value is received as a unicode string
         if str(value).lower() in ('1', 'true'):
@@ -555,6 +449,7 @@ class InterviewSummaryForm(forms.ModelForm):
                                    widget=forms.Select(choices=[('','Choose Appropritely'),('Recommended to President','Recommended to President'),
                                                                 ('Not Recommended to President', 'Not Recommended to President')],
                                                        attrs={'class': 'form-control'}))
+
     class Meta:
         model = InterviewSummary
         fields = ['hearing','ownaccountofcircumstances', 'reconciliationefforts', 'indicationofremosefulness',
@@ -564,127 +459,10 @@ class InterviewSummaryForm(forms.ModelForm):
                   'm5vote', 'm5votereason','m6vote', 'm6votereason','finalresolution']
 
 
-class InterviewSummaryEditForm(forms.ModelForm):
-
-    def boolean_coerce(value):
-            # value is received as a unicode string
-            if str(value).lower() in ('1', 'true'):
-                return True
-            elif str(value).lower() in ('0', 'false'):
-                return False
-
+class InterviewSummaryEditForm(InterviewSummaryForm):
     hearing = forms.ModelChoiceField(label='Name of the Petitioner', queryset=HearingSummary.objects.filter(
             action='Interview the Petitioner').filter(interviewdate__isnull=False), widget=forms.Select(attrs={'class': 'form-control','style':'pointer-events:none'}))
-    ownaccountofcircumstances = forms.CharField(required=False,
-                                                    label='Own account of circumstances sorrounding the commission of Offense ',
-                                                    widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-    reconciliationefforts = forms.CharField(required=False,
-                                                label='Reconciliation efforts with the victims of the offense that led to current conviction ',
-                                                widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-    indicationofremosefulness = forms.CharField(required=False, label='Indication of remosefulness or otherwise',
-                                                    widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-    anyothercomments = forms.CharField(required=False, label=' Any other comments',
-                                           widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-    representationofthevictim = forms.CharField(required=False,
-                                                    label='Representation of the victim (if applicable) ',
-                                                    widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-    concludingobservations = forms.CharField(
-            label='Concluding Observations of major Members in view of the hearing and Interviews conducted in the Petition',
-            widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-    chairpersonvote = forms.TypedChoiceField(required=True,
-                                                 label='Chairpersons Vote',
-                                                 coerce=boolean_coerce,
-                                                 choices=((True, 'Recommend to President'),
-                                                          (False, 'Not Recommended to President')),
-                                                 widget=forms.RadioSelect(attrs={'style': 'margin-left:-15px;'}), )
-    chairpersonvotereason = forms.CharField(required=False, label='Chairpersons Remarks for the vote',
-                                                widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
 
-    vicechairvote = forms.TypedChoiceField(required=True,
-                                               label='Chairpersons Vote',
-                                               coerce=boolean_coerce,
-                                               choices=((True, 'Recommend to President'),
-                                                        (False, 'Not Recommended to President')),
-                                               widget=forms.RadioSelect(attrs={'style': 'margin-left:-15px;'}), )
-    vicechairvotereason = forms.CharField(required=False, label='Vice Chairpersons Remarks for the vote',
-                                              widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-
-    csvote = forms.TypedChoiceField(required=True,
-                                        label='Cabinet Secretary\'s (Interior) Vote',
-                                        coerce=boolean_coerce,
-                                        choices=(
-                                        (True, 'Recommend to President'), (False, 'Not Recommended to President')),
-                                        widget=forms.RadioSelect(attrs={'style': 'margin-left:-15px;'}), )
-    csvotereason = forms.CharField(required=False, label='Cabinet Secretary\'s Remarks for the vote',
-                                       widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-
-    m1vote = forms.TypedChoiceField(required=True,
-                                        label='Member 1\'s Vote',
-                                        coerce=boolean_coerce,
-                                        choices=(
-                                        (True, 'Recommend to President'), (False, 'Not Recommended to President')),
-                                        widget=forms.RadioSelect(attrs={'style': 'margin-left:-15px;'}), )
-    m1votereason = forms.CharField(required=False, label='Member 1\'s Remarks for the vote',
-                                       widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-
-    m2vote = forms.TypedChoiceField(required=True,
-                                        label='Member 2\'s Vote',
-                                        coerce=boolean_coerce,
-                                        choices=(
-                                        (True, 'Recommend to President'), (False, 'Not Recommended to President')),
-                                        widget=forms.RadioSelect(attrs={'style': 'margin-left:-15px;'}), )
-    m2votereason = forms.CharField(required=False, label='Member 2\'s Remarks for the vote',
-                                       widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-
-    m3vote = forms.TypedChoiceField(required=True,
-                                        label='Member 3\'s Vote',
-                                        coerce=boolean_coerce,
-                                        choices=(
-                                        (True, 'Recommend to President'), (False, 'Not Recommended to President')),
-                                        widget=forms.RadioSelect(attrs={'style': 'margin-left:-15px;'}), )
-    m3votereason = forms.CharField(required=False, label='Member 3\'s Remarks for the vote',
-                                       widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-
-    m4vote = forms.TypedChoiceField(required=True,
-                                        label='Member 4\'s Vote',
-                                        coerce=boolean_coerce,
-                                        choices=(
-                                        (True, 'Recommend to President'), (False, 'Not Recommended to President')),
-                                        widget=forms.RadioSelect(attrs={'style': 'margin-left:-15px;'}), )
-    m4votereason = forms.CharField(required=False, label='Member 4\'s Remarks for the vote',
-                                       widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-
-    m5vote = forms.TypedChoiceField(required=True,
-                                        label='Member 5\'s Vote',
-                                        coerce=boolean_coerce,
-                                        choices=(
-                                        (True, 'Recommend to President'), (False, 'Not Recommended to President')),
-                                        widget=forms.RadioSelect(attrs={'style': 'margin-left:-15px;'}), )
-    m5votereason = forms.CharField(required=False, label='Member 5\'s Remarks for the vote',
-                                       widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-
-    m6vote = forms.TypedChoiceField(required=True,
-                                        label='Member 6\'s Vote',
-                                        coerce=boolean_coerce,
-                                        choices=(
-                                        (True, 'Recommend to President'), (False, 'Not Recommended to President')),
-                                        widget=forms.RadioSelect(attrs={'style': 'margin-left:-15px;'}), )
-    m6votereason = forms.CharField(required=False, label='Member 6\'s Remarks for the vote',
-                                       widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-    finalresolution = forms.CharField(label='FINAL RESOLUTION',
-                                          widget=forms.Select(choices=[('', 'Choose Appropritely'), (
-                                          'Recommended to President', 'Recommended to President'),
-                                                                       ('Not Recommended to President',
-                                                                        'Not Recommended to President')],
-                                                              attrs={'class': 'form-control'}))
-
-    class Meta:
-        model = InterviewSummary
-        fields = ['hearing','ownaccountofcircumstances', 'reconciliationefforts', 'indicationofremosefulness',
-                      'anyothercomments', 'representationofthevictim', 'concludingobservations', 'chairpersonvote',
-                      'chairpersonvotereason', 'vicechairvote', 'vicechairvotereason', 'csvote', 'csvotereason',
-                      'm1vote', 'm1votereason','m2vote', 'm2votereason','m3vote', 'm3votereason','m4vote', 'm4votereason',
-                  'm5vote', 'm5votereason','m6vote', 'm6votereason','finalresolution']
 
 class RecommendationFormForm(forms.ModelForm):
     interview = forms.ModelChoiceField(label='Select the Petitioner', queryset= InterviewSummary.objects.filter(finalresolution= 'Recommended to President').filter(recommendationform__isnull= True).filter(hearing__admissibility__petitioner__exit__isnull=True),widget=forms.Select(attrs={'class':'form-control'}))
@@ -716,49 +494,14 @@ class RecommendationFormForm(forms.ModelForm):
     compellingremarks = forms.CharField(required=False,
                                             label='Compelling Recommendation Remarks',
                                             widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 10}))
+
     class Meta:
         model = RecommendationForm
         fields = ['interview','mercy','explanationofrecommedation' ,'circumstanceofoffence','compellingremarks']
 
-class RecommendationUpdateForm(forms.ModelForm):
-    def boolean_coerce(value):
-        # value is received as a unicode string
-        if str(value).lower() in ('1', 'true'):
-            return True
-        elif str(value).lower() in ('0', 'false'):
-            return False
+
+class RecommendationUpdateForm(RecommendationFormForm):
     interview = forms.ModelChoiceField(label='Name of the Petitioner', queryset= InterviewSummary.objects.all(),widget=forms.Select(attrs={'class':'form-control','style':'pointer-events:none'}))
-    explanationofrecommedation = forms.CharField(required=True, label='Following the investigations conducted, evidence gathered, interviews held and '
-                                                                       'consideration of the reports from appropriate Government agencis, the Committee forms the opinion that the Petitioner: ',
-                    widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 4}))
-
-    mercy = forms.CharField(label='His Excellency the President to exercise the power of mercy and',
-                            widget=forms.Select(choices=[('', 'Choose Appropritely'), (
-                                'grant a free pardon', 'grant a free pardon'),
-                                                         ('grant a conditional pardon', 'grant a conditional pardon'),
-                                                         ('postpone the punishment imposed indefinitely',
-                                                          'postpone the punishment imposed indefinitely'),
-                                                         ('postpone the punishment imposed for _________ years',
-                                                          'postpone the punishment imposed for _________ years'),
-                                                         ('commute the death sentence to life imprisonment', 'commute the death sentence to life imprisonment'),
-                                                         (
-                                                             'commute the __________________ sentence to __________________ sentence',
-                                                             'commute the __________________ sentence to __________________ sentence'),
-                                                         ('remit the unexpired portion of the sentence',
-                                                          'remit the unexpired portion of the sentence'),
-                                                         ('remit ___________ years of the ______________ sentence',
-                                                          'remit ___________ years of the ______________ sentence')],
-                                                attrs={'class': 'form-control'}))
-    circumstanceofoffence = forms.CharField(required=False,
-                                            label='Circumstances sorrounding the commission of the offence',
-                                            widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 10}))
-    compellingremarks = forms.CharField(required=False,
-                                        label='Compelling Recommendation Remarks',
-                                        widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 10}))
-
-    class Meta:
-        model = RecommendationForm
-        fields = ['interview', 'mercy','explanationofrecommedation','circumstanceofoffence','compellingremarks' ]
 
 
 class ExitForm(forms.ModelForm):
@@ -784,9 +527,17 @@ class ExitForm(forms.ModelForm):
     petitioner = forms.ModelChoiceField(queryset=PetitionForm.objects.all().filter(exit__isnull=True),
                                         label='Choose Petitioner',
                                         widget=forms.Select(attrs={'class': 'form-control'}))
+
     class Meta:
         model = Exit
         fields = [ 'petitioner','exitreason','exitdate']
+
+
+class ExitFormUpdate(ExitForm):
+    petitioner = forms.ModelChoiceField(queryset=PetitionForm.objects.all(),
+                                        label='Name of the Petitioner',
+                                        widget=forms.Select(attrs={'class': 'form-control','style':'pointer-events:none'}))
+
 
 class GrantForm(forms.ModelForm):
     recommendation = forms.ModelChoiceField(queryset=RecommendationForm.objects.all().filter(grant__isnull=True).filter(interview__hearing__admissibility__petitioner__exit__isnull=True),
@@ -795,37 +546,12 @@ class GrantForm(forms.ModelForm):
         model = Grant
         fields = ['recommendation']
 
-class ExitFormUpdate(forms.ModelForm):
-    exitreason = forms.CharField(label='Reason why the petitioner exited the prison',
-                                 widget=forms.Select(choices=[('', 'Choose Appropritely'), (
-                                     'Pardoned under article 133 of the constitution',
-                                     'Pardoned under article 133 of the constitution'),
-                                                              (
-                                                                  'Discharged upon completion of sentence',
-                                                                  'Discharged upon completion of sentence'),
-                                                              ('The Petitioner escaped from prison',
-                                                               'The Petitioner escaped from prison'),
-                                                              ('Deceased',
-                                                               'Deceased'),
-                                                              ('Released following resentencing',
-                                                               'Released following resentencing')
-                                                              ],
-                                                     attrs={'class': 'form-control'}))
-    petitioner = forms.ModelChoiceField(queryset=PetitionForm.objects.all(),
-                                        label='Name of the Petitioner',
-                                        widget=forms.Select(attrs={'class': 'form-control','style':'pointer-events:none'}))
-    exitdate = forms.DateField(required=False,
-                               label='Date when the petitioner exited',
-                               widget=forms.DateInput(format=('%m/%d/%Y'),
-                                                      attrs={'class': 'datepicker form-control'}))
-    class Meta:
-        model = Exit
-        fields = [ 'petitioner','exitreason','exitdate']
-
 
 class DateFilterForm(forms.Form):
     reservation = forms.CharField(label='', max_length=50, widget=forms.TextInput(attrs={
        'type':'text', 'style':'width:200px', 'id':'reservation','class':'form-control'
     }))
+
     class Meta:
         fields = ['reservation']
+
