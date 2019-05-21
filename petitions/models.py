@@ -235,7 +235,7 @@ class PetitionForm(models.Model):
 
 class AdmissibilityForm(models.Model):
     # Fields
-    created = models.DateTimeField(auto_now_add=True, editable=False)
+    created = models.DateTimeField(default=now, editable=True)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     admissability = models.BooleanField()
     hearingdate = models.DateField(null=True, blank= True)
@@ -283,7 +283,7 @@ class PetitionSummary(models.Model):
     # Fields
     typeandcircumstancesofoffence = models.TextField(max_length=1000)
     petitionoverview = models.TextField(max_length=1000)
-    created = models.DateTimeField(auto_now_add=True, editable=False)
+    created = models.DateTimeField(default=now, editable=True)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     # Relationship Fields
     admissibility = models.ForeignKey(AdmissibilityForm, on_delete=models.CASCADE)
@@ -315,7 +315,7 @@ class PetitionSummary(models.Model):
 class HearingSummary(models.Model):
 
     # Fields
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(default=now, editable=True)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     healthstatus = models.TextField(max_length=400)
     familystatus = models.TextField(max_length=400)
@@ -382,7 +382,7 @@ class HearingSummary(models.Model):
 
 class InterviewSummary(models.Model):
     # Fields
-    created = models.DateTimeField(auto_now_add=True, editable=False)
+    created = models.DateTimeField(default=now, editable=True)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     ownaccountofcircumstances = models.TextField(max_length=1000)
     reconciliationefforts = models.TextField(max_length=1000)
@@ -441,7 +441,7 @@ class InterviewSummary(models.Model):
 class RecommendationForm(models.Model):
 
     # Fields
-    created = models.DateTimeField(auto_now_add=True, editable=False)
+    created = models.DateTimeField(default=now, editable=True)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     explanationofrecommedation = models.TextField(max_length=1000)
     mercy = models.CharField(max_length=200)
@@ -479,7 +479,7 @@ class RecommendationForm(models.Model):
 class Grant(models.Model):
 
     # Fields
-    created = models.DateTimeField(auto_now_add=True, editable=False)
+    created = models.DateTimeField(default=now, editable=True)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
 
     # Relationship Fields
@@ -513,7 +513,7 @@ class Grant(models.Model):
 class Exit(models.Model):
 
     # Fields
-    created = models.DateTimeField(auto_now_add=True, editable=False)
+    created = models.DateTimeField(default=now, editable=True)
     last_updated = models.DateTimeField(auto_now=True, editable=False)
     exitreason = models.CharField(max_length=100)
     exitdate = models.DateField(null=True, blank=True)

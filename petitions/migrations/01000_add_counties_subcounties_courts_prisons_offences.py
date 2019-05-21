@@ -666,7 +666,7 @@ def add_initial_data(apps, schema_editor):
     instance = Offence.objects.create(name='Handling of stolen goods')
     instance = Offence.objects.create(name='Grevious harm')
     instance = Offence.objects.create(name='Attempted defilement')
-    instance = Offence.objects.create(name='Robbery With Violence')
+    instance = Offence.objects.create(name='Robbery with violence contrary to section 296(2) of the Penal Code')
     instance = Offence.objects.create(name='Murder')
     instance = Offence.objects.create(name='Robbery')
     instance = Offence.objects.create(name='Manslaughter')

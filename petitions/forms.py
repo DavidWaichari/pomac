@@ -271,7 +271,7 @@ class AdmissibilityCreateForm(forms.ModelForm):
 
     class Meta:
         model = AdmissibilityForm
-        fields = [ 'petitioner','admissability', 'hearingdate', 'inadmissibilityreason', 'callforevidence', 'descriptionforcallofevidence', 'requestreports', 'descriptionforrequstreport', 'orderforinvestigation', 'orderforinvestigationdescription']
+        fields = [ 'petitioner','admissability', 'hearingdate', 'inadmissibilityreason', 'callforevidence', 'descriptionforcallofevidence', 'requestreports', 'descriptionforrequstreport', 'orderforinvestigation', 'orderforinvestigationdescription','created']
 
 
 class AdmissibilityUpdateForm(AdmissibilityCreateForm):
@@ -285,7 +285,7 @@ class PetitionSummaryForm(forms.ModelForm):
     class Meta:
         abstract = True
         model = PetitionSummary
-        fields = ['admissibility','typeandcircumstancesofoffence', 'petitionoverview']
+        fields = ['admissibility','typeandcircumstancesofoffence', 'petitionoverview','created']
 
 
 class PetitionSummaryEditForm(PetitionSummaryForm):
@@ -346,7 +346,7 @@ class HearingSummaryForm(forms.ModelForm):
         fields = ['admissibility','healthstatus','familystatus','natureandseriousnessoftheoffense', 'personalcircumstances', 'interestofstateandcommunity', 'postconvictionconduct',
                       'officialrecommendationsandreports', 'wherethepetitionerhaspersued', 'representationofvictim',
                       'reportoffellowinmates', 'reportsfromprobationservices', 'observationswithmainreasons','action',
-                  'interviewdate','deferdate','actiondescription','member1','member2','member3','member4','member5','member6','member7','member8','member9','member10' ]
+                  'interviewdate','deferdate','actiondescription','member1','member2','member3','member4','member5','member6','member7','member8','member9','member10' ,'created']
 
 
 class HearingSummaryUpdateForm(HearingSummaryForm):
@@ -456,7 +456,7 @@ class InterviewSummaryForm(forms.ModelForm):
                       'anyothercomments', 'representationofthevictim', 'concludingobservations', 'chairpersonvote',
                       'chairpersonvotereason', 'vicechairvote', 'vicechairvotereason', 'csvote', 'csvotereason',
                       'm1vote', 'm1votereason','m2vote', 'm2votereason','m3vote', 'm3votereason','m4vote', 'm4votereason',
-                  'm5vote', 'm5votereason','m6vote', 'm6votereason','finalresolution']
+                  'm5vote', 'm5votereason','m6vote', 'm6votereason','finalresolution','created']
 
 
 class InterviewSummaryEditForm(InterviewSummaryForm):
@@ -497,7 +497,7 @@ class RecommendationFormForm(forms.ModelForm):
 
     class Meta:
         model = RecommendationForm
-        fields = ['interview','mercy','explanationofrecommedation' ,'circumstanceofoffence','compellingremarks']
+        fields = ['interview','mercy','explanationofrecommedation' ,'circumstanceofoffence','compellingremarks','created']
 
 
 class RecommendationUpdateForm(RecommendationFormForm):
@@ -530,7 +530,7 @@ class ExitForm(forms.ModelForm):
 
     class Meta:
         model = Exit
-        fields = [ 'petitioner','exitreason','exitdate']
+        fields = [ 'petitioner','exitreason','exitdate','created']
 
 
 class ExitFormUpdate(ExitForm):
@@ -544,7 +544,7 @@ class GrantForm(forms.ModelForm):
                                             label='Choose Petitioner', widget=forms.Select(attrs={'class':'form-control'}))
     class Meta:
         model = Grant
-        fields = ['recommendation']
+        fields = ['recommendation','created']
 
 
 class DateFilterForm(forms.Form):
