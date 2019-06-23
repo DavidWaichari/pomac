@@ -1,4 +1,4 @@
-{% load static %}
+﻿{% load static %}
 {#{% load socialaccount %}#}
 <!DOCTYPE html>
 <html lang="en">
@@ -19,12 +19,15 @@
 
         {#<link rel="stylesheet" href="{% static 'css/base.css' %}">#}
     {% endblock %}
+    
 <style>
+    {% block styles%}
     .authenticationforms input{
         background: rgba(255, 255, 255, 0.3) !important;
     border: 1px solid black;
     filter: alpha(opacity=60); /* For IE8 and earlier */
     }
+    {%endblock%}
 </style>
 <link rel="shortcut icon" href="/static/build/images/pomactitleicon.png" type="image/x-icon" />
 </head>

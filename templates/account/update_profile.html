@@ -4,33 +4,39 @@
 {% block title %} Update Profile {% endblock title %}
 
 {% block stylesheets %}
-    {{ block.super }}
-    <!-- bootstrap-wysiwyg -->
-    <link href="/static/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+{{ block.super }}
+<!-- bootstrap-wysiwyg -->
+<link href="/static/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
 {% endblock stylesheets %}
+{%block styles%}
+.fixed-bottom{
+    position: static;
+}
+{%endblock%}
 
 {% block content %}
-    <div class="row">
-        <div class="col-md-6 mx-auto">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>Update Profile |
-                        <small>Update your profile here</small>
-                    </h2>
-                </div>
-                <div class="x_content">
-                    <form method="post" class="authenticationforms">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button class="btn btn-primary" type="submit">Submit</button>
-                    </form>
-                </div>
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>
+                    Update Profile |
+                    <small>Update your profile here</small>
+                </h2>
+            </div>
+            <div class="x_content">
+                <form method="post" class="authenticationforms">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button class="btn btn-primary mb-2" type="submit">Submit</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
 {% endblock content %}
 
 {% block javascripts %}
-    {{ block.super }}
+{{ block.super }}
 {% endblock javascripts %}

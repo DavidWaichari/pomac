@@ -14,6 +14,7 @@ from django.template.loader import render_to_string
 from djangox.tokens import account_activation_token
 from users.models import CustomUser
 from .forms import CustomUserCreationForm, ProfileUpdateForm
+from django.core.exceptions import PermissionDenied
 
 
 @login_required
@@ -72,3 +73,12 @@ class ProfileUpdateView(UpdateView):
     def get_success_url(self):
         view_name = 'petitions_dashboard'
         return reverse_lazy(view_name)
+
+    def dispatch(self, request, *args, **kwargs):
+        #check if the user is the owner of the profile
+        if not request.user.id == self.kwargs['pk']:
+            #raise PermissionDenied("You do not have permission to change this profile")
+            return redirect('updateprofile', request.user.id)
+        else:
+            return super(ProfileUpdateView, self).dispatch(request, *args, **kwargs)
+    

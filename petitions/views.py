@@ -3453,9 +3453,6 @@ def DeleteExit(request,pk):
 def dashboard(request):
     user = CustomUser.objects.get(pk=request.user.id)
     if (user.first_name == '' and user.last_name == ''):
-        sweetify.warning(request,
-                         'Please update your profile using your official name. If you have already done that ignore this message',
-                         button=True, timer=15000)
         return redirect('updateprofile', request.user.id)
     data = {
         'noofpetitions': PetitionForm.objects.count(),
