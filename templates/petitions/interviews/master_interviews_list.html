@@ -60,7 +60,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <form class="form-horizontal"
-                                                          action="{% url 'interviewsummary_filtermasterbydatelist' %}" method="POST">
+                                                          action="{% url 'interviewsummary_filtermasterbydatelist' %}" method="POST" autocomplete="off">
                                                         {% csrf_token %}
                                                          <div class="row">
                                                             <div class="col-md-4">Start Date :</div>

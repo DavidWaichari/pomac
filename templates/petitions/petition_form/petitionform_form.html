@@ -49,7 +49,7 @@
                                 Listing</a></p>
                             <div class="crispyform">
                                 <form method="post" id="PetitionForm"
-                                      data-subcounties-url="{% url 'ajax_load_subcounties' %}">
+                                      data-subcounties-url="{% url 'ajax_load_subcounties' %}" autocomplete="off">
                                     {{ modifydate }}
                                     {% csrf_token %}
                                     {{ form|crispy }}

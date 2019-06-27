@@ -29,7 +29,7 @@
                         <div class="x_content">
                             <p><a class="btn btn-default" href="{% url 'recommendationform_list' %}">Recommendations
                                 Listing</a></p>
-                            <form method="post" id="RecommendationForm" data-summary-url="{% url 'getcircumstance' %}">
+                            <form method="post" id="RecommendationForm" data-summary-url="{% url 'getcircumstance' %}" autocomplete="off">
                                 {% csrf_token %}
                                 {{ form|crispy }}
                                 <button class="btn btn-primary" type="submit">Submit</button>
